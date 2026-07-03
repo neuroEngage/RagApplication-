@@ -1,0 +1,1948 @@
+--- PAGE 1 ---
+ 
+ 
+For a complete set of online Algebra notes visit http://tutorial.math.lamar.edu. 
+© 2005 Paul Dawkins 
+Algebra Cheat Sheet 
+ 
+Basic Properties & Facts 
+Arithmetic Operations 
+(
+)
+,
+0
+b
+ab
+ab
+ac
+a b
+c
+a c
+c
+a
+a
+a
+ac
+b
+b
+c
+bc
+b
+c
+a
+c
+ad
+bc
+a
+c
+ad
+bc
+b
+d
+bd
+b
+d
+bd
+a
+b
+b
+a
+a
+b
+a
+b
+c
+d
+d
+c
+c
+c
+c
+a
+ab
+ac
+ad
+b
+b
+c a
+c
+a
+bc
+d
+
+
++
+=
++
+=
+
+
+
+
+
+
+
+
+
+=
+=
+
+
+
+
+
+
++
+−
++
+=
+−
+=
+−
+−
++
+=
+=
++
+−
+−
+
+
+
+
++
+
+
+=
++
+≠
+=
+
+
+
+
+
+
+Exponent Properties 
+(
+)
+(
+)
+(
+)
+(
+)
+1
+1
+0
+1
+1,   
+0
+1
+1
+n
+m
+m
+m
+n
+n
+m
+n m
+n m
+m
+m n
+m
+n
+nm
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+a
+a a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+ab
+a b
+b
+b
+a
+a
+a
+a
+a
+b
+b
+a
+a
+a
+b
+a
+a
++
+−
+−
+−
+−
+−
+=
+=
+=
+=
+=
+≠
+
+
+=
+=
+
+
+
+
+=
+=
+
+
+
+
+=
+=
+=
+=
+
+
+
+
+
+
+
+
+ 
+Properties of Radicals 
+ 
+1
+, if  is odd
+, if  is even
+n
+n
+n
+n
+n
+n
+m n
+nm
+n
+n
+n
+n
+n
+n
+a
+a
+ab
+a b
+a
+a
+a
+a
+b
+b
+a
+a
+n
+a
+a
+n
+=
+=
+=
+=
+=
+=
+ 
+ 
+ 
+ 
+Properties of Inequalities 
+If  
+ then
+and 
+If  
+ and 
+0 then 
+and 
+If  
+ and 
+0 then 
+and 
+a
+b
+a
+c
+b
+c
+a
+c
+b
+c
+a
+b
+a
+b
+c
+ac
+bc
+c
+c
+a
+b
+a
+b
+c
+ac
+bc
+c
+c
+<
++
+<
++
+−
+<
+−
+<
+>
+<
+<
+<
+<
+>
+>
+ 
+Properties of Absolute Value 
+if 
+0
+if 
+0
+a
+a
+a
+a
+a
+≥
+
+= −
+<
+
+ 
+0
+Triangle Inequality
+a
+a
+a
+a
+a
+ab
+a b
+b
+b
+a
+b
+a
+b
+≥
+−
+=
+=
+=
++
+≤
++
+ 
+ 
+Distance Formula 
+If 
+(
+)
+1
+1
+1
+,
+P
+x y
+=
+ and 
+(
+)
+2
+2
+2
+,
+P
+x
+y
+=
+ are two 
+points the distance between them is 
+ 
+(
+)
+(
+)
+(
+)
+2
+2
+1
+2
+2
+1
+2
+1
+,
+d P P
+x
+x
+y
+y
+=
+−
++
+−
+ 
+ 
+Complex Numbers 
+ 
+(
+) (
+)
+(
+)
+(
+) (
+)
+(
+)
+(
+)(
+)
+(
+)
+(
+)(
+)
+(
+)
+(
+)(
+)
+2
+2
+2
+2
+2
+2
+1
+1
+,
+0
+Complex Modulus
+Complex Conjugate
+i
+i
+a
+i a
+a
+a
+bi
+c
+di
+a
+c
+b
+d i
+a
+bi
+c
+di
+a
+c
+b
+d i
+a
+bi
+c
+di
+ac
+bd
+ad
+bc i
+a
+bi
+a
+bi
+a
+b
+a
+bi
+a
+b
+a
+bi
+a
+bi
+a
+bi
+a
+bi
+a
+bi
+=
+−
+= −
+−
+=
+≥
++
++
++
+=
++ +
++
++
+−
++
+=
+−+
+−
++
++
+=
+−
++
++
++
+−
+=
++
++
+=
++
++
+=
+−
++
++
+=
++
+ 
+ 
+ 
+
+--- PAGE 2 ---
+ 
+ 
+For a complete set of online Algebra notes visit http://tutorial.math.lamar.edu. 
+© 2005 Paul Dawkins 
+Logarithms and Log Properties 
+Definition 
+log
+  is equivalent to 
+y
+b
+y
+x
+x
+b
+=
+=
+ 
+ 
+Example 
+3
+5
+log 125
+3  because  5
+125
+=
+=
+ 
+ 
+Special Logarithms 
+10
+ln
+log
+natural log
+log
+log
+common log
+e
+x
+x
+x
+x
+=
+=
+ 
+where 
+2.718281828
+e =
+…  
+Logarithm Properties 
+(
+)
+(
+)
+log
+log
+1
+log 1
+0
+log
+log
+log
+log
+log
+log
+log
+log
+log
+b
+b
+b
+x
+x
+b
+r
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+x
+b
+x
+x
+r
+x
+xy
+x
+y
+x
+x
+y
+y
+=
+=
+=
+=
+=
+=
++
+
+=
+−
+
+
+
+
+ 
+ 
+The domain of logb x is 
+0
+x >
+ 
+Factoring and Solving 
+Factoring Formulas 
+(
+)(
+)
+(
+)
+(
+)
+(
+)
+(
+)(
+)
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+x
+a
+x
+a
+x
+a
+x
+ax
+a
+x
+a
+x
+ax
+a
+x
+a
+x
+a
+b x
+ab
+x
+a
+x
+b
+−
+=
++
+−
++
++
+=
++
+−
++
+=
+−
++
++
++
+=
++
++
+ 
+(
+)
+(
+)
+(
+)(
+)
+(
+)(
+)
+3
+3
+2
+2
+3
+3
+3
+2
+2
+3
+3
+3
+2
+2
+3
+3
+2
+2
+3
+3
+3
+3
+x
+ax
+a x
+a
+x
+a
+x
+ax
+a x
+a
+x
+a
+x
+a
+x
+a
+x
+ax
+a
+x
+a
+x
+a
+x
+ax
+a
++
++
++
+=
++
+−
++
+−
+=
+−
++
+=
++
+−
++
+−
+=
+−
++
++
+ 
+(
+)(
+)
+2
+2
+n
+n
+n
+n
+n
+n
+x
+a
+x
+a
+x
+a
+−
+=
+−
++
+ 
+If n is odd then, 
+(
+)(
+)
+(
+)(
+)
+1
+2
+1
+1
+2
+2
+3
+1
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+x
+a
+x
+a
+x
+ax
+a
+x
+a
+x
+a
+x
+ax
+a x
+a
+−
+−
+−
+−
+−
+−
+−
+−
+=
+−
++
++
++
++
+=
++
+−
++
+−
++
+L
+L
+Quadratic Formula 
+Solve 
+2
+0
+ax
+bx
+c
++
++
+=
+, 
+0
+a ≠
+ 
+2
+4
+2
+b
+b
+ac
+x
+a
+−±
+−
+=
+ 
+If 
+2
+4
+0
+b
+ac
+−
+>
+ - Two real unequal solns. 
+If 
+2
+4
+0
+b
+ac
+−
+=
+ - Repeated real solution. 
+If 
+2
+4
+0
+b
+ac
+−
+<
+ - Two complex solutions. 
+ 
+Square Root Property 
+If 
+2x
+p
+=
+ then x
+p
+= ±
+ 
+ 
+Absolute Value Equations/Inequalities 
+If b is a positive number 
+or
+or
+p
+b
+p
+b
+p
+b
+p
+b
+b
+p
+b
+p
+b
+p
+b
+p
+b
+=
+⇒
+= −
+=
+<
+⇒
+−<
+<
+>
+⇒
+< −
+>
+ 
+Completing the Square 
+Solve 
+2
+2
+6
+10
+0
+x
+x
+−
+−
+=
+ 
+ 
+(1) Divide by the coefficient of the 
+2x 
+2
+3
+5
+0
+x
+x
+−
+−
+=
+ 
+(2) Move the constant to the other side. 
+2
+3
+5
+x
+x
+−
+=
+ 
+(3) Take half the coefficient of x, square 
+it and add it to both sides 
+2
+2
+2
+3
+3
+9
+29
+3
+5
+5
+2
+2
+4
+4
+x
+x
+
+
+
+
+−
++ −
+=
++ −
+=
++
+=
+
+
+
+
+
+
+
+
+ 
+(4) Factor the left side 
+2
+3
+29
+2
+4
+x
+
+
+−
+=
+
+
+
+
+ 
+(5) Use Square Root Property 
+3
+29
+29
+2
+4
+2
+x −
+= ±
+= ±
+ 
+(6) Solve for x 
+3
+29
+2
+2
+x =
+±
+
+--- PAGE 3 ---
+ 
+ 
+For a complete set of online Algebra notes visit http://tutorial.math.lamar.edu. 
+© 2005 Paul Dawkins 
+Functions and Graphs 
+Constant Function 
+( )
+or      
+y
+a
+f x
+a
+=
+=
+ 
+Graph is a horizontal line passing 
+through the point (
+)
+0,a . 
+ 
+Line/Linear Function 
+( )
+or    
+y
+mx
+b
+f x
+mx
+b
+=
++
+=
++ 
+Graph is a line with point (
+)
+0,b and 
+slope m. 
+ 
+Slope 
+Slope of the line containing the two 
+points (
+)
+1
+1
+,
+x y
+ and (
+)
+2
+2
+,
+x
+y
+ is 
+2
+1
+2
+1
+rise
+run
+y
+y
+m
+x
+x
+−
+=
+=
+−
+ 
+Slope – intercept form 
+The equation of the line with slope m 
+and y-intercept (
+)
+0,b is 
+y
+mx
+b
+=
++ 
+Point – Slope form 
+The equation of the line with slope m 
+and passing through the point (
+)
+1
+1
+,
+x y
+ is 
+(
+)
+1
+1
+y
+y
+m x
+x
+=
++
+−
+ 
+ 
+Parabola/Quadratic Function 
+(
+)
+( )
+(
+)
+2
+2
+y
+a x
+h
+k
+f x
+a x
+h
+k
+=
+−
++
+=
+−
++
+ 
+The graph is a parabola that opens up if 
+0
+a >
+ or down if 
+0
+a <
+ and has a vertex 
+at (
+)
+,h k . 
+ 
+Parabola/Quadratic Function 
+( )
+2
+2
+y
+ax
+bx
+c
+f x
+ax
+bx
+c
+=
++
++
+=
++
++
+ 
+ 
+The graph is a parabola that opens up if 
+0
+a >
+ or down if 
+0
+a <
+ and has a vertex 
+at 
+,
+2
+2
+b
+b
+f
+a
+a
+
+
+
+
+−
+−
+
+
+
+
+
+
+
+
+. 
+ 
+Parabola/Quadratic Function 
+( )
+2
+2
+x
+ay
+by
+c
+g y
+ay
+by
+c
+=
++
++
+=
++
++ 
+ 
+The graph is a parabola that opens right 
+if 
+0
+a >
+ or left if 
+0
+a <
+ and has a vertex 
+at 
+,
+2
+2
+b
+b
+g
+a
+a
+
+
+
+
+−
+−
+
+
+
+
+
+
+
+
+. 
+ 
+Circle 
+(
+)
+(
+)
+2
+2
+2
+x
+h
+y
+k
+r
+−
++
+−
+=
+ 
+Graph is a circle with radius r and center 
+(
+)
+,h k . 
+ 
+Ellipse 
+(
+)
+(
+)
+2
+2
+2
+2
+1
+x
+h
+y
+k
+a
+b
+−
+−
++
+= 
+Graph is an ellipse with center (
+)
+,h k 
+with vertices a units right/left from the 
+center and vertices b units up/down from 
+the center. 
+ 
+Hyperbola 
+(
+)
+(
+)
+2
+2
+2
+2
+1
+x
+h
+y
+k
+a
+b
+−
+−
+−
+= 
+Graph is a hyperbola that opens left and 
+right, has a center at (
+)
+,h k , vertices a 
+units left/right of center and asymptotes 
+that pass through center with slope 
+b
+a
+±
+.  
+Hyperbola 
+(
+)
+(
+)
+2
+2
+2
+2
+1
+y
+k
+x
+h
+b
+a
+−
+−
+−
+= 
+Graph is a hyperbola that opens up and 
+down, has a center at (
+)
+,h k , vertices b 
+units up/down from the center and 
+asymptotes that pass through center with 
+slope 
+b
+a
+±
+.
+ 
+ 
+ 
+
+--- PAGE 4 ---
+ 
+ 
+For a complete set of online Algebra notes visit http://tutorial.math.lamar.edu. 
+© 2005 Paul Dawkins 
+Common Algebraic Errors 
+Error 
+Reason/Correct/Justification/Example 
+2
+0
+0 ≠
+ and 2
+2
+0 ≠
+ 
+Division by zero is undefined! 
+23
+9
+−
+≠
+ 
+23
+9
+−
+= −,  (
+)
+2
+3
+9
+−
+=
+ Watch parenthesis! 
+(
+)
+3
+2
+5
+x
+x
+≠
+ 
+(
+)
+3
+2
+2
+2
+2
+6
+x
+x x x
+x
+=
+=
+ 
+a
+a
+a
+b
+c
+b
+c
+≠
++
++
+ 
+1
+1
+1
+1
+2
+2
+1 1
+1
+1
+=
+≠
++
+=
++
+ 
+2
+3
+2
+3
+1
+x
+x
+x
+x
+−
+−
+≠
++
++
+ 
+A more complex version of the previous 
+error. 
+a
+bx
+a
++
+1 bx
+≠+
+ 
+1
+a
+bx
+a
+bx
+bx
+a
+a
+a
+a
++
+=
++
+= +
+  
+Beware of incorrect canceling! 
+(
+)1
+a x
+ax
+a
+−
+−
+≠−
+−
+ 
+(
+)1
+a x
+ax
+a
+−
+−
+= −
++
+ 
+Make sure you distribute the “-“! 
+(
+)
+2
+2
+2
+x
+a
+x
+a
++
+≠
++
+ 
+(
+)
+(
+)(
+)
+2
+2
+2
+2
+x
+a
+x
+a
+x
+a
+x
+ax
+a
++
+=
++
++
+=
++
++
+ 
+2
+2
+x
+a
+x
+a
++
+≠
++
+ 
+2
+2
+2
+2
+5
+25
+3
+4
+3
+4
+3
+4
+7
+=
+=
++
+≠
++
+=
++
+=
+ 
+x
+a
+x
+a
++
+≠
++
+ 
+See previous error. 
+(
+)
+n
+n
+n
+x
+a
+x
+a
++
+≠
++
+ and n
+n
+n
+x
+a
+x
+a
++
+≠
++
+ 
+More general versions of previous three 
+errors. 
+(
+)
+(
+)
+2
+2
+2
+1
+2
+2
+x
+x
++
+≠
++
+ 
+(
+)
+(
+)
+2
+2
+2
+2
+1
+2
+2
+1
+2
+4
+2
+x
+x
+x
+x
+x
++
+=
++
++
+=
++
++
+ 
+(
+)
+2
+2
+2
+2
+4
+8
+4
+x
+x
+x
++
+=
++
++
+ 
+Square first then distribute! 
+(
+)
+(
+)
+2
+2
+2
+2
+2
+1
+x
+x
++
+≠
++
+ 
+See the previous example.  You can not 
+factor out a constant if there is a power on 
+the parenthesis! 
+2
+2
+2
+2
+x
+a
+x
+a
+−
++
+≠−
++
+ 
+(
+)
+1
+2
+2
+2
+2
+2
+x
+a
+x
+a
+−
++
+= −
++
+  
+Now see the previous error. 
+a
+ab
+b
+c
+c
+≠
+
+
+
+
+
+
+ 
+1
+1
+a
+a
+a
+c
+ac
+b
+b
+b
+b
+c
+c
+
+
+
+
+
+
+
+
+
+=
+=
+=
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+a
+ac
+b
+c
+b
+
+
+
+
+
+≠
+ 
+1
+1
+a
+a
+a
+a
+b
+b
+c
+c
+b
+c
+bc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=
+=
+=
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+

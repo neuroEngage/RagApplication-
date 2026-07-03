@@ -1,0 +1,1085 @@
+--- PAGE 1 ---
+CS 230 – Deep Learning
+Shervine Amidi & Afshine Amidi
+Super VIP Cheatsheet: Deep Learning
+Afshine Amidi and Shervine Amidi
+November 25, 2018
+Contents
+1
+Convolutional Neural Networks
+2
+1.1
+Overview . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2
+1.2
+Types of layer
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2
+1.3
+Filter hyperparameters . . . . . . . . . . . . . . . . . . . . . . . . . .
+2
+1.4
+Tuning hyperparameters . . . . . . . . . . . . . . . . . . . . . . . . .
+3
+1.5
+Commonly used activation functions . . . . . . . . . . . . . . . . . . .
+3
+1.6
+Object detection . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4
+1.6.1
+Face veriﬁcation and recognition . . . . . . . . . . . . . . . . .
+5
+1.6.2
+Neural style transfer . . . . . . . . . . . . . . . . . . . . . . .
+5
+1.6.3
+Architectures using computational tricks
+. . . . . . . . . . . .
+6
+2
+Recurrent Neural Networks
+7
+2.1
+Overview . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+7
+2.2
+Handling long term dependencies
+. . . . . . . . . . . . . . . . . . . .
+8
+2.3
+Learning word representation
+. . . . . . . . . . . . . . . . . . . . . .
+9
+2.3.1
+Motivation and notations . . . . . . . . . . . . . . . . . . .
+9
+2.3.2
+Word embeddings
+. . . . . . . . . . . . . . . . . . . . . . .
+9
+2.4
+Comparing words . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+9
+2.5
+Language model . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+10
+2.6
+Machine translation
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+10
+2.7
+Attention . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+10
+3
+Deep Learning Tips and Tricks
+11
+3.1
+Data processing
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+11
+3.2
+Training a neural network . . . . . . . . . . . . . . . . . . . . . . . .
+12
+3.2.1
+Deﬁnitions . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+12
+3.2.2
+Finding optimal weights . . . . . . . . . . . . . . . . . . . . .
+12
+3.3
+Parameter tuning
+. . . . . . . . . . . . . . . . . . . . . . . . . . . .
+12
+3.3.1
+Weights initialization
+. . . . . . . . . . . . . . . . . . . . . .
+12
+3.3.2
+Optimizing convergence . . . . . . . . . . . . . . . . . . . . .
+12
+3.4
+Regularization . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+13
+3.5
+Good practices . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+13
+1
+Convolutional Neural Networks
+1.1
+Overview
+Ì Architecture of a traditional CNN – Convolutional neural networks, also known as CNNs,
+are a speciﬁc type of neural networks that are generally composed of the following layers:
+The convolution layer and the pooling layer can be ﬁne-tuned with respect to hyperparameters
+that are described in the next sections.
+1.2
+Types of layer
+Ì Convolutional layer (CONV) – The convolution layer (CONV) uses ﬁlters that perform
+convolution operations as it is scanning the input I with respect to its dimensions. Its hyperpa-
+rameters include the ﬁlter size F and stride S. The resulting output O is called feature map or
+activation map.
+Remark: the convolution step can be generalized to the 1D and 3D cases as well.
+Ì Pooling (POOL) – The pooling layer (POOL) is a downsampling operation, typically applied
+after a convolution layer, which does some spatial invariance. In particular, max and average
+pooling are special kinds of pooling where the maximum and average value is taken, respectively.
+Stanford University
+1
+Winter 2019
+
+--- PAGE 2 ---
+CS 230 – Deep Learning
+Shervine Amidi & Afshine Amidi
+Max pooling
+Average pooling
+Purpose
+Each pooling operation selects the
+maximum value of the current view
+Each pooling operation averages
+the values of the current view
+Illustration
+Comments
+- Preserves detected features
+- Most commonly used
+- Downsamples feature map
+- Used in LeNet
+Ì Fully Connected (FC) – The fully connected layer (FC) operates on a ﬂattened input where
+each input is connected to all neurons. If present, FC layers are usually found towards the end
+of CNN architectures and can be used to optimize objectives such as class scores.
+1.3
+Filter hyperparameters
+The convolution layer contains ﬁlters for which it is important to know the meaning behind its
+hyperparameters.
+Ì Dimensions of a ﬁlter – A ﬁlter of size F × F applied to an input containing C channels is
+a F × F × C volume that performs convolutions on an input of size I × I × C and produces an
+output feature map (also called activation map) of size O × O × 1.
+Remark: the application of K ﬁlters of size F × F results in an output feature map of size
+O × O × K.
+Ì Stride – For a convolutional or a pooling operation, the stride S denotes the number of pixels
+by which the window moves after each operation.
+Ì Zero-padding – Zero-padding denotes the process of adding P zeroes to each side of the
+boundaries of the input. This value can either be manually speciﬁed or automatically set through
+one of the three modes detailed below:
+Valid
+Same
+Full
+Value
+P = 0
+Pstart =
+j
+S⌈I
+S ⌉−I+F −S
+2
+k
+Pend =
+l
+S⌈I
+S ⌉−I+F −S
+2
+m
+Pstart ∈[[0,F −1]]
+Pend = F −1
+Illustration
+Purpose
+- No padding
+- Drops last
+convolution if
+dimensions do not
+match
+- Padding such that feature
+map size has size
+l
+I
+S
+m
+- Output size is
+mathematically convenient
+- Also called ’half’ padding
+- Maximum padding
+such that end
+convolutions are
+applied on the limits
+of the input
+- Filter ’sees’ the input
+end-to-end
+1.4
+Tuning hyperparameters
+Ì Parameter compatibility in convolution layer – By noting I the length of the input
+volume size, F the length of the ﬁlter, P the amount of zero padding, S the stride, then the
+output size O of the feature map along that dimension is given by:
+O = I −F + Pstart + Pend
+S
++ 1
+Remark: often times, Pstart = Pend ≜P, in which case we can replace Pstart + Pend by 2P in
+the formula above.
+Stanford University
+2
+Winter 2019
+
+--- PAGE 3 ---
+CS 230 – Deep Learning
+Shervine Amidi & Afshine Amidi
+Ì Understanding the complexity of the model – In order to assess the complexity of a
+model, it is often useful to determine the number of parameters that its architecture will have.
+In a given layer of a convolutional neural network, it is done as follows:
+CONV
+POOL
+FC
+Illustration
+Input size
+I × I × C
+I × I × C
+Nin
+Output size
+O × O × K
+O × O × C
+Nout
+Number of
+parameters
+(F × F × C + 1) · K
+0
+(Nin + 1) × Nout
+Remarks
+- One bias parameter
+per ﬁlter
+- In most cases, S < F
+- A common choice
+for K is 2C
+- Pooling operation
+done channel-wise
+- In most cases, S = F
+- Input is ﬂattened
+- One bias parameter
+per neuron
+- The number of FC
+neurons is free of
+structural constraints
+Ì Receptive ﬁeld – The receptive ﬁeld at layer k is the area denoted Rk × Rk of the input
+that each pixel of the k-th activation map can ’see’. By calling Fj the ﬁlter size of layer j and
+Si the stride value of layer i and with the convention S0 = 1, the receptive ﬁeld at layer k can
+be computed with the formula:
+Rk = 1 +
+k
+X
+j=1
+(Fj −1)
+j−1
+Y
+i=0
+Si
+In the example below, we have F1 = F2 = 3 and S1 = S2 = 1, which gives R2 = 1+2 · 1+2 · 1 =
+5.
+1.5
+Commonly used activation functions
+Ì Rectiﬁed Linear Unit – The rectiﬁed linear unit layer (ReLU) is an activation function g
+that is used on all elements of the volume. It aims at introducing non-linearities to the network.
+Its variants are summarized in the table below:
+ReLU
+Leaky ReLU
+ELU
+g(z) = max(0,z)
+g(z) = max(ϵz,z)
+with ϵ ≪1
+g(z) = max(α(ez −1),z)
+with α ≪1
+Non-linearity complexities
+biologically interpretable
+Addresses dying ReLU
+issue for negative values
+Diﬀerentiable everywhere
+Ì Softmax – The softmax step can be seen as a generalized logistic function that takes as input
+a vector of scores x ∈Rn and outputs a vector of output probability p ∈Rn through a softmax
+function at the end of the architecture. It is deﬁned as follows:
+p =
+p1
+...pn
+
+where
+pi =
+exi
+n
+X
+j=1
+exj
+1.6
+Object detection
+Ì Types of models – There are 3 main types of object recognition algorithms, for which the
+nature of what is predicted is diﬀerent. They are described in the table below:
+Image classiﬁcation
+Classiﬁcation
+w. localization
+Detection
+- Classiﬁes a picture
+- Predicts probability
+of object
+- Detects object in a picture
+- Predicts probability of
+object and where it is
+located
+- Detects up to several objects
+in a picture
+- Predicts probabilities of objects
+and where they are located
+Traditional CNN
+Simpliﬁed YOLO, R-CNN
+YOLO, R-CNN
+Ì Detection – In the context of object detection, diﬀerent methods are used depending on
+whether we just want to locate the object or detect a more complex shape in the image. The
+two main ones are summed up in the table below:
+Stanford University
+3
+Winter 2019
+
+--- PAGE 4 ---
+CS 230 – Deep Learning
+Shervine Amidi & Afshine Amidi
+Bounding box detection
+Landmark detection
+Detects the part of the image where
+the object is located
+- Detects a shape or characteristics of
+an object (e.g. eyes)
+- More granular
+Box of center (bx,by), height bh
+and width bw
+Reference points (l1x,l1y), ...,(lnx,lny)
+Ì Intersection over Union – Intersection over Union, also known as IoU, is a function that
+quantiﬁes how correctly positioned a predicted bounding box Bp is over the actual bounding
+box Ba. It is deﬁned as:
+IoU(Bp,Ba) = Bp ∩Ba
+Bp ∪Ba
+Remark: we always have IoU ∈[0,1]. By convention, a predicted bounding box Bp is considered
+as being reasonably good if IoU(Bp,Ba) ⩾0.5.
+Ì Anchor boxes – Anchor boxing is a technique used to predict overlapping bounding boxes.
+In practice, the network is allowed to predict more than one box simultaneously, where each box
+prediction is constrained to have a given set of geometrical properties. For instance, the ﬁrst
+prediction can potentially be a rectangular box of a given form, while the second will be another
+rectangular box of a diﬀerent geometrical form.
+Ì Non-max suppression – The non-max suppression technique aims at removing duplicate
+overlapping bounding boxes of a same object by selecting the most representative ones. After
+having removed all boxes having a probability prediction lower than 0.6, the following steps are
+repeated while there are boxes remaining:
+• Step 1: Pick the box with the largest prediction probability.
+• Step 2: Discard any box having an IoU ⩾0.5 with the previous box.
+Ì YOLO – You Only Look Once (YOLO) is an object detection algorithm that performs the
+following steps:
+• Step 1: Divide the input image into a G × G grid.
+• Step 2: For each grid cell, run a CNN that predicts y of the following form:
+y = 
+pc,bx,by,bh,bw,c1,c2,...,cp
+|
+{z
+}
+repeated k times
+,...T ∈RG×G×k×(5+p)
+where pc is the probability of detecting an object, bx,by,bh,bw are the properties of the
+detected bouding box, c1,...,cp is a one-hot representation of which of the p classes were
+detected, and k is the number of anchor boxes.
+• Step 3: Run the non-max suppression algorithm to remove any potential duplicate over-
+lapping bounding boxes.
+Remark: when pc = 0, then the network does not detect any object. In that case, the corre-
+sponding predictions bx, ..., cp have to be ignored.
+Ì R-CNN – Region with Convolutional Neural Networks (R-CNN) is an object detection algo-
+rithm that ﬁrst segments the image to ﬁnd potential relevant bounding boxes and then run the
+detection algorithm to ﬁnd most probable objects in those bounding boxes.
+Remark: although the original algorithm is computationally expensive and slow, newer archi-
+tectures enabled the algorithm to run faster, such as Fast R-CNN and Faster R-CNN.
+Stanford University
+4
+Winter 2019
+
+--- PAGE 5 ---
+CS 230 – Deep Learning
+Shervine Amidi & Afshine Amidi
+1.6.1
+Face veriﬁcation and recognition
+Ì Types of models – Two main types of model are summed up in table below:
+Face veriﬁcation
+Face recognition
+- Is this the correct person?
+- One-to-one lookup
+- Is this one of the K persons in the database?
+- One-to-many lookup
+Ì One Shot Learning – One Shot Learning is a face veriﬁcation algorithm that uses a limited
+training set to learn a similarity function that quantiﬁes how diﬀerent two given images are. The
+similarity function applied to two images is often noted d(image 1, image 2).
+Ì Siamese Network – Siamese Networks aim at learning how to encode images to then quantify
+how diﬀerent two images are. For a given input image x(i), the encoded output is often noted
+as f(x(i)).
+Ì Triplet loss – The triplet loss ℓis a loss function computed on the embedding representation
+of a triplet of images A (anchor), P (positive) and N (negative). The anchor and the positive
+example belong to a same class, while the negative example to another one. By calling α ∈R+
+the margin parameter, this loss is deﬁned as follows:
+ℓ(A,P,N) = max (d(A,P) −d(A,N) + α,0)
+1.6.2
+Neural style transfer
+Ì Motivation – The goal of neural style transfer is to generate an image G based on a given
+content C and a given style S.
+Ì Activation – In a given layer l, the activation is noted a[l] and is of dimensions nH ×nw ×nc
+Ì Content cost function – The content cost function Jcontent(C,G) is used to determine how
+the generated image G diﬀers from the original content image C. It is deﬁned as follows:
+Jcontent(C,G) = 1
+2 ||a[l](C) −a[l](G)||2
+Ì Style matrix – The style matrix G[l] of a given layer l is a Gram matrix where each of its
+elements G[l]
+kk′ quantiﬁes how correlated the channels k and k′ are. It is deﬁned with respect to
+activations a[l] as follows:
+G[l]
+kk′ =
+n[l]
+H
+X
+i=1
+n[l]
+w
+X
+j=1
+a[l]
+ijka[l]
+ijk′
+Remark: the style matrix for the style image and the generated image are noted G[l](S) and
+G[l](G) respectively.
+Ì Style cost function – The style cost function Jstyle(S,G) is used to determine how the
+generated image G diﬀers from the style S. It is deﬁned as follows:
+J[l]
+style(S,G) =
+1
+(2nHnwnc)2 ||G[l](S) −G[l](G)||2
+F =
+1
+(2nHnwnc)2
+nc
+X
+k,k′=1
+
+G[l](S)
+kk′
+−G[l](G)
+kk′
+2
+Ì Overall cost function – The overall cost function is deﬁned as being a combination of the
+content and style cost functions, weighted by parameters α,β, as follows:
+J(G) = αJcontent(C,G) + βJstyle(S,G)
+Remark: a higher value of α will make the model care more about the content while a higher
+value of β will make it care more about the style.
+1.6.3
+Architectures using computational tricks
+Ì Generative Adversarial Network – Generative adversarial networks, also known as GANs,
+are composed of a generative and a discriminative model, where the generative model aims at
+generating the most truthful output that will be fed into the discriminative which aims at
+diﬀerentiating the generated and true image.
+Stanford University
+5
+Winter 2019
+
+--- PAGE 6 ---
+CS 230 – Deep Learning
+Shervine Amidi & Afshine Amidi
+Remark: use cases using variants of GANs include text to image, music generation and syn-
+thesis.
+Ì ResNet – The Residual Network architecture (also called ResNet) uses residual blocks with a
+high number of layers meant to decrease the training error. The residual block has the following
+characterizing equation:
+a[l+2] = g(a[l] + z[l+2])
+Ì Inception Network – This architecture uses inception modules and aims at giving a try
+at diﬀerent convolutions in order to increase its performance. In particular, it uses the 1 × 1
+convolution trick to lower the burden of computation.
+⋆
+⋆
+⋆
+2
+Recurrent Neural Networks
+2.1
+Overview
+Ì Architecture of a traditional RNN – Recurrent neural networks, also known as RNNs,
+are a class of neural networks that allow previous outputs to be used as inputs while having
+hidden states. They are typically as follows:
+For each timestep t, the activation a<t> and the output y<t> are expressed as follows:
+a<t> = g1(Waaa<t−1> + Waxx<t> + ba)
+and
+y<t> = g2(Wyaa<t> + by)
+where Wax, Waa, Wya, ba, by are coeﬃcients that are shared temporally and g1, g2 activation
+functions
+The pros and cons of a typical RNN architecture are summed up in the table below:
+Advantages
+Drawbacks
+- Possibility of processing input of any length
+- Model size not increasing with size of input
+- Computation takes into account
+historical information
+- Weights are shared across time
+- Computation being slow
+- Diﬃculty of accessing information
+from a long time ago
+- Cannot consider any future input
+for the current state
+Ì Applications of RNNs – RNN models are mostly used in the ﬁelds of natural language
+processing and speech recognition. The diﬀerent applications are summed up in the table below:
+Stanford University
+6
+Winter 2019
+
+--- PAGE 7 ---
+CS 230 – Deep Learning
+Shervine Amidi & Afshine Amidi
+Type of RNN
+Illustration
+Example
+One-to-one
+Tx = Ty = 1
+Traditional neural network
+One-to-many
+Tx = 1, Ty > 1
+Music generation
+Many-to-one
+Tx > 1, Ty = 1
+Sentiment classiﬁcation
+Many-to-many
+Tx = Ty
+Name entity recognition
+Many-to-many
+Tx̸ = Ty
+Machine translation
+Ì Loss function – In the case of a recurrent neural network, the loss function L of all time
+steps is deﬁned based on the loss at every time step as follows:
+L(by,y) =
+Ty
+X
+t=1
+L(by<t>,y<t>)
+Ì Backpropagation through time – Backpropagation is done at each point in time.
+At
+timestep T, the derivative of the loss L with respect to weight matrix W is expressed as follows:
+∂L(T )
+∂W
+=
+T
+X
+t=1
+∂L(T )
+∂W
+
+(t)
+2.2
+Handling long term dependencies
+Ì Commonly used activation functions – The most common activation functions used in
+RNN modules are described below:
+Sigmoid
+Tanh
+RELU
+g(z) =
+1
+1 + e−z
+g(z) = ez −e−z
+ez + e−z
+g(z) = max(0,z)
+Ì Vanishing/exploding gradient – The vanishing and exploding gradient phenomena are
+often encountered in the context of RNNs. The reason why they happen is that it is diﬃcult
+to capture long term dependencies because of multiplicative gradient that can be exponentially
+decreasing/increasing with respect to the number of layers.
+Ì Gradient clipping – It is a technique used to cope with the exploding gradient problem
+sometimes encountered when performing backpropagation. By capping the maximum value for
+the gradient, this phenomenon is controlled in practice.
+Ì Types of gates – In order to remedy the vanishing gradient problem, speciﬁc gates are used
+in some types of RNNs and usually have a well-deﬁned purpose. They are usually noted Γ and
+are equal to:
+Γ = σ(Wx<t> + Ua<t−1> + b)
+where W, U, b are coeﬃcients speciﬁc to the gate and σ is the sigmoid function. The main ones
+are summed up in the table below:
+Stanford University
+7
+Winter 2019
+
+--- PAGE 8 ---
+CS 230 – Deep Learning
+Shervine Amidi & Afshine Amidi
+Type of gate
+Role
+Used in
+Update gate Γu
+How much past should matter now?
+GRU, LSTM
+Relevance gate Γr
+Drop previous information?
+GRU, LSTM
+Forget gate Γf
+Erase a cell or not?
+LSTM
+Output gate Γo
+How much to reveal of a cell?
+LSTM
+Ì GRU/LSTM – Gated Recurrent Unit (GRU) and Long Short-Term Memory units (LSTM)
+deal with the vanishing gradient problem encountered by traditional RNNs, with LSTM being
+a generalization of GRU. Below is a table summing up the characterizing equations of each
+architecture:
+Gated Recurrent Unit
+(GRU)
+Long Short-Term Memory
+(LSTM)
+˜c<t>
+tanh(Wc[Γr ⋆a<t−1>,x<t>] + bc)
+tanh(Wc[Γr ⋆a<t−1>,x<t>] + bc)
+c<t>
+Γu ⋆˜c<t> + (1 −Γu) ⋆c<t−1>
+Γu ⋆˜c<t> + Γf ⋆c<t−1>
+a<t>
+c<t>
+Γo ⋆c<t>
+Dependencies
+Remark: the sign ⋆denotes the element-wise multiplication between two vectors.
+Ì Variants of RNNs – The table below sums up the other commonly used RNN architectures:
+Bidirectional
+(BRNN)
+Deep
+(DRNN)
+2.3
+Learning word representation
+In this section, we note V the vocabulary and |V | its size.
+2.3.1
+Motivation and notations
+Ì Representation techniques – The two main ways of representing words are summed up in
+the table below:
+1-hot representation
+Word embedding
+- Noted ow
+- Naive approach, no similarity information
+- Noted ew
+- Takes into account words similarity
+Ì Embedding matrix – For a given word w, the embedding matrix E is a matrix that maps
+its 1-hot representation ow to its embedding ew as follows:
+ew = Eow
+Remark: learning the embedding matrix can be done using target/context likelihood models.
+2.3.2
+Word embeddings
+Ì Word2vec – Word2vec is a framework aimed at learning word embeddings by estimating the
+likelihood that a given word is surrounded by other words. Popular models include skip-gram,
+negative sampling and CBOW.
+Ì Skip-gram – The skip-gram word2vec model is a supervised learning task that learns word
+embeddings by assessing the likelihood of any given target word t happening with a context
+word c. By noting θt a parameter associated with t, the probability P(t|c) is given by:
+Stanford University
+8
+Winter 2019
+
+--- PAGE 9 ---
+CS 230 – Deep Learning
+Shervine Amidi & Afshine Amidi
+P(t|c) =
+exp(θT
+t ec)
+|V |
+X
+j=1
+exp(θT
+j ec)
+Remark: summing over the whole vocabulary in the denominator of the softmax part makes
+this model computationally expensive. CBOW is another word2vec model using the surrounding
+words to predict a given word.
+Ì Negative sampling – It is a set of binary classiﬁers using logistic regressions that aim at
+assessing how a given context and a given target words are likely to appear simultaneously, with
+the models being trained on sets of k negative examples and 1 positive example. Given a context
+word c and a target word t, the prediction is expressed by:
+P(y = 1|c,t) = σ(θT
+t ec)
+Remark: this method is less computationally expensive than the skip-gram model.
+Ì GloVe – The GloVe model, short for global vectors for word representation, is a word em-
+bedding technique that uses a co-occurence matrix X where each Xi,j denotes the number of
+times that a target i occurred with a context j. Its cost function J is as follows:
+J(θ) = 1
+2
+|V |
+X
+i,j=1
+f(Xij)(θT
+i ej + bi + b′
+j −log(Xij))2
+here f is a weighting function such that Xi,j = 0 =⇒f(Xi,j) = 0.
+Given the symmetry that e and θ play in this model, the ﬁnal word embedding e(ﬁnal)
+w
+is given
+by:
+e(ﬁnal)
+w
+= ew + θw
+2
+Remark: the individual components of the learned word embeddings are not necessarily inter-
+pretable.
+2.4
+Comparing words
+Ì Cosine similarity – The cosine similarity between words w1 and w2 is expressed as follows:
+similarity =
+w1 · w2
+||w1|| ||w2|| = cos(θ)
+Remark: θ is the angle between words w1 and w2.
+Ì t-SNE – t-SNE (t-distributed Stochastic Neighbor Embedding) is a technique aimed at re-
+ducing high-dimensional embeddings into a lower dimensional space. In practice, it is commonly
+used to visualize word vectors in the 2D space.
+2.5
+Language model
+Ì Overview – A language model aims at estimating the probability of a sentence P(y).
+Ì n-gram model – This model is a naive approach aiming at quantifying the probability that
+an expression appears in a corpus by counting its number of appearance in the training data.
+Ì Perplexity – Language models are commonly assessed using the perplexity metric, also
+known as PP, which can be interpreted as the inverse probability of the dataset normalized by
+the number of words T.
+The perplexity is such that the lower, the better and is deﬁned as
+follows:
+PP =
+T
+Y
+t=1
+ 
+1
+P|V |
+j=1 y(t)
+j
+·by(t)
+j
+! 1
+T
+Remark: PP is commonly used in t-SNE.
+2.6
+Machine translation
+Ì Overview – A machine translation model is similar to a language model except it has an
+encoder network placed before. For this reason, it is sometimes referred as a conditional language
+model. The goal is to ﬁnd a sentence y such that:
+y =
+arg max
+y<1>,...,y<Ty>
+P(y<1>,...,y<Ty>|x)
+Ì Beam search – It is a heuristic search algorithm used in machine translation and speech
+recognition to ﬁnd the likeliest sentence y given an input x.
+• Step 1: Find top B likely words y<1>
+• Step 2: Compute conditional probabilities y<k>|x,y<1>,...,y<k−1>
+• Step 3: Keep top B combinations x,y<1>,...,y<k>
+Stanford University
+9
+Winter 2019
+
+--- PAGE 10 ---
+CS 230 – Deep Learning
+Shervine Amidi & Afshine Amidi
+Remark: if the beam width is set to 1, then this is equivalent to a naive greedy search.
+Ì Beam width – The beam width B is a parameter for beam search. Large values of B yield
+to better result but with slower performance and increased memory. Small values of B lead to
+worse results but is less computationally intensive. A standard value for B is around 10.
+Ì Length normalization – In order to improve numerical stability, beam search is usually ap-
+plied on the following normalized objective, often called the normalized log-likelihood objective,
+deﬁned as:
+Objective =
+1
+T α
+y
+Ty
+X
+t=1
+log
+h
+p(y<t>|x,y<1>, ..., y<t−1>)
+i
+Remark: the parameter α can be seen as a softener, and its value is usually between 0.5 and 1.
+Ì Error analysis – When obtaining a predicted translation by that is bad, one can wonder why
+we did not get a good translation y∗by performing the following error analysis:
+Case
+P(y∗|x) > P(by|x)
+P(y∗|x) ⩽P(by|x)
+Root cause
+Beam search faulty
+RNN faulty
+Remedies
+Increase beam width
+- Try diﬀerent architecture
+- Regularize
+- Get more data
+Ì Bleu score – The bilingual evaluation understudy (bleu) score quantiﬁes how good a machine
+translation is by computing a similarity score based on n-gram precision. It is deﬁned as follows:
+bleu score = exp
+ 
+1
+n
+n
+X
+k=1
+pk
+!
+where pn is the bleu score on n-gram only deﬁned as follows:
+pn =
+X
+n-gram∈b
+y
+countclip(n-gram)
+X
+n-gram∈b
+y
+count(n-gram)
+Remark: a brevity penalty may be applied to short predicted translations to prevent an artiﬁcially
+inﬂated bleu score.
+2.7
+Attention
+Ì Attention model – This model allows an RNN to pay attention to speciﬁc parts of the input
+that is considered as being important, which improves the performance of the resulting model
+in practice. By noting α<t,t′> the amount of attention that the output y<t> should pay to the
+activation a<t′> and c<t> the context at time t, we have:
+c<t> =
+X
+t′
+α<t,t′>a<t′>
+with
+X
+t′
+α<t,t′> = 1
+Remark: the attention scores are commonly used in image captioning and machine translation.
+Ì Attention weight – The amount of attention that the output y<t> should pay to the
+activation a<t′> is given by α<t,t′> computed as follows:
+α<t,t′> =
+exp(e<t,t′>)
+Tx
+X
+t′′=1
+exp(e<t,t′′>)
+Remark: computation complexity is quadratic with respect to Tx.
+⋆
+⋆
+⋆
+Stanford University
+10
+Winter 2019
+
+--- PAGE 11 ---
+CS 230 – Deep Learning
+Shervine Amidi & Afshine Amidi
+3
+Deep Learning Tips and Tricks
+3.1
+Data processing
+Ì Data augmentation – Deep learning models usually need a lot of data to be properly trained.
+It is often useful to get more data from the existing ones using data augmentation techniques.
+The main ones are summed up in the table below. More precisely, given the following input
+image, here are the techniques that we can apply:
+Original
+Flip
+Rotation
+Random crop
+- Image without
+any modiﬁcation
+- Flipped with respect
+to an axis for which
+the meaning of the
+image is preserved
+- Rotation with
+a slight angle
+- Simulates incorrect
+horizon calibration
+- Random focus
+on one part of
+the image
+- Several random
+crops can be
+done in a row
+Color shift
+Noise addition
+Information loss
+Contrast change
+- Nuances of RGB
+is slightly changed
+- Captures noise
+that can occur
+with light exposure
+- Addition of noise
+- More tolerance to
+quality variation of
+inputs
+- Parts of image
+ignored
+- Mimics potential
+loss of parts of image
+- Luminosity changes
+- Controls diﬀerence
+in exposition due
+to time of day
+Ì Batch normalization – It is a step of hyperparameter γ, β that normalizes the batch {xi}.
+By noting µB, σ2
+B the mean and variance of that we want to correct to the batch, it is done as
+follows:
+xi ←−γ xi −µB
+p
+σ2
+B + ϵ
++ β
+It is usually done after a fully connected/convolutional layer and before a non-linearity layer and
+aims at allowing higher learning rates and reducing the strong dependence on initialization.
+3.2
+Training a neural network
+3.2.1
+Deﬁnitions
+Ì Epoch – In the context of training a model, epoch is a term used to refer to one iteration
+where the model sees the whole training set to update its weights.
+Ì Mini-batch gradient descent – During the training phase, updating weights is usually not
+based on the whole training set at once due to computation complexities or one data point due
+to noise issues. Instead, the update step is done on mini-batches, where the number of data
+points in a batch is a hyperparameter that we can tune.
+Ì Loss function – In order to quantify how a given model performs, the loss function L is
+usually used to evaluate to what extent the actual outputs y are correctly predicted by the
+model outputs z.
+Ì Cross-entropy loss – In the context of binary classiﬁcation in neural networks, the cross-
+entropy loss L(z,y) is commonly used and is deﬁned as follows:
+L(z,y) = −
+h
+y log(z) + (1 −y) log(1 −z)
+i
+3.2.2
+Finding optimal weights
+Ì Backpropagation – Backpropagation is a method to update the weights in the neural network
+by taking into account the actual output and the desired output. The derivative with respect
+to each weight w is computed using the chain rule.
+Using this method, each weight is updated with the rule:
+w ←−w −α ∂L(z,y)
+∂w
+Ì Updating weights – In a neural network, weights are updated as follows:
+• Step 1: Take a batch of training data and perform forward propagation to compute the
+loss.
+• Step 2: Backpropagate the loss to get the gradient of the loss with respect to each weight.
+• Step 3: Use the gradients to update the weights of the network.
+Stanford University
+11
+Winter 2019
+
+--- PAGE 12 ---
+CS 230 – Deep Learning
+Shervine Amidi & Afshine Amidi
+3.3
+Parameter tuning
+3.3.1
+Weights initialization
+Ì Xavier initialization – Instead of initializing the weights in a purely random manner, Xavier
+initialization enables to have initial weights that take into account characteristics that are unique
+to the architecture.
+Ì Transfer learning – Training a deep learning model requires a lot of data and more impor-
+tantly a lot of time. It is often useful to take advantage of pre-trained weights on huge datasets
+that took days/weeks to train, and leverage it towards our use case. Depending on how much
+data we have at hand, here are the diﬀerent ways to leverage this:
+Training size
+Illustration
+Explanation
+Small
+Freezes all layers,
+trains weights on softmax
+Medium
+Freezes most layers,
+trains weights on last
+layers and softmax
+Large
+Trains weights on layers
+and softmax by initializing
+weights on pre-trained ones
+3.3.2
+Optimizing convergence
+Ì Learning rate – The learning rate, often noted α or sometimes η, indicates at which pace the
+weights get updated. It can be ﬁxed or adaptively changed. The current most popular method
+is called Adam, which is a method that adapts the learning rate.
+Ì Adaptive learning rates – Letting the learning rate vary when training a model can reduce
+the training time and improve the numerical optimal solution. While Adam optimizer is the
+most commonly used technique, others can also be useful. They are summed up in the table
+below:
+Method
+Explanation
+Update of w
+Update of b
+Momentum
+- Dampens oscillations
+- Improvement to SGD
+- 2 parameters to tune
+w −αvdw
+b −αvdb
+RMSprop
+- Root Mean Square propagation
+- Speeds up learning algorithm
+by controlling oscillations
+w −α dw
+√sdw
+b ←−b −α
+db
+√sdb
+Adam
+- Adaptive Moment estimation
+- Most popular method
+- 4 parameters to tune
+w −α
+vdw
+√sdw + ϵ
+b ←−b −α
+vdb
+√sdb + ϵ
+Remark: other methods include Adadelta, Adagrad and SGD.
+3.4
+Regularization
+Ì Dropout – Dropout is a technique used in neural networks to prevent overﬁtting the training
+data by dropping out neurons with probability p > 0. It forces the model to avoid relying too
+much on particular sets of features.
+Remark: most deep learning frameworks parametrize dropout through the ’keep’ parameter 1−p.
+Ì Weight regularization – In order to make sure that the weights are not too large and that
+the model is not overﬁtting the training set, regularization techniques are usually performed on
+the model weights. The main ones are summed up in the table below:
+LASSO
+Ridge
+Elastic Net
+- Shrinks coeﬃcients to 0
+- Good for variable selection
+Makes coeﬃcients smaller
+Tradeoﬀbetween variable
+selection and small coeﬃcients
+... + λ||θ||1
+λ ∈R
+... + λ||θ||2
+2
+λ ∈R
+... + λ
+h
+(1 −α)||θ||1 + α||θ||2
+2
+i
+λ ∈R,α ∈[0,1]
+Stanford University
+12
+Winter 2019
+
+--- PAGE 13 ---
+CS 230 – Deep Learning
+Shervine Amidi & Afshine Amidi
+Ì Early stopping – This regularization technique stops the training process as soon as the
+validation loss reaches a plateau or starts to increase.
+3.5
+Good practices
+Ì Overﬁtting small batch – When debugging a model, it is often useful to make quick tests
+to see if there is any major issue with the architecture of the model itself. In particular, in order
+to make sure that the model can be properly trained, a mini-batch is passed inside the network
+to see if it can overﬁt on it. If it cannot, it means that the model is either too complex or not
+complex enough to even overﬁt on a small batch, let alone a normal-sized training set.
+Ì Gradient checking – Gradient checking is a method used during the implementation of
+the backward pass of a neural network. It compares the value of the analytical gradient to the
+numerical gradient at given points and plays the role of a sanity-check for correctness.
+Numerical gradient
+Analytical gradient
+Formula
+df
+dx(x) ≈f(x + h) −f(x −h)
+2h
+df
+dx(x) = f′(x)
+Comments
+- Expensive; loss has to be
+computed two times per dimension
+- Used to verify correctness
+of analytical implementation
+-Trade-oﬀin choosing h
+not too small (numerical instability)
+nor too large (poor gradient approx.)
+- ’Exact’ result
+- Direct computation
+- Used in the ﬁnal implementation
+⋆
+⋆
+⋆
+Stanford University
+13
+Winter 2019
+

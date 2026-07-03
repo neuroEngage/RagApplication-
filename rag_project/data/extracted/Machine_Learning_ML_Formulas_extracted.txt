@@ -1,0 +1,1736 @@
+--- PAGE 1 ---
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+rubenszmm@gmail.com	  
+	  
+http://github.com/RubensZimbres	  
+	  
+	  
+	  
+
+--- PAGE 2 ---
+	  
+NAÏVE	  BAYES	  
+	  
+𝑃𝑎𝑐= 𝑃𝑐𝑎. 𝑃(𝑎)
+𝑃(𝑐)
+	  
+	  
+	  
+BAYES	  OPTIMAL	  CLASSIFIER	  
+	  
+arg max
+𝑃𝑥𝑇. 𝑃(𝑇|𝐷)	  
+	  
+	  
+	  
+NAÏVE	  BAYES	  CLASSIFIER	  
+	  
+arg max 𝑃𝑆𝑝𝑜|𝑇𝑜𝑡.
+𝑃(𝑆𝑜𝑐|𝑆𝑝𝑜)	  
+	  
+	  
+	  
+BAYES	  MAP	  (maximum	  a	  posteriori)	  
+	  
+ℎ!"# = arg max 𝑃𝑐|𝑎. 𝑃(𝑎)	  
+	  
+	  
+	  
+MAXIMUM	  LIKELIHOOD	  
+	  
+ℎ!" = arg max 𝑃𝑐|𝑎	  
+	  
+	  
+	  
+TOTAL	  PROBABILITY	  
+	  
+	  
+𝑇𝑜𝑡𝑎𝑙𝑃𝐵= 𝑃𝐵|𝐴. 𝑃(𝐴)	  
+MIXTURE	  MODELS	  
+	  
+𝑃𝐵= 𝑃𝐵|𝐴. 𝑃(𝐴)	  
+	  
+	  
+	  
+MIXTURE	  OF	  GAUSSIANS	  
+ANOMALY	  DETECTION	  
+	  
+𝑃𝑥𝑥=
+1
+2𝜋𝜎! . 𝑒𝑥𝑝−1
+2
+𝑥−𝑥
+𝜎
+!
+	  
+	  
+	  
+𝑍!" = 𝑁!𝐶! + 𝑁!𝐶!
+𝑁! + 𝑁!
+	  
+	  
+	  
+𝑃(𝑍!") →0.50	  
+	  
+	  
+EM	  ALGORITHM	  
+	  
+𝐸  𝑠𝑡𝑒𝑝  𝑃𝑥|𝑥= 𝑃𝑥. 𝑃𝑥|𝑥
+𝑃𝑥. 𝑃𝑥	  
+	  
+	  
+𝑀  𝑠𝑡𝑒𝑝  𝑃𝑥′ =
+𝑃(𝑥|𝑥)
+𝑛
+	  
+	  
+	  
+𝐸  𝑠𝑡𝑒𝑝  𝑃𝑥|𝑥= 𝐴𝑠𝑠𝑖𝑔𝑛  𝑣𝑎𝑙𝑢𝑒	  
+	  
+	  
+𝑀  𝑠𝑡𝑒𝑝  𝑃𝑥′ = 𝑃(𝐵= 1|𝐴= 1, 𝐶= 0)	  
+	  
+
+--- PAGE 3 ---
+	  
+LAPLACE	  ESTIMATE	  (small	  samples)	  
+	  
+𝑃𝐴=
+𝐴+ 0.5
+𝐴+ 𝐵+ 1	  
+	  
+	  
+BAYESIAN	  NETWORKS	  
+	  
+𝑡𝑢𝑝𝑙𝑒𝑠  ¬  𝑓𝑜𝑟  𝑦= 0   ∧𝑦= 1	  
+	  
+	  
+LIMITS	  
+	  
+lim
+!→!
+𝑓𝑥+ ℎ−𝑓(𝑥)
+ℎ
+	  
+	  
+ℎ= Δ𝑥= 𝑥′ −𝑥	  
+	  
+	  
+	  
+DERIVATIVES	  
+	  
+𝜕
+𝜕𝑥𝑥! = 𝑛. 𝑥!!!	  
+	  
+𝜕
+𝜕𝑥𝑦! = 𝜕𝑦!
+𝜕𝑦. 𝜕𝑦
+𝜕𝑥	  
+	  
+	  
+PRODUCT	  RULE	  
+	  
+𝑑
+𝑑𝑥𝑓𝑥. 𝑔𝑥= 𝑓′ 𝑥𝑔𝑥+ 𝑓𝑥. 𝑔′(𝑥)	  
+	  
+	  
+𝑑
+𝑑𝑥
+𝑓(𝑥)
+𝑔(𝑥) = 𝑓′ 𝑥𝑔𝑥+ 𝑓𝑥. 𝑔′(𝑥)
+𝑔(𝑥)!
+	  
+	  
+𝑑
+𝑑𝑥2𝑓𝑥= 2 𝑑
+𝑑𝑥𝑓𝑥	  
+	  
+	  
+𝑑
+𝑑𝑥𝑓𝑥+ 𝑔𝑥= 𝑑
+𝑑𝑥𝑓𝑥+ 𝑑
+𝑑𝑥𝑔𝑥	  
+	  
+	  
+𝑑
+𝑑𝑥𝑓𝑥+ 2𝑔𝑥= 𝑑
+𝑑𝑥𝑓𝑥+ 2 𝑑
+𝑑𝑥𝑔𝑥	  
+	  
+	  
+CHAIN	  RULE	  
+	  
+𝑑
+𝑑𝑥𝑔𝑓𝑥
+= 𝑔! 𝑓(𝑥) . 𝑓′(𝑥)	  
+	  
+solve	  f(x)	  apply	  in	  g’(x)	  
+	  
+	  
+	  
+	  
+VARIANCE	  
+	  
+𝑉𝑎𝑟=
+(𝑥−𝑥)!
+𝑛−1
+	  
+	  
+	  
+	  
+STANDARD	  DEVIATION	  
+	  
+𝑉𝑎𝑟𝑖𝑎𝑛𝑐𝑒	  
+	  
+	  
+
+--- PAGE 4 ---
+COVARIANCE	  
+	  
+	  
+𝐶𝑜𝑣= 𝑥−𝑥. (𝑦−𝑦)
+𝑛−1
+	  
+	  
+	  
+	  
+CONFIDENCE	  INTERVAL	  
+	  
+𝑥± 1.96 𝜎
+𝑛	  
+	  
+	  
+	  
+CONFIDENCE	  INTERVAL	  ERROR	  
+	  
+	  
+𝑒𝑟𝑟𝑜𝑟± 1.96.
+𝑒𝑟𝑟𝑜𝑟(1 −𝑒𝑟𝑟𝑜𝑟)
+𝑁
+	  
+	  
+	  
+	  
+CHI	  SQUARED	  
+	  
+𝐶ℎ𝑖= (𝑦−𝑦)!
+𝑦
+= 𝛿!
+𝑦
+	  
+	  
+	  
+	  
+R	  SQUARED	  
+	  
+	  
+𝑅! =
+𝑛
+𝑥𝑦−
+𝑥.
+𝑦
+𝑛
+𝑥! −(
+𝑥)! . 𝑛
+𝑦! −(
+𝑦)! 	  
+LOSS	  
+	  
+𝐿𝑜𝑠𝑠= 𝐵𝑖𝑎𝑠! + 𝑉𝑎𝑟𝑖𝑎𝑛𝑐𝑒! + 𝑁𝑜𝑖𝑠𝑒	  
+	  
+	  
+SUM	  OF	  SQUARED	  ERRORS	  
+	  
+𝐸𝑤=
+(𝑦−𝑦)!
+2
+	  
+	  
+	  
+COST	  FUNCTION	  
+	  
+𝐽𝜃! ≔𝜃! −𝜂.
+(𝑦−𝑦)!
+2
+	  
+	  
+	  
+	  
+	  
+GINI	  COEFFICIENT	  
+	  
+	  
+𝐺𝑖𝑛𝑖=
+𝑁+ 1 −2.
+(𝑁+ 1 −𝑥). 𝑦!
+𝑦
+𝑁
+	  
+	  
+	  
+	  
+NUMBER	  OF	  EXAMPLES	  
+	  
+𝑚≥
+log(𝑁!) + log  (1
+𝛿)
+𝜖
+	  
+	  
+𝑤ℎ𝑒𝑟𝑒  𝜖= 𝑦
+𝑦  ∧  𝛿= 𝑦−𝑦	  
+	  
+
+--- PAGE 5 ---
+MARKOV	  CHAINS	  
+	  
+𝑃!!! 𝑋= 𝑥=
+𝑃!. 𝑋= 𝑥. 𝑇(𝑥→𝑥)
+!
+	  
+	  
+	  
+	  
+K	  NEAREST	  NEIGHBOR	  
+	  
+𝑓𝑥←
+𝑓(𝑥)
+𝑘
+	  
+	  
+	  
+𝐷𝐸𝑥!, 𝑥! =
+𝑥! −𝑥!
+! + (𝑦!" −𝑦!")!	  
+	  
+	  
+WEIGHTED	  NEAREST	  NEIGHBOR	  
+	  
+	  
+𝑓𝑥=
+𝑓(𝑥)
+𝐷(𝑥!𝑥!)! .
+𝐷(𝑥!𝑥!)!	  
+	  
+	  
+	  
+PRINCIPAL	  COMPONENTS	  ANALYSIS	  
+	  
+𝑥′ = 𝑥−𝑥	  
+	  
+𝐸𝑖𝑔𝑒𝑛𝑣𝑎𝑙𝑢𝑒= 𝐴−𝜆𝐼	  
+	  
+	  
+𝐸𝑖𝑔𝑒𝑛𝑣𝑒𝑐𝑡𝑜𝑟= 𝐸𝑛𝑔𝑒𝑛𝑣𝑎𝑙𝑢𝑒. [𝐴]	  
+	  
+	  
+𝑓𝑥= 𝐸𝑖𝑔𝑒𝑛𝑣𝑒𝑐𝑡𝑜𝑟!. [𝑥!!. . . 𝑥!"]	  
+	  
+	  
+	  
+t-­‐SNE	  
+	  
+	  
+𝐶𝑜𝑛𝑑𝑖𝑡. 𝑃𝑟𝑜𝑏=
+exp   −||𝑥! −𝑥!||!
+2𝜎!
+exp   −||𝑥! −𝑥!||!
+2𝜎!
+	  
+	  
+	  
+𝐶𝑜𝑛𝑑𝑖𝑡. 𝑃𝑟𝑜𝑏=
+exp   −||𝑦! −𝑦!||!
+2𝜎!
+exp   −||𝑦! −𝑦!||!
+2𝜎!
+	  
+	  
+	  
+𝑃𝑒𝑟𝑝𝑙𝑒𝑥𝑖𝑡𝑦(!!) = 2!(!!)	  
+	  
+	  
+where:	  
+	  
+	  
+𝐻𝑃! = −
+𝑝!|!  𝑙𝑜𝑔!𝑃!|!
+!
+	  
+	  
+	  
+	  
+COSINE	  DISTANCE	  
+	  
+	  
+𝐶𝑜𝑠=
+𝑢. 𝑣
+𝑢. 𝑣	  
+	  
+
+--- PAGE 6 ---
+	  
+TF-­‐IDF	  
+	  
+	  
+𝑤!" = 𝑡𝑓!". 𝑙𝑜𝑔𝑁
+𝑑𝑓!
+	  
+	  
+	  
+	  
+LINEAR	  REGRESSION	  
+	  
+	  
+𝑚! =
+𝑥!
+!
+𝑥!𝑦−
+𝑥!𝑥!
+𝑥!𝑦
+𝑥!
+!
+𝑥!
+! −(
+𝑥!𝑥!)!
+	  
+	  
+	  
+𝑏= 𝑦−𝑚!𝑥! −𝑚!𝑥!	  
+	  
+	  
+𝑓𝑥=
+𝑚!𝑥!
+!
+!!!
++ 𝑏	  
+	  
+	  
+𝐴= 𝑋!. 𝑋!!. 𝑋!. 𝑌	  
+	  
+	  
+where	  𝐴= 𝑏
+𝑚	  
+	  
+	  
+	  
+LOGISTIC	  REGRESSION	  
+	  
+	  
+𝑂𝑑𝑑𝑠  𝑅𝑎𝑡𝑖𝑜= 𝑙𝑜𝑔
+𝑃
+1 −𝑃= 𝑚𝑥+ 𝑏	  
+	  
+	  
+𝑃
+1 −𝑃= 𝑒!"!!  
+	  
+	  
+	  
+𝐽𝜃= −
+𝑦. log  (𝑦) + 1 −𝑦. log  (1 −𝑦)
+𝑛
+	  
+	  
+𝑤ℎ𝑒𝑟𝑒  𝑦=
+1
+1 + 𝑒!"!!	  
+	  
+𝑓𝑜𝑟  𝑦= 0     ∧  𝑦= 1	  
+	  
+−2𝐿𝐿→0	  
+	  
+	  
+𝑥  !~  𝑥!  ≠𝑥!′  ~  𝑥!′	  
+	  
+	  
+𝑚𝑥+ 𝑏=
+𝑝
+1 −𝑝	  
+	  
+	  
+𝑃𝑎𝑐=
+𝑚𝑥+ 𝑏
+𝑚𝑥+ 𝑏+ 1	  
+	  
+	  
+	  
+DECISION	  TREES	  
+	  
+𝐸𝑛𝑡𝑟𝑜𝑝𝑦=
+−𝑃. log  (𝑃)
+!
+!!!
+	  
+	  
+	  
+
+--- PAGE 7 ---
+𝐼𝑛𝑓𝑜𝐺𝑎𝑖𝑛= 𝑃!. −𝑃!!. log 𝑃!! −𝑃!(!!!)−. log  (𝑃!(!!!)) 	  
+	  
+	  
+	  
+RULE	  INDUCTION	  
+	  
+𝐺𝑎𝑖𝑛= 𝑃. [ −𝑃!!!. log  (𝑃) −(−𝑃!. log  (𝑃))]	  
+	  
+	  
+RULE	  VOTE	  
+	  
+Weight=accuracy	  .	  coverage	  
+	  
+	  
+ENTROPY	  
+	  
+	  
+𝐻𝐴= −
+𝑃𝐴. 𝑙𝑜𝑔𝑃(𝐴)	  
+	  
+	  
+JOINT	  ENTROPY	  
+	  
+	  
+𝐻𝐴, 𝐵= −
+𝑃𝐴, 𝐵. 𝑙𝑜𝑔𝑃(𝐴, 𝐵)	  
+	  
+	  
+	  
+CONDITIONAL	  ENTROPY	  
+	  
+	  
+𝐻𝐴|𝐵= −
+𝑃𝐴, 𝐵. 𝑙𝑜𝑔𝑃(𝐴|𝐵)	  
+	  
+	  
+	  
+MUTUAL	  INFORMATION	  
+	  
+	  
+𝐼𝐴, 𝐵= 𝐻𝐴−𝐻(𝐴|𝐵)	  
+	  
+	  
+	  
+EIGENVECTOR	  CENTRALITY	  =	  PAGE	  RANK	  
+	  
+𝑃𝑅𝐴= 1 −𝑑
+𝑛
+−d
+𝑃𝑅(𝐵)
+𝑂𝑢𝑡(𝐵) + 𝑃𝑅(𝑛)
+𝑂𝑢𝑡(𝑛) 	  
+	  
+where	  d=1	  few	  connections	  
+	  
+RATING	  
+	  
+𝑅= 𝑅! + 𝛼
+𝑤!. (𝑅!" −𝑅!)	  
+	  
+	  
+SIMILARITY	  
+	  
+𝑤!" =
+𝑅!" −𝑅! . (𝑅!" −𝑅!)
+!
+𝑅!" −𝑅! !. (𝑅!" −𝑅!)!
+!
+	  
+	  
+	  
+	  
+	  
+	  
+CONTENT-­‐BASED	  RECOMMENDATION	  
+	  
+𝑅𝑎𝑡𝑖𝑛𝑔=
+𝑥!𝑦!
+!
+!!!
+!"#$$
+!!!
+	  
+	  
+
+--- PAGE 8 ---
+	  
+	  
+COLLABORATIVE	  FILTERING	  
+	  
+	  
+𝑅!" = 𝑅! + 𝛼.	  
+𝑅!" −𝑅! .
+𝑅!" −𝑅! . (𝑅!" −𝑅!)
+!
+𝑅!" −𝑅! !. (𝑅!" −𝑅!)!
+!
+	  
+	  
+	  
+	  
+BATCH	  GRADIENT	  DESCENT	  
+	  
+	  
+𝐽𝜃! ≔𝜃! ± 𝜂.
+(𝑦−𝑦)!. 𝑥
+2𝑛
+	  
+	  
+	  
+STOCHASTIC	  GRADIENT	  DESCENT	  
+	  
+	  
+𝐽𝜃! ≔𝜃! ± 𝜂. (𝑦−𝑦)!. 𝑥	  
+	  
+	  
+	  
+	  
+	  
+NEURAL	  NETWORKS	  
+	  
+𝑓𝑥= 𝑜= 𝑤! +
+𝑤!𝑥!
+!
+!!!
+	  
+	  
+	  
+	  
+LOGIT	  
+	  
+log 𝑜𝑑𝑑𝑠= 𝑤𝑥+ 𝑏= 𝑙𝑜𝑔
+𝑝
+1 −𝑝	  
+	  
+	  
+	  
+SOFTMAX	  NORMALIZATION	  
+	  
+𝑆(𝑓𝑥) = 𝑒!"!!
+𝑒!"!!	  
+	  
+	  
+	  
+CROSS	  ENTROPY	  
+	  
+𝐻(𝑆𝑓𝑥, 𝑓𝑥
+= −
+𝑓𝑥. 𝑙𝑜𝑔𝑆(𝑓𝑥)	  
+	  
+	  
+LOSS	  
+	  
+𝐿𝑜𝑠𝑠=
+𝐻(𝑆(𝑓𝑥, 𝑓(𝑥))
+𝑁
+	  
+	  
+	  
+	  
+	  
+L2	  REGULARIZATION	  
+	  
+𝑤←𝑤−𝜂. 𝛿. 𝑥+ 𝜆. 𝑤!
+2
+	  
+	  
+	  
+	  
+
+--- PAGE 9 ---
+SIGMOID	  
+	  
+1
+1 + 𝑒!(!"!!)	  
+	  
+	  
+	  
+RADIAL	  BASIS	  FUNCTION	  
+	  
+	  
+ℎ𝑥= 𝑒
+!(!!!)!
+!!
+	  
+	  
+	  
+PERCEPTRON	  
+	  
+𝑓𝑥= 𝑠𝑖𝑔𝑛
+𝑤!𝑥!"
+!
+!!!
+	  
+	  
+	  
+PERCEPTRON	  TRAINING	  
+	  
+𝑤! ←𝑤! + ∆𝑤!	  
+	  
+∆𝑤! = 𝜂. 𝑡−𝑜. 𝑥	  
+	  
+	  
+ERROR	  FOR	  A	  SIGMOID	  
+	  
+	  
+𝜖=
+𝑡−𝑜. 𝑜. 1 −𝑜. 𝑥	  
+	  
+	  
+	  
+	  
+AVOID	  OVERFIT	  NEURAL	  NETWORKS	  L2	  
+	  
+𝑤=
+(𝑡−𝑜)!
+!"#
+!"#
+2
++ F.
+𝑤!"
+!	  
+	  
+	  
+where	  F=penalty	  
+	  
+	  
+	  
+BACKPROPAGATION	  
+	  
+	  
+𝛿! = 𝑜!. 1 −𝑜! . (𝑡−𝑜!)	  
+	  
+	  
+𝛿! = 𝑜!. 1 −𝑜! .
+𝑤!"𝛿!	  
+	  
+	  
+𝑤!" ←𝑤!" + 𝜂!". 𝛿!. 𝑥!"	  
+	  
+𝑤! = 1 + (𝑡−𝑜!)	  
+	  
+	  
+∆𝑤!"(𝑛) = 𝜂. 𝛿!. 𝑥!" + 𝑀. ∆𝑤!"(𝑛−1)	  
+	  
+where	  M=momentum	  
+	  
+	  
+NEURAL	  NETWORKS	  COST	  FUNCTION	  
+	  
+𝐽! =
+𝑡!. log 𝑜+ 1 −𝑡. log  (1 −𝑜)
+!
+!!!
+!
+!!!
+𝑁
++
+𝜆
+𝜃!"
+!
+!!!!
+!!!
+!!
+!!!
+!!
+!!!
+2𝑁
+	  
+	  
+	  
+
+--- PAGE 10 ---
+	  
+MOMENTUM	  Υ	  
+	  
+	  
+𝜃= 𝜃−(𝛾𝑣!!! + 𝜂. ∇𝐽𝜃)	  
+	  
+	  
+	  
+	  
+NESTEROV	  
+	  
+	  
+𝜃= 𝜃−(𝛾𝑣!!! + 𝜂. ∇𝐽(𝜃−𝛾𝑣!!!))	  
+	  
+	  
+ADAGRAD	  
+	  
+	  
+𝜃= 𝜃−
+𝜂
+𝑆𝑆𝐺!"#$ + 𝜖
+. ∇𝐽(𝜃)	  
+	  
+ADADELTA	  
+	  
+𝜃= 𝜃−𝑅𝑀𝑆[∆𝜃]!!!
+𝑅𝑀𝑆∇𝐽(𝜃) 	  
+	  
+	  
+𝑅𝑀𝑆Δ𝜃=
+𝐸∆𝜃! + 𝜖	  
+	  
+	  
+RMSprop	  
+	  
+	  
+𝜃= 𝜃−
+𝜂
+𝐸𝑔! + 𝜖
+. ∇𝐽(𝜃)	  
+	  
+	  
+ADAM	  
+	  
+𝜃= 𝜃−
+𝜂
+𝑣+ 𝜖
+. 𝑚	  
+	  
+	  
+𝑚= 𝛽!𝑚!!! + 1 −𝛽! . ∇𝐽(𝜃)
+1 −𝛽!
+	  
+	  
+	  
+𝑣= 𝛽!𝑣!!! + 1 −𝛽! . ∇𝐽(𝜃)!
+1 −𝛽!
+	  
+	  
+	  
+	  
+RESTRICTED	  BOLTZMANN	  MACHINES	  
+	  
+	  
+𝐸𝑣, ℎ= −
+𝑣!ℎ!𝑤!"	  
+	  
+where	  v	  =	  binary	  state	  visible	  
+	  
+h	  =	  binary	  state	  hidden	  
+	  
+	  
+𝑝𝑣, ℎ=
+𝑒!!(!,!)
+𝑒!!(!,!)
+!"
+	  
+	  
+	  
+𝑝𝑣=
+𝑒!!(!,!)
+!
+𝑒!!(!,!)
+!,!
+	  
+	  
+	  
+
+--- PAGE 11 ---
+𝜕
+𝜕𝑤𝑖𝑗log 𝑝𝑣=< 𝑣!  ℎ! >!−< 𝑣!  ℎ! >!	  
+	  
+	  
+∆𝑤!" = 𝜂.
+𝜕
+𝜕𝑤!"
+log 𝑝(𝑣)	  
+∆𝑤!" = 𝜂. (< 𝑣!  ℎ! >!−< 𝑣!  ℎ! >!)	  
+	  
+	  
+	  
+	  
+CONVOLUTIONAL	  NEURAL	  NETWORKS	  
+	  
+𝑂𝑢𝑡𝑝𝑢𝑡  𝑆𝑖𝑧𝑒= (𝑁−𝐹)
+𝑆
++ 1	  
+	  
+	  
+	  
+where:	  N=	  input	  size	  
+F	  =	  filter	  size	  
+S	  =	  Stride	  steps	  
+Convolution2D(N	  filters,	  filter_size,	  filter_size…)	  
+	  
+	  
+SUPPORT	  VECTOR	  MACHINES	  
+	  
+𝑓𝑥= 𝑠𝑖𝑔𝑛𝜆. 𝑦. 𝐾(𝑥! ∙𝑥!) 	  
+	  
+𝐾𝑥! ∙𝑥! = 𝑒𝑥𝑝−
+𝑥! −𝑥!
+! + (𝑦! −𝑦!)!
+𝑤𝑖𝑑𝑡ℎ!!"#
+	  
+	  
+𝜆→∇𝐿= 0	  
+	  
+	  
+𝑦= 1   ∧𝑦= −1	  
+	  
+	  
+𝐷𝑜𝑡𝑃𝑟𝑜𝑑𝑢𝑐𝑡= 𝑥!. 𝑐𝑜𝑠𝜃	  
+	  
+	  
+𝑐𝑜𝑠!𝜃+ 𝑠𝑒𝑛!𝜃= 1	  
+	  
+	  
+𝑠𝑒𝑛𝜃=
+𝑥! −𝑥!
+! + (𝑦!" −𝑦!")!
+𝑥!
+	  
+	  
+𝑥! ∙𝑥! =
+(𝑥!
+! + 𝑦!!). 1 −𝑥! −𝑥! ! + (𝑦! −𝑦!)!
+𝑥!! + 𝑦!!
+	  
+	  
+	  
+SUPPORT	  VECTOR	  REGRESSION	  
+	  
+𝑌= 𝑤. < 𝑥! ∙𝑥! > +𝑏	  
+	  
+	  
+𝑦−(𝑤. < 𝑥! ∙𝑥! > +𝑏) ≤𝜀	  
+	  
+	  
+𝑤. < 𝑥! ∙𝑥! > +𝑏−𝑦≤𝜀	  
+	  
+	  
+RIDGE	  REGRESSION	  -­‐	  REGULARIZATION	  
+	  
+𝑚≔𝑚−
+𝑦−𝑦!
+𝑁
+−𝜆. 𝑚
+𝑁	  
+	  
+	  
+
+--- PAGE 12 ---
+𝑦= 𝜆. 𝑚𝑥+ 𝑏−𝜆
+𝑁	  
+	  
+	  
+LASSO	  REGRESSION	  	  -­‐	  REGULARIZATION	  
+	  
+	  
+	  
+𝑏≔
+(𝑦−𝑦)!
+𝑁
++ 𝜆. 𝑏
+𝑁  
+	  
+𝑚→0	  
+	  
+𝑦= 𝑚𝑥+ 𝜆. 𝑏+ 𝜆
+𝑁	  
+	  
+	  
+	  
+	  
+SKEWNESS	  
+	  
+Skewness	  <	  1	  
+	  
+	  
+	  
+KOLMOGOROV	  SMIRNOV	  
+	  
+Normal	  sig	  >	  .005	  
+	  
+	  
+	  
+NON	  PARAMETRIC	  
+	  
+T	  test	  =	  Normal	  	  
+	  
+Test	  U	  Mann	  Whitney	  sig	  <	  .05	  
+	  
+	  
+CRONBACH	  
+	  
+>	  .60	  .70	  
+	  
+	  
+MEDIAN	  
+	  
+𝑀𝑎𝑥−𝑀𝑖𝑛
+2
+	  
+	  
+	  
+	  t	  TEST	  
+	  
+𝑡= 𝑥! −𝑥! −(𝜇! −𝜇!)
+𝑥! −𝑥!
+	  
+	  
+Difference	  significant	  sig	  <	  .05	  
+	  
+t	  TEST	  2	  SAMPLES	  
+	  
+Levene	  Variância	  
+	  
+	  
+ANOVA	  +	  3	  
+	  
+𝐹= 𝑉𝑎𝑟𝑖𝑎𝑛𝑐𝑒  𝑏𝑒𝑡𝑤𝑒𝑒𝑛  𝑔𝑟𝑜𝑢𝑝𝑠
+𝑉𝑎𝑟𝑖â𝑛𝑐𝑖𝑎  𝑖𝑛𝑠𝑖𝑑𝑒  𝑔𝑟𝑜𝑢𝑝	  
+Sig	  <	  .05	  
+TOLERANCE	  
+	  
+	  
+Tolerance	  >	  .1	  
+	  
+𝑇𝑜𝑙𝑒𝑟𝑎𝑛𝑐𝑒=
+1
+𝑉𝐼𝐹	  
+	  
+
+--- PAGE 13 ---
+	  
+VARIANCE	  INFLATION	  FACTOR	  
+	  
+VIF	  <10	  
+	  
+	  
+	  
+ENTER	  METHOD	  
+	  
++	  15	  cases	  /	  Variable	  
+	  
+	  
+	  
+STEPWISE	  METHOD	  
+	  
++	  50	  cases	  /	  Variable	  
+	  
+	  
+	  
+VARIABLE	  SELECTION	  
+	  
+F	  Test	  =	  47	  sig	  <	  .05	  
+	  
+	  
+	  
+MISSING	  DATA	  
+	  
+Delete	  if	  >	  15%	  
+	  
+	  
+	  
+DISCRIMINANT	  ANALYSIS	  
+	  
+	  
+Box	  M	  sig	  <	  .05	  reject	  H0	  
+	  
+	  
+Wilk’s	  Lambda	  sig	  <	  .05	  
+	  
+	  
+𝑥  !~  𝑥!  ≠𝑥!′  ~  𝑥!′	  
+	  
+𝑃𝑥𝑥=
+1
+2𝜋𝜎! . 𝑒𝑥𝑝−1
+2
+𝑥−𝑥
+𝜎
+!
+	  
+	  
+	  
+𝑍!" = 𝑁!𝐶! + 𝑁!𝐶!
+𝑁! + 𝑁!
+	  
+	  
+	  
+	  
+ERROR	  MARGIN	  
+	  
+1.96   𝜎
+𝑁
+	  
+ACCURACY	  
+	  
+Confidence	  Interval	  ~	  P	  value	  
+	  
+	  
+	  
+HYPOTHESES	  TESTING	  
+	  
+P	  value	  <	  .05	  
+	  
+	  
+TRANSFORMATION	  OK	  
+	  
+𝑥
+𝜎< 4	  
+	  
+	  
+	  
+
+--- PAGE 14 ---
+MULTICOLLINEARITY	  
+	  
+Correlation	  >	  .90	  
+	  
+VIF	  <10	  
+	  
+Tolerance	  >	  .1	  
+	  
+	  
+SUM	  OF	  SQUARES	  (explain)	  
+	  
+𝐹!"#$% = 𝑆𝑆!"#!"$$%&'  . (𝑁−𝑐𝑜𝑒𝑓)
+𝑐𝑜𝑒𝑓−1  . 𝑆𝑆!"#$%&'(#
+	  
+	  
+	  
+	  
+	  
+STANDARD	  ERROR	  ESTIMATE	  (SEE)	  
+	  
+	  
+𝑆𝐸𝐸=
+𝑆𝑢𝑚𝑆𝑞𝑢𝑎𝑟𝑒𝑑𝐸𝑟𝑟𝑜𝑟𝑠
+𝑛−2
+	  
+	  
+	  
+𝑆𝐸𝐸=
+(𝑦−𝑦)!
+𝑛−2
+	  
+	  
+	  
+MAHALANOBIS	  DISTANCE	  
+same	  variable	  
+	  
+𝑀=
+(𝑥! −𝑥!)!
+𝜎!
+	  
+MANHATTAN	  DISTANCE	  L	  
+	  
+𝑀𝑎𝑛ℎ= |𝑥! −𝑥!| + |𝑦! −𝑦!|	  
+	  
+	  
+NET	  PRESENT	  VALUE	  
+	  
+𝑃! = 𝑃!. 𝜃!	  
+	  
+𝑃! = 𝑃!. 𝜃!!	  
+	  
+NPV = investment +
+𝑐𝑎𝑝𝑖𝑡𝑎𝑙
+(1 + 𝑟𝑎𝑡𝑒)!
+!
+!!!
+	  
+	  
+NPV=0	  (IRR)	  
+	  
+	  
+	  
+MARKOV	  DECISION	  PROCESS	  
+	  
+𝑈! = 𝑅! + 𝛿   max
+!
+𝑇𝑠, 𝑎, 𝑠′ . 𝑈(𝑠′)
+!
+	  
+	  
+𝜋! = argmax
+!
+𝑇𝑠, 𝑎, 𝑠′ . 𝑈(𝑠′)
+!
+	  
+	  
+𝑄!,! = 𝑅! + 𝛿   max
+!!
+𝑇𝑠, 𝑎, 𝑠! . max
+!  ! 𝑄(𝑠!, 𝑎′)
+!
+	  
+	  
+𝑄!,! ←! 𝑅! + 𝛿   max
+!
+𝑄𝑠!, 𝑎′ 	  
+	  
+	  
+	  
+	  
+	  
+
+--- PAGE 15 ---
+ARIMA	  ~	  NPV	  
+	  
+𝐵!𝑌! = 𝑌!!!	  (Backward	  Shift	  Operator)	  
+	  
+𝐵!𝑌= 𝐵𝐵𝑌! = 𝐵𝑌!!! = 𝑌!!!	  
+	  
+ARIMA(1,1,1):	  	  
+	  
+AR	  =	  number	  autoregressive	  terms	  
+	  
+B=number	  non-­‐seasonal	  needed	  for	  stationary	  
+	  
+MA=number	  lagged	  errors	  
+	  
+1 −𝜙!𝐵
+1 −𝐵𝑌! = 1 −𝜃!𝐵𝑒!	  
+	  
+where	   1 −𝜙!𝐵=AR	  (Autoregression)	  
+	  
+and	   1 −𝜃!𝐵=MA	  (Mean	  Average)	  
+	  
+and	  e=noise	  
+	  
+	  
+PROBABILITY	  (coins)	  
+	  
+	  
+𝑃𝑎= 𝑃(𝑎)
+𝑃(𝐴)	  
+	  
+	  
+	  
+FREQUENTIST	  
+	  
+	  
+lim
+!→! = 𝑚
+𝑛=
+𝑠𝑢𝑐𝑒𝑠𝑠𝑜𝑠
+𝑡𝑜𝑑𝑎𝑠  𝑝𝑜𝑠𝑠𝑖𝑏𝑖𝑙𝑖𝑑𝑎𝑑𝑒𝑠=
+𝑒𝑣𝑒𝑛𝑡𝑜𝑠
+𝑒𝑠𝑝𝑎ç𝑜  𝑎𝑚𝑜𝑠𝑡𝑟𝑎𝑙	  
+	  
+	  
+AXIOMATIC	   	  
+	  
+𝑃(𝐴) ≥0	  
+	  
+𝑃(𝐴, 𝐵, 𝐶) = 1	  
+	  
+	  
+PROBABILITY	  THEOREMS	  
+	  
+	  
+JOIN	  =	  A	  or	  B	  
+	  
+𝑃(𝐴𝑈𝐵)!"#$%&!'( = 𝑃𝐴+ 𝑃(𝐵)	  
+	  
+	  
+𝑃(𝐴𝑈𝐵)!"#  !"#$%&!'( = 𝑃𝐴+ 𝑃𝐵−𝑃(𝐴∩𝐵)	  
+	  
+	  
+𝑃(𝐴𝑈𝐵𝑈𝐶)!"#  !"#$%&!'(
+= 𝑃𝐴+ 𝑃𝐵+ 𝑃𝐶−𝑃𝐴∩𝐵−𝑃(𝐴∩𝐶) −𝑃(𝐵
+∩𝐶) −𝑃(𝐴∩𝐵∩𝐶)	  
+	  
+COMPLEMENTARY	  EVENT	  
+	  
+	  
+𝑃Ã = 1 −𝑃(𝐴)	  
+	  
+	  
+	  
+MARGINAL	  PROBABILITY	  
+	  
+𝑃𝑎= 𝑃(𝐴= 𝑎)
+𝑃(𝐴) 	  
+	  
+	  
+
+--- PAGE 16 ---
+	  
+	  
+PROBABILITY	  A	  and	  B	  
+	  
+𝑃𝐴  𝑒  𝐵= 𝑃(𝐴∩𝐵)
+𝑃(𝐵)
+	  
+	  
+	  
+	  
+CONDITIONAL	  PROBABILITY	  
+	  
+	  
+𝑃𝐴𝐵!"#$%$"#$"&' = 𝑃(𝐴)	  
+	  
+	  
+	  
+	  
+BAYES	  (52	  cards	  ,	  cancer)	  
+	  
+	  
+𝑃𝐴𝐵= 𝑃(𝐴∩𝐵)
+𝑃(𝐵)
+= 𝑃𝐵𝐴. 𝑃(𝐴)
+𝑃(𝐵)
+	  
+	  
+	  
+BINOMIAL	  DISTRIBUTION	  (0,1	  success)	  
+	  
+	  
+𝑃𝐷= 𝑠𝑎𝑚𝑝𝑙𝑒  𝑠𝑝𝑎𝑐𝑒
+𝑠𝑢𝑐𝑒𝑐𝑠𝑠
+. 𝑃𝑠!. (1 −𝑃𝑠)!!!	  
+	  
+𝑃𝐷= 𝑠𝑎𝑚𝑝𝑙𝑒  𝑠𝑝𝑎𝑐𝑒
+𝑠𝑢𝑐𝑒𝑐𝑠𝑠
+. 𝑃𝑠!. (𝑃𝑠)!!!	  
+	  
+𝑃𝐷=
+𝑐!
+𝑎! 𝑐−𝑎! . 𝑃𝑎!. (1 −𝑃𝑎)!!!	  
+	  
+	  
+	  
+TOTAL	  PROBABILITY	  (jars)	  
+	  
+𝑃𝐵=
+𝑃𝐴∩𝐵=
+𝑃𝐴. 𝑃(𝐵|𝐴)	  
+	  
+	  
+	  
+PROBABILITY	  k	  SUCCESS	  in	  n	  TRIALS	  
+	  
+𝑃𝑘  𝑖𝑛  𝑛= 𝑛
+𝑘. 𝑝!. (1 −𝑝)!!!	  
+	  
+INTEGRALS	  
+	  
+𝐹𝑏−𝐹𝑎
+!
+!
+	  
+	  
+	  
+𝑥!𝑑𝑥= 1
+3 𝑥! =
+!
+!
+1
+3 2! −1
+3 1!	  
+	  
+	  
+PRODUCT	  RULE	  
+	  
+	  
+𝑐. 𝑓′ 𝑥. 𝑑𝑥= 𝑐
+𝑓′ 𝑥. 𝑑𝑥	  
+	  
+	  
+	  
+	  
+CHAIN	  RULE	  
+	  
+	  
+𝑓𝑥+ 𝑔𝑥. 𝑑𝑥=
+𝑓𝑥. 𝑑𝑥+
+𝑔𝑥. 𝑑(𝑥)	  
+
+--- PAGE 17 ---
+	  
+INTEGRATION	  
+	  
+	  
+𝑓′ 𝑥. Δ𝑥Δ𝑥= 0
+𝑁→∞	  
+	  
+	  
+DIFFERENTIATION	  
+	  
+	  
+lim
+!→!
+𝑓𝑎+ Δ𝑥−𝑓(𝑎)
+Δ𝑥
+	  
+	  
+	  
+LINEAR	  ALGEBRA	  
+	  
+ADDITION	  
+	  
+	  
+1
+2
+4
+3 + 2
+2
+5
+3 = 2
+4
+9
+6 	  
+	  
+	  
+SCALAR	  MULTIPLY	  
+	  
+	  
+3 ∗2
+2
+5
+3 =
+6
+6
+15
+9 	  
+	  
+	  
+MATRIX	  VECTOR	  MULTIPLICATION	  
+	  
+Rows	  x	  Columns	  
+	  
+x	  Vetor:	  Column	  A	  =	  Rows	  B	  
+	  
+𝐴!,! ∗𝐵!,! = 𝐶!,!	  
+	  
+0
+3
+1
+3
+2
+4
+∗1
+2 =
+6
+7
+9
+	  
+	  
+	  
+1
+2
+3
+1
+4
+5
+0
+3
+2
+∗
+1
+2
+0
+=
+5
+9
+6
+	  
+	  
+OR	  
+	  
+1
+2
+3
+1
+4
+5
+0
+3
+2
+∗
+1
+2
+0
+= 1 ∗
+1
+1
+0
++ 2 ∗
+2
+4
+3
++ 0 ∗
+3
+5
+2
+=
+5
+9
+6
+	  
+	  
+	  
+x	  Matrix:	  Column	  A	  =	  Rows	  B	  
+Rows	  A	  =	  Column	  B	  
+	  
+𝑨𝟐,𝟏= 𝟐𝒏𝒅  𝒓𝒐𝒘  𝒙  𝟏𝒂  𝒄𝒐𝒍𝒖𝒎𝒏	  
+	  
+1
+2
+3
+0
+4
+5 ∗
+0
+3
+1
+3
+2
+5
+=
+8
+24
+14
+37 	  
+	  
+	  
+1
+2
+0 ∗
+1
+2
+3
+4
+5
+6
+7
+8
+9
+= 12
+30
+0 	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+
+--- PAGE 18 ---
+IMPORTANT	  
+	  
+𝑨𝟐,𝟑= 𝟐𝒂  𝒓𝒐𝒘  𝒙  𝟑𝒂  𝒄𝒐𝒍𝒖𝒎𝒏	  
+	  
+	  
+1
+0
+0
+−3
+1
+0
+0
+0
+1
+∗
+1
+2
+1
+3
+8
+1
+0
+4
+1
+=	  
+	  
+=
+𝐴!,!
+𝐴!,!
+𝐴!,!
+𝐴!,!
+𝐴!,!
+𝐴!,!
+𝐴!,!
+𝐴!,!
+𝐴!,!
+=
+1
+2
+1
+0
+2
+−2
+0
+4
+1
+	  
+	  
+	  
+PERMUTATION	  
+	  
+LEFT=exchange	  rows	  
+	  
+0
+1
+1
+0 ∗𝑎
+𝑏
+𝑐
+𝑑= 𝑐
+𝑑
+𝑎
+𝑏	  
+	  
+RIGHT=exchange	  columns	  
+	  
+𝑎
+𝑏
+𝑐
+𝑑∗0
+1
+1
+0 = 𝑏
+𝑎
+𝑑
+𝑐	  
+	  
+	  
+	  
+IDENTITY	  
+	  
+1
+0
+0
+0
+1
+0
+0
+0
+1
+	  
+	  
+	  
+	  
+	  
+DIAGONAL	  
+	  
+2
+0
+0
+0
+2
+0
+0
+0
+2
+	  
+	  
+	  
+TRANSPOSE	  
+	  
+𝐴= 1
+2
+3
+4
+5
+6  𝐴! =
+1
+4
+2
+5
+3
+6
+	  
+	  
+	  
+PROPERTIES	  
+	  
+	  
+Not	  commutative	  
+𝐴∗𝐵≠𝐵∗𝐴	  
+	  
+	  
+Associative	  
+𝐴∗𝐵∗𝐶= 𝐴∗(𝐵∗𝐶)	  
+	  
+	  
+	  
+Inverse	  (only	  squared)	  
+	  
+𝐴!! ≠1
+𝐴	  
+	  
+𝐴!!. 𝐴= 𝐼= 1
+0
+0
+1 	  
+	  
+	  
+	  
+	  
+	  
+
+--- PAGE 19 ---
+DETERMINANT	  
+	  
+	  
+1
+3
+4
+2 = 1.2 −3.4 = −10	  
+	  
+	  
+1
+4
+7
+2
+5
+8
+3
+6
+9
+1
+4
+2
+5
+3
+6
+= 1.5.9 + 4.8.3 + 7.2.6 −7.5.3 −1.8.6 −4.2.9	  
+	  
+	  
+DEMAND	  ELASTICITY	  
+	  
+𝜌= (𝑄! −𝑄!)
+(𝑄! + 𝑄!) . (𝑃! + 𝑃!)
+(𝑃! −𝑃!)	  
+

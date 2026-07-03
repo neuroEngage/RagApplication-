@@ -1,0 +1,2495 @@
+--- PAGE 1 ---
+A Selective Overview of Deep Learning
+Jianqing Fan∗
+Cong Ma‡
+Yiqiao Zhong∗
+April 16, 2019
+Abstract
+Deep learning has arguably achieved tremendous success in recent years.
+In simple words, deep
+learning uses the composition of many nonlinear functions to model the complex dependency between
+input features and labels.
+While neural networks have a long history, recent advances have greatly
+improved their performance in computer vision, natural language processing, etc. From the statistical
+and scientiﬁc perspective, it is natural to ask: What is deep learning? What are the new characteristics of
+deep learning, compared with classical methods? What are the theoretical foundations of deep learning?
+To answer these questions, we introduce common neural network models (e.g., convolutional neural
+nets, recurrent neural nets, generative adversarial nets) and training techniques (e.g., stochastic gradient
+descent, dropout, batch normalization) from a statistical point of view. Along the way, we highlight new
+characteristics of deep learning (including depth and over-parametrization) and explain their practical
+and theoretical beneﬁts. We also sample recent results on theories of deep learning, many of which are
+only suggestive. While a complete understanding of deep learning remains elusive, we hope that our
+perspectives and discussions serve as a stimulus for new statistical research.
+Keywords: neural networks, over-parametrization, stochastic gradient descent, approximation theory, gen-
+eralization error.
+Contents
+1
+Introduction
+2
+1.1
+Intriguing new characteristics of deep learning . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3
+1.2
+Towards theory of deep learning
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4
+1.3
+Roadmap of the paper . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5
+2
+Feed-forward neural networks
+5
+2.1
+Model setup . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+6
+2.2
+Back-propagation in computational graphs . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+7
+3
+Popular models
+8
+3.1
+Convolutional neural networks
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+8
+3.2
+Recurrent neural networks . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+10
+3.3
+Modules . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+13
+4
+Deep unsupervised learning
+14
+4.1
+Autoencoders . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+14
+4.2
+Generative adversarial networks . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+16
+5
+Representation power: approximation theory
+17
+5.1
+Universal approximation theory for shallow NNs
+. . . . . . . . . . . . . . . . . . . . . . . . .
+18
+5.2
+Approximation theory for multi-layer NNs . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+19
+Author names are sorted alphabetically.
+∗Department of Operations Research and Financial Engineering, Princeton University, Princeton, NJ 08544, USA; Email:
+{jqfan, congm, yiqiaoz}@princeton.edu.
+1
+arXiv:1904.05526v2  [stat.ML]  15 Apr 2019
+
+--- PAGE 2 ---
+6
+Training deep neural nets
+20
+6.1
+Stochastic gradient descent
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+21
+6.2
+Easing numerical instability . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+23
+6.3
+Regularization techniques . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+24
+7
+Generalization power
+25
+7.1
+Algorithm-independent controls: uniform convergence
+. . . . . . . . . . . . . . . . . . . . . .
+25
+7.2
+Algorithm-dependent controls . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+27
+8
+Discussion
+29
+1
+Introduction
+Modern machine learning and statistics deal with the problem of learning from data: given a training dataset
+{(yi, xi)}1≤i≤n where xi ∈Rd is the input and yi ∈R is the output1, one seeks a function f : Rd 7→R from a
+certain function class F that has good prediction performance on test data. This problem is of fundamental
+signiﬁcance and ﬁnds applications in numerous scenarios. For instance, in image recognition, the input x
+(reps. the output y) corresponds to the raw image (reps. its category) and the goal is to ﬁnd a mapping f(·)
+that can classify future images accurately. Decades of research eﬀorts in statistical machine learning have been
+devoted to developing methods to ﬁnd f(·) eﬃciently with provable guarantees. Prominent examples include
+linear classiﬁers (e.g., linear / logistic regression, linear discriminant analysis), kernel methods (e.g., support
+vector machines), tree-based methods (e.g., decision trees, random forests), nonparametric regression (e.g.,
+nearest neighbors, local kernel smoothing), etc. Roughly speaking, each aforementioned method corresponds
+to a diﬀerent function class F from which the ﬁnal classiﬁer f(·) is chosen.
+Deep learning [70], in its simplest form, proposes the following compositional function class:
+
+f(x; θ) = WLσL(WL−1 · · · σ2(W2σ1(W1x)))
+ θ = {W1, . . . , WL}
+	
+.
+(1)
+Here, for each 1 ≤l ≤L, σℓ(·) is some nonlinear function, and θ = {W1, . . . , WL} consists of matrices
+with appropriate sizes.
+Though simple, deep learning has made signiﬁcant progress towards addressing
+the problem of learning from data over the past decade. Speciﬁcally, it has performed close to or better
+than humans in various important tasks in artiﬁcial intelligence, including image recognition [50], game
+playing [114], and machine translation [132]. Owing to its great promise, the impact of deep learning is
+also growing rapidly in areas beyond artiﬁcial intelligence; examples include statistics [15, 111, 76, 104, 41],
+applied mathematics [130, 22], clinical research [28], etc.
+Table 1: Winning models for ILSVRC image classiﬁcation challenge.
+Model
+Year
+# Layers
+# Params
+Top-5 error
+Shallow
+< 2012
+—
+—
+> 25%
+AlexNet
+2012
+8
+61M
+16.4%
+VGG19
+2014
+19
+144M
+7.3%
+GoogleNet
+2014
+22
+7M
+6.7%
+ResNet-152
+2015
+152
+60M
+3.6%
+To get a better idea of the success of deep learning, let us take the ImageNet Challenge [107] (also
+known as ILSVRC) as an example. In the classiﬁcation task, one is given a training dataset consisting of 1.2
+million color images with 1000 categories, and the goal is to classify images based on the input pixels. The
+performance of a classiﬁer is then evaluated on a test dataset of 100 thousand images, and in the end the
+top-5 error2 is reported. Table 1 highlights a few popular models and their corresponding performance. As
+1When the label y is given, this problem is often known as supervised learning. We mainly focus on this paradigm throughout
+this paper and remark sparingly on its counterpart, unsupervised learning, where y is not given.
+2The algorithm makes an error if the true label is not contained in the 5 predictions made by the algorithm.
+2
+
+--- PAGE 3 ---
+Figure 1: Visualization of trained ﬁlters in the ﬁrst layer of AlexNet. The model is pre-trained on ImageNet
+and is downloadable via PyTorch package torchvision.models. Each ﬁlter contains 11×11×3 parameters
+and is shown as an RGB color map of size 11 × 11.
+can be seen, deep learning models (the second to the last rows) have a clear edge over shallow models (the
+ﬁrst row) that ﬁt linear models / tree-based models on handcrafted features. This signiﬁcant improvement
+raises a foundational question:
+Why is deep learning better than classical methods on tasks like image recognition?
+1.1
+Intriguing new characteristics of deep learning
+It is widely acknowledged that two indispensable factors contribute to the success of deep learning, namely
+(1) huge datasets that often contain millions of samples and (2) immense computing power resulting from
+clusters of graphics processing units (GPUs). Admittedly, these resources are only recently available: the
+latter allows to train larger neural networks which reduces biases and the former enables variance reduction.
+However, these two alone are not suﬃcient to explain the mystery of deep learning due to some of its “dreadful”
+characteristics: (1) over-parametrization: the number of parameters in state-of-the-art deep learning models
+is often much larger than the sample size (see Table 1), which gives them the potential to overﬁt the training
+data, and (2) nonconvexity: even with the help of GPUs, training deep learning models is still NP-hard [8]
+in the worst case due to the highly nonconvex loss function to minimize. In reality, these characteristics are
+far from nightmares. This sharp diﬀerence motivates us to take a closer look at the salient features of deep
+learning, which we single out a few below.
+1.1.1
+Depth
+Deep learning expresses complicated nonlinearity through composing many nonlinear functions; see (1).
+The rationale for this multilayer structure is that, in many real-world datasets such as images, there are
+diﬀerent levels of features and lower-level features are building blocks of higher-level ones. See [134] for a
+visualization of trained features of convolutional neural nets; here in Figure 1, we sample and visualize weights
+from a pre-trained AlexNet model. This intuition is also supported by empirical results from physiology and
+neuroscience [56, 2]. The use of function composition marks a sharp diﬀerence from traditional statistical
+methods such as projection pursuit models [38] and multi-index models [73, 27]. It is often observed that
+depth helps eﬃciently extract features that are representative of a dataset. In comparison, increasing width
+(e.g., number of basis functions) in a shallow model leads to less improvement. This suggests that deep
+learning models excel at representing a very diﬀerent function space that is suitable for complex datasets.
+1.1.2
+Algorithmic regularization
+The statistical performance of neural networks (e.g., test accuracy) depends heavily on the particular opti-
+mization algorithms used for training [131]. This is very diﬀerent from many classical statistical problems,
+where the related optimization problems are less complicated. For instance, when the associated optimization
+3
+
+--- PAGE 4 ---
+(a) MNIST images
+(b) training and test accuracies
+Figure 2: (a) shows the images in the public dataset MNIST; and (b) depicts the training and test accuracies
+along the training dynamics. Note that the training accuracy is approaching 100% and the test accuracy is
+still high (no overﬁtting).
+problem has a relatively simple structure (e.g., convex objective functions, linear constraints), the solution
+to the optimization problem can often be unambiguously computed and analyzed. However, in deep neural
+networks, due to over-parametrization, there are usually many local minima with diﬀerent statistical perfor-
+mance [72]. Nevertheless, common practice runs stochastic gradient descent with random initialization and
+ﬁnds model parameters with very good prediction accuracy.
+1.1.3
+Implicit prior learning
+It is well observed that deep neural networks trained with only the raw inputs (e.g., pixels of images) can
+provide a useful representation of the data. This means that after training, the units of deep neural networks
+can represent features such as edges, corners, wheels, eyes, etc.; see [134]. Importantly, the training process
+is automatic in the sense that no human knowledge is involved (other than hyper-parameter tuning). This
+is very diﬀerent from traditional methods, where algorithms are designed after structural assumptions are
+posited. It is likely that training an over-parametrized model eﬃciently learns and incorporates the prior
+distribution p(x) of the input, even though deep learning models are themselves discriminative models. With
+automatic representation of the prior distribution, deep learning typically performs well on similar datasets
+(but not very diﬀerent ones) via transfer learning.
+1.2
+Towards theory of deep learning
+Despite the empirical success, theoretical support for deep learning is still in its infancy. Setting the stage,
+for any classiﬁer f, denote by E(f) the expected risk on fresh sample (a.k.a. test error, prediction error
+or generalization error), and by En(f) the empirical risk / training error averaged over a training dataset.
+Arguably, the key theoretical question in deep learning is
+why is E( ˆfn) small, where ˆfn is the classiﬁer returned by the training algorithm?
+We follow the conventional approximation-estimation decomposition (sometimes, also bias-variance trade-
+oﬀ) to decompose the term E( ˆfn) into two parts. Let F be the function space expressible by a family of
+neural nets. Deﬁne f ∗= argminfE(f) to be the best possible classiﬁer and f ∗
+F = argminf∈FE(f) to be the
+best classiﬁer in F. Then, we can decompose the excess error E ≜E( ˆfn) −E(f ∗) into two parts:
+E = E(f ∗
+F) −E(f ∗)
+|
+{z
+}
+approximation error
++ E( ˆfn) −E(f ∗
+F)
+|
+{z
+}
+estimation error
+.
+(2)
+Both errors can be small for deep learning (cf. Figure 2), which we explain below.
+4
+
+--- PAGE 5 ---
+• The approximation error is determined by the function class F. Intuitively, the larger the class, the smaller
+the approximation error. Deep learning models use many layers of nonlinear functions (Figure 3)that can
+drive this error small. Indeed, in Section 5, we provide recent theoretical progress of its representation
+power. For example, deep models allow eﬃcient representation of interactions among variable while shallow
+models cannot.
+• The estimation error reﬂects the generalization power, which is inﬂuenced by both the complexity of the
+function class F and the properties of the training algorithms. Interestingly, for over-parametrized deep
+neural nets, stochastic gradient descent typically results in a near-zero training error (i.e., En( ˆfn) ≈0;
+see e.g. left panel of Figure 2). Moreover, its generalization error E( ˆfn) remains small or moderate. This
+“counterintuitive” behavior suggests that for over-parametrized models, gradient-based algorithms enjoy
+benign statistical properties; we shall see in Section 7 that gradient descent enjoys implicit regularization
+in the over-parametrized regime even without explicit regularization (e.g., ℓ2 regularization).
+The above two points lead to the following heuristic explanation of the success of deep learning models.
+The large depth of deep neural nets and heavy over-parametrization lead to small or zero training errors, even
+when running simple algorithms with moderate number of iterations. In addition, these simple algorithms
+with moderate number of steps do not explore the entire function space and thus have limited complexities,
+which results in small generalization error with a large sample size. Thus, by combining the two aspects, it
+explains heuristically that the test error is also small.
+1.3
+Roadmap of the paper
+We ﬁrst introduce basic deep learning models in Sections 2–4, and then examine their representation power
+via the lens of approximation theory in Section 5. Section 6 is devoted to training algorithms and their
+ability of driving the training error small. Then we sample recent theoretical progress towards demystifying
+the generalization power of deep learning in Section 7. Along the way, we provide our own perspectives, and
+at the end we identify a few interesting questions for future research in Section 8. The goal of this paper
+is to present suggestive methods and results, rather than giving conclusive arguments (which is currently
+unlikely) or a comprehensive survey. We hope that our discussion serves as a stimulus for new statistics
+research.
+2
+Feed-forward neural networks
+Before introducing the vanilla feed-forward neural nets, let us set up necessary notations for the rest of this
+section. We focus primarily on classiﬁcation problems, as regression problems can be addressed similarly.
+Given the training dataset {(yi, xi)}1≤i≤n where yi ∈[K] ≜{1, 2, . . . , K} and xi ∈Rd are independent
+across i ∈[n], supervised learning aims at ﬁnding a (possibly random) function ˆf(x) that predicts the
+outcome y for a new input x, assuming (y, x) follows the same distribution as (yi, xi). In the terminology
+of machine learning, the input xi is often called the feature, the output yi called the label, and the pair
+(yi, xi) is an example. The function ˆf is called the classiﬁer, and estimation of ˆf is training or learning. The
+performance of ˆf is evaluated through the prediction error P(y̸ = ˆf(x)), which can be often estimated from
+a separate test dataset.
+As with classical statistical estimation, for each k ∈[K], a classiﬁer approximates the conditional prob-
+ability P(y = k|x) using a function fk(x; θk) parametrized by θk.
+Then the category with the highest
+probability is predicted. Thus, learning is essentially estimating the parameters θk. In statistics, one of the
+most popular methods is (multinomial) logistic regression, which stipulates a speciﬁc form for the functions
+fk(x; θk): let zk = x⊤βk + αk and fk(x; θk) = Z−1 exp(zk) where Z = PK
+k=1 exp(zk) is a normalization
+factor to make {fk(x; θk)}1≤k≤K a valid probability distribution. It is clear that logistic regression induces
+linear decision boundaries in Rd, and hence it is restrictive in modeling nonlinear dependency between y and
+x. The deep neural networks we introduce below provide a ﬂexible framework for modeling nonlinearity in
+a fairly general way.
+5
+
+--- PAGE 6 ---
+hidden layer
+input layer
+output layer
+hidden layer
+σ
+σ
+σ
+σ
+σ
+σ
+σ
+σ
+σ
+σ
+Figure 3: A feed-forward neural network with an input layer, two hidden layers and an output layer. The
+input layer represents raw features {xi}1≤i≤n.
+Both hidden layers compute an aﬃne transform (a.k.s.
+indices) of the input and then apply an element-wise activation function σ(·). Finally, the output returns a
+linear transform followed by the softmax activation (resp. simply a linear transform) of the hidden layers for
+the classiﬁcation (resp. regression) problem.
+2.1
+Model setup
+From the high level, deep neural networks (DNNs) use composition of a series of simple nonlinear functions
+to model nonlinearity
+h(L) = g(L) ◦g(L−1) ◦. . . ◦g(1)(x),
+where ◦denotes composition of two functions and L is the number of hidden layers, and is usually called
+depth of a NN model. Letting h(0) ≜x, one can recursively deﬁne h(l) = g(l) h(l−1)
+for all ℓ= 1, 2, . . . , L.
+The feed-forward neural networks, also called the multilayer perceptrons (MLPs), are neural nets with a
+speciﬁc choice of g(l): for ℓ= 1, . . . , L, deﬁne
+h(ℓ) = g(l) h(l−1)
+≜σ
+ W(ℓ)h(ℓ−1) + b(ℓ)
+,
+(3)
+where W(l) and b(l) are the weight matrix and the bias / intercept, respectively, associated with the l-th
+layer, and σ(·) is usually a simple given (known) nonlinear function called the activation function. In words,
+in each layer ℓ, the input vector h(ℓ−1) goes through an aﬃne transformation ﬁrst and then passes through a
+ﬁxed nonlinear function σ(·). See Figure 3 for an illustration of a simple MLP with two hidden layers. The
+activation function σ(·) is usually applied element-wise, and a popular choice is the ReLU (Rectiﬁed Linear
+Unit) function:
+[σ(z)]j = max{zj, 0}.
+(4)
+Other choices of activation functions include leaky ReLU, tanh function [79] and the classical sigmoid function
+(1 + e−z)−1, which is less used now.
+Given an output h(L) from the ﬁnal hidden layer and a label y, we can deﬁne a loss function to minimize.
+A common loss function for classiﬁcation problems is the multinomial logistic loss. Using the terminology of
+deep learning, we say that h(L) goes through an aﬃne transformation and then the soft-max function:
+fk(x; θ) ≜
+exp(zk)
+P
+k exp(zk),
+∀k ∈[K],
+where z = W(L+1)h(L) + b(L+1) ∈RK.
+Then the loss is deﬁned to be the cross-entropy between the label y (in the form of an indicator vector) and
+the score vector (f1(x; θ), . . . , fK(x; θ))⊤, which is exactly the negative log-likelihood of the multinomial
+logistic regression model:
+L(f(x; θ), y) = −
+K
+X
+k=1
+1{y = k} log pk,
+(5)
+6
+
+--- PAGE 7 ---
+where θ ≜{W(ℓ), b(ℓ) : 1 ≤ℓ≤L + 1}. As a ﬁnal remark, the number of parameters scales with both the
+depth L and the width (i.e., the dimensionality of W(ℓ)), and hence it can be quite large for deep neural
+nets.
+2.2
+Back-propagation in computational graphs
+Training neural networks follows the empirical risk minimization paradigm that minimizes the loss (e.g.,
+(5)) over all the training data. This minimization is usually done via stochastic gradient descent (SGD). In a
+way similar to gradient descent, SGD starts from a certain initial value θ0 and then iteratively updates the
+parameters θt by moving it in the direction of the negative gradient. The diﬀerence is that, in each update,
+a small subsample B ⊂[n] called a mini-batch—which is typically of size 32–512—is randomly drawn and
+the gradient calculation is only on B instead of the full batch [n]. This saves considerably the computational
+cost in calculation of gradient. By the law of large numbers, this stochastic gradient should be close to the
+full sample one, albeit with some random ﬂuctuations. A pass of the whole training set is called an epoch.
+Usually, after several or tens of epochs, the error on a validation set levels oﬀand training is complete. See
+Section 6 for more details and variants on training algorithms.
+The key to the above training procedure, namely SGD, is the calculation of the gradient ∇ℓB(θ), where
+ℓB(θ) ≜|B|−1 X
+i∈B
+L(f(xi; θ), yi).
+(6)
+Gradient computation, however, is in general nontrivial for complex models, and it is susceptible to numerical
+instability for a model with large depth. Here, we introduce an eﬃcient approach, namely back-propagation,
+for computing gradients in neural networks.
+Back-propagation [106] is a direct application of the chain rule in networks.
+As the name suggests,
+the calculation is performed in a backward fashion: one ﬁrst computes ∂ℓB/∂h(L), then ∂ℓB/∂h(L−1), . . .,
+and ﬁnally ∂ℓB/∂h(1). For example, in the case of the ReLU activation function3, we have the following
+recursive / backward relation
+∂ℓB
+∂h(ℓ−1) =
+∂h(ℓ)
+∂h(ℓ−1) · ∂ℓB
+∂h(ℓ) = (W(ℓ))⊤diag
+
+1{W(ℓ)h(ℓ−1) + b(ℓ) ≥0}
+ ∂ℓB
+∂h(ℓ)
+(7)
+where diag(·) denotes a diagonal matrix with elements given by the argument. Note that the calculation of
+∂ℓB/∂h(ℓ−1) depends on ∂ℓB/∂h(ℓ), which is the partial derivatives from the next layer. In this way, the
+derivatives are “back-propagated” from the last layer to the ﬁrst layer. These derivatives {∂ℓB/∂h(ℓ)} are
+then used to update the parameters. For instance, the gradient update for W(ℓ) is given by
+W(ℓ) ←W(ℓ) −η ∂ℓB
+∂W(ℓ) ,
+where
+∂ℓB
+∂W (ℓ)
+jm
+= ∂ℓB
+∂h(ℓ)
+j
+· σ′ · h(ℓ−1)
+m
+,
+(8)
+where σ′ = 1 if the j-th element of W(ℓ)h(ℓ−1) + b(ℓ) is nonnegative, and σ′ = 0 otherwise. The step size
+η > 0, also called the learning rate, controls how much parameters are changed in a single update.
+A more general way to think about neural network models and training is to consider computational
+graphs. Computational graphs are directed acyclic graphs that represent functional relations between vari-
+ables. They are very convenient and ﬂexible to represent function composition, and moreover, they also
+allow an eﬃcient way of computing gradients.
+Consider an MLP with a single hidden layer and an ℓ2
+regularization:
+ℓλ
+B(θ) = ℓB(θ) + rλ(θ) = ℓB(θ) + λ
+ X
+j,j′
+ W (1)
+j,j′
+2 +
+X
+j,j′
+ W (2)
+j,j′
+2
+,
+(9)
+where ℓB(θ) is the same as (6), and λ ≥0 is a tuning parameter. A similar example is considered in [45]. The
+corresponding computational graph is shown in Figure 4. Each node represents a function (inside a circle),
+which is associated with an output of that function (outside a circle). For example, we view the term ℓB(θ)
+as a result of 4 compositions: ﬁrst the input data x multiplies the weight matrix W(1) resulting in u(1),
+3The issue of non-diﬀerentiability at the origin is often ignored in implementation.
+7
+
+--- PAGE 8 ---
+matmul
+relu
+matmul
++
+" # SoS
+$
+%(')
+)(')
+*
+12
+12
+,
+-(')
+-(.)
+cross 
+entropy
+/,
+0
+Figure 4: The computational graph illustrates the loss (9). For simplicity, we omit the bias terms. Symbols
+inside nodes represent functions, and symbols outside nodes represent function outputs (vectors/scalars).
+matmul is matrix multiplication, relu is the ReLU activation, cross entropy is the cross entropy loss, and
+SoS is the sum of squares.
+then it goes through the ReLU activation function relu resulting in h(1), then it multiplies another weight
+matrix W(2) leading to p, and ﬁnally it produces the cross-entropy with label y as in (5). The regularization
+term is incorporated in the graph similarly.
+A forward pass is complete when all nodes are evaluated starting from the input x. A backward pass
+then calculates the gradients of ℓλ
+B with respect to all other nodes in the reverse direction. Due to the chain
+rule, the gradient calculation for a variable (say, ∂ℓB/∂u(1)) is simple: it only depends on the gradient value
+of the variables (∂ℓB/∂h) the current node points to, and the function derivative evaluated at the current
+variable value (σ′(u(1))). Thus, in each iteration, a computation graph only needs to (1) calculate and
+store the function evaluations at each node in the forward pass, and then (2) calculate all derivatives in the
+backward pass.
+Back-propagation in computational graphs forms the foundations of popular deep learning programming
+softwares, including TensorFlow [1] and PyTorch [92], which allows more eﬃcient building and training of
+complex neural net models.
+3
+Popular models
+Moving beyond vanilla feed-forward neural networks, we introduce two other popular deep learning models,
+namely, the convolutional neural networks (CNNs) and the recurrent neural networks (RNNs). One impor-
+tant characteristic shared by the two models is weight sharing, that is some model parameters are identical
+across locations in CNNs or across time in RNNs. This is related to the notion of translational invariance in
+CNNs and stationarity in RNNs. At the end of this section, we introduce a modular thinking for constructing
+more ﬂexible neural nets.
+3.1
+Convolutional neural networks
+The convolutional neural network (CNN) [71, 40] is a special type of feed-forward neural networks that is
+tailored for image processing. More generally, it is suitable for analyzing data with salient spatial structures.
+In this subsection, we focus on image classiﬁcation using CNNs, where the raw input (image pixels) and
+features of each hidden layer are represented by a 3D tensor X ∈Rd1×d2×d3. Here, the ﬁrst two dimensions
+d1, d2 of X indicate spatial coordinates of an image while the third d3 indicates the number of channels. For
+instance, d3 is 3 for the raw inputs due to the red, green and blue channels, and d3 can be much larger (say,
+256) for hidden layers. Each channel is also called a feature map, because each feature map is specialized to
+detect the same feature at diﬀerent locations of the input, which we will soon explain. We now introduce
+two building blocks of CNNs, namely the convolutional layer and the pooling layer.
+1. Convolutional layer (CONV). A convolutional layer has the same functionality as described in (3), where
+8
+
+--- PAGE 9 ---
+X 2 R28⇥28⇥3
+Fk 2 R5⇥5⇥3
+28
+28
+3
+5
+5
+3
+24
+24
+1
+input feature map
+ﬁlter
+output feature map
+˜
+X 2 R24⇥24⇥1
+Figure 5: X ∈R28×28×3 represents the input feature consisting of 28 × 28 spatial coordinates in a total
+number of 3 channels / feature maps.
+Fk ∈R5×5×3 denotes the k-th ﬁlter with size 5 × 5.
+The third
+dimension 3 of the ﬁlter automatically matches the number 3 of channels in the previous input. Every 3D
+patch of X gets convolved with the ﬁlter Fk and this as a whole results in a single output feature map ˜X:,:,k
+with size 24 × 24 × 1. Stacking the outputs of all the ﬁlters {Fk}1≤k≤K will lead to the output feature with
+size 24 × 24 × K.
+the input feature X ∈Rd1×d2×d3 goes through an aﬃne transformation ﬁrst and then an element-wise
+nonlinear activation. The diﬀerence lies in the speciﬁc form of the aﬃne transformation. A convolutional
+layer uses a number of ﬁlters to extract local features from the previous input. More precisely, each ﬁlter
+is represented by a 3D tensor Fk ∈Rw×w×d3 (1 ≤k ≤˜d3), where w is the size of the ﬁlter (typically 3 or
+5) and ˜d3 denotes the total number of ﬁlters. Note that the third dimension d3 of Fk is equal to that of
+the input feature X. For this reason, one usually says that the ﬁlter has size w × w, while suppressing the
+third dimension d3. Each ﬁlter Fk then convolves with the input feature X to obtain one single feature
+map Ok ∈R(d1−w+1)×(d1−w+1), where4
+Ok
+ij =
+
+[X]ij , Fk
+
+=
+w
+X
+i′=1
+w
+X
+j′=1
+d3
+X
+l=1
+[X]i+i′−1,j+j′−1,l[Fk]i′,j′,l.
+(10)
+Here [X]ij ∈Rw×w×d3 is a small “patch” of X starting at location (i, j). See Figure 5 for an illustration of
+the convolution operation. If we view the 3D tensors [X]ij and Fk as vectors, then each ﬁlter essentially
+computes their inner product with a part of X indexed by i, j (which can be also viewed as convolution,
+as its name suggests).
+One then pack the resulted feature maps {Ok} into a 3D tensor O with size
+(d1 −w + 1) × (d1 −w + 1) × ˜d3, where
+[O]ijk = [Ok]ij.
+(11)
+The outputs of convolutional layers are then followed by nonlinear activation functions. In the ReLU
+case, we have
+˜Xijk = σ(Oijk),
+∀i ∈[d1 −w + 1], j ∈[d2 −w + 1], k ∈[ ˜d3].
+(12)
+The convolution operation (10) and the ReLU activation (12) work together to extract features ˜
+X from
+the input X. Diﬀerent from feed-forward neural nets, the ﬁlters Fk are shared across all locations (i, j).
+A patch [X]ij of an input responds strongly (that is, producing a large value) to a ﬁlter Fk if they are
+positively correlated. Therefore intuitively, each ﬁlter Fk serves to extract features similar to Fk.
+As a side note, after the convolution (10), the spatial size d1×d2 of the input X shrinks to (d1 −w + 1) × (d2 −w + 1)
+of ˜
+X. However one may want the spatial size unchanged. This can be achieved via padding, where one
+4To simplify notation, we omit the bias/intercept term associated with each ﬁlter.
+9
+
+--- PAGE 10 ---
+6
+7
+15
+13
+3
+14
+1
+9
+16
+8
+2
+10
+11
+5
+4
+12
+14
+15
+15
+16
+14
+10
+16
+8
+12
+2 ⇥2 max pooling
+stride = 1
+14
+15
+16
+12
+2 ⇥2 max pooling
+stride = 2
+Figure 6: A 2 × 2 max pooling layer extracts the maximum of 2 by 2 neighboring pixels / features across the
+spatial dimension.
+32 ⇥32 ⇥1
+28 ⇥28 ⇥6
+14 ⇥14 ⇥6
+10 ⇥10 ⇥16
+5 ⇥5 ⇥16
+120
+84
+10
+CONV 5 ⇥5
+CONV 5 ⇥5
+POOL 2 ⇥2
+POOL 2 ⇥2
+FC
+FC
+FC
+Figure 7: LeNet is composed of an input layer, two convolutional layers, two pooling layers and three fully-
+connected layers. Both convolutions are valid and use ﬁlters with size 5 × 5. In addition, the two pooling
+layers use 2 × 2 average pooling.
+appends zeros to the margins of the input X to enlarge the spatial size to (d1 + w −1) × (d2 + w −1). In
+addition, a stride in the convolutional layer determines the gap i′ −i and j′ −j between two patches Xij
+and Xi′j′: in (10) the stride is 1, and a larger stride would lead to feature maps with smaller sizes.
+2. Pooling layer (POOL). A pooling layer aggregates the information of nearby features into a single one.
+This downsampling operation reduces the size of the features for subsequent layers and saves computa-
+tion. One common form of the pooling layer is composed of the 2 × 2 max-pooling ﬁlter. It computes
+max{Xi,j,k, Xi+1,j,k, Xi,j+1,k, Xi+1,j+1,k}, that is, the maximum of the 2 × 2 neighborhood in the spatial
+coordinates; see Figure 6 for an illustration. Note that the pooling operation is done separately for each
+feature map k. As a consequence, a 2 × 2 max-pooling ﬁlter acting on X ∈Rd1×d2×d3 will result in an
+output of size d1/2×d2/2×d3. In addition, the pooling layer does not involve any parameters to optimize.
+Pooling layers serve to reduce redundancy since a small neighborhood around a location (i, j) in a feature
+map is likely to contain the same information.
+In addition, we also use fully-connected layers as building blocks, which we have already seen in Section 2.
+Each fully-connected layer treats input tensor X as a vector Vec(X), and computes ˜
+X = σ(WVec(X)).
+A fully-connected layer does not use weight sharing and is often used in the last few layers of a CNN. As
+an example, Figure 7 depicts the well-known LeNet 5 [71], which is composed of two sets of CONV-POOL
+layers and three fully-connected layers.
+3.2
+Recurrent neural networks
+Recurrent neural nets (RNNs) are another family of powerful models, which are designed to process time
+series data and other sequence data. RNNs have successful applications in speech recognition [108], machine
+translation [132], genome sequencing [21], etc. The structure of an RNN naturally forms a computational
+graph, and can be easily combined with other structures such as CNNs to build large computational graph
+10
+
+--- PAGE 11 ---
+!"
+&"
+&#
+&$
+&%
+)"
+)#
+)$
+)%
+(&&
+(&&
+(&&
+(!&
+(&'
+(&'
+(&'
+(&'
+!"
+!#
+!$
+!%
+&"
+&#
+&$
+&%
+)%
+(&&
+(&&
+(&&
+(!&
+(!&
+(!&
+(!&
+(&'
+!"
+!#
+!$
+!%
+&"
+&#
+&$
+&%
+)"
+)#
+)$
+)%
+(&&
+(&&
+(&&
+(!&
+(!&
+(!&
+(!&
+(&'
+(&'
+(&'
+(&'
+(a) One-to-many
+(b) Many-to-one
+(c) Many-to-many
+Figure 8: Vanilla RNNs with diﬀerent inputs/outputs settings. (a) has one input but multiple outputs; (b)
+has multiple inputs but one output; (c) has multiple inputs and outputs. Note that the parameters are
+shared across time steps.
+models for complex tasks. Here we introduce vanilla RNNs and improved variants such as long short-term
+memory (LSTM).
+3.2.1
+Vanilla RNNs
+Suppose we have general time series inputs x1, x2, . . . , xT . A vanilla RNN models the “hidden state” at time
+t by a vector ht, which is subject to the recursive formula
+ht = f θ(ht−1, xt).
+(13)
+Here, fθ is generally a nonlinear function parametrized by θ. Concretely, a vanilla RNN with one hidden
+layer has the following form5
+ht = tanh (Whhht−1 + Wxhxt + bh) ,
+where tanh(a) = e2a−1
+e2a+1,
+zt = σ (Whyht + bz) ,
+where Whh, Wxh, Why are trainable weight matrices, bh, bz are trainable bias vectors, and zt is the output
+at time t. Like many classical time series models, those parameters are shared across time. Note that in
+diﬀerent applications, we may have diﬀerent input/output settings (cf. Figure 8). Examples include
+• One-to-many: a single input with multiple outputs; see Figure 8(a). A typical application is image
+captioning, where the input is an image and outputs are a series of words.
+• Many-to-one: multiple inputs with a single output; see Figure 8(b). One application is text sentiment
+classiﬁcation, where the input is a series of words in a sentence and the output is a label (e.g., positive
+vs. negative).
+• Many-to-many: multiple inputs and outputs; see Figure 8(c). This is adopted in machine translation,
+where inputs are words of a source language (say Chinese) and outputs are words of a target language
+(say English).
+As the case with feed-forward neural nets, we minimize a loss function using back-propagation, where
+the loss is typically
+ℓT (θ) =
+X
+t∈T
+L(yt, zt) = −
+X
+t∈T
+K
+X
+k=1
+1{yt = k} log
+
+exp([zt]k)
+P
+k exp([zt]k)
+
+,
+where K is the number of categories for classiﬁcation (e.g., size of the vocabulary in machine translation),
+and T ⊂[T] is the length of the output sequence. During the training, the gradients ∂ℓT /∂ht are computed
+in the reverse time order (from T to t). For this reason, the training process is often called back-propagation
+through time.
+5Similar to the activation function σ(·), the function tanh(·) means element-wise operations.
+11
+
+--- PAGE 12 ---
+!"
+#
+!"
+#$%
+!"$%
+#
+time
+depth
+Figure 9: A vanilla RNN with two hidden layers. Higher-level hidden states hℓ
+t are determined by the old
+states hℓ
+t−1 and lower-level hidden states hℓ−1
+t
+. Multilayer RNNs generalize both feed-forward neural nets
+and one-hidden-layer RNNs.
+One notable drawback of vanilla RNNs is that, they have diﬃculty in capturing long-range dependencies
+in sequence data when the length of the sequence is large. This is sometimes due to the phenomenon of
+exploding / vanishing gradients. Take Figure 8(c) as an example. Computing ∂ℓT /∂h1 involves the product
+Q3
+t=1(∂ht+1/∂ht) by the chain rule. However, if the sequence is long, the product will be the multiplication
+of many Jacobian matrices, which usually results in exponentially large or small singular values. To alleviate
+this issue, in practice, the forward pass and backward pass are implemented in a shorter sliding window
+{t1, t1 + 1, . . . , t2}, instead of the full sequence {1, 2, . . . , T}. Though eﬀective in some cases, this technique
+alone does not fully address the issue of long-term dependency.
+3.2.2
+GRUs and LSTM
+There are two improved variants that alleviate the above issue: gated recurrent units (GRUs) [26] and long
+short-term memory (LSTM) [54].
+• A GRU reﬁnes the recursive formula (13) by introducing gates, which are vectors of the same length as
+ht. The gates, which take values in [0, 1] elementwise, multiply with ht−1 elementwise and determine how
+much they keep the old hidden states.
+• An LSTM similarly uses gates in the recursive formula. In addition to ht, an LSTM maintains a cell
+state, which takes values in R elementwise and are analogous to counters.
+Here we only discuss LSTM in detail. Denote by ⊙the element-wise multiplication. We have a recursive
+formula in replace of (13):
+
+
+
+
+it
+f t
+ot
+gt
+
+
+
+=
+
+
+
+
+σ
+σ
+σ
+tanh
+
+
+
+W
+
+
+ht−1
+xt
+1
+
+,
+ct = f t ⊙ct−1 + it ⊙gt,
+ht = ot ⊙tanh(ct),
+where W is a big weight matrix with appropriate dimensions. The cell state vector ct carries information of
+the sequence (e.g., singular/plural form in a sentence). The forget gate f t determines how much the values
+of ct−1 are kept for time t, the input gate it controls the amount of update to the cell state, and the output
+gate ot gives how much ct reveals to ht. Ideally, the elements of these gates have nearly binary values.
+For example, an element of f t being close to 1 may suggest the presence of a feature in the sequence data.
+Similar to the skip connections in residual nets, the cell state ct has an additive recursive formula, which
+helps back-propagation and thus captures long-range dependencies.
+12
+
+--- PAGE 13 ---
+3.2.3
+Multilayer RNNs
+Multilayer RNNs are generalization of the one-hidden-layer RNN discussed above. Figure 9 shows a vanilla
+RNN with two hidden layers. In place of (13), the recursive formula for an RNN with L hidden layers now
+reads
+hℓ
+t = tanh
+
+Wℓ
+
+
+hℓ−1
+t
+hℓ
+t−1
+1
+
+
+
+,
+for all ℓ∈[L],
+h0
+t ≜xt.
+Note that a multilayer RNN has two dimensions: the sequence length T and depth L. Two special cases are
+the feed-forward neural nets (where T = 1) introduced in Section 2, and RNNs with one hidden layer (where
+L = 1). Multilayer RNNs usually do not have very large depth (e.g., 2–5), since T is already very large.
+Finally, we remark that CNNs, RNNs, and other neural nets can be easily combined to tackle tasks
+that involve diﬀerent sources of input data. For example, in image captioning, the images are ﬁrst processed
+through a CNN, and then the high-level features are fed into an RNN as inputs. Theses neural nets combined
+together form a large computational graph, so they can be trained using back-propagation. This generic
+training method provides much ﬂexibility in various applications.
+3.3
+Modules
+Deep neural nets are essentially composition of many nonlinear functions. A component function may be
+designed to have speciﬁc properties in a given task, and it can be itself resulted from composing a few
+simpler functions. In LSTM, we have seen that the building block consists of several intermediate variables,
+including cell states and forget gates that can capture long-term dependency and alleviate numerical issues.
+This leads to the idea of designing modules for building more complex neural net models. Desirable
+modules usually have low computational costs, alleviate numerical issues in training, and lead to good
+statistical accuracy. Since modules and the resulting neural net models form computational graphs, training
+follows the same principle brieﬂy described in Section 2.
+Here, we use the examples of Inception and skip connections to illustrate the ideas behind modules.
+Figure 10(a) is an example of “Inception” modules used in GoogleNet [123]. As before, all the convolutional
+layers are followed by the ReLU activation function. The concatenation of information from ﬁlters with
+diﬀerent sizes give the model great ﬂexibility to capture spatial information. Note that 1 × 1 ﬁlters is an
+1 × 1 × d3 tensor (where d3 is the number of feature maps), so its convolutional operation does not interact
+with other spatial coordinates, only serving to aggregate information from diﬀerent feature maps at the same
+coordinate. This reduces the number of parameters and speeds up the computation. Similar ideas appear
+in other work [78, 57].
+1×'2
+3456
+1×'2
+3456
+1×'2
+3456
+1×'2
+3456
+3×72
+3456
+5×82
+3456
+3×72
+POOL
+concat
+3×94
+5678
+3×94
+5678
++
+$
+$
+;($)
+(a) “Inception” module
+(b) Skip connections
+Figure 10: (a) The “Inception” module from GoogleNet. Concat means combining all features maps into a
+tensor. (b) Skip connections are added every two layers in ResNets.
+Another module, usually called skip connections, is widely used to alleviate numerical issues in very deep
+neural nets, with additional beneﬁts in optimization eﬃciency and statistical accuracy. Training very deep
+13
+
+--- PAGE 14 ---
+neural nets are generally more diﬃcult, but the introduction of skip connections in residual networks [50, 51]
+has greatly eased the task.
+The high level idea of skip connections is to add an identity map to an existing nonlinear function. Let
+F(x) be an arbitrary nonlinear function represented by a (fragment of) neural net, then the idea of skip
+connections is simply replacing F(x) with x+F(x). Figure 10(b) shows a well-known structure from residual
+networks [50]—for every two layers, an identity map is added:
+x 7−→σ(x + F(x)) = σ(x + W′σ(Wx + b) + b′),
+(14)
+where x can be hidden nodes from any layer and W, W′, b, b′ are corresponding parameters. By repeating
+(namely composing) this structure throughout all layers, [50, 51] are able to train neural nets with hundreds
+of layers easily, which overcomes well-observed training diﬃculties in deep neural nets.
+Moreover, deep
+residual networks also improve statistical accuracy, as the classiﬁcation error on ImageNet challenge was
+reduced by 46% from 2014 to 2015. As a side note, skip connections can be used ﬂexibly. They are not
+restricted to the form in (14), and can be used between any pair of layers ℓ, ℓ′ [55].
+4
+Deep unsupervised learning
+In supervised learning, given labelled training set {(yi, xi)}, we focus on discriminative models, which essen-
+tially represents P(y | x) by a deep neural net f(x; θ) with parameters θ. Unsupervised learning, in contrast,
+aims at extracting information from unlabeled data {xi}, where the labels {yi} are absent. In regard to this
+information, it can be a low-dimensional embedding of the data {xi} or a generative model with latent vari-
+ables to approximate the distribution PX(x). To achieve these goals, we introduce two popular unsupervised
+deep leaning models, namely, autoencoders and generative adversarial networks (GANs). The ﬁrst one can
+be viewed as a dimension reduction technique, and the second as a density estimation method. DNNs are
+the key elements for both of these two models.
+4.1
+Autoencoders
+Recall that in dimension reduction, the goal is to reduce the dimensionality of the data and at the same time
+preserve its salient features. In particular, in principal component analysis (PCA), the goal is to embed the
+data {xi}1≤i≤n into a low-dimensional space via a linear function f such that maximum variance can be
+explained. Equivalently, we want to ﬁnd linear functions f : Rd →Rk and g : Rk →Rd (k ≤d) such that
+the diﬀerence between xi and g(f(xi)) is minimized. Formally, we let
+f (x) = Wfx ≜h
+and
+g (h) = Wgh,
+where
+Wf ∈Rk×d and Wg ∈Rd×k.
+Here, for simplicity, we assume that the intercept/bias terms for f and g are zero. Then, PCA amounts to
+minimizing the quadratic loss function
+minimizeWf ,Wg
+1
+n
+n
+X
+i=1
+∥xi −WfWgxi∥2
+2 .
+(15)
+It is the same as minimizing ∥X −WX∥2
+F subject to rank(W) ≤k, where X ∈Rp×n is the design matrix.
+The solution is given by the singular value decomposition of X [44, Thm. 2.4.8], which is exactly what PCA
+does. It turns out that PCA is a special case of autoencoders, which is often known as the undercomplete
+linear autoencoder.
+More broadly, autoencoders are neural network models for (nonlinear) dimension reduction, which gen-
+eralize PCA. An autoencoder has two key components, namely, the encoder function f(·), which maps the
+input x ∈Rd to a hidden code/representation h ≜f(x) ∈Rk, and the decoder function g(·), which maps
+the hidden representation h to a point g(h) ∈Rd. Both functions can be multilayer neural networks as
+(3). See Figure 11 for an illustration of autoencoders. Let L(x1, x2) be a loss function that measures the
+diﬀerence between x1 and x2 in Rd. Similar to PCA, an autoencoder is used to ﬁnd the encoder f and
+14
+
+--- PAGE 15 ---
+hidden layer
+output layer
+input layer
+h = f (x)
+x
+g (h)
+x
+encoder
+decoder
+L (x, g (h))
+Figure 11: First an input x goes through the decoder f(·), and we obtain its hidden representation h = f(x).
+Then, we use the decoder g(·) to get g(h) as a reconstruction of x. Finally, the loss is determined from the
+diﬀerence between the original input x and its reconstruction g(f(x)).
+decoder g such that L(x, g(f(x))) is as small as possible. Mathematically, this amounts to solving the
+following minimization problem
+minimizef,g
+1
+n
+n
+X
+i=1
+L (xi, g (hi))
+with
+hi = f (xi) ,
+for all i ∈[n].
+(16)
+One needs to make structural assumptions on the functions f and g in order to ﬁnd useful representations
+of the data, which leads to diﬀerent types of autoencoders. Indeed, if no assumption is made, choosing f and
+g to be identity functions clearly minimizes the above optimization problem. To avoid this trivial solution,
+one natural way is to require that the encoder f maps the data onto a space with a smaller dimension,
+i.e., k < d. This is the undercomplete autoencoder that includes PCA as a special case. There are other
+structured autoencoders which add desired properties to the model such as sparsity or robustness, mainly
+through regularization terms. Below we present two other common types of autoencoders.
+• Sparse autoencoders.
+One may believe that the dimension k of the hidden code hi is larger than the
+input dimension d, and that hi admits a sparse representation. As with LASSO [126] or SCAD [36], one
+may add a regularization term to the reconstruction loss L in (16) to encourage sparsity [98]. A sparse
+autoencoder solves
+minf,g
+1
+n
+n
+X
+i=1
+L (xi, g (hi))
+|
+{z
+}
+loss
++ λ ∥hi∥1
+| {z }
+regularizer
+with
+hi = f (xi) , for all i ∈[n].
+This is similar to dictionary learning, where one aims at ﬁnding a sparse representation of input data on
+an overcomplete basis. Due to the imposed sparsity, the model can potentially learn useful features of the
+data.
+• Denoising autoencoders.
+One may hope that the model is robust to noise in the data: even if the
+input data xi are corrupted by small noise ξi or miss some components (the noise level or the missing
+probability is typically small), an ideal autoencoder should faithfully recover the original data. A denoising
+autoencoder [128] achieves this robustness by explicitly building a noisy data ˜xi = xi+ξi as the new input,
+15
+
+--- PAGE 16 ---
+source distribution
+training samples
+n PZ
+{xi}1in
+sample
+sample
+xi
+z
+G
+D
+g (z)
+1: real
+0: fake
+d (·)
+Figure 12: GANs consist of two components, a generator G which generates fake samples and a discriminator
+D which diﬀerentiate the true ones from the fake ones.
+and then solves an optimization problem similar to (16) where L (xi, g (hi)) is replaced by L (xi, g (f(˜xi))).
+A denoising autoencoder encourages the encoder/decoder to be stable in the neighborhood of an input,
+which is generally a good statistical property. An alternative way could be constraining f and g in the
+optimization problem, but that would be very diﬃcult to optimize. Instead, sampling by adding small
+perturbations in the input provides a simple implementation. We shall see similar ideas in Section 6.3.3.
+4.2
+Generative adversarial networks
+Given unlabeled data {xi}1≤i≤n, density estimation aims to estimate the underlying probability density
+function PX from which the data is generated. Both parametric and nonparametric estimators [115] have
+been proposed and studied under various assumptions on the underlying distribution. Diﬀerent from these
+classical density estimators, where the density function is explicitly deﬁned in relatively low dimension,
+generative adversarial networks (GANs) [46] can be categorized as an implicit density estimator in much
+higher dimension. The reasons are twofold: (1) GANs put more emphasis on sampling from the distribution
+PX than estimation; (2) GANs deﬁne the density estimation implicitly through a source distribution PZ and
+a generator function g(·), which is usually a deep neural network. We introduce GANs from the perspective
+of sampling from PX and later we will generalize the vanilla GANs using its relation to density estimators.
+4.2.1
+Sampling view of GANs
+Suppose the data {xi}1≤i≤n at hand are all real images, and we want to generate new natural images.
+With this goal in mind, GAN models a zero-sum game between two players, namely, the generator G and
+the discriminator D.
+The generator G tries to generate fake images akin to the true images {xi}1≤i≤n
+while the discriminator D aims at diﬀerentiating the fake ones from the true ones. Intuitively, one hopes to
+learn a generator G to generate images where the best discriminator D cannot distinguish. Therefore the
+payoﬀis higher for the generator G if the probability of the discriminator D getting wrong is higher, and
+correspondingly the payoﬀfor the discriminator correlates positively with its ability to tell wrong from truth.
+Mathematically, the generator G consists of two components, an source distribution PZ (usually a stan-
+dard multivariate Gaussian distribution with hundreds of dimensions) and a function g(·) which maps a
+sample z from PZ to a point g(z) living in the same space as x. For generating images, g(z) would be a
+3D tensor. Here g(z) is the fake sample generated from G. Similarly the discriminator D is composed of
+one function which takes an image x (real or fake) and return a number d(x) ∈[0, 1], the probability of x
+being a real sample from PX or not. Oftentimes, both the generating function g(·) and the discriminating
+function d(·) are realized by deep neural networks, e.g., CNNs introduced in Section 3.1. See Figure 12 for
+an illustration for GANs. Denote θG and θD the parameters in g(·) and d(·), respectively. Then GAN tries
+to solve the following min-max problem:
+16
+
+--- PAGE 17 ---
+min
+θG max
+θD
+Ex∼PX [log (d (x))] + Ez∼PZ [log (1 −d (g (z)))] .
+(17)
+Recall that d(x) models the belief / probability that the discriminator thinks that x is a true sample. Fix
+the parameters θG and hence the generator G and consider the inner maximization problem. We can see
+that the goal of the discriminator is to maximize its ability of diﬀerentiation. Similarly, if we ﬁx θD (and
+hence the discriminator), the generator tries to generate more realistic images g(z) to fool the discriminator.
+4.2.2
+Density estimation view of GANs
+Let us now take a density-estimation view of GANs. Fixing the source distribution PZ, any generator G
+induces a distribution PG over the space of images. Removing the restrictions on d(·), one can then rewrite
+(17) as
+min
+PG max
+d(·)
+Ex∼PX [log (d (x))] + Ex∼PG [log (1 −d (x))] .
+(18)
+Observe that the inner maximization problem is solved by the likelihood ratio, i.e.
+d∗(x) =
+PX (x)
+PX (x) + PG (x).
+As a result, (18) can be simpliﬁed as
+min
+PG
+JS (PX ∥PG) ,
+(19)
+where JS(·∥·) denotes the Jensen–Shannon divergence between two distributions
+JS (PX∥PG) = 1
+2KL
+ PX ∥PX+PG
+2
+
++ 1
+2KL
+ PG ∥PX+PG
+2
+
+.
+In words, the vanilla GAN (17) seeks a density PG that is closest to PX in terms of the Jensen–Shannon di-
+vergence. This view allows to generalize GANs to other variants, by changing the distance metric. Examples
+include f-GAN [90], Wasserstein GAN (W-GAN) [6], MMD GAN [75], etc. We single out the Wasserstein
+GAN (W-GAN) [6] to introduce due to its popularity. As the name suggests, it minimizes the Wasserstein
+distance between PX and PG:
+min
+θG
+WS (PX∥PG)
+=
+min
+θG
+sup
+f:f 1-Lipschitz
+Ex∼PX [f (x)] −Ex∼PG [f (x)] ,
+(20)
+where f(·) is taken over all Lipschitz functions with coeﬃcient 1. Comparing W-GAN (20) with the original
+formulation of GAN (17), one ﬁnds that the Lipschitz function f in (20) corresponds to the discriminator D
+in (17) in the sense that they share similar objectives to diﬀerentiate the true distribution PX from the fake
+one PG. In the end, we would like to mention that GANs are more diﬃcult to train than supervised deep
+learning models such as CNNs [110]. Apart from the training diﬃculty, how to evaluate GANs objectively
+and eﬀectively is an ongoing research.
+5
+Representation power: approximation theory
+Having seen the building blocks of deep learning models in the previous sections, it is natural to ask: what is
+the beneﬁts of composing multiple layers of nonlinear functions. In this section, we address this question from
+a approximation theoretical point of view. Mathematically, letting H be the space of functions representable
+by neural nets (NNs), how well can a function f (with certain properties) be approximated by functions in
+H. We ﬁrst revisit universal approximation theories, which are mostly developed for shallow neural nets
+(neural nets with a single hidden layer), and then provide recent results that demonstrate the beneﬁts of
+depth in neural nets. Other notable works include Kolmogorov-Arnold superposition theorem [7, 120], and
+circuit complexity for neural nets [91].
+17
+
+--- PAGE 18 ---
+5.1
+Universal approximation theory for shallow NNs
+The universal approximation theories study the approximation of f in a space F by a function represented
+by a one-hidden-layer neural net
+g(x) =
+N
+X
+j=1
+cjσ∗(w⊤
+j x −bj),
+(21)
+where σ∗: R →R is certain activation function and N is the number of hidden units in the neural net. For
+diﬀerent space F and activation function σ∗, there are upper bounds and lower bounds on the approximation
+error ∥f −g∥. See [93] for a comprehensive overview. Here we present representative results.
+First, as N →∞, any continuous function f can be approximated by some g under mild conditions.
+Loosely speaking, this is because each component σ∗(w⊤
+j x −bj) behaves like a basis function and functions
+in a suitable space F admits a basis expansion. Given the above heuristics, the next natural question is:
+what is the rate of approximation for a ﬁnite N?
+Let us restrict the domain of x to a unit ball Bd in Rd. For p ∈[1, ∞) and integer m ≥1, consider the
+Lp space and the Sobolev space with standard norms
+∥f∥p =
+h Z
+Bn |g(x)|p dx
+i1/p
+,
+∥f∥m,p =
+h
+X
+0≤|k|≤m
+∥Dkf∥p
+p
+i1/p
+,
+where Dkf denotes partial derivatives indexed by k ∈Zd
++. Let F ≜Fm
+p be the space of functions f in the
+Sobolev space with ∥f∥m,p ≤1. Note that functions in F have bounded derivatives up to m-th order, and
+that smoothness of functions is controlled by m (larger m means smoother). Denote by HN the space of
+functions with the form (21). The following general upper bound is due to [85].
+Theorem 1 (Theorem 2.1 in [85]). Assume σ∗: R →R is such that σ∗has arbitrary order derivatives in an
+open interval I, and that σ∗is not a polynomial on I. Then, for any p ∈[1, ∞), d ≥2, and integer m ≥1,
+sup
+f∈Fm
+p
+inf
+g∈HN
+∥f −g∥p ≤Cd,m,p N −m/d,
+where Cd,m,p is independent of N, the number of hidden units.
+In the above theorem, the condition on σ∗(·) is mainly technical. This upper bound is useful when the
+dimension d is not large. It clearly implies that the one-hidden-layer neural net is able to approximate any
+smooth function with enough hidden units. However, it is unclear how to ﬁnd a good approximator g; nor
+do we have control over the magnitude of the parameters (huge weights are impractical). While increasing
+the number of hidden units N leads to better approximation, the exponent −m/d suggests the presence of
+the curse of dimensionality. The following (nearly) matching lower bound is stated in [80].
+Theorem 2 (Theorem 5 in [80]). Let p ≥1, m ≥1 and N ≥2. If the activation function is the standard
+sigmoid function σ(t) = (1 + e−t)−1, then
+sup
+f∈Fm
+p
+inf
+g∈HN
+∥f −g∥p ≥C′
+d,m,p (N log N)−m/d,
+(22)
+where C′
+d,m,p is independent of N.
+Results for other activation functions are also obtained by [80]. Moreover, the term log N can be removed
+if we assume an additional continuity condition [85].
+For the natural space Fm
+p of smooth functions, the exponential dependence on d in the upper and lower
+bounds may look unappealing. However, [12] showed that for a diﬀerent function space, there is a good
+dimension-free approximation by the neural nets.
+Suppose that a function f : Rd 7→R has a Fourier
+representation
+f(x) =
+Z
+Rd ei⟨ω,x⟩˜f(ω) dω,
+(23)
+18
+
+--- PAGE 19 ---
+where ˜f(ω) ∈C. Assume that f(0) = 0 and that the following quantity is ﬁnite
+Cf =
+Z
+Rd ∥ω∥2| ˜f(ω)| dω.
+(24)
+[12] uncovers the following dimension-free approximation guarantee.
+Theorem 3 (Proposition 1 in [12]). Fix a C > 0 and an arbitrary probability measure µ on the unit ball Bd
+in Rd. For every function f with Cf ≤C and every N ≥1, there exists some g ∈HN such that
+Z
+Bd(f(x) −g(x))2 µ(dx)
+1/2
+≤2C
+√
+N
+.
+Moreover, the coeﬃcients of g may be restricted to satisfy PN
+j=1 |cj| ≤2C.
+The upper bound is now independent of the dimension d. However, Cf may implicitly depend on d, as
+the formula in (24) involves an integration over Rd (so for some functions Cf may depend exponentially
+on d). Nevertheless, this theorem does characterize an interesting function space with an improved upper
+bound. Details of the function space are discussed by [12]. This theorem can be generalized; see [81] for an
+example.
+To help understand why a dimensionality-free approximation holds, let us appeal to a heuristic argument
+given by Monte Carlo simulations. It is well-known that Monte Carlo approximation errors are independent
+of dimensionality in evaluation of high-dimensional integrals. Let us generate {ωj}1≤j≤N randomly from a
+given density p(·) in Rd. Consider the approximation to (23) by
+gN(x) = 1
+N
+N
+X
+j=1
+cjei⟨ωj,x⟩,
+cj =
+˜f(ωj)
+p(ωj) .
+(25)
+Then, gN(x) is a one-hidden-layer neural network with N units and the sinusoid activation function. Note
+that EgN(x) = f(x), where the expectation is taken with respect to randomness {ωj}. Now, by indepen-
+dence, we have
+E(gN(x) −f(x))2 = 1
+N Var(cjei⟨ωj,x⟩) ≤1
+N Ec2
+j,
+if Ec2
+j < ∞. Therefore, the rate is independent of the dimensionality d, though the constant can be.
+5.2
+Approximation theory for multi-layer NNs
+The approximation theory for multilayer neural nets is less understood compared with neural nets with one
+hidden layer. Driven by the success of deep learning, there are many recent papers focusing on expressivity
+of deep neural nets. As studied by [125, 35, 84, 94, 15, 111, 77, 103], deep neural nets excel at representing
+composition of functions. This is perhaps not surprising, since deep neural nets are themselves deﬁned by
+composing layers of functions. Nevertheless, it points to a new territory rarely studied in statistics before.
+Below we present a result based on [77, 103].
+Suppose that the inputs x have a bounded domain [−1, 1]d for simplicity. As before, let σ∗: R →R be a
+generic function, and σ∗= (σ∗, · · · , σ∗)⊤be element-wise application of σ∗. Consider a neural net which is
+similar to (3) but with scaler output: g(x) = Wℓσ∗(· · · σ∗(W2σ∗(W1x)) · · · ). A unit or neuron refers to an
+element of vectors σ∗(Wk · · · σ∗(W2σ∗(W1x)) · · · ) for any k = 1, . . . , ℓ−1. For a multivariate polynomial
+p, deﬁne mk(p) to be the smallest integer such that, for any ϵ > 0, there exists a neural net g(x) satisfying
+supx |p(x) −g(x)| < ϵ, with k hidden layers (i.e., ℓ= k + 1) and no more than mk(p) neurons in total.
+Essentially, mk(p) is the minimum number of neurons required to approximate p arbitrarily well.
+Theorem 4 (Theorem 4.1 in [103]). Let p(x) be a monomial xr1
+1 xr2
+2 · · · xrd
+d with q = Pd
+j=1 rj. Suppose that
+σ∗has derivatives of order 2q at the origin, and that they are nonzero. Then,
+(i) m1(p) = Qd
+j=1(rj + 1);
+(ii) mink mk(p) ≤Pd
+j=1 (7⌈log2(rj)⌉+ 4).
+19
+
+--- PAGE 20 ---
+This theorem reveals a sharp distinction between shallow networks (one hidden layer) and deep networks.
+To represent a monomial function, a shallow network requires exponentially many neurons in terms of the
+dimension d, whereas linearly many neurons suﬃce for a deep network (with bounded rj). The exponential
+dependence on d, as shown in Theorem 4(i), is resonant with the curse of dimensionality widely seen in
+many ﬁelds; see [30]. One may ask: how does depth help? Depth circumvents this issue, at least for certain
+functions, by allowing us to represent function composition eﬃciently. Indeed, Theorem 4(ii) oﬀers a nice
+result with clear intuitions: it is known that the product of two scalar inputs can be represented using 4
+neurons [77], so by composing multiple products, we can express monomials with O(d) neurons.
+Recent advances in nonparametric regressions also support the idea that deep neural nets excel at repre-
+senting composition of functions [15, 111]. In particular, [15] considered the nonparametric regression setting
+where we want to estimate a function ˆfn(x) from i.i.d. data Dn = {(yi, xi)}1≤i≤n. If the true regression
+function f(x) has certain hierarchical structure with intrinsic dimensionality6 d∗, then the error
+EDnEx
+ ˆfn(x) −f(x)
+
+2
+has an optimal minimax convergence rate O(n−
+2q
+2q+d∗), rather than the usual rate O(n−
+2q
+2q+d ) that depends on
+the ambient dimension d. Here q is the smoothness parameter. This provides another justiﬁcation for deep
+neural nets: if data are truly hierarchical, then the quality of approximators by deep neural nets depends on
+the intrinsic dimensionality, which avoids the curse of dimensionality.
+We point out that the approximation theory for deep learning is far from complete. For example, in
+Theorem 4, the condition on σ∗excludes the widely used ReLU activation function, there are no constraints
+on the magnitude of the weights (so they can be unreasonably large).
+6
+Training deep neural nets
+The existence of a good function approximator in the NN function class does not explain why in practice
+we can easily ﬁnd them. In this section, we introduce standard methods, namely stochastic gradient descent
+(SGD) and its variants, to train deep neural networks (or to ﬁnd such a good approximator). As with many
+statistical machine learning tasks, training DNNs follows the empirical risk minimization (ERM) paradigm
+which solves the following optimization problem
+minimizeθ∈Rp
+ℓn (θ) ≜1
+n
+n
+X
+i=1
+L (f (xi; θ) , yi) .
+(26)
+Here L(f(xi; θ), yi) measures the discrepancy between the prediction f(xi; θ) of the neural network and the
+true label yi. Correspondingly, denote by ℓ(θ) ≜E(x,y)∼D[L(f(x; θ), y)] the out-of-sample error, where D
+is the joint distribution over (y, x). Solving ERM (26) for deep neural nets faces various challenges that
+roughly fall into the following three categories.
+• Scalability and nonconvexity. Both the sample size n and the number of parameters p can be huge for
+modern deep learning applications, as we have seen in Table 1. Many optimization algorithms are not
+practical due to the computational costs and memory constraints.
+What is worse, the empirical loss
+function ℓn(θ) in deep learning is often nonconvex.
+It is a priori not clear whether an optimization
+algorithm can drive the empirical loss (26) small.
+• Numerical stability. With a large number of layers in DNNs, the magnitudes of the hidden nodes can be
+drastically diﬀerent, which may result in the “exploding gradients” or “vanishing gradients” issue during
+the training process.
+This is because the recursive relations across layers often lead to exponentially
+increasing / decreasing values in both forward passes and backward passes.
+• Generalization performance. Our ultimate goal is to ﬁnd a parameter ˆθ such that the out-of-sample error
+ℓ(ˆθ) is small. However, in the over-parametrized regime where p is much larger than n, the underlying
+6Roughly speaking, the true regression function can be represented by a tree where each node has at most d∗children.
+See [15] for the precise deﬁnition.
+20
+
+--- PAGE 21 ---
+neural network has the potential to ﬁt the training data perfectly while performing poorly on the test
+data. To avoid this overﬁtting issue, proper regularization, whether explicit or implicit, is needed in the
+training process for the neural nets to generalize.
+In the following three subsections, we discuss practical solutions / proposals to address these challenges.
+6.1
+Stochastic gradient descent
+Stochastic gradient descent (SGD) [101] is by far the most popular optimization algorithm to solve ERM (26)
+for large-scale problems. It has the following simple update rule:
+θt+1 = θt −ηtG(θt)
+with
+G
+ θt
+= ∇L
+ f
+ xit; θt
+, yit
+
+(27)
+for t = 0, 1, 2, . . ., where ηt > 0 is the step size (or learning rate), θ0 ∈Rp is an initial point and it is
+chosen randomly from {1, 2, · · · , n}. It is easy to verify that G(θt) is an unbiased estimate of ∇ℓn(θt). The
+advantage of SGD is clear: compared with gradient descent, which goes over the entire dataset in every
+update, SGD uses a single example in each update and hence is considerably more eﬃcient in terms of both
+computation and memory (especially in the ﬁrst few iterations).
+Apart from practical beneﬁts of SGD, how well does SGD perform theoretically in terms of minimizing
+ℓn(θ)? We begin with the convex case, i.e., the case where the loss function is convex w.r.t. θ. It is well
+understood in literature that with proper choices of the step sizes {ηt}, SGD is guaranteed to achieve both
+consistency and asymptotic normality.
+• Consistency. If ℓ(θ) is a strongly convex function7, then under some mild conditions8, learning rates that
+satisfy
+∞
+X
+t=0
+ηt = +∞
+and
+∞
+X
+t=0
+η2
+t < +∞
+(28)
+guarantee almost sure convergence to the unique minimizer θ∗≜argminθℓ(θ), i.e., θt a.s.
+−−→θ∗as t →
+∞[101, 64, 16, 69]. The requirements in (28) can be viewed from the perspective of bias-variance tradeoﬀ:
+the ﬁrst condition ensures that the iterates can reach the minimizer (controlled bias), and the second
+ensures that stochasticity does not prevent convergence (controlled variance).
+• Asymptotic normality. It is proved by [97] that for robust linear regression with ﬁxed dimension p, under
+the choice ηt = t−1,
+√
+t (θt −θ∗) is asymptotically normal under some regularity conditions (but θt is not
+asymptotically eﬃcient in general). Moreover, by averaging the iterates of SGD, [96] proved that even
+with a larger step size ηt ∝t−α, α ∈(1/2, 1), the averaged iterate ¯θ
+t = t−1 Pt
+s=1 θs is asymptotic eﬃcient
+for robust linear regression. These strong results show that SGD with averaging performs as well as the
+MLE asymptotically, in addition to its computational eﬃciency.
+These classical results, however, fail to explain the eﬀectiveness of SGD when dealing with nonconvex
+loss functions in deep learning. Admittedly, ﬁnding global minima of nonconvex functions is computationally
+infeasible in the worst case. Nevertheless, recent work [4, 32] bypasses the worst case scenario by focusing
+on losses incurred by over-parametrized deep learning models. In particular, they show that (stochastic)
+gradient descent converges linearly towards the global minimizer of ℓn(θ) as long as the neural network is
+suﬃciently over-parametrized. This phenomenon is formalized below.
+Theorem 5 (Theorem 2 in [4]). Let {(yi, xi)}1≤i≤n be a training set satisfying mini,j:i̸=j ∥xi−xj∥2 ≥δ > 0.
+Consider ﬁtting the data using a feed-forward neural network (1) with ReLU activations.
+Denote by L
+(resp. W) the depth (resp. width) of the network.
+Suppose that the neural network is suﬃciently over-
+parametrized, i.e.,
+W ≫poly
+
+n, L, 1
+δ
+
+,
+(29)
+7For results on consistency and asymptotic normality, we consider the case where in each step of SGD, the stochastic
+gradient is computed using a fresh sample (y, x) from D. This allows to view SGD as an optimization algorithm to minimize
+the population loss ℓ(θ).
+8One example of such condition can be constraining the second moment of the gradients: E
+
+∥∇L
+ xi, yi; θt
+∥2
+2
+
+≤C1 +
+C2∥θt −θ∗∥2
+2 for some C1, C2 > 0. See [16] for details.
+21
+
+--- PAGE 22 ---
+where poly means a polynomial function. Then with high probability, running SGD (27) with certain random
+initialization and properly chosen step sizes yields ℓn(θt) ≤ε in t ≍log 1
+ε iterations.
+Two notable features are worth mentioning: (1) ﬁrst, the network under consideration is suﬃciently over-
+parametrized (cf. (29)) in which the number of parameters is much larger than the number of samples, and
+(2) one needs to initialize the weight matrices to be in near-isometry such that the magnitudes of the hidden
+nodes do not blow up or vanish. In a nutshell, over-parametrization and random initialization together
+ensure that the loss function (26) has a benign landscape9 around the initial point, which in turn implies
+fast convergence of SGD iterates.
+There are certainly other challenges for vanilla SGD to train deep neural nets: (1) training algorithms
+are often implemented in GPUs, and therefore it is important to tailor the algorithm to the infrastructure,
+(2) the vanilla SGD might converge very slowly for deep neural networks, albeit good theoretical guarantees
+for well-behaved problems, and (3) the learning rates {ηt} can be diﬃcult to tune in practice. To address
+the aforementioned challenges, three important variants of SGD, namely mini-batch SGD, momentum-based
+SGD, and SGD with adaptive learning rates are introduced.
+6.1.1
+Mini-batch SGD
+Modern computational infrastructures (e.g., GPUs) can evaluate the gradient on a number (say 64) of
+examples as eﬃciently as evaluating that on a single example. To utilize this advantage, mini-batch SGD
+with batch size K ≥1 forms the stochastic gradient through K random samples:
+θt+1 = θt −ηtG(θt)
+with
+G(θt) = 1
+K
+K
+X
+k=1
+∇L
+ f
+ xik
+t ; θt
+, yik
+t
+
+,
+(30)
+where for each 1 ≤k ≤K, ik
+t is sampled uniformly from {1, 2, · · · , n}.
+Mini-batch SGD, which is an
+“interpolation” between gradient descent and stochastic gradient descent, achieves the best of both worlds:
+(1) using 1 ≪K ≪n samples to estimate the gradient, one eﬀectively reduces the variance and hence
+accelerates the convergence, and (2) by taking the batch size K appropriately (say 64 or 128), the stochastic
+gradient G(θt) can be eﬃciently computed using the matrix computation toolboxes on GPUs.
+6.1.2
+Momentum-based SGD
+While mini-batch SGD forms the foundation of training neural networks, it can sometimes be slow to converge
+due to its oscillation behavior [122]. Optimization community has long investigated how to accelerate the
+convergence of gradient descent, which results in a beautiful technique called momentum methods [95, 88].
+Similar to gradient descent with moment, momentum-based SGD, instead of moving the iterate θt in the
+direction of the current stochastic gradient G(θt), smooth the past (stochastic) gradients {G(θt)} to stabilize
+the update directions. Mathematically, let vt ∈Rp be the direction of update in the tth iteration, i.e.,
+θt+1 = θt −ηtvt.
+Here v0 = G(θ0) and for t = 1, 2, · · ·
+vt = ρvt−1 + G(θt)
+(31)
+with 0 < ρ < 1. A typical choice of ρ is 0.9. Notice that ρ = 0 recovers the mini-batch SGD (30), where
+no past information of gradients is used. A simple unrolling of vt reveals that vt is actually an exponential
+averaging of the past gradients, i.e., vt = Pt
+j=0 ρt−jG(θj). Compared with vanilla mini-batch SGD, the
+inclusion of the momentum “smoothes” the oscillation direction and accumulates the persistent descent
+direction. We want to emphasize that theoretical justiﬁcations of momentum in the stochastic setting is not
+fully understood [63, 60].
+9In [4], the loss function ℓn(θ) satisﬁes the PL condition.
+22
+
+--- PAGE 23 ---
+6.1.3
+SGD with adaptive learning rates
+In optimization, preconditioning is often used to accelerate ﬁrst-order optimization algorithms. In principle,
+one can apply this to SGD, which yields the following update rule:
+θt+1 = θt −ηtP −1
+t
+G(θt)
+(32)
+with Pt ∈Rp×p being a preconditioner at the t-th step.
+Newton’s method can be viewed as one type
+of preconditioning where Pt = ∇2ℓ(θt).
+The advantages of preconditioning are two-fold: ﬁrst, a good
+preconditioner reduces the condition number by changing the local geometry to be more homogeneous, which
+is amenable to fast convergence; second, a good preconditioner frees practitioners from laboring tuning of the
+step sizes, as is the case with Newton’s method. AdaGrad, an adaptive gradient method proposed by [33],
+builds a preconditioner Pt based on information of the past gradients:
+Pt =
+n
+diag
+
+t
+X
+j=0
+G
+ θt
+G
+ θt⊤o1/2
+.
+(33)
+Since we only require the diagonal part, this preconditioner (and its inverse) can be eﬃciently computed in
+practice. In addition, investigating (32) and (33), one can see that AdaGrad adapts to the importance of each
+coordinate of the parameters by setting smaller learning rates for frequent features, whereas larger learning
+rates for those infrequent ones. In practice, one adds a small quantity δ > 0 (say 10−8) to the diagonal
+entries to avoid singularity (numerical underﬂow). A notable drawback of AdaGrad is that the eﬀective
+learning rate vanishes quickly along the learning process. This is because the historical sum of the gradients
+can only increase with time. RMSProp [52] is a popular remedy for this problem which incorporates the
+idea of exponential averaging:
+Pt =
+n
+diag
+
+ρPt−1 + (1 −ρ)G
+ θt
+G
+ θt⊤o1/2
+.
+(34)
+Again, the decaying parameter ρ is usually set to be 0.9. Later, Adam [65, 100] combines the momentum
+method and adaptive learning rate and becomes the default training algorithms in many deep learning
+applications.
+6.2
+Easing numerical instability
+For very deep neural networks or RNNs with long dependencies, training diﬃculties often arise when the val-
+ues of nodes have diﬀerent magnitudes or when the gradients “vanish” or “explode” during back-propagation.
+Here we discuss three partial solutions to alleviate this problem.
+6.2.1
+ReLU activation function
+One useful characteristic of the ReLU function is that its derivative is either 0 or 1, and the derivative remains
+1 even for a large input. This is in sharp contrast with the standard sigmoid function (1 + e−t)−1 which
+results in a very small derivative when inputs have large magnitude. The consequence of small derivatives
+across many layers is that gradients tend to be “killed”, which means that gradients become approximately
+zero in deep nets.
+The popularity of the ReLU activation function and its variants (e.g., leaky ReLU) is largely attributable
+to the above reason. It has been well observed that the ReLU activation function has superior training
+performance over the sigmoid function [68, 79].
+6.2.2
+Skip connections
+We have introduced skip connections in Section 3.3. Why are skip connections helpful for reducing numerical
+instability? This structure does not introduce a larger function space, since the identity map can be also
+represented with ReLU activations: x = σ(x) −σ(−x).
+23
+
+--- PAGE 24 ---
+One explanation is that skip connections bring ease to the training / optimization process.
+Suppose
+that we have a general nonlinear function F(xℓ; θℓ).
+With a skip connection, we represent the map as
+xℓ+1 = xℓ+ F(xℓ; θℓ) instead. Now the gradient ∂xℓ+1/∂xℓbecomes
+∂xℓ+1
+∂xℓ
+= I + ∂F(xℓ; θℓ)
+∂xℓ
+instead of
+∂F(xℓ; θℓ)
+∂xℓ
+,
+(35)
+where I is an identity matrix. By the chain rule, gradient update requires computing products of many
+components, e.g., ∂xL
+∂x1 = QL−1
+ℓ=1
+∂xℓ+1
+∂xℓ, so it is desirable to keep the spectra (singular values) of each component
+∂xℓ+1
+∂xℓ
+close to 1. In neural nets, with skip connections, this is easily achieved if the parameters have small
+values; otherwise, this may not be achievable even with careful initialization and tuning. Notably, training
+neural nets with hundreds of layers is possible with the help of skip connections.
+6.2.3
+Batch normalization
+Recall that in regression analysis, one often standardizes the design matrix so that the features have zero
+mean and unit variance. Batch normalization extends this standardization procedure from the input layer
+to all the hidden layers. Mathematically, ﬁx a mini-batch of input data {(xi, yi)}i∈B, where B ⊂[n]. Let
+h(ℓ)
+i
+be the feature of the i-th example in the ℓ-th layer (ℓ= 0 corresponds to the input xi). The batch
+normalization layer computes the normalized version of h(ℓ)
+i
+via the following steps:
+µ ≜1
+|B|
+X
+i∈B
+h(ℓ)
+i ,
+σ2 ≜1
+|B|
+X
+i∈B
+ h(ℓ)
+i
+−µ
+2
+and
+h(l)
+i,norm ≜h(ℓ)
+i
+−µ
+σ
+.
+Here all the operations are element-wise. In words, batch normalization computes the z-score for each feature
+over the mini-batch B and use that as inputs to subsequent layers. To make it more versatile, a typical batch
+normalization layer has two additional learnable parameters γ(ℓ) and β(ℓ) such that
+h(l)
+i,new = γ(l) ⊙h(l)
+i,norm + β(l).
+Again ⊙denotes the element-wise multiplication. As can be seen, γ(ℓ) and β(ℓ) set the new feature h(l)
+inew
+to have mean β(ℓ) and standard deviation γ(ℓ). The introduction of batch normalization makes the training
+of neural networks much easier and smoother. More importantly, it allows the neural nets to perform well
+over a large family of hyper-parameters including the number of layers, the number of hidden units, etc. At
+test time, the batch normalization layer needs more care. For brevity we omit the details and refer to [58].
+6.3
+Regularization techniques
+So far we have focused on training techniques to drive the empirical loss (26) small eﬃciently. Here we
+proceed to discuss common practice to improve the generalization power of trained neural nets.
+6.3.1
+Weight decay
+One natural regularization idea is to add an ℓ2 penalty to the loss function. This regularization technique
+is known as the weight decay in deep learning. We have seen one example in (9). For general deep neural
+nets, the loss to optimize is ℓλ
+n(θ) = ℓn(θ) + rλ(θ) where
+rλ(θ) = λ
+L
+X
+ℓ=1
+X
+j,j′
+
+W (ℓ)
+j,j′
+2.
+Note that the bias (intercept) terms are not penalized. If ℓn(θ) is a least square loss, then regularization
+with weight decay gives precisely ridge regression. The penalty rλ(θ) is a smooth function and thus it can
+be also implemented eﬃciently with back-propagation.
+24
+
+--- PAGE 25 ---
+6.3.2
+Dropout
+Dropout, introduced by [53], prevents overﬁtting by randomly dropping out subsets of features during train-
+ing. Take the l-th layer of the feed-forward neural network as an example. Instead of propagating all the
+features in h(ℓ) for later computations, dropout randomly omits some of its entries by
+h(ℓ)
+drop = h(ℓ) ⊙maskℓ,
+where ⊙denotes element-wise multiplication as before, and maskℓis a vector of Bernoulli variables with
+success probability p. It is sometimes useful to rescale the features h(ℓ)
+inv drop = h(ℓ)
+drop/p, which is called
+inverted dropout. During training, maskℓare i.i.d. vectors across mini-batches and layers. However, when
+testing on fresh samples, dropout is disabled and the original features h(ℓ) are used to compute the output
+label y. It has been nicely shown by [129] that for generalized linear models, dropout serves as adaptive
+regularization. In the simplest case of linear regression, it is equivalent to ℓ2 regularization. Another possible
+way to understand the regularization eﬀect of dropout is through the lens of bagging [45]. Since diﬀerent
+mini-batches has diﬀerent masks, dropout can be viewed as training a large ensemble of classiﬁers at the same
+time, with a further constraint that the parameters are shared. Theoretical justiﬁcation remains elusive.
+6.3.3
+Data augmentation
+Data augmentation is a technique of enlarging the dataset when we have knowledge about invariance structure
+of data. It implicitly increases the sample size and usually regularizes the model eﬀectively. For example,
+in image classiﬁcation, we have strong prior knowledge about what invariance properties a good classiﬁer
+should possess. The label of an image should not be aﬀected by translation, rotation, ﬂipping, and even
+crops of the image. Hence one can augment the dataset by randomly translating, rotating and cropping the
+images in the original dataset.
+Formally, during training we want to minimize the loss ℓn(θ) = P
+i L(f(xi; θ), yi) w.r.t. parameters θ,
+and we know a priori that certain transformation T ∈T where T : Rd →Rd (e.g., aﬃne transformation)
+should not change the category / label of a training sample. In principle, if computation costs were not a
+consideration, we could convert this knowledge to a constraint fθ(Txi) = fθ(xi), ∀T ∈T in the minimization
+formulation. Instead of solving a constrained optimization problem, data augmentation enlarges the training
+dataset by sampling T ∈T and generating new data {(Txi, yi)}. In this sense, data augmentation induces
+invariance properties through sampling, which results in a much bigger dataset than the original one.
+7
+Generalization power
+Section 6 has focused on the in-sample / training error obtained via SGD, but this alone does not guarantee
+good performance with respect to the out-of-sample / test error. The gap between the in-sample error and
+the out-of-sample error, namely the generalization gap, has been the focus of statistical learning theory since
+its birth; see [112] for an excellent introduction to this topic.
+While understanding the generalization power of deep neural nets is diﬃcult [135, 99], we sample re-
+cent endeavors in this section.
+From a high level point of view, these approaches can be divided into
+two categories, namely algorithm-independent controls and algorithm-dependent controls. More speciﬁcally,
+algorithm-independent controls focus solely on bounding the complexity of the function class represented
+by certain deep neural networks. In contrast, algorithm-dependent controls take into account the algorithm
+(e.g., SGD) used to train the neural network.
+7.1
+Algorithm-independent controls: uniform convergence
+The key to algorithm-independent controls is the notion of complexity of the function class parametrized
+by certain neural networks. Informally, as long as the complexity is not too large, the generalization gap of
+any function in the function class is well-controlled. However, the standard complexity measure (e.g., VC
+dimension [127]) is at least proportional to the number of weights in a neural network [5, 112], which fails to
+explain the practical success of deep learning. The caveat here is that the function class under consideration
+25
+
+--- PAGE 26 ---
+is all the functions realized by certain neural networks, with no restrictions on the size of the weights at all.
+On the other hand, for the class of linear functions with bounded norm, i.e., {x 7→w⊤x | ∥w∥2 ≤M}, it is
+well understood that the complexity of this function class (measured in terms of the empirical Rademacher
+complexity) with respect to a random sample {xi}1≤i≤n is upper bounded by maxi ∥xi∥2M/√n, which is
+independent of the number of parameters in w. This motivates researchers to investigate the complexity
+of norm-controlled deep neural networks10 [89, 14, 43, 74]. Setting the stage, we introduce a few necessary
+notations and facts. The key object under study is the function class parametrized by the following fully-
+connected neural network with depth L:
+FL ≜
+
+x 7→WLσ (WL−1σ (· · · W2σ (W1x)))
+ (W1, · · · , WL) ∈W
+	
+.
+(36)
+Here (W1, W2, · · · , WL) ∈W represents a certain constraint on the parameters. For instance, one can
+restrict the Frobenius norm of each parameter Wl through the constraint ∥Wl∥F ≤MF(l), where MF(l) is
+some positive quantity. With regard to the complexity measure, it is standard to use Rademacher complexity
+to control the capacity of the function class of interest.
+Deﬁnition 1 (Empirical Rademacher complexity). The empirical Rademacher complexity of a function
+class F w.r.t. a dataset S ≜{xi}1≤i≤n is deﬁned as
+RS (F) = Eε
+h
+sup
+f∈F
+1
+n
+n
+X
+i=1
+εif (xi)
+i
+,
+(37)
+where ε ≜(ε1, ε2, · · · , εn) is composed of i.i.d. Rademacher random variables, i.e., P(εi = 1) = P(εi = −1) =
+1/2.
+In words, Rademacher complexity measures the ability of the function class to ﬁt the random noise rep-
+resented by ε. Intuitively, a function class with a larger Rademacher complexity is more prone to overﬁtting.
+We now formalize the connection between the empirical Rademacher complexity and the out-of-sample error;
+see Chapter 24 in [112].
+Theorem 6. Assume that for all f ∈F and all (y, x) we have |L(f(x), y)| ≤1. In addition, assume that
+for any ﬁxed y, the univariate function L(·, y) is Lipschitz with constant 1. Then with probability at least
+1 −δ over the sample S ≜{(yi, xi)}1≤i≤n
+i.i.d.
+∼D, one has for all f ∈F
+E(y,x)∼D [L (f(x), y)]
+|
+{z
+}
+out-of-sample error
+≤1
+n
+n
+X
+i=1
+L (f(xi), yi)
+|
+{z
+}
+in-sample error
++2RS (F) + 4
+r
+log (4/δ)
+n
+.
+In English, the generalization gap of any function f that lies in F is well-controlled as long as the
+Rademacher complexity of F is not too large. With this connection in place, we single out the following
+complexity bound.
+Theorem 7 (Theorem 1 in [43]). Consider the function class FL in (36), where each parameter Wl has
+Frobenius norm at most MF(l). Further suppose that the element-wise activation function σ(·) is 1-Lipschitz
+and positive-homogeneous (i.e., σ(c · x) = cσ(x) for all c ≥0). Then the empirical Rademacher complex-
+ity (37) w.r.t. S ≜{xi}1≤i≤n satisﬁes
+RS (FL) ≤max
+i
+∥xi∥2 · 4
+√
+L QL
+l=1 MF(l)
+√n
+.
+(38)
+The upper bound of the empirical Rademacher complexity (38) is in a similar vein to that of linear
+functions with bounded norm, i.e., maxi ∥xi∥2M/√n, where
+√
+L QL
+l=1 MF(l) plays the role of M in the
+latter case. Moreover, ignoring the term
+√
+L, the upper bound (38) does not depend on the size of the
+network in an explicit way if MF (l) sharply concentrates around 1. This reveals that the capacity of the
+10Such attempts have been made in the seminal work [13].
+26
+
+--- PAGE 27 ---
+neural network is well-controlled, regardless of the number of parameters, as long as the Frobenius norm
+of the parameters is bounded. Extensions to other norm constraints, e.g., spectral norm constraints, path
+norm constraints have been considered by [89, 14, 74, 67, 34]. This line of work improves upon traditional
+capacity analysis of neural networks in the over-parametrized setting, because the upper bounds derived
+are often size-independent. Having said this, two important remarks are in order: (1) the upper bounds
+(e.g., QL
+l=1 MF(l)) involve implicit dependence on the size of the weight matrix and the depth of the neural
+network, which is hard to characterize; (2) the upper bound on the Rademacher complexity oﬀers a uniform
+bound over all functions in the function class, which is a pure statistical result. However, it stays silent
+about how and why standard training algorithms like SGD can obtain a function whose parameters have
+small norms.
+7.2
+Algorithm-dependent controls
+In this subsection, we bring computational thinking into statistics and investigate the role of algorithms in the
+generalization power of deep learning. The consideration of algorithms is quite natural and well motivated:
+(1) local/global minima reached by diﬀerent algorithms can exhibit totally diﬀerent generalization behaviors
+due to extreme nonconvexity, which marks a huge diﬀerence from traditional models, (2) the eﬀective capacity
+of neural nets is possibly not large, since a particular algorithm does not explore the entire parameter space.
+These demonstrate the fact that on top of the complexity of the function class, the inherent property of
+the algorithm we use plays an important role in the generalization ability of deep learning. In what follows,
+we survey three diﬀerent ways to obtain upper bounds on the generalization errors by exploiting properties
+of the algorithms.
+7.2.1
+Mean ﬁeld view of neural nets
+As we have emphasized, modern deep learning models are highly over-parametrized. A line of work [83, 117,
+105, 25, 82, 61] approximates the ensemble of weights by an asymptotic limit as the number of hidden units
+tends to inﬁnity, so that the dynamics of SGD can be studied via certain partial diﬀerent equations.
+More speciﬁcally, let ˆf(x; θ) = N −1 PN
+i=1 σ(θ⊤
+i x) be a function given by a one-hidden-layer neural net
+with N hidden units, where σ(·) is the ReLU activation function and parameters θ ≜[θ1, . . . , θN]⊤∈RN×d
+are suitably randomly initialized. Consider the regression setting where we want to minimize the population
+risk RN(θ) = E[(y −ˆf(x; θ))2] over parameters θ. A key observation is that this population risk depends
+on the parameters θ only through its empirical distribution, i.e., ˆρ(N) = N −1 PN
+i=1 δθi where δθi is a point
+mass at θi. This motivates us to view express RN(θ) equivalently as R(ˆρ(N)), where R(·) is a functional
+that maps distributions to real numbers. Running SGD for RN(·)—in a suitable scaling limit—results in
+a gradient ﬂow on the space of distributions endowed with the Wasserstein metric that minimizes R(·). It
+turns out that the empirical distribution ˆρ(N)
+k
+of the parameters after k steps of SGD is well approximated
+by the gradient follow, as long as the the neural net is over-parametrized (i.e., N ≫d) and the number of
+steps is not too large. In particular, [83] have shown that under certain regularity conditions,
+sup
+k∈[0,T/ε]∩N
+R(ˆρ(N)) −R (ρkε)
+ ≲eT
+r
+1
+N ∨ε ·
+r
+d + log N
+ε ,
+where ε > 0 is an proxy for the step size of SGD and ρkε is the distribution of the gradient ﬂow at time kε.
+In words, the out-of-sample error under θk generated by SGD is well-approximated by that of ρkε. Viewing
+the optimization problem from the distributional aspect greatly simpliﬁes the problem conceptually, as
+the complicated optimization problem is now passed into its limit version—for this reason, this analytical
+approach is called the mean ﬁeld perspective. In particular, [83] further demonstrated that in some simple
+settings, the out-of-sample error R(ρkε) of the distributional limit can be fully characterized. Nevertheless,
+how well does R(ρkε) perform and how fast it converges remain largely open for general problems.
+7.2.2
+Stability
+A second way to understand the generalization ability of deep learning is through the stability of SGD. An
+algorithm is considered stable if a slight change of the input does not alter the output much. It has long been
+27
+
+--- PAGE 28 ---
+observed that a stable algorithm has a small generalization gap; examples include k nearest neighbors [102,
+29], bagging [18, 19], etc. The precise connection between stability and generalization gap is stated by [17,
+113]. In what follows, we formalize the idea of stability and its connection with the generalization gap. Let
+A denote an algorithm (possibly randomized) which takes a sample S ≜{(yi, xi)}1≤i≤n of size n and returns
+an estimated parameter ˆθ ≜A(S). Following [49], we have the following deﬁnition for stability.
+Deﬁnition 2. An algorithm (possibly randomized) A is ε-uniformly stable with respect to the loss function
+L(·, ·) if for all datasets S, S′ of size n which diﬀer in at most one example, one has
+sup
+x,y EA [L (f(x; A (S)), y) −L (f(x; A (S′)), y)] ≤ε.
+Here the expectation is taken w.r.t. the randomness in the algorithm A and ε might depend on n. The loss
+function L(·, ·) takes an example (say (x, y)) and the estimated parameter (say A(S)) as inputs and outputs
+a real value.
+Surprisingly, an ε-uniformly stable algorithm incurs small generalization gap in expectation, which is
+stated in the following lemma.
+Lemma 1 (Theorem 2.2 in [49]). Let A be ε-uniformly stable. Then the expected generalization gap is no
+larger than ε, i.e.,
+EA,S
+"
+1
+n
+n
+X
+i=1
+L(f(xi; A (S)), yi) −E(x,y)∼D [L (f(x; A (S)), y)]
+# ≤ε.
+(39)
+With Lemma 1 in hand, it suﬃces to prove stability bound on speciﬁc algorithms. It turns out that SGD
+introduced in Section 6 is uniformly stable when solving smooth nonconvex functions.
+Theorem 8 (Theorem 3.12 in [49]). Assume that for any ﬁxed (y, x), the loss function L(f(x; θ), y), viewed
+as a function of θ, is L-Lipschitz and β-smooth. Consider running SGD on the empirical loss function with
+decaying step size αt ≤c/t, where c is some small absolute constant. Then SGD is uniformly stable with
+ε ≲T 1−
+1
+βc+1
+n
+,
+where we have ignored the dependency on β, c and L.
+Theorem 8 reveals that SGD operating on nonconvex loss functions is indeed uniformly stable as long
+as the number of steps T is not large compared with n. This together with Lemma 1 demonstrates the
+generalization ability of SGD in expectation. Nevertheless, two important limitations are worth mentioning.
+First, Lemma 1 provides an upper bound on the out-of-sample error in expectation, but ideally, instead of
+an on-average guarantee under EA,S, we would like to have a high probability guarantee as in the convex
+case [37]. Second, controlling the generalization gap alone is not enough to achieve a small out-of-sample
+error, since it is unclear whether SGD can achieve a small training error within T steps.
+7.2.3
+Implicit regularization
+In the presence of over-parametrization (number of parameters larger than the sample size), conventional
+wisdom informs us that we should apply some regularization techniques (e.g., ℓ1 / ℓ2 regularization) so that
+the model will not overﬁt the data. However, in practice, neural networks without explicit regularization
+generalize well. This phenomenon motivates researchers to look at the regularization eﬀects introduced by
+training algorithms (e.g., SGD) in this over-parametrized regime. While there might exits multiple, if not
+inﬁnite global minima of the empirical loss (26), it is possible that practical algorithms tend to converge to
+solutions with better generalization powers.
+Take the underdetermined linear system Xθ = y as a starting point. Here X ∈Rn×p and θ ∈Rp with p
+much larger than n. Running gradient descent on the loss 1
+2∥Xθ −y∥2
+2 from the origin (i.e., θ0 = 0) results
+in the solution with the minimum Euclidean norm, that is GD converges to
+min
+θ∈Rp
+∥θ∥2
+subject to
+Xθ = y.
+28
+
+--- PAGE 29 ---
+In words, without any ℓ2 regularization in the loss function, gradient descent automatically ﬁnds the solution
+with the least ℓ2 norm. This phenomenon, often called as implicit regularization, not only has been empirically
+observed in training neural networks, but also has been theoretically understood in some simpliﬁed cases,
+e.g., logistic regression with separable data. In logistic regression, given a training set {(yi, xi)}1≤i≤n with
+xi ∈Rp and yi ∈{1, −1}, one aims to ﬁt a logistic regression model by solving the following program:
+min
+θ∈Rp
+1
+n
+n
+X
+i=1
+ℓ
+ yix⊤
+i θt
+.
+(40)
+Here, ℓ(u) ≜log(1 + e−u) denotes the logistic loss. Further assume that the data is separable, i.e., there
+exists θ∗∈Rp such that yiθ∗⊤xi > 0 for all i. Under this condition, the loss function (40) can be arbitrarily
+close to zero for certain θ with ∥θ∥2 →∞. What happens when we minimize (40) using gradient descent?
+[119] uncovers a striking phenomenon.
+Theorem 9 (Theorem 3 in [119]). Consider the logistic regression (40) with separable data. If we run GD
+θt+1 = θt −η 1
+n
+n
+X
+i=1
+yixiℓ′ yix⊤
+i θt
+from any initialization θ0 with appropriate step size η > 0, then normalized θt converges to a solution with
+the maximum ℓ2 margin. That is,
+lim
+t→∞
+θt
+∥θt∥2
+= ˆθ,
+(41)
+where ˆθ is the solution to the hard margin support vector machine:
+ˆθ ≜arg min
+θ∈Rp ∥θ∥2,
+subject to
+yix⊤
+i θ ≥1
+for all 1 ≤i ≤n.
+(42)
+The above theorem reveals that gradient descent, when solving logistic regression with separable data,
+implicitly regularizes the iterates towards the ℓ2 max margin vector (cf. (41)), without any explicit regular-
+ization as in (42). Similar results have been obtained by [62]. In addition, [47] studied algorithms other than
+gradient descent and showed that coordinate descent produces a solution with the maximum ℓ1 margin.
+Moving beyond logistic regression, which can be viewed as a one-layer neural net, the theoretical under-
+standing of implicit regularization in deeper neural networks is still limited; see [48] for an illustration in
+deep linear convolutional neural networks.
+8
+Discussion
+Due to space limitations, we have omitted several important deep learning models; notable examples include
+deep reinforcement learning [86], deep probabilistic graphical models [109], variational autoencoders [66],
+transfer learning [133], etc. Apart from the modeling aspect, interesting theories on generative adversarial
+networks [10, 11], recurrent neural networks [3], connections with kernel methods [59, 9] are also emerging.
+We have also omitted the inverse-problem view of deep learning where the data are assumed to be generated
+from a certain neural net and the goal is to recover the weights in the NN with as few examples as possible.
+Various algorithms (e.g., GD with spectral initialization) have been shown to recover the weights successfully
+in some simpliﬁed settings [136, 118, 42, 87, 23, 39].
+In the end, we identify a few important directions for future research.
+• New characterization of data distributions. The success of deep learning relies on its power of eﬃciently
+representing complex functions relevant to real data. Comparatively, classical methods often have optimal
+guarantee if a problem has a certain known structure, such as smoothness, sparsity, and low-rankness [121,
+31, 20, 24], but they are insuﬃcient for complex data such as images. How to characterize the high-
+dimensional real data that can free us from known barriers, such as the curse of dimensionality is an
+interesting open question?
+29
+
+--- PAGE 30 ---
+• Understanding various computational algorithms for deep learning. As we have emphasized throughout this
+survey, computational algorithms (e.g., variants of SGD) play a vital role in the success of deep learning.
+They allow fast training of deep neural nets and probably contribute towards the good generalization
+behavior of deep learning in practice. Understanding these computational algorithms and devising better
+ones are crucial components in understanding deep learning.
+• Robustness. It has been well documented that DNNs are sensitive to small adversarial perturbations that
+are indistinguishable to humans [124]. This raises serious safety issues once if deploy deep learning models
+in applications such as self-driving cars, healthcare, etc. It is therefore crucial to reﬁne current training
+practice to enhance robustness in a principled way [116].
+• Low SNRs. Arguably, for image data and audio data where the signal-to-noise ratio (SNR) is high, deep
+learning has achieved great success. In many other statistical problems, the SNR may be very low. For
+example, in ﬁnancial applications, the ﬁrm characteristic and covariates may only explain a small part of
+the ﬁnancial returns; in healthcare systems, the uncertainty of an illness may not be predicted well from
+a patient’s medical history. How to adapt deep learning models to excel at such tasks is an interesting
+direction to pursue?
+Acknowledgements
+J. Fan is supported in part by the NSF grants DMS-1712591 and DMS-1662139, the NIH grant R01-
+GM072611 and the ONR grant N00014-19-1-2120. We thank Ruying Bao, Yuxin Chen, Chenxi Liu, Weijie
+Su, Qingcan Wang and Pengkun Yang for helpful comments and discussions.
+References
+[1] Martín Abadi and et. al. TensorFlow: Large-scale machine learning on heterogeneous systems, 2015.
+Software available from tensorﬂow.org.
+[2] Reza Abbasi-Asl, Yuansi Chen, Adam Bloniarz, Michael Oliver, Ben DB Willmore, Jack L Gallant,
+and Bin Yu. The deeptune framework for modeling and characterizing neurons in visual cortex area
+v4. bioRxiv, page 465534, 2018.
+[3] Zeyuan Allen-Zhu and Yuanzhi Li. Can SGD Learn Recurrent Neural Networks with Provable Gener-
+alization? ArXiv e-prints, abs/1902.01028, 2019.
+[4] Zeyuan Allen-Zhu, Yuanzhi Li, and Zhao Song.
+A convergence theory for deep learning via over-
+parameterization. arXiv preprint arXiv:1811.03962, 2018.
+[5] Martin Anthony and Peter L Bartlett. Neural network learning: Theoretical foundations. cambridge
+university press, 2009.
+[6] Martin Arjovsky, Soumith Chintala, and Léon Bottou. Wasserstein generative adversarial networks.
+70:214–223, 06–11 Aug 2017.
+[7] Vladimir I Arnold. On functions of three variables. Collected Works: Representations of Functions,
+Celestial Mechanics and KAM Theory, 1957–1965, pages 5–8, 2009.
+[8] Sanjeev Arora and Boaz Barak. Computational complexity: a modern approach. Cambridge University
+Press, 2009.
+[9] Sanjeev Arora, Simon S Du, Wei Hu, Zhiyuan Li, and Ruosong Wang.
+Fine-grained analysis of
+optimization and generalization for overparameterized two-layer neural networks.
+arXiv preprint
+arXiv:1901.08584, 2019.
+30
+
+--- PAGE 31 ---
+[10] Sanjeev Arora, Rong Ge, Yingyu Liang, Tengyu Ma, and Yi Zhang. Generalization and equilibrium in
+generative adversarial nets (GANs). In Proceedings of the 34th International Conference on Machine
+Learning-Volume 70, pages 224–232. JMLR. org, 2017.
+[11] Yu Bai, Tengyu Ma, and Andrej Risteski. Approximability of discriminators implies diversity in GANs.
+arXiv preprint arXiv:1806.10586, 2018.
+[12] Andrew R Barron. Universal approximation bounds for superpositions of a sigmoidal function. IEEE
+Transactions on Information theory, 39(3):930–945, 1993.
+[13] Peter L Bartlett. The sample complexity of pattern classiﬁcation with neural networks: the size of the
+weights is more important than the size of the network. IEEE transactions on Information Theory,
+44(2):525–536, 1998.
+[14] Peter L Bartlett, Dylan J Foster, and Matus J Telgarsky. Spectrally-normalized margin bounds for
+neural networks. In I. Guyon, U. V. Luxburg, S. Bengio, H. Wallach, R. Fergus, S. Vishwanathan, and
+R. Garnett, editors, Advances in Neural Information Processing Systems 30, pages 6240–6249. Curran
+Associates, Inc., 2017.
+[15] Benedikt Bauer and Michael Kohler. On deep learning as a remedy for the curse of dimensionality in
+nonparametric regression. Technical report, Technical report, 2017.
+[16] Léon Bottou. Online learning and stochastic approximations. On-line learning in neural networks,
+17(9):142, 1998.
+[17] Olivier Bousquet and André Elisseeﬀ.
+Stability and generalization.
+Journal of machine learning
+research, 2(Mar):499–526, 2002.
+[18] Leo Breiman. Bagging predictors. Machine learning, 24(2):123–140, 1996.
+[19] Leo Breiman et al. Heuristics of instability and stabilization in model selection. The annals of statistics,
+24(6):2350–2383, 1996.
+[20] Emmanuel J Candès and Terence Tao. The power of convex relaxation: Near-optimal matrix comple-
+tion. arXiv preprint arXiv:0903.1476, 2009.
+[21] Chensi Cao, Feng Liu, Hai Tan, Deshou Song, Wenjie Shu, Weizhong Li, Yiming Zhou, Xiaochen Bo,
+and Zhi Xie. Deep learning and its applications in biomedicine. Genomics, proteomics & bioinformatics,
+16(1):17–32, 2018.
+[22] Tianqi Chen, Yulia Rubanova, Jesse Bettencourt, and David Duvenaud. Neural ordinary diﬀerential
+equations. arXiv preprint arXiv:1806.07366, 2018.
+[23] Yuxin Chen, Yuejie Chi, Jianqing Fan, and Cong Ma. Gradient descent with random initialization:
+Fast global convergence for nonconvex phase retrieval. Mathematical Programming, pages 1–33, 2019.
+[24] Yuxin Chen, Yuejie Chi, Jianqing Fan, Cong Ma, and Yuling Yan. Noisy matrix completion: Un-
+derstanding statistical guarantees for convex relaxation via nonconvex optimization. arXiv preprint
+arXiv:1902.07698, 2019.
+[25] Lenaic Chizat and Francis Bach. On the global convergence of gradient descent for over-parameterized
+models using optimal transport. In Advances in neural information processing systems, pages 3040–
+3050, 2018.
+[26] Kyunghyun Cho, Bart Van Merriënboer, Caglar Gulcehre, Dzmitry Bahdanau, Fethi Bougares, Holger
+Schwenk, and Yoshua Bengio. Learning phrase representations using rnn encoder-decoder for statistical
+machine translation. arXiv preprint arXiv:1406.1078, 2014.
+[27] R Dennis Cook et al. Fisher lecture: Dimension reduction in regression. Statistical Science, 22(1):1–26,
+2007.
+31
+
+--- PAGE 32 ---
+[28] Jeﬀrey De Fauw, Joseph R Ledsam, Bernardino Romera-Paredes, Stanislav Nikolov, Nenad Tomasev,
+Sam Blackwell, Harry Askham, Xavier Glorot, Brendan O’Donoghue, Daniel Visentin, et al. Clinically
+applicable deep learning for diagnosis and referral in retinal disease. Nature medicine, 24(9):1342, 2018.
+[29] Luc Devroye and Terry Wagner. Distribution-free performance bounds for potential function rules.
+IEEE Transactions on Information Theory, 25(5):601–604, 1979.
+[30] David L Donoho. High-dimensional data analysis: The curses and blessings of dimensionality. AMS
+math challenges lecture, 1(2000):32, 2000.
+[31] David L Donoho and Jain M Johnstone. Ideal spatial adaptation by wavelet shrinkage. biometrika,
+81(3):425–455, 1994.
+[32] Simon S Du, Jason D Lee, Haochuan Li, Liwei Wang, and Xiyu Zhai. Gradient descent ﬁnds global
+minima of deep neural networks. arXiv preprint arXiv:1811.03804, 2018.
+[33] John Duchi, Elad Hazan, and Yoram Singer. Adaptive subgradient methods for online learning and
+stochastic optimization. Journal of Machine Learning Research, 12(Jul):2121–2159, 2011.
+[34] Weinan E, Chao Ma, and Qingcan Wang. A priori estimates of the population risk for residual networks.
+arXiv preprint arXiv:1903.02154, 2019.
+[35] Ronen Eldan and Ohad Shamir. The power of depth for feedforward neural networks. In Conference
+on Learning Theory, pages 907–940, 2016.
+[36] Jianqing Fan and Runze Li.
+Variable selection via nonconcave penalized likelihood and its oracle
+properties. Journal of the American statistical Association, 96(456):1348–1360, 2001.
+[37] Vitaly Feldman and Jan Vondrak. High probability generalization bounds for uniformly stable algo-
+rithms with nearly optimal rate. arXiv preprint arXiv:1902.10710, 2019.
+[38] Jerome H Friedman and Werner Stuetzle. Projection pursuit regression. Journal of the American
+statistical Association, 76(376):817–823, 1981.
+[39] Haoyu Fu, Yuejie Chi, and Yingbin Liang. Local geometry of one-hidden-layer neural networks for
+logistic regression. arXiv preprint arXiv:1802.06463, 2018.
+[40] Kunihiko Fukushima and Sei Miyake. Neocognitron: A self-organizing neural network model for a
+mechanism of visual pattern recognition. In Competition and cooperation in neural nets, pages 267–
+285. Springer, 1982.
+[41] Chao Gao, Jiyi Liu, Yuan Yao, and Weizhi Zhu. Robust estimation and generative adversarial nets.
+arXiv preprint arXiv:1810.02030, 2018.
+[42] Surbhi Goel, Adam Klivans, and Raghu Meka. Learning one convolutional layer with overlapping
+patches. arXiv preprint arXiv:1802.02547, 2018.
+[43] Noah Golowich, Alexander Rakhlin, and Ohad Shamir. Size-independent sample complexity of neural
+networks. arXiv preprint arXiv:1712.06541, 2017.
+[44] Gene H Golub and Charles F Van Loan. Matrix computations. JHU Press, 4 edition, 2013.
+[45] Ian Goodfellow, Yoshua Bengio, and Aaron Courville. Deep Learning. MIT Press, 2016.
+[46] Ian Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron
+Courville, and Yoshua Bengio. Generative adversarial nets. In Advances in neural information pro-
+cessing systems, pages 2672–2680, 2014.
+[47] Suriya Gunasekar, Jason Lee, Daniel Soudry, and Nathan Srebro. Characterizing implicit bias in terms
+of optimization geometry. arXiv preprint arXiv:1802.08246, 2018.
+32
+
+--- PAGE 33 ---
+[48] Suriya Gunasekar, Jason D Lee, Daniel Soudry, and Nati Srebro. Implicit bias of gradient descent on
+linear convolutional networks. In Advances in Neural Information Processing Systems, pages 9482–
+9491, 2018.
+[49] Moritz Hardt, Benjamin Recht, and Yoram Singer. Train faster, generalize better: Stability of stochas-
+tic gradient descent. arXiv preprint arXiv:1509.01240, 2015.
+[50] Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. Deep residual learning for image recogni-
+tion. In Proceedings of the IEEE conference on computer vision and pattern recognition, pages 770–778,
+2016.
+[51] Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. Identity mappings in deep residual net-
+works. In European conference on computer vision, pages 630–645. Springer, 2016.
+[52] Geoﬀrey Hinton, Nitish Srivastava, and Kevin Swersky. Neural networks for machine learning lecture
+6a overview of mini-batch gradient descent. 2012.
+[53] Geoﬀrey E Hinton, Nitish Srivastava, Alex Krizhevsky, Ilya Sutskever, and Ruslan R Salakhutdi-
+nov.
+Improving neural networks by preventing co-adaptation of feature detectors.
+arXiv preprint
+arXiv:1207.0580, 2012.
+[54] Sepp Hochreiter and Jürgen Schmidhuber. Long short-term memory. Neural computation, 9(8):1735–
+1780, 1997.
+[55] Gao Huang, Zhuang Liu, Laurens Van Der Maaten, and Kilian Q Weinberger. Densely connected con-
+volutional networks. In Proceedings of the IEEE conference on computer vision and pattern recognition,
+pages 4700–4708, 2017.
+[56] David H Hubel and Torsten N Wiesel. Receptive ﬁelds, binocular interaction and functional architecture
+in the cat’s visual cortex. The Journal of physiology, 160(1):106–154, 1962.
+[57] Forrest N Iandola, Song Han, Matthew W Moskewicz, Khalid Ashraf, William J Dally, and Kurt
+Keutzer.
+Squeezenet: Alexnet-level accuracy with 50x fewer parameters and< 0.5 mb model size.
+arXiv preprint arXiv:1602.07360, 2016.
+[58] Sergey Ioﬀe and Christian Szegedy.
+Batch normalization: Accelerating deep network training by
+reducing internal covariate shift. arXiv preprint arXiv:1502.03167, 2015.
+[59] Arthur Jacot, Franck Gabriel, and Clément Hongler. Neural tangent kernel: Convergence and gener-
+alization in neural networks. In Advances in neural information processing systems, pages 8580–8589,
+2018.
+[60] Prateek Jain, Sham M Kakade, Rahul Kidambi, Praneeth Netrapalli, and Aaron Sidford. Accelerating
+stochastic gradient descent. arXiv preprint arXiv:1704.08227, 2017.
+[61] Adel Javanmard, Marco Mondelli, and Andrea Montanari. Analysis of a two-layer neural network via
+displacement convexity. arXiv preprint arXiv:1901.01375, 2019.
+[62] Ziwei Ji and Matus Telgarsky. Risk and parameter convergence of logistic regression. arXiv preprint
+arXiv:1803.07300, 2018.
+[63] Rahul Kidambi, Praneeth Netrapalli, Prateek Jain, and Sham Kakade. On the insuﬃciency of ex-
+isting momentum schemes for stochastic optimization. In 2018 Information Theory and Applications
+Workshop (ITA), pages 1–9. IEEE, 2018.
+[64] Jack Kiefer, Jacob Wolfowitz, et al. Stochastic estimation of the maximum of a regression function.
+The Annals of Mathematical Statistics, 23(3):462–466, 1952.
+[65] Diederik P Kingma and Jimmy Ba. Adam: A method for stochastic optimization. arXiv preprint
+arXiv:1412.6980, 2014.
+33
+
+--- PAGE 34 ---
+[66] Diederik P Kingma and Max Welling.
+Auto-encoding variational bayes.
+arXiv preprint
+arXiv:1312.6114, 2013.
+[67] Jason M Klusowski and Andrew R Barron. Risk bounds for high-dimensional ridge function combina-
+tions including neural networks. arXiv preprint arXiv:1607.01434, 2016.
+[68] Alex Krizhevsky, Ilya Sutskever, and Geoﬀrey E Hinton. Imagenet classiﬁcation with deep convo-
+lutional neural networks.
+In Advances in neural information processing systems, pages 1097–1105,
+2012.
+[69] Harold Kushner and G George Yin. Stochastic approximation and recursive algorithms and applications,
+volume 35. Springer Science & Business Media, 2003.
+[70] Yann LeCun, Yoshua Bengio, and Geoﬀrey Hinton. Deep learning. nature, 521(7553):436, 2015.
+[71] Yann LeCun, Léon Bottou, Yoshua Bengio, and Patrick Haﬀner. Gradient-based learning applied to
+document recognition. Proceedings of the IEEE, 86(11):2278–2324, 1998.
+[72] Hao Li, Zheng Xu, Gavin Taylor, Christoph Studer, and Tom Goldstein. Visualizing the loss landscape
+of neural nets. In Advances in Neural Information Processing Systems, pages 6391–6401, 2018.
+[73] Ker-Chau Li. Sliced inverse regression for dimension reduction. Journal of the American Statistical
+Association, 86(414):316–327, 1991.
+[74] Xingguo Li, Junwei Lu, Zhaoran Wang, Jarvis Haupt, and Tuo Zhao. On tighter generalization bound
+for deep neural networks: Cnns, resnets, and beyond. arXiv preprint arXiv:1806.05159, 2018.
+[75] Yujia Li, Kevin Swersky, and Rich Zemel. Generative moment matching networks. In International
+Conference on Machine Learning, pages 1718–1727, 2015.
+[76] Tengyuan Liang. How well can generative adversarial networks (GAN) learn densities: A nonparametric
+view. arXiv preprint arXiv:1712.08244, 2017.
+[77] Henry W Lin, Max Tegmark, and David Rolnick. Why does deep and cheap learning work so well?
+Journal of Statistical Physics, 168(6):1223–1247, 2017.
+[78] Min Lin, Qiang Chen, and Shuicheng Yan. Network in network. arXiv preprint arXiv:1312.4400, 2013.
+[79] Andrew L Maas, Awni Y Hannun, and Andrew Y Ng. Rectiﬁer nonlinearities improve neural network
+acoustic models. In Proc. icml, volume 30, page 3, 2013.
+[80] VE Maiorov and Ron Meir. On the near optimality of the stochastic approximation of smooth functions
+by neural networks. Advances in Computational Mathematics, 13(1):79–103, 2000.
+[81] Yuly Makovoz.
+Random approximants and neural networks.
+Journal of Approximation Theory,
+85(1):98–109, 1996.
+[82] Song Mei, Theodor Misiakiewicz, and Andrea Montanari.
+Mean-ﬁeld theory of two-layers neural
+networks: dimension-free bounds and kernel limit. arXiv preprint arXiv:1902.06015, 2019.
+[83] Song Mei, Andrea Montanari, and Phan-Minh Nguyen. A mean ﬁeld view of the landscape of two-layer
+neural networks. Proceedings of the National Academy of Sciences, 115(33):E7665–E7671, 2018.
+[84] Hrushikesh Mhaskar, Qianli Liao, and Tomaso Poggio. Learning functions: when is deep better than
+shallow. arXiv preprint arXiv:1603.00988, 2016.
+[85] Hrushikesh N Mhaskar. Neural networks for optimal approximation of smooth and analytic functions.
+Neural computation, 8(1):164–177, 1996.
+[86] Volodymyr Mnih, Koray Kavukcuoglu, David Silver, Andrei A Rusu, Joel Veness, Marc G Bellemare,
+Alex Graves, Martin Riedmiller, Andreas K Fidjeland, Georg Ostrovski, et al. Human-level control
+through deep reinforcement learning. Nature, 518(7540):529, 2015.
+34
+
+--- PAGE 35 ---
+[87] Marco Mondelli and Andrea Montanari. On the connection between learning two-layers neural networks
+and tensor decomposition. arXiv preprint arXiv:1802.07301, 2018.
+[88] Yurii E Nesterov. A method for solving the convex programming problem with convergence rate o
+(1/kˆ 2). In Dokl. Akad. Nauk SSSR, volume 269, pages 543–547, 1983.
+[89] Behnam Neyshabur, Ryota Tomioka, and Nathan Srebro.
+Norm-based capacity control in neural
+networks. In Conference on Learning Theory, pages 1376–1401, 2015.
+[90] Sebastian Nowozin, Botond Cseke, and Ryota Tomioka. f-gan: Training generative neural samplers
+using variational divergence minimization. In Advances in Neural Information Processing Systems,
+pages 271–279, 2016.
+[91] Ian Parberry. Circuit complexity and neural networks. MIT press, 1994.
+[92] Adam Paszke, Sam Gross, Soumith Chintala, Gregory Chanan, Edward Yang, Zachary DeVito, Zeming
+Lin, Alban Desmaison, Luca Antiga, and Adam Lerer. Automatic diﬀerentiation in pytorch. 2017.
+[93] Allan Pinkus. Approximation theory of the mlp model in neural networks. Acta numerica, 8:143–195,
+1999.
+[94] Tomaso Poggio, Hrushikesh Mhaskar, Lorenzo Rosasco, Brando Miranda, and Qianli Liao. Why and
+when can deep-but not shallow-networks avoid the curse of dimensionality: a review. International
+Journal of Automation and Computing, 14(5):503–519, 2017.
+[95] Boris T Polyak. Some methods of speeding up the convergence of iteration methods. USSR Compu-
+tational Mathematics and Mathematical Physics, 4(5):1–17, 1964.
+[96] Boris T Polyak and Anatoli B Juditsky. Acceleration of stochastic approximation by averaging. SIAM
+Journal on Control and Optimization, 30(4):838–855, 1992.
+[97] Boris Teodorovich Polyak and Yakov Zalmanovich Tsypkin. Adaptive estimation algorithms: conver-
+gence, optimality, stability. Avtomatika i Telemekhanika, (3):71–84, 1979.
+[98] Christopher Poultney, Sumit Chopra, Yann LeCun, et al. Eﬃcient learning of sparse representations
+with an energy-based model. In Advances in neural information processing systems, pages 1137–1144,
+2007.
+[99] Benjamin Recht, Rebecca Roelofs, Ludwig Schmidt, and Vaishaal Shankar.
+Do cifar-10 classiﬁers
+generalize to cifar-10? arXiv preprint arXiv:1806.00451, 2018.
+[100] Sashank J Reddi, Satyen Kale, and Sanjiv Kumar. On the convergence of adam and beyond. 2018.
+[101] Herbert Robbins and Sutton Monro. A stochastic approximation method. The Annals of Mathematical
+Statistics, 22(3):400–407, 1951.
+[102] William H Rogers and Terry J Wagner. A ﬁnite sample distribution-free performance bound for local
+discrimination rules. The Annals of Statistics, pages 506–514, 1978.
+[103] David Rolnick and Max Tegmark. The power of deeper networks for expressing natural functions.
+arXiv preprint arXiv:1705.05502, 2017.
+[104] Yaniv Romano,
+Matteo Sesia,
+and Emmanuel J Candès.
+Deep knockoﬀs.
+arXiv preprint
+arXiv:1811.06687, 2018.
+[105] Grant M Rotskoﬀand Eric Vanden-Eijnden. Neural networks as interacting particle systems: Asymp-
+totic convexity of the loss landscape and universal scaling of the approximation error. arXiv preprint
+arXiv:1805.00915, 2018.
+35
+
+--- PAGE 36 ---
+[106] David E Rumelhart, Geoﬀrey E Hinton, and Ronald J Williams. Learning internal representations by
+error propagation. Technical report, California Univ San Diego La Jolla Inst for Cognitive Science,
+1985.
+[107] Olga Russakovsky, Jia Deng, Hao Su, Jonathan Krause, Sanjeev Satheesh, Sean Ma, Zhiheng Huang,
+Andrej Karpathy, Aditya Khosla, Michael Bernstein, Alexander C. Berg, and Li Fei-Fei.
+Ima-
+geNet Large Scale Visual Recognition Challenge. International Journal of Computer Vision (IJCV),
+115(3):211–252, 2015.
+[108] Haşim Sak, Andrew Senior, and Françoise Beaufays. Long short-term memory recurrent neural network
+architectures for large scale acoustic modeling. In Fifteenth annual conference of the international
+speech communication association, 2014.
+[109] Ruslan Salakhutdinov and Geoﬀrey Hinton. Deep boltzmann machines. In Artiﬁcial intelligence and
+statistics, pages 448–455, 2009.
+[110] Tim Salimans, Ian Goodfellow, Wojciech Zaremba, Vicki Cheung, Alec Radford, and Xi Chen. Im-
+proved techniques for training GANs. In Advances in Neural Information Processing Systems, pages
+2234–2242, 2016.
+[111] Johannes Schmidt-Hieber. Nonparametric regression using deep neural networks with relu activation
+function. arXiv preprint arXiv:1708.06633, 2017.
+[112] Shai Shalev-Shwartz and Shai Ben-David. Understanding machine learning: From theory to algorithms.
+Cambridge university press, 2014.
+[113] Shai Shalev-Shwartz, Ohad Shamir, Nathan Srebro, and Karthik Sridharan. Learnability, stability and
+uniform convergence. Journal of Machine Learning Research, 11(Oct):2635–2670, 2010.
+[114] David Silver, Julian Schrittwieser, Karen Simonyan, Ioannis Antonoglou, Aja Huang, Arthur Guez,
+Thomas Hubert, Lucas Baker, Matthew Lai, Adrian Bolton, et al. Mastering the game of go without
+human knowledge. Nature, 550(7676):354, 2017.
+[115] Bernard W Silverman. Density estimation for statistics and data analysis. Chapman & Hall, CRC,
+1998.
+[116] Chandan Singh, W James Murdoch, and Bin Yu.
+Hierarchical interpretations for neural network
+predictions. arXiv preprint arXiv:1806.05337, 2018.
+[117] Justin Sirignano and Konstantinos Spiliopoulos. Mean ﬁeld analysis of neural networks. arXiv preprint
+arXiv:1805.01053, 2018.
+[118] Mahdi Soltanolkotabi. Learning relus via gradient descent. In Advances in Neural Information Pro-
+cessing Systems, pages 2007–2017, 2017.
+[119] Daniel Soudry, Elad Hoﬀer, Mor Shpigel Nacson, Suriya Gunasekar, and Nathan Srebro. The implicit
+bias of gradient descent on separable data. The Journal of Machine Learning Research, 19(1):2822–
+2878, 2018.
+[120] David A Sprecher. On the structure of continuous functions of several variables. Transactions of the
+American Mathematical Society, 115:340–355, 1965.
+[121] Charles J Stone. Optimal global rates of convergence for nonparametric regression. The annals of
+statistics, pages 1040–1053, 1982.
+[122] Ilya Sutskever, James Martens, George Dahl, and Geoﬀrey Hinton. On the importance of initialization
+and momentum in deep learning. In International conference on machine learning, pages 1139–1147,
+2013.
+36
+
+--- PAGE 37 ---
+[123] Christian Szegedy, Wei Liu, Yangqing Jia, Pierre Sermanet, Scott Reed, Dragomir Anguelov, Dumitru
+Erhan, Vincent Vanhoucke, and Andrew Rabinovich. Going deeper with convolutions. In Proceedings
+of the IEEE conference on computer vision and pattern recognition, pages 1–9, 2015.
+[124] Christian Szegedy, Wojciech Zaremba, Ilya Sutskever, Joan Bruna, Dumitru Erhan, Ian Goodfellow,
+and Rob Fergus. Intriguing properties of neural networks. arXiv preprint arXiv:1312.6199, 2013.
+[125] Matus Telgarsky. Beneﬁts of depth in neural networks. arXiv preprint arXiv:1602.04485, 2016.
+[126] Robert Tibshirani. Regression shrinkage and selection via the lasso. Journal of the Royal Statistical
+Society: Series B (Methodological), 58(1):267–288, 1996.
+[127] VN Vapnik and A Ya Chervonenkis. On the uniform convergence of relative frequencies of events to
+their probabilities. Theory of Probability & Its Applications, 16(2):264–280, 1971.
+[128] Pascal Vincent, Hugo Larochelle, Yoshua Bengio, and Pierre-Antoine Manzagol. Extracting and com-
+posing robust features with denoising autoencoders. In Proceedings of the 25th international conference
+on Machine learning, pages 1096–1103. ACM, 2008.
+[129] Stefan Wager, Sida Wang, and Percy S Liang. Dropout training as adaptive regularization. In Advances
+in neural information processing systems, pages 351–359, 2013.
+[130] E Weinan, Jiequn Han, and Arnulf Jentzen.
+Deep learning-based numerical methods for high-
+dimensional parabolic partial diﬀerential equations and backward stochastic diﬀerential equations.
+Communications in Mathematics and Statistics, 5(4):349–380, 2017.
+[131] Ashia C Wilson, Rebecca Roelofs, Mitchell Stern, Nati Srebro, and Benjamin Recht. The marginal
+value of adaptive gradient methods in machine learning.
+In I. Guyon, U. V. Luxburg, S. Bengio,
+H. Wallach, R. Fergus, S. Vishwanathan, and R. Garnett, editors, Advances in Neural Information
+Processing Systems 30, pages 4148–4158. Curran Associates, Inc., 2017.
+[132] Yonghui Wu, Mike Schuster, Zhifeng Chen, Quoc V Le, Mohammad Norouzi, Wolfgang Macherey,
+Maxim Krikun, Yuan Cao, Qin Gao, Klaus Macherey, et al.
+Google’s neural machine translation
+system: Bridging the gap between human and machine translation. arXiv preprint arXiv:1609.08144,
+2016.
+[133] Jason Yosinski, JeﬀClune, Yoshua Bengio, and Hod Lipson. How transferable are features in deep
+neural networks? In Advances in neural information processing systems, pages 3320–3328, 2014.
+[134] Jason Yosinski, JeﬀClune, Anh Nguyen, Thomas Fuchs, and Hod Lipson.
+Understanding neural
+networks through deep visualization. arXiv preprint arXiv:1506.06579, 2015.
+[135] Chiyuan Zhang, Samy Bengio, Moritz Hardt, Benjamin Recht, and Oriol Vinyals. Understanding deep
+learning requires rethinking generalization. arXiv preprint arXiv:1611.03530, 2016.
+[136] Kai Zhong, Zhao Song, Prateek Jain, Peter L Bartlett, and Inderjit S Dhillon. Recovery guarantees
+for one-hidden-layer neural networks. In Proceedings of the 34th International Conference on Machine
+Learning-Volume 70, pages 4140–4149. JMLR. org, 2017.
+37
+

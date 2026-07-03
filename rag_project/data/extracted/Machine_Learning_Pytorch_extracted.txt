@@ -1,0 +1,361 @@
+--- PAGE 1 ---
+Pytorch Tutorial
+Chongruo Wu
+
+--- PAGE 2 ---
+1.
+Popular Frameworks
+2.
+Pytorch, Basics
+3.
+Helpful skills
+Agenda
+
+--- PAGE 3 ---
+Popular Deep Learning Frameworks
+Gluon: new MXNet interface to accelerate research
+
+--- PAGE 4 ---
+Popular Deep Learning Frameworks
+Gluon: new MXNet interface to accelerate research
+Imperative:  Imperative-style programs perform computation as you run them
+Symbolic:   define the function first, then compile them
+
+--- PAGE 5 ---
+Popular Deep Learning Frameworks
+Gluon: new MXNet interface to accelerate research
+
+--- PAGE 6 ---
+Popular Deep Learning Frameworks
+lua
+Stanford cs231n. 
+C++, Python, 
+R, Julia, Perl 
+Scala
+
+--- PAGE 7 ---
+MxNet Tutorial, CVPR 2017
+
+--- PAGE 8 ---
+MxNet Tutorial, CVPR 2017
+
+--- PAGE 9 ---
+MxNet Tutorial, CVPR 2017
+
+--- PAGE 10 ---
+Stanford cs231n. 
+
+--- PAGE 11 ---
+MxNet Tutorial, CVPR 2017
+
+--- PAGE 12 ---
+MxNet Tutorial, CVPR 2017
+
+--- PAGE 13 ---
+MxNet Online Document, https://goo.gl/UZ2byD
+
+--- PAGE 14 ---
+Stanford cs231n. 
+
+--- PAGE 15 ---
+Stanford cs231n. 
+
+--- PAGE 16 ---
+Pytorch
+
+--- PAGE 17 ---
+Stanford cs231n. 
+
+--- PAGE 18 ---
+Stanford cs231n. 
+
+--- PAGE 19 ---
+https://transfer.d2.mpi-inf.mpg.de/rshetty/hlcv/Pytorch_tutorial.pdf
+Pytorch Tensors
+
+--- PAGE 20 ---
+Stanford cs231n. 
+
+--- PAGE 21 ---
+Stanford cs231n. 
+
+--- PAGE 22 ---
+Stanford cs231n. 
+
+--- PAGE 23 ---
+Stanford cs231n. 
+
+--- PAGE 24 ---
+Stanford cs231n. 
+
+--- PAGE 25 ---
+Stanford cs231n. 
+
+--- PAGE 26 ---
+Stanford cs231n. 
+
+--- PAGE 27 ---
+Variable 
+“ autograd.Variable is the central class of the package. It wraps a Tensor, and supports 
+nearly all of operations defined on it. 
+Once you finish your computation you can call .backward() and have all the gradients 
+computed automatically. “
+Pytorch Tutorial.  www.pytorch.org 
+The autograd package provides automatic differentiation for all operations on Tensors. 
+
+--- PAGE 28 ---
+Stanford cs231n. 
+
+--- PAGE 29 ---
+Stanford cs231n. 
+
+--- PAGE 30 ---
+Stanford cs231n. 
+
+--- PAGE 31 ---
+Stanford cs231n. 
+
+--- PAGE 32 ---
+Stanford cs231n. 
+
+--- PAGE 33 ---
+Stanford cs231n. 
+
+--- PAGE 34 ---
+Module,  single layer 
+Other layers:
+Dropout,  Linear,
+Normalization Layer
+
+--- PAGE 35 ---
+Module,  network 
+Pytorch, zero to all. HKUST
+
+--- PAGE 36 ---
+Module,  sub-network 
+http://book.paddlepaddle.org/03.image_classification/
+
+--- PAGE 37 ---
+Module,  sub-network 
+https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix
+
+--- PAGE 38 ---
+Module 
+
+--- PAGE 39 ---
+Stanford cs231n. 
+
+--- PAGE 40 ---
+When starting a new project
+1.
+Data preparation ( processing,  format )
+  2.    Model Design ( pretrained,  design your own Model)
+  3.    Training Strategy
+
+--- PAGE 41 ---
+Train a simple Network
+Stanford cs231n. 
+
+--- PAGE 42 ---
+Train a simple Network
+1.
+ Forward:  compute output of each layer
+2.
+ Backward:  compute gradient
+3.
+ Update:  update the parameters with computed gradient
+
+--- PAGE 43 ---
+Train a simple Network
+Stanford cs231n. 
+
+--- PAGE 44 ---
+Train a simple Network
+Stanford cs231n. 
+
+--- PAGE 45 ---
+Train a simple Network
+Stanford cs231n. 
+
+--- PAGE 46 ---
+Train a simple Network
+Stanford cs231n. 
+
+--- PAGE 47 ---
+Train a simple Network
+Stanford cs231n. 
+
+--- PAGE 48 ---
+Train a simple Network
+Stanford cs231n. 
+
+--- PAGE 49 ---
+MNIST example
+
+--- PAGE 50 ---
+MNIST example
+
+--- PAGE 51 ---
+MNIST example
+https://goo.gl/mQEw15
+
+--- PAGE 52 ---
+MNIST example
+Data Loading 
+https://goo.gl/mQEw15
+
+--- PAGE 53 ---
+MNIST example
+Define Network
+https://goo.gl/mQEw15
+
+--- PAGE 54 ---
+MNIST example
+Training
+https://goo.gl/mQEw15
+
+--- PAGE 55 ---
+MNIST example
+Inference
+eval() mode:
+*Dropout Layer
+*Batchnorm Layer 
+https://goo.gl/mQEw15
+
+--- PAGE 56 ---
+When starting a new project
+1.
+Data preparation ( processing,  format )
+  2.    Model Design ( pretrained,  design your own model)
+  3.    Training Strategy
+
+--- PAGE 57 ---
+Data Loading
+
+--- PAGE 58 ---
+Data Loading
+Pytorch, zero to all. HKUST
+
+--- PAGE 59 ---
+Data Loading
+Pytorch, zero to all. HKUST
+
+--- PAGE 60 ---
+https://goo.gl/mQEw15
+Data Loading
+
+--- PAGE 61 ---
+Data Loading
+Pytorch, zero to all. HKUST
+
+--- PAGE 62 ---
+Data Loading
+Pytorch, zero to all. HKUST
+
+--- PAGE 63 ---
+Stanford cs231n. 
+Data Loading
+
+--- PAGE 64 ---
+Data Loading
+Pytorch, zero to all. HKUST
+
+--- PAGE 65 ---
+https://goo.gl/mQEw15
+Data Processing
+
+--- PAGE 66 ---
+https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix
+Data Processing
+Pix2pix Code
+
+--- PAGE 67 ---
+When starting a new project
+1.
+Data preparation ( processing,  format )
+  2.    Model Design ( pretrained,  design your own model)
+  3.    Training Strategy ( learning rate )
+
+--- PAGE 68 ---
+Stanford cs231n. 
+Learning Rate Scheduler 
+
+--- PAGE 69 ---
+Learning Rate Scheduler 
+https://github.com/Jiaming-Liu/pytorch-lr-scheduler
+http://pytorch.org/docs/master/optim.html#how-to-adjust-learning-rate
+torch.optim.lr_scheuler
+●
+StepLR:  LR is delayed by gamma every step_size epochs
+●
+MultiStepLR:  LR is delayed by gamma once the number of epoch reaches milestones. 
+●
+ExponentialLR
+●
+CosineAnnealingLR
+●
+ReduceLROnPlateau
+
+--- PAGE 70 ---
+Pretrained Model
+
+--- PAGE 71 ---
+Load Model
+https://gist.github.com/panovr/2977d9f26866b05583b0c40d88a315bf
+args.resume is the path to the trained model
+Define the model 
+before loading parameters
+
+--- PAGE 72 ---
+Weights Initialization
+net.apply( weights_init_normal)
+https://goo.gl/bqeW1K
+
+--- PAGE 73 ---
+Weights Initialization
+https://goo.gl/bqeW1K
+
+--- PAGE 74 ---
+Hooks 
+It is used to inspect or modify the output and grad of a layer
+Need to write register function
+
+--- PAGE 75 ---
+Hooks ( Forward ) 
+http://pytorch.org/tutorials/beginner/former_torchies/nn_tutorial.html
+
+--- PAGE 76 ---
+Hooks ( Backward ) 
+http://pytorch.org/tutorials/beginner/former_torchies/nn_tutorial.html
+
+--- PAGE 77 ---
+Cudnn.benchmark flag
+https://goo.gl/5gzj8F
+
+--- PAGE 78 ---
+Visualization,  Pytorch Visdom 
+https://github.com/facebookresearch/visdom
+
+--- PAGE 79 ---
+Visualization, TensorBoard 
+https://www.tensorflow.org/get_started/summaries_and_tensorboard
+
+--- PAGE 80 ---
+Other Resources
+Official examples.   https://goo.gl/Q6Z2k8
+
+--- PAGE 81 ---
+Other Resources
+Official documents.  https://goo.gl/gecKC4
+
+--- PAGE 82 ---
+Other Resources
+Pix2pix code     https://github.com/phillipi/pix2pix 
+
+--- PAGE 83 ---
+Other Resources
+Pytorch, Zero to All  (HKUST)     https://goo.gl/S3vEUN
+
+--- PAGE 84 ---
+Thank You
+

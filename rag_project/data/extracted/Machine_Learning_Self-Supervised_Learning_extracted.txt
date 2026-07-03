@@ -1,0 +1,1107 @@
+--- PAGE 1 ---
+Self-Supervised Learning
+Andrew Zisserman
+Slides from: Carl Doersch, Ishan Misra, Andrew Owens,  Carl Vondrick, Richard Zhang
+
+--- PAGE 2 ---
+1000 categories 
+• Training:  1000 images  for each category
+• Testing: 100k images
+The ImageNet Challenge Story … 
+
+--- PAGE 3 ---
+The ImageNet Challenge Story … strong supervision 
+
+--- PAGE 4 ---
+The ImageNet Challenge Story … outcomes 
+Strong supervision:
+• Features from networks trained on ImageNet can be used for other visual tasks, e.g. 
+detection, segmentation, action recognition, fine grained visual classification
+• To some extent, any visual task can be solved now by:
+1.
+Construct a large-scale dataset labelled for that task
+2.
+Specify a training loss and neural network architecture
+3.
+Train the network and deploy
+• Are there alternatives to strong supervision for training? Self-Supervised learning ….
+
+--- PAGE 5 ---
+1. Expense of producing a new dataset for each new task
+2. Some areas are supervision-starved, e.g. medical data, where it is hard to obtain 
+annotation
+3. Untapped/availability of vast numbers of unlabelled images/videos
+– Facebook: one billion images uploaded per day
+– 300 hours of video are uploaded to YouTube every minute
+4. How infants may learn … 
+Why Self-Supervision?
+
+--- PAGE 6 ---
+Self-Supervised Learning
+The Scientist in the Crib: What Early Learning Tells Us About the Mind 
+by Alison Gopnik, Andrew N. Meltzoff and Patricia K. Kuhl
+The Development of Embodied Cognition: Six Lessons from Babies
+by Linda Smith and Michael Gasser
+
+--- PAGE 7 ---
+• A form of unsupervised learning where the data provides the supervision
+• In general, withhold some part of the data, and task the network with predicting it
+• The task defines a proxy loss, and the network is forced to learn what we really 
+care about, e.g. a semantic representation, in order to solve it
+What is Self-Supervision?
+
+--- PAGE 8 ---
+Randomly Sample Patch
+Sample Second Patch
+CNN
+CNN
+Classifier
+8 possible locations
+Example: relative positioning
+Train network to predict relative position of two regions in the same image
+Unsupervised visual representation learning by context prediction, 
+Carl Doersch, Abhinav Gupta, Alexei A. Efros, ICCV 2015 
+
+--- PAGE 9 ---
+A
+B
+Example: relative positioning
+Unsupervised visual representation learning by context prediction, 
+Carl Doersch, Abhinav Gupta, Alexei A. Efros, ICCV 2015 
+
+--- PAGE 10 ---
+Semantics from a non-semantic task
+Unsupervised visual representation learning by context prediction, 
+Carl Doersch, Abhinav Gupta, Alexei A. Efros, ICCV 2015 
+
+--- PAGE 11 ---
+What is learned?
+Relative-positioning
+Input
+Random Initialization
+ImageNet AlexNet
+CNN
+CNN
+Classifier
+
+--- PAGE 12 ---
+Self-supervised learning in three parts:
+1. from images
+2. from videos
+3. from videos with sound
+Outline
+
+--- PAGE 13 ---
+Part I
+Self-Supervised Learning from Images
+
+--- PAGE 14 ---
+Randomly Sample Patch
+Sample Second Patch
+CNN
+CNN
+Classifier
+8 possible locations
+Recap: relative positioning
+Train network to predict relative position of two regions in the same image
+Unsupervised visual representation learning by context prediction, 
+Carl Doersch, Abhinav Gupta, Alexei A. Efros, ICCV 2015 
+
+--- PAGE 15 ---
+Evaluation: PASCAL VOC Detection
+• 20 object classes (car, bicycle, person, horse …)
+• Predict the bounding boxes of all objects of a given class in an image (if any)
+Dog
+Horse
+Motorbike
+Person
+
+--- PAGE 16 ---
+Pre-train on relative-position task, w/o labels
+[Girshick et al. 2014]
+Evaluation: PASCAL VOC Detection
+• Pre-train CNN using self-supervision (no labels) 
+• Train CNN for detection in R-CNN object category detection pipeline
+R-CNN
+
+--- PAGE 17 ---
+45.6%
+No Pretraining
+Relative 
+positioning
+ImageNet Labels
+51.1%
+56.8%
+Average Precision
+Evaluation: PASCAL VOC Detection
+
+--- PAGE 18 ---
+Avoiding Trivial Shortcuts
+Include a 
+gap
+Jitter the patch 
+locations
+
+--- PAGE 19 ---
+Position in Image
+A Not-So “Trivial” Shortcut
+
+--- PAGE 20 ---
+Chromatic Aberration
+
+--- PAGE 21 ---
+Position in Image
+A Not-So “Trivial” Shortcut
+Solution?
+Only use one of the colour channels
+
+--- PAGE 22 ---
+ab
+L
+Concatenate (L,ab)
+Grayscale image: L channel
+“Free” 
+supervisory
+signal
+Image example II: colourization
+Train network to predict pixel colour from a monochrome input
+
+--- PAGE 23 ---
+Image example II: colourization
+Train network to predict pixel colour from a monochrome input
+Colorful Image Colorization, Zhang et al., ECCV 2016
+
+--- PAGE 24 ---
+-
+Exemplar Networks (Dosovitskiy et al., 2014)
+-
+Perturb/distort image patches, e.g. by cropping and affine transformations
+-
+Train to classify these exemplars as same class
+Image example III: exemplar networks
+
+--- PAGE 25 ---
+Egomotion
+Agrawal et al. ICCV 2015 Jayaraman et al. ICCV 2015
+Isola et al. ICLR Workshop 2016.
+Context
+Noroozi et al 2016
+Pathak et al. CVPR 2016
+Hinton & Salakhutdinov.
+Science 2006. 
+Zhang et al. CVPR 2017
+Dosovitskiy et al., NIPS 2014
+Split-brain auto-encoders
+Co-Occurrence
+Exemplar networks
+Autoencoders
+Denoising Autoencoders
+Vincent et al. ICML 2008.
+
+--- PAGE 26 ---
+Multi-Task Self-Supervised Learning
+Self-supervision task
+ImageNet 
+Classification
+top-5 accuracy
+PASCAL VOC 
+Detection
+mAP
+Rel. Pos
+59.21
+66.75
+Colour
+62.48
+65.47
+Exemplar
+53.08
+60.94
+Rel. Pos + colour
+66.64
+68.75
+Rel. Pos + Exemplar
+65.24
+69.44
+Rel. Pos + colour + Exemplar
+68.65
+69.48
+ImageNet labels
+85.10
+74.17
+Procedure:
+• ImageNet-frozen: self-supervised training, 
+network fixed, classifier trained on features
+• PASCAL: self-supervised pre-training, then 
+train Faster-RCNN
+• ImageNet labels: strong supervision
+NB: all methods re-implemented on 
+same backbone network (ResNet-101)
+Multi-task self-supervised visual learning, C Doersch, A Zisserman, ICCV 2017
+
+--- PAGE 27 ---
+Multi-Task Self-Supervised Learning
+Multi-task self-supervised visual learning, C Doersch, A Zisserman, ICCV 2017
+Self-supervision task
+ImageNet 
+Classification
+top-5 accuracy
+PASCAL VOC 
+Detection
+mAP
+Rel. Pos
+59.21
+66.75
+Colour
+62.48
+65.47
+Exemplar
+53.08
+60.94
+Rel. Pos + colour
+66.64
+68.75
+Rel. Pos + Exemplar
+65.24
+69.44
+Rel. Pos + colour + Exemplar
+68.65
+69.48
+ImageNet labels
+85.10
+74.17
+Procedure:
+• ImageNet-frozen: self-supervised training, network fixed, classifier trained on features
+• PASCAL: self-supervised pre-training, then train Faster-RCNN
+• ImageNet labels: strong supervision
+Findings:
+• Deeper network improves performance 
+(ResNet vs AlexNet)
+• Colour and Rel-Pos superior to Exemplar
+• Gap between self-supervision and strong 
+supervision closing 
+
+--- PAGE 28 ---
+Image Transformations – 2018 
+Unsupervised representation learning by predicting image rotations, 
+Spyros Gidaris, Praveer Singh, Nikos Komodakis,  ICLR 2018
+Which image has the correct rotation?
+
+--- PAGE 29 ---
+Image Transformations – 2018 
+Unsupervised representation learning by predicting image rotations, 
+Spyros Gidaris, Praveer Singh, Nikos Komodakis,  ICLR 2018
+
+--- PAGE 30 ---
+Image Transformations – 2018 
+Unsupervised representation learning by predicting image rotations, 
+Spyros Gidaris, Praveer Singh, Nikos Komodakis,  ICLR 2018
+
+--- PAGE 31 ---
+Image Transformations – 2018 
+• Uses AlexNet
+• Closes gap between ImageNet and 
+self-supervision
+PASCAL VOC 
+Detection mAP
+Random
+43.4
+Rel. Pos.
+51.1
+Colour
+46.9
+Rotation
+54.4
+ImageNet Labels
+56.8
+Unsupervised representation learning by predicting image rotations, 
+Spyros Gidaris, Praveer Singh, Nikos Komodakis,  ICLR 2018
+
+--- PAGE 32 ---
+Summary Point
+• Self-Supervision:
+– A form of unsupervised learning where the data provides the supervision
+– In general, withhold some information about the data, and task the network with predicting it
+– The task defines a proxy loss, and the network is forced to learn what we really care about, 
+e.g. a semantic representation, in order to solve it
+• Many self-supervised tasks for images
+• Often complementary, and combining improves performance
+• Closing gap with strong supervision from ImageNet label training 
+– ImageNet image classification, PASCAL VOC detection
+• Deeper networks improve performance
+
+--- PAGE 33 ---
+Part II
+Self-Supervised Learning from Videos
+
+--- PAGE 34 ---
+Video
+A temporal sequence of frames
+What can we use to define a proxy loss?
+• Nearby (in time) frames are strongly correlated, further away may not be
+• Temporal order of the frames 
+• Motion of objects (via optical flow)
+• … 
+
+--- PAGE 35 ---
+Three example tasks:
+– Video sequence order
+– Video direction
+– Video tracking
+Outline
+
+--- PAGE 36 ---
+Temporal structure in videos
+Time
+“Sequence” of data
+Shuffle and Learn: Unsupervised Learning 
+using Temporal Order Verification 
+Ishan Misra, C. Lawrence Zitnick and Martial Hebert 
+ECCV 2016 
+Slide credit: Ishan Misra
+
+--- PAGE 37 ---
+Sequential Verification
+•Is this a valid sequence?
+Sun and Giles, 2001; Sun et al., 2001; Cleermans 1993; Reber 1989
+Arrow of Time - Pickup et al., 2014
+Slide credit: Ishan Misra
+
+--- PAGE 38 ---
+Original video
+Slide credit: Ishan Misra
+
+--- PAGE 39 ---
+Original video
+Temporally Correct order
+Temporally Correct order
+Slide credit: Ishan Misra
+
+--- PAGE 40 ---
+Original video
+Temporally Correct order
+Temporally Correct order
+Temporally Incorrect order
+Slide credit: Ishan Misra
+
+--- PAGE 41 ---
+Geometric View
+Given a start and an end, can this point lie in between?
+Images
+Shuffle and Learn – I. Misra, L. Zitnick, M. Hebert – ECCV 2016
+Slide credit: Ishan Misra
+
+--- PAGE 42 ---
+Dataset: UCF-101 Action Recognition
+UCF101 - Soomro et al., 2012
+
+--- PAGE 43 ---
+Positive Tuples
+Negative Tuples
+~900k tuples from UCF-101 dataset  (Soomro et al., 2012)
+Slide credit: Ishan Misra
+
+--- PAGE 44 ---
+Original video
+Temporally Correct order
+Informative training tuples
+Frame Motion
+Time
+High motion window
+Slide credit: Ishan Misra
+
+--- PAGE 45 ---
+concatenation
+Input Tuple
+fc8
+Correct/Incorrect
+Tuple
+classification
+Cross Entropy Loss
+Slide credit: Ishan Misra
+
+--- PAGE 46 ---
+Query
+ImageNet
+Shuffle & Learn
+Random
+Nearest Neighbors of Query Frame (fc7 features)
+Slide credit: Ishan Misra
+
+--- PAGE 47 ---
+Finetuning setup
+concatenation
+Correct/Incorrect
+Tuple
+Input Tuple
+classification
+Test -> Finetune
+Self-supervised Pre-train
+Action Labels
+Slide credit: Ishan Misra
+
+--- PAGE 48 ---
+Results: Finetune on Action Recognition
+Dataset
+Initialization
+Mean Classification
+Accuracy
+UCF101
+Random
+38.6
+Shuffle & Learn
+50.2
+ImageNet pre-trained
+67.1
+Slide credit: Ishan Misra
+Setup from - Simonyan & Zisserman, 2014
+
+--- PAGE 49 ---
+What does the network learn?
+Given a start and an end, can this point lie in between?
+Images
+Shuffle and Learn – I. Misra, L. Zitnick, M. Hebert – ECCV 2016
+Slide credit: Ishan Misra
+
+--- PAGE 50 ---
+Human Pose Estimation
+• Keypoint estimation using FLIC and MPII Datasets
+Slide credit: Ishan Misra
+
+--- PAGE 51 ---
+FLIC Dataset
+MPII Dataset
+Initialization
+Mean PCK
+AUC PCK
+Mean 
+PCKh@0.5
+AUC
+PCKh@0.5
+Shuffle & Learn
+84.9
+49.6
+87.7
+47.6
+ImageNet pre-train
+85.8
+51.3
+85.1
+47.2
+FLIC - Sapp & Taskar, 2013
+MPII - Andriluka et al., 2014
+Setup fom – Toshev et al., 2013 
+Slide credit: Ishan Misra
+Human Pose Estimation
+• Keypoint estimation using FLIC and MPII Datasets
+
+--- PAGE 52 ---
+More temporal structure in videos
+Self-Supervised Video Representation Learning With Odd-One-Out Networks
+Basura Fernando, Hakan Bilen, Efstratios Gavves, and Stephen Gould,  ICCV 2017
+
+--- PAGE 53 ---
+More temporal structure in videos
+Self-Supervised Video Representation Learning With Odd-One-Out Networks
+Basura Fernando, Hakan Bilen, Efstratios Gavves, and Stephen Gould,  ICCV 2017
+Initialization
+Mean 
+Classification
+Accuracy
+Random
+38.6
+Shuffle and Learn
+50.2
+Odd-One-Out
+60.3
+ImageNet pre-
+trained
+67.1
+
+--- PAGE 54 ---
+• Important to select informative data in training
+– Hard negatives and positives
+– Otherwise, most data is too easy or has no information and the network will not learn
+– Often use heuristics for this, e.g. motion energy
+• Consider how the network can possibly solve the task (without cheating)
+– This determines what it must learn, e.g. human keypoints in `shuffle and learn’
+• Choose the proxy task to encourage learning the features of interest
+Summary: lessons so far
+
+--- PAGE 55 ---
+Self-Supervision using the Arrow of Time 
+Donglai Wei, Joseph Lim, Bill Freeman, Andrew Zisserman  CVPR 2018 
+
+--- PAGE 56 ---
+Learning the arrow of time
+Supervision:
+Positive training samples: video clips playing forwards
+Negative training samples: video clips playing backwards
+Task: predict if video playing forwards or backwards
+
+--- PAGE 57 ---
+Strong cues
+Semantic, face motion direction, ordering
+Donglai Wei, Joseph Lim, Bill Freeman, Andrew Zisserman  CVPR 2018 
+
+--- PAGE 58 ---
+Strong cues
+`Simple’ physics:
+•
+gravity
+•
+entropy
+•
+friction
+•
+causality
+Donglai Wei, Joseph Lim, Bill Freeman, Andrew Zisserman  CVPR 2018 
+
+--- PAGE 59 ---
+Weak or no cues
+Symmetric in time, constant motion, repetitions
+Donglai Wei, Joseph Lim, Bill Freeman, Andrew Zisserman  CVPR 2018 
+
+--- PAGE 60 ---
+Temporal Class-Activation Map Network
+input motion
+1 … 10
+forwards
+or
+backwards
+?
+11 … 20
+T-CAM Model:
+Input: optical flow in two chunks
+Final layer: global average pooling to allow class activation map (CAM) 
+
+--- PAGE 61 ---
+The inevitable cheating …
+Dataset: UCF-101 actions 
+Train/Test: 70%/30%
+AoT Test accuracy: 98%
+Chance accuracy: 50%
+Cautionary tale: 
+Chromatic aberration used as shortcut in Doersch C, Gupta A, Efros AA, 
+Unsupervised visual representation learning by context prediction. 
+ICCV 2015
+Donglai Wei, Joseph Lim, Bill Freeman, Andrew Zisserman  CVPR 2018 
+
+--- PAGE 62 ---
+Cue I: black framing
+when black stripe signals are zeroed-out,
+test accuracy drops ~10%
+0
+5
+time
+height
+black stripes are not “purely black”
+46% of videos have black framing
+Donglai Wei, Joseph Lim, Bill Freeman, Andrew Zisserman  CVPR 2018 
+
+--- PAGE 63 ---
+cluster A
+(camera zoom-in)
+cluster B
+(camera tilt-down)
+K-means clustering on test clips with top scores
+Cue II: cinematic conventions
+73% of videos have camera motion
+
+--- PAGE 64 ---
+when camera motion is stabilized, test accuracy drops ~10%
+original
+camera stabilized
+(black stripe removed)
+Stabilize to remove camera motion/zoom
+
+--- PAGE 65 ---
+Datasets and Performance
+Flickr 150K shots
+•
+Obtained from 1.74M shots used in Thomee et al (2016) &
+Vondrick et al (2016), after black stripe removal and stabilization
+•
+Split 70:30 for train:test
+Model accuracy on test set: 81%
+Human accuracy on test set: 81%
+Chance: 50%
+Donglai Wei, Joseph Lim, Bill Freeman, Andrew Zisserman  CVPR 2018 
+
+--- PAGE 66 ---
+“Semantic” motions
+input video
+prediction heatmap
+backward
+forward
+
+--- PAGE 67 ---
+Evaluation: Action Classification
+Procedure:
+•
+Pre-train network
+•
+Fine tune & test network on UCF101 human action classification benchmark
+•
+* = Wang et al, Temporal Segment Networks, 2016 (also VGG-16 and flow, pre-trained on ImageNet)
+Pre-train
+Performance
+T-CAM on AoT on Flickr 150k shots
+84.1
+T-CAM on AoT on UCF-101
+86.3
+Flow network on ImageNet*
+85.7
+Donglai Wei, Joseph Lim, Bill Freeman, Andrew Zisserman  CVPR 2018 
+
+--- PAGE 68 ---
+Tracking Emerges by Colorizing Videos
+Vondrick, Shrivastava, Fathi, Guadarrama, Murphy, ECCV 2018
+
+--- PAGE 69 ---
+Color is mostly temporally coherent
+
+--- PAGE 70 ---
+Temporal Coherence of Color
+RGB
+Color
+Channels
+Quantized
+Color
+
+--- PAGE 71 ---
+Self-supervised Tracking
+Vondrick, Shrivastava, Fathi, Guadarrama, Murphy. ECCV 2018.
+Reference Frame
+Gray-scale Video
+Task: given a color video …  
+Colorize all frames of a gray scale version using a reference frame
+
+--- PAGE 72 ---
+What color is this?
+
+--- PAGE 73 ---
+Where to copy 
+color from?
+
+--- PAGE 74 ---
+Semantic 
+correspondence
+
+--- PAGE 75 ---
+Input Frame
+Vondrick, Shrivastava, Fathi, Guadarrama, Murphy. ECCV 2018.
+
+--- PAGE 76 ---
+Target Colors
+Input Frame
+Reference Frame
+Reference Colors
+Colorize by Pointing
+Vondrick, Shrivastava, Fathi, Guadarrama, Murphy. ECCV 2018.
+
+--- PAGE 77 ---
+Target Colors
+Input Frame
+Reference Frame
+Reference Colors
+Vondrick, Shrivastava, Fathi, Guadarrama, Murphy. ECCV 2018.
+
+--- PAGE 78 ---
+Target Colors
+Input Frame
+Reference Frame
+Reference Colors
+Vondrick, Shrivastava, Fathi, Guadarrama, Murphy. ECCV 2018.
+
+--- PAGE 79 ---
+Target Colors
+Input Frame
+Reference Frame
+Reference Colors
+Vondrick, Shrivastava, Fathi, Guadarrama, Murphy. ECCV 2018.
+
+--- PAGE 80 ---
+Target Colors
+Input Frame
+Reference Frame
+Reference Colors
+Vondrick, Shrivastava, Fathi, Guadarrama, Murphy. ECCV 2018.
+
+--- PAGE 81 ---
+Video Colorization
+Ground Truth
+Reference Frame
+Gray-scale Video
+Predicted Color
+Train: Kinetics
+Evaluate: DAVIS
+Vondrick, Shrivastava, Fathi, Guadarrama, Murphy. ECCV 2018.
+
+--- PAGE 82 ---
+Visualizing Embeddings
+Project embedding to 3 dimensions and visualize as RGB
+Train: Kinetics
+Evaluate: DAVIS
+Vondrick, Shrivastava, Fathi, Guadarrama, Murphy. ECCV 2018.
+
+--- PAGE 83 ---
+Tracking Emerges!
+Input Frame
+Reference Frame
+Predicted Mask
+Reference Mask
+Vondrick, Shrivastava, Fathi, Guadarrama, Murphy. ECCV 2018.
+
+--- PAGE 84 ---
+Only the first frame is given. Colors indicate different instances.
+Segment Tracking Results
+Vondrick, Shrivastava, Fathi, Guadarrama, Murphy. ECCV 2018.
+
+--- PAGE 85 ---
+Pose Tracking Results
+Only the skeleton in the first frame is given.
+Vondrick, Shrivastava, Fathi, Guadarrama, Murphy. ECCV 2018.
+
+--- PAGE 86 ---
+Part III
+Self-Supervised Learning from Videos 
+with Sound
+
+--- PAGE 87 ---
+Audio-Visual Co-supervision
+Sound and frames are:
+• Semantically consistent
+• Synchronized
+
+--- PAGE 88 ---
+Audio-Visual Co-supervision
+Objective: use vision and sound to learn from each other
+• Two types of proxy task:
+1. Predict audio-visual correspondence
+2. Predict audio-visual synchronization
+
+--- PAGE 89 ---
+Audio-Visual Co-supervision
+Train a network to predict if image and audio clip correspond
+Correspond?
+“Objects that Sound”, Arandjelović and Zisserman, ICCV 2017 & ECCV 2018
+
+--- PAGE 90 ---
+Audio-Visual Correspondence
+drum
+guitar
+
+--- PAGE 91 ---
+drum
+guitar
+positive
+Audio-Visual Correspondence
+
+--- PAGE 92 ---
+drum
+guitar
+positive
+Audio-Visual Correspondence
+
+--- PAGE 93 ---
+drum
+guitar
+negative
+Audio-Visual Correspondence
+
+--- PAGE 94 ---
+Correspond?
+yes/no
+Contrastive 
+loss based 
+on distance 
+between 
+vectors
+Distance between audio and visual vectors:
+•
+Small: AV from the same place in a video (Positives)
+•
+Large: AV from different videos (Negatives)
+Train network from scratch
+visual subnetwork
+audio subnetwork
+single frame
+1 s
+Audio-Visual Embedding (AVE-Net)
+
+--- PAGE 95 ---
+Overview
+What can be learnt by watching and listening to videos?
+• Good representations
+– Visual features
+– Audio features
+• Intra- and cross-modal retrieval
+– Aligned audio and visual embeddings
+• “What is making the sound?”
+– Learn to localize objects that sound
+“Objects that Sound”, Arandjelović and Zisserman, ICCV 2017 & ECCV 2018
+
+--- PAGE 96 ---
+• Andrew Owens ….
+– Owens, A., Jiajun, W., McDermott, J., Freeman, W., Torralba, A.: Ambient sound provides 
+supervision for visual learning. ECCV 2016
+– Owens, A., Isola, P., McDermott, J., Torralba, A., Adelson, E., Freeman,W.: Visually 
+indicated sounds. CVPR 2016
+• Other MIT work:
+– Aytar, Y., Vondrick, C., Torralba, A.: SoundNet: Learning sound representations from 
+unlabeled video. NIPS 2016
+• From the past:
+– Kidron, E., Schechner, Y.Y., Elad, M.: Pixels that sound. CVPR 2005
+– De Sa, V.: Learning classification from unlabelled data, NIPS 1994
+Background: Audio-Visual 
+
+--- PAGE 97 ---
+Dataset
+- AudioSet (from YouTube), has labels
+- 200k x 10s clips
+- use musical instruments classes
+- Correspondence accuracy on test set: 82% (chance: 50%)
+“Objects that Sound”, Arandjelović and Zisserman, ICCV 2017 & ECCV 2018
+
+--- PAGE 98 ---
+Use audio and visual features
+What can be learnt by watching and listening to videos?
+• Good representations
+– Visual features
+– Audio features
+• Intra- and cross-modal retrieval
+– Aligned audio and visual embeddings
+• “What is making the sound?”
+– Learn to localize objects that sound
+correspond
+? yes/no
+visual 
+subnetwork
+audio 
+subnetwork
+single 
+frame
+1 s
+“Objects that Sound”, Arandjelović and Zisserman, ICCV 2017 & ECCV 2018
+
+--- PAGE 99 ---
+Sound classification
+• ESC-50 dataset
+– Environmental sound classification
+– Use the net to extract features
+– Train linear SVM
+Results: Audio features
+“Objects that Sound”, Arandjelović and Zisserman, ICCV 2017 & ECCV 2018
+
+--- PAGE 100 ---
+ImageNet classification
+• Standard evaluation procedure for unsupervised / self-supervised setting
+– Use the net to extract visual features
+– Linear classification on ImageNet
+• On par with state-of-the-art self-supervised approaches
+• The only method whose features haven’t seen ImageNet images
+– Probably never seen ‘Tibetan terrier’
+– Video frames are quite different from images
+Results: Vision features
+
+--- PAGE 101 ---
+Use audio and visual features
+What can be learnt by watching and listening to videos?
+• Good representations
+– Visual features
+– Audio features
+• Intra- and cross-modal retrieval
+– Aligned audio and visual embeddings
+• “What is making the sound?”
+– Learn to localize objects that sound
+correspond
+? yes/no
+visual 
+subnetwork
+audio 
+subnetwork
+single 
+frame
+1 s
+“Objects that Sound”, Arandjelović and Zisserman, ICCV 2017 & ECCV 2018
+
+--- PAGE 102 ---
+Query on image, retrieve audio
+Search in 200k video clips of AudioSet
+Query 
+frame
+Top 10 ranked audio clips
+“Objects that Sound”, Arandjelović and Zisserman, ICCV 2017 & ECCV 2018
+
+--- PAGE 103 ---
+Use audio and visual features
+What can be learnt by watching and listening to videos?
+• Good representations
+– Visual features
+– Audio features
+• Intra- and cross-modal retrieval
+– Aligned audio and visual embeddings
+• “What is making the sound?”
+– Learn to localize objects that sound
+correspond
+? yes/no
+visual 
+subnetwork
+audio 
+subnetwork
+single 
+frame
+1 s
+“Objects that Sound”, Arandjelović and Zisserman, ICCV 2017 & ECCV 2018
+
+--- PAGE 104 ---
+Objects that Sound
+Audio embedding
+Apply Visual ConvNet
+convolutionally
+AVE-Net
+Visual embedding
+Single audio 
+representation
+128-D
+14x14 spatial grid of 
+128-D visual 
+representations
+AVOL-Net
+Multiple instance learning
+“Objects that Sound”, Arandjelović and Zisserman, ICCV 2017 & ECCV 2018
+
+--- PAGE 105 ---
+Localizing objects with sound
+Input: audio and video frame
+Output: localization heatmap on frame
+What would make this sound?
+Note, no video (motion) information is used
+“Objects that Sound”, Arandjelović and Zisserman, ICCV 2017 & ECCV 2018
+
+--- PAGE 106 ---
+To embed or not to embed?
+Audio embedding
+Visual embedding
+Concatenation
+Embedding
+Features 
+available
+Cross-modal 
+alignment in 
+embedding
+
+--- PAGE 107 ---
+Specialize to talking heads …
+Objective: use faces and voice to learn from each other
+• Two types of proxy task:
+1. Predict audio-visual correspondence
+2. Predict audio-visual synchronization
+
+--- PAGE 108 ---
+Specialize to talking heads …
+Objective: use faces and voice to learn from each other
+• Two types of proxy task:
+1. Predict audio-visual correspondence
+2. Predict audio-visual synchronization
+
+--- PAGE 109 ---
+Lip-sync problem on TV
+
+--- PAGE 110 ---
+Face-Speech Synchronization
+• Positive samples: in sync
+• Negative samples: out of sync (introduce temporal offset)
+Chung, Zisserman (2016) “Out of time: Automatic lip sync in the wild” 
+
+--- PAGE 111 ---
+Sequence-sequence face-speech network
+• The network is trained with contrastive loss to:
+– Minimise distance between positive pairs
+– Maximise distance between negative pairs
+Contrastive loss
+Chung, Zisserman (2016) “Out of time: Automatic lip sync in the wild” 
+
+--- PAGE 112 ---
+Face-Speech Synchronization
+Chung, Zisserman (2016) “Out of time: Automatic lip sync in the wild” 
+Averaged sliding windows
+The predicted offset value is >99% accurate, averaged over 100 frames.
+In-sync
+Off-sync
+Non-speaker
+Distance
+Offset
+Offset
+Offset
+
+--- PAGE 113 ---
+Application: Lip Synchronization
+
+--- PAGE 114 ---
+Application: Active speaker detection
+Blue: speaker
+Red: non-speaker
+
+--- PAGE 115 ---
+Face-Speech Synchronization - summary
+The network can be used for:
+– Audio-to-video synchronisation
+– Active speaker detection 
+– Voice-over rejection
+– Visual features for lip reading
+
+--- PAGE 116 ---
+Audio-Visual Synchronization
+
+--- PAGE 117 ---
+Self-supervised Training
+Audio-Visual Scene Analysis with Self-Supervised Multisensory Features, 
+Andrew Owens, Alyosha Efros, 2018
+
+--- PAGE 118 ---
+Misaligned Audio
+Shifted audio track
+Audio-Visual Scene Analysis with Self-Supervised Multisensory Features, 
+Andrew Owens, Alyosha Efros, 2018
+
+--- PAGE 119 ---
+Visualizing the location of sound sources
+3D class 
+activation map
+3D Convolution
+3D Convolution
+3D Convolution
+3D Convolution
+1D Convolution
+1D Convolution
+1D Convolution
+Audio-Visual Scene Analysis with Self-Supervised Multisensory Features, 
+Andrew Owens, Alyosha Efros, 2018
+
+--- PAGE 120 ---
+
+--- PAGE 121 ---
+Summary: Audio-Visual Co-supervision
+Objective: use vision and sound to learn from each other
+• Two types of proxy task:
+1. Predict audio-visual correspondence -> semantics
+2. Predict audio-visual synchronization  -> attention
+• Lessons are applicable to any two related sequences, e.g. stereo video, 
+RGB/D video streams, visual/infrared cameras …  
+
+--- PAGE 122 ---
+• Self-Supervised Learning from images/video
+– Enables learning without explicit supervision
+– Learns visual representations – on par with ImageNet training
+• Self-Supervised Learning from videos with sound
+– Intra- and cross-modal retrieval
+– Learn to localize sounds
+– Tasks not just a proxy, e.g.  synchronization, attention, applicable directly
+• Applicable to other domains with paired signals, e.g. 
+– face and voice
+– Infrared/visible
+– RGB/D
+– Stereo streams … 
+Summary
+

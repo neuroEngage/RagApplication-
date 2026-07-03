@@ -1,0 +1,1060 @@
+--- PAGE 1 ---
+Michael Grossberg
+Data Visualization 
+Basics
+Tools, Principles and Pitfalls
+
+--- PAGE 2 ---
+Visualization as Tool
+Whats the problem?
+
+--- PAGE 3 ---
+Information
+Understanding
+
+--- PAGE 4 ---
+Data Visualization Global Temp
+ Year  Annual_Mean 5-
+year_Mean!
+-------------------------------
+---!
+ 1880     -0.20         *!
+ 1881     -0.12         *!
+ 1882     -0.15     -0.19!
+ 1883     -0.18     -0.19!
+ 1884     -0.26     -0.22!
+ 1885     -0.24     -0.25!
+ 1886     -0.23     -0.25!
+ 1887     -0.31     -0.21!
+ 1888     -0.19     -0.23!
+ 1889     -0.09     -0.23!
+ 1890     -0.32     -0.23!
+ 1891     -0.26     -0.26!
+ 1892     -0.30     -0.31!
+ 1893     -0.35     -0.29!
+ 1894     -0.32     -0.27!
+ 1895     -0.24     -0.25!
+ 1896     -0.17     -0.24!
+ 1897     -0.17     -0.21!
+ 1898     -0.30     -0.19!
+ 1899     -0.19     -0.20!
+ 1900     -0.14     -0.23!
+ 1901     -0.20     -0.24!
+ 1902     -0.30     -0.28!
+ 1903     -0.36     -0.31!
+ 1904     -0.43     -0.32!
+ 1905     -0.29     -0.35!
+ 1906     -0.25     -0.36!
+ 1907     -0.41     -0.37!
+ 1908     -0.42     -0.40!
+ 1909     -0.46     -0.44!
+ 1910     -0.45     -0.43!
+ 1911     -0.44     -0.43!
+ 1912     -0.40     -0.38!
+ 1913     -0.38     -0.32!
+ 1914     -0.22     -0.30!
+ 1915     -0.16     -0.31!
+ 1916     -0.35     -0.29!
+ 1917     -0.43     -0.31!
+ 1918     -0.31     -0.33!
+ 1919     -0.28     -0.30!
+ 1920     -0.26     -0.27!
+ 1921     -0.20     -0.26!
+ 1922     -0.28     -0.25!
+ 1923     -0.25     -0.23!
+ 1924     -0.23     -0.21!
+ 1925     -0.21     -0.19!
+ 1926     -0.08     -0.17!
+ 1927     -0.17     -0.18!
+ 1928     -0.16     -0.16!
+ 1929     -0.30     -0.16!
+ 1930     -0.11     -0.15!
+ 1931     -0.06     -0.16!
+ 1932     -0.10     -0.12!
+ 1933     -0.24     -0.13!
+ 1934     -0.09     -0.14!
+ 1935     -0.14     -0.11!
+ 1936     -0.10     -0.05!
+ 1937      0.04     -0.03!
+ 1938      0.06      0.02!
+ 1939      0.01      0.05!
+ 1940      0.07      0.06!
+ 1941      0.08      0.06!
+ 1942      0.05      0.08!
+ 1943      0.06      0.07!
+ 1944      0.14      0.04!
+ 1945      0.01      0.02!
+ 1946     -0.08     -0.02!
+ 1947     -0.04     -0.07!
+ 1948     -0.10     -0.10!
+ 1949     -0.11     -0.10!
+ 1950     -0.19     -0.09!
+ 1951     -0.06     -0.05!
+ 1952      0.02     -0.05!
+ 1953      0.09     -0.04!
+ 1954     -0.11     -0.06!
+ 1955     -0.12     -0.06!
+ 1956     -0.18     -0.07!
+ 1957      0.04     -0.04!
+ 1958      0.05     -0.02!
+ 1959      0.03      0.02!
+ 1960     -0.04      0.02!
+ 1961      0.05      0.03!
+ 1962      0.04     -0.01!
+ 1963      0.07     -0.03!
+ 1964     -0.20     -0.05!
+ 1965     -0.10     -0.06!
+ 1966     -0.04     -0.08!
+ 1967     -0.01     -0.03!
+ 1968     -0.05     -0.00!
+ 1969      0.06     -0.01!
+ 1970      0.04      0.00!
+ 1971     -0.07      0.04!
+ 1972      0.02      0.02!
+ 1973      0.16      0.01!
+ 1974     -0.07     -0.01!
+ 1975     -0.01      0.02!
+ 1976     -0.12     -0.00!
+ 1977      0.15      0.04!
+ 1978      0.05      0.08!
+ 1979      0.12      0.16!
+ 1980      0.23      0.15!
+ 1981      0.28      0.20!
+ 1982      0.09      0.20!
+ 1983      0.27      0.17!
+ 1984      0.12      0.14!
+ 1985      0.08      0.18!
+ 1986      0.14      0.19!
+ 1987      0.28      0.22!
+ 1988      0.35      0.28!
+ 1989      0.24      0.33!
+ 1990      0.39      0.31!
+ 1991      0.38      0.28!
+ 1992      0.19      0.29!
+ 1993      0.21      0.30!
+ 1994      0.28      0.29!
+ 1995      0.43      0.34!
+ 1996      0.32      0.42!
+ 1997      0.45      0.44!
+ 1998      0.61      0.44!
+ 1999      0.40      0.48!
+ 2000      0.40      0.51!
+ 2001      0.52      0.51!
+ 2002      0.61      0.53!
+ 2003      0.60      0.58!
+ 2004      0.51      0.59!
+ 2005      0.65      0.59!
+ 2006      0.59      0.57!
+ 2007      0.62      0.59!
+ 2008      0.49      0.59!
+ 2009      0.59      0.58!
+ 2010      0.66      0.57!
+ 2011      0.55      0.59!
+ 2012      0.57         *!
+ 2013      0.60         *!
+ 2014         *         *!
+!
+-------------------------------
+-----
+
+--- PAGE 5 ---
+Global Means Temp as Graph
+ Hansen et al. (2006), NASA GISS
+
+--- PAGE 6 ---
+Goals of Visualization
+❖Record!
+!
+!
+❖Analyze!
+!
+!
+❖Communicate
+
+--- PAGE 7 ---
+Analyze/Monitor
+
+--- PAGE 8 ---
+Analyze 
+John Snow, 1854
+Exploratory!
+Data Analysis!
+(EDA)
+
+--- PAGE 9 ---
+Analyze 
+John Snow, 1854
+Cluster Region
+Exploratory!
+Data Analysis!
+(EDA)
+
+--- PAGE 10 ---
+Analyze 
+John Snow, 1854
+Cluster Region
+Cluster Center
+Exploratory!
+Data Analysis!
+(EDA)
+
+--- PAGE 11 ---
+Analyze 
+John Snow, 1854
+Cluster Region
+Cluster Center
+Pump
+Exploratory!
+Data Analysis!
+(EDA)
+
+--- PAGE 12 ---
+Analyze/Communicate
+John Snow, 1854
+Conﬁrmatory!
+Data Analysis!
+(CDA)
+
+--- PAGE 13 ---
+Communicate/Convince
+Al Gore, An Inconvenient Truth 2006
+
+--- PAGE 14 ---
+Communicate
+http://www.gapminder.org/
+
+--- PAGE 15 ---
+What do you want to accomplish?
+
+--- PAGE 16 ---
+Don’t Build to Convince
+Al Gore, An Inconvenient Truth 2006
+
+--- PAGE 17 ---
+If the goal is Monitoring
+
+--- PAGE 18 ---
+Most of your visualizations
+http://nyti.ms/17AErgX
+Convince
+http://nyti.ms/1dRTdxQ
+Explore
+
+--- PAGE 19 ---
+What visual queries do you 
+support? 
+
+--- PAGE 20 ---
+Are These Data Sets The Same?!
+
+--- PAGE 21 ---
+
+--- PAGE 22 ---
+
+--- PAGE 23 ---
+Iterate
+❖Build many simple graphs ﬁrst!
+❖Use Ipython/Excel/OpenOfﬁce/Tabeau 
+Fully Explore Your Data First
+
+--- PAGE 24 ---
+Start Design with paper and pencil/pen
+
+--- PAGE 25 ---
+Build Static BEFORE Interactive
+Build these (Matplotlib)
+Before these (D3)
+
+--- PAGE 26 ---
+Keep It Simple Stupid
+KISS principle:
+http://visual.ly/mad-mad-world-we-live
+http://viz.wtf/
+
+--- PAGE 27 ---
+Practice Good Visual Design
+
+--- PAGE 28 ---
+Choosing The Right Tool for the Job
+
+--- PAGE 29 ---
+Choosing The Right Tool for the Job
+http://extremepresentation.typepad.com/blog/2006/09/choosing_a_good.html
+
+--- PAGE 30 ---
+Look at Good/Bad Visualizations
+❖Good Examples:!
+❖http://ﬂowingdata.com/!
+❖http://ﬂowingdata.com/2012/04/27/data-and-
+visualization-blogs-worth-following/!
+❖Bad Examples:!
+❖http://wtfviz.net/!
+❖http://junkcharts.typepad.com/junk_charts 
+
+--- PAGE 31 ---
+Practice
+
+--- PAGE 32 ---
+Data Sources
+*	   Fivethirtyeight	  Data	  
+*	   Quandl	  
+*	   Datamob	  
+*	   Reddit	  Datasets	  
+Lists	  
+*	   Datahub	  
+*	   Factual	  
+*	   Census.gov	  
+*	   Data.gov	  
+*	   Dataverse	  Network	  
+*	   Infochimps	  
+*	   Linked	  Data	  
+*	   Data	  Market	  
+*	   Reddit	  Open	  Data	  
+*	   Climate	  Data	  
+Sources	  
+*	   Climate	  Station	  
+Records	  
+*	   CDC	  Data	  
+*	   World	  Bank	  Catalog	  
+*	   StateMaster	  
+*	   Socrata	  
+*	   The	  UN	  
+*	   Weatherbase	  
+*	   ESPN	  
+*	   Datamarket	  
+*	   Google	  Public	  Data	  
+*	   Million	  Song	  
+Database	  
+*	   Hillary	  Mason's	  
+aggregation	  of	  
+Dataset	  links	  
+*	   NASDAQ	  Data	  Store	  
+*	   KDNuggets	  links	  
+*	   Amazon	  Public	  
+Datasets	  
+*	   Data	  NYC	  
+*	   Freebase	  
+*	   DBpedia	  
+*	   Enigma	  
+*	   Reuters	  Corpora	  
+*	   World	  bank	  Data	  
+*	   International	  
+Monitory	  Fund	  Data
+
+--- PAGE 33 ---
+Libre Office
+❖Load a spreadsheet with data!
+❖Make a time series line plot
+
+--- PAGE 34 ---
+Python/Pandas/Matplotlib/Ipython
+❖Load a time series of data!
+❖Make a line plot
+
+--- PAGE 35 ---
+Data Transformations
+
+--- PAGE 36 ---
+Can the data be visualized as-is?
+❖1885 Hight data from Francis Galton on 928 (adult) 
+children
+
+--- PAGE 37 ---
+Yum Data
+61.7, 61.7, 61.7, 61.7, 61.7, 62.2, 62.2, 62.2, 62.2, 62.2, 62.2, 62.2, 63.2, 63.2, 63.2, 63.2, 63.2, 63.2, 63.2, 63.2, 63.2, 63.2, 63.2, 63.2, 63.2, 63.2, 63.2, 63.2, 63.2, 63.2, 63.2, 63.2, 63.2, 
+63.2, 63.2, 63.2, 63.2, 63.2, 63.2, 63.2, 63.2, 63.2, 63.2, 63.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 
+64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 64.2, 
+64.2, 64.2, 64.2, 64.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 
+65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 65.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 
+66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 
+66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 
+66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 66.2, 
+66.2, 66.2, 66.2, 66.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 
+67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 
+67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 
+67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 
+67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 67.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 
+68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 
+68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 
+68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 68.2, 69.2, 69.2, 
+69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 
+69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 
+69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 
+69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 
+69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 69.2, 
+70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 
+70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 
+70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 70.2, 
+71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 
+71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 71.2, 72.2, 72.2, 
+72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 
+72.2, 72.2, 72.2, 72.2, 72.2, 72.2, 73.2, 73.2, 73.2, 73.2, 73.2, 73.2, 73.2, 73.2, 73.2, 73.2, 73.2, 73.2, 73.2, 73.2, 73.2, 73.2, 73.2, 73.7, 73.7, 73.7, 73.7, 73.7, 73.7, 73.7, 73.7, 73.7, 73.7, 
+73.7, 73.7, 73.7, 73.7
+Now what??
+
+--- PAGE 38 ---
+Vertical lines (1D data)
+Height
+Not too !
+illuminating
+
+--- PAGE 39 ---
+Sort and Plot
+Height
+Subject Rank (shortest to tallest)
+
+--- PAGE 40 ---
+Distribution (histogram)
+0
+45
+90
+135
+180
+61.7-62.9
+62.9-64.1
+64.1-65.3
+65.3-66.5
+66.5-67.7
+67.7-68.9
+68.9-70.1
+70.1-71.3
+71.3-72.5
+72.5-73.7
+
+--- PAGE 41 ---
+Probability
+0
+0.045
+0.09
+0.135
+0.18
+61.7-62.9
+62.9-64.1
+64.1-65.3
+65.3-66.5
+66.5-67.7
+67.7-68.9
+68.9-70.1
+70.1-71.3
+71.3-72.5
+72.5-73.7
+
+--- PAGE 42 ---
+Probability using Using KDE
+
+--- PAGE 43 ---
+Galton Data also has “midparent” height.
+❖Mid-parent height = mean(father hight, 1.08* mother 
+height)
+How do we show relationship?
+
+--- PAGE 44 ---
+Scatter Plot
+Uggh! Data heavily quantized. Blah.
+
+--- PAGE 45 ---
+KDE also possible
+❖We can do a Kernel Density estimator to ﬁnd surface
+
+--- PAGE 46 ---
+Contour Plot (2D)
+
+--- PAGE 47 ---
+Box and Whiskers
+First Quartile
+Median (Second Quartile)
+Third Quartile
+Min
+Max
+lowest datum still within 1.5 IQR
+outlier
+
+--- PAGE 48 ---
+Matplotlib Boxplot
+
+--- PAGE 49 ---
+Candle Stick Chart
+Finance
+
+--- PAGE 50 ---
+Moving Averages Smoothing
+
+--- PAGE 51 ---
+Visualization Zoo (Heer,Bostock, 
+et al)
+
+--- PAGE 52 ---
+Time Series: Index Charts
+
+--- PAGE 53 ---
+Time Series: Stacked Graph
+
+--- PAGE 54 ---
+Small Multiples
+
+--- PAGE 55 ---
+Scatter Plot
+
+--- PAGE 56 ---
+Parallel Coordinates
+
+--- PAGE 57 ---
+Radar Chart
+Typically Positive data
+
+--- PAGE 58 ---
+Map(s)
+More in Later Lecture
+Flow
+Graduated!
+Symbol!
+Map
+Cloropleth
+Cartogram
+
+--- PAGE 59 ---
+Hierarchies
+
+--- PAGE 60 ---
+Network
+
+--- PAGE 61 ---
+Recommended Tool for Static Plots
+http://matplotlib.org/
+
+--- PAGE 62 ---
+Rapid Prototyping: Use Ipython
+http://nbviewer.ipython.org/github/jrjohansson/scientiﬁc-python-lectures/blob/master/
+Lecture-4-Matplotlib.ipynb 
+http://ipython.org/ 
+
+--- PAGE 63 ---
+http://www.erh.noaa.gov/okx/climate/almanacs/nycaug.htm
+
+--- PAGE 64 ---
+Libre Office Method
+❖“Manually chop out data”!
+❖Put in spreadsheet!
+❖Use “chart” function!
+❖Fix up
+
+--- PAGE 65 ---
+Manually Chop Out Data
+❖Here I use 
+Vim block 
+select to 
+pull out 
+data
+
+--- PAGE 66 ---
+Libre Office (or spreadsheet prog)
+❖Paste data in!
+❖Delete blank 
+lines
+
+--- PAGE 67 ---
+Chart Wizard
+
+--- PAGE 68 ---
+Label and adjust 
+
+--- PAGE 69 ---
+Pro/Cons
+❖Pros:!
+❖WYSIWYG!
+❖Can directly manipulate data!
+❖Easily try options!
+❖Cons:!
+❖Difﬁcult to automate!
+❖Limited ﬂexibility!
+❖Limited processing options
+
+--- PAGE 70 ---
+Python
+❖Can interactively work with !
+❖ipython shell!
+❖ipython notebook!
+❖Can save notebook or turn into script
+
+--- PAGE 71 ---
+Python Distribution (one choice)
+https://store.continuum.io/cshop/academicanaconda
+https://store.continuum.io/cshop/anaconda/ 
+
+--- PAGE 72 ---
+Other choices
+❖Mac OS: homebrew (http://brew.sh/) install python, 
+then numpy, matplotlib, scipy using home-brew … 
+everything else with pip!
+❖Linux Ubuntu apt-get (yum for redhat) for  numpy, 
+matplotlib, scipy!
+❖Windows: use anaconda (previous slide) or Ubuntu 
+inside Virtual Box VM then see above
+
+--- PAGE 73 ---
+Start Notebook
+❖$ ipython notebook!
+❖(assumes installation and set up ok)
+
+--- PAGE 74 ---
+Open New Notebook
+
+--- PAGE 75 ---
+Initial Load Needed libraries
+
+--- PAGE 76 ---
+Request Library for Loading from Web
+Hard Way
+Easier API
+
+--- PAGE 77 ---
+Load Data from Web
+
+--- PAGE 78 ---
+Text Munging (scraping)
+❖Some string 
+methods:!
+❖'endswith',!
+❖ 'expandtabs',!
+❖ 'ﬁnd',!
+❖ 'index',!
+❖ 'isalnum',!
+❖ 'isalpha',!
+❖ 'isdigit',!
+❖ 'islower',!
+❖ 'isspace',!
+❖ 'istitle',!
+❖ 'isupper',!
+❖ 'lstrip',!
+❖ 'partition',!
+❖ 'replace',!
+❖ 'rﬁnd',!
+❖ 'rindex',!
+❖ 'rjust',!
+❖ 'rpartition',!
+❖ 'rsplit',!
+❖ 'rstrip',!
+❖ 'split',!
+❖ 'splitlines',!
+❖ 'startswith',!
+❖ 'strip'
+
+--- PAGE 79 ---
+Regular Expressions (Regexp)
+
+--- PAGE 80 ---
+but …
+Some people, when confronted with a problem, think "I 
+know, I'll use regular expressions." Now they have two 
+problems.!
+❖Jamie Zawinski (?)
+
+--- PAGE 81 ---
+Regexp (very useful)
+
+--- PAGE 82 ---
+Look for data lines with regexp
+
+--- PAGE 83 ---
+Split then filter
+
+--- PAGE 84 ---
+Extract Numbers and Convert
+
+--- PAGE 85 ---
+Quick Plot
+
+--- PAGE 86 ---
+Explicitly Set Properties
+
+--- PAGE 87 ---
+Imperative vs Object Approach 
+vs
+
+--- PAGE 88 ---
+Tableau may also be helpful
+http://www.tableau.com/ 
+
+--- PAGE 89 ---
+Later use D3
+
+--- PAGE 90 ---
+Raw lets you do some D3 pro typing
+
+--- PAGE 91 ---
+Some Recommended Software Tools
+❖mercurial (bit bucket)/git github [version control]!
+❖scientiﬁc python tools!
+❖python, numpy, scipy, matplotilib, pandas, ipython, 
+basemap!
+❖linux (apt-get)/pip, mac (homebrew), mac/windows 
+anaconda from continuum!
+❖D3!
+❖Editor, web browser (vim/sublime text2)
+
+--- PAGE 92 ---
+Supplemental Tools
+❖Libre Ofﬁce/Google Docs Spreadsheet!
+❖Inkscape (for vector/svg editing)!
+❖Gimp (for pixel editing)!
+❖tableau (http://www.tableausoftware.com) free version!
+❖Other python vis libraries:  networkX, mayavi2 (3D), bokeh, seaborn, chaco, 
+vincent, ggplot (python)!
+❖Other Javascript libraries: three.js (3D), philogl (3d), processing.js, digraphs.js, 
+polymaps.js, dimple.js!
+❖R has ggplot2!
+❖Gephi
+
+--- PAGE 93 ---
+Some Guiding Principles
+
+--- PAGE 94 ---
+What to we mean by good design?
+Design is a funny word. 
+Some people think design 
+means how it looks. But of 
+course, if you dig deeper, 
+it's really how it works.!
+!
+Steve Jobs
+
+--- PAGE 95 ---
+Attributes of good design
+Judo Master: Kano Jigoro!
+!
+Maximum Efﬁciency !
+with Minimum Effort
+
+--- PAGE 96 ---
+Edward Tufte
+American Statistician!
+!
+Pioneer!
+!
+Can be controversial!
+!
+Hard to overstate importance
+
+--- PAGE 97 ---
+Principle Tufte: Graphical Integrity
+
+--- PAGE 98 ---
+Lie Factor
+
+--- PAGE 99 ---
+
+--- PAGE 100 ---
+
+--- PAGE 101 ---
+
+--- PAGE 102 ---
+
+--- PAGE 103 ---
+
+--- PAGE 104 ---
+And then there are pie charts
+
+--- PAGE 105 ---
+
+--- PAGE 106 ---
+
+--- PAGE 107 ---
+
+--- PAGE 108 ---
+
+--- PAGE 109 ---
+3D adds to Extra Distortion
+
+--- PAGE 110 ---
+
+--- PAGE 111 ---
+More Baloney than Lies
+
+--- PAGE 112 ---
+nanocubes.net 
+
+--- PAGE 113 ---
+Actually Content Free
+
+--- PAGE 114 ---
+Missing Data is also a Problem
+Some hydrology data we were working with.
+
+--- PAGE 115 ---
+Learning from Social Networks
+http://ebiquity.umbc.edu/blogger/2007/04/19/twitter-social-network-analysis/
+
+--- PAGE 116 ---
+Problems with Social Network Data
+
+--- PAGE 117 ---
+Numbers don’t Lie?
+
+--- PAGE 118 ---
+Maximize: Data to Ink Ratio
+
+--- PAGE 119 ---
+
+--- PAGE 120 ---
+
+--- PAGE 121 ---
+Chart JUNK
+
+--- PAGE 122 ---
+If you paid for decoration?
+A designer knows he has 
+achieved perfection not when 
+there is nothing left to add, but 
+when there is nothing left to take 
+away.!
+Antoine de Saint-Exupery
+
+--- PAGE 123 ---
+
+--- PAGE 124 ---
+Tim Brey
+
+--- PAGE 125 ---
+
+--- PAGE 126 ---
+
+--- PAGE 127 ---
+
+--- PAGE 128 ---
+
+--- PAGE 129 ---
+
+--- PAGE 130 ---
+
+--- PAGE 131 ---
+
+--- PAGE 132 ---
+Principle: Increase Data Density
+
+--- PAGE 133 ---
+ Ho et al., “Thermal Conductivity of the!
+Elements: A Comprehensive Review” J.!
+Phys. Chem. 1974
+
+--- PAGE 134 ---
+100 Million Calls to 311 by Steven Johnson 2011
+
+--- PAGE 135 ---
+Tufte Principles
+❖Don’t Lie!
+❖Maximize Data to Ink Ratio!
+❖Avoid Chart Junk!
+❖Increase Data Intensity
+
+--- PAGE 136 ---
+Hannah’s Rules 
+❖http://hackerspace.lifehacker.com/5-rules-for-making-
+graphs-1605706367
+
+--- PAGE 137 ---
+1. Label Everything
+Important: Meaningful Titles!
+                    Label Axis!
+                    List data source
+
+--- PAGE 138 ---
+2. Work with the Numbers
+Should be zoomed!
+on range of data
+
+--- PAGE 139 ---
+3. Choose Colors Carefully
+
+--- PAGE 140 ---
+4. Know your Audience
+14 year olds
+Professors
+
+--- PAGE 141 ---
+5. Use the Correct Graph
+
+--- PAGE 142 ---
+The Big Picture
+
+--- PAGE 143 ---
+
+--- PAGE 144 ---
+Categorical!
+Qualitative
+
+--- PAGE 145 ---
+Nominal, Ordinal and Quantitative
+❖N: Nominal (labels)!
+❖Eg. Animals, pigs, goats, cattle!
+❖O: Ordered!
+❖Eg. XS, S, M, L, XL, XXL!
+❖Q: Interval (zero irrelevant) !
+❖Eg. Dates, Location (lon, lat)!
+❖Q: Ratio (linear scale)!
+❖Eg. Mass, charge, speed
+
+--- PAGE 146 ---
+Data Types (Operations)
+❖Nominal: =, ≠!
+❖Ordinal: =, ≠ and <, >!
+❖Interval: =, ≠, <, >, and  - (distance between points), + 
+(diff)!
+❖Ratio: =, ≠, <, >,+,-, and x,÷
+
+--- PAGE 147 ---
+
+--- PAGE 148 ---
+
+--- PAGE 149 ---
+
+--- PAGE 150 ---
+
+--- PAGE 151 ---
+
+--- PAGE 152 ---
+Example: U.S. Census Data
+❖People: # of people in group!
+❖Year: 1850 – 2000 (every decade)!
+❖Age: 0 – 90+!
+❖Sex: Male, Female!
+❖Marital Status: Single, Married, Divorced, …
+
+--- PAGE 153 ---
+Census Data
+❖People!
+❖Year!
+❖Age!
+❖Sex!
+❖Marital Status!
+❖2348 data points
+
+--- PAGE 154 ---
+Census: N, O, Q?
+❖People Count……!
+❖Year………………!
+❖Age………………!
+❖Sex……………….!
+❖Marital Status…..
+
+--- PAGE 155 ---
+Census: N, O, Q?
+❖People Count……!
+❖Year………………!
+❖Age………………!
+❖Sex……………….!
+❖Marital Status…..
+Q-Ratio!
+Q-Interval (O)!
+Q-Ratio (O)!
+N!
+N
+
+--- PAGE 156 ---
+Visual Variables
+
+--- PAGE 157 ---
+Jacques Bertin
+❖French cartographer 
+[1918-2010]!
+❖Semiology of Graphics [1967]!
+❖Theoretical principles for 
+visual encodings
+
+--- PAGE 158 ---
+Bertin’sVisual Variables
+Position
+Size
+(Grey)Value
+Texture
+Color
+Orientation
+Shape
+Channels
+Points
+Lines
+Areas
+Marks
+
+--- PAGE 159 ---
+Position
+❖Strongest visual variable!
+❖Suitable for all data types!
+❖Problems:!
+❖Sometimes not available!
+❖Cluttering
+
+--- PAGE 160 ---
+Position in 3D?
+[Spo%ire]
+
+--- PAGE 161 ---
+Size & Length
+❖Good visual variable!
+❖Easy to see whether one is bigger!
+❖Grouping works!
+❖Judging differences!
+❖Good for aligned bars (position)!
+❖OK for changes in length!
+❖Bad for changes in area 
+
+--- PAGE 162 ---
+Shape
+❖Great to recognize many classes.!
+❖No grouping, ordering.
+
+--- PAGE 163 ---
+Value
+❖Good for quantitative data 
+when length & size are used.!
+❖Not very many shades 
+recognizable!
+❖Supports grouping!
+❖Is pre-attentive (stands out) if 
+sufﬁciently different
+
+--- PAGE 164 ---
+Color (Hue)
+❖Good for qualitative data!
+❖Limited number of classes!!
+❖Not good for quantitative data!!
+❖Is pre-attentive if sufﬁciently different.!
+❖Lots of pitfalls! Be careful! 
+Hue
+
+--- PAGE 165 ---
+Saturation (color)
+❖Good for Qualitative Data!
+❖Good for Ordered Data!
+❖Ok for Quantitative Data
+Saturation
+
+--- PAGE 166 ---
+http://blog.visual.ly/45-ways-to-communicate-two-quantities/ 
+
+--- PAGE 167 ---
+Bertin, 1967
+
+--- PAGE 168 ---
+Heer & Bostock, 2010
+
+--- PAGE 169 ---
+Quantitative
+Ordinal
+Nominal
+Most !
+Efﬁcient
+Least !
+Efﬁcient
+}
+}
+}
+
+--- PAGE 170 ---
+Most Effective
+
+--- PAGE 171 ---
+Less Effective
+
+--- PAGE 172 ---
+Least Effective
+

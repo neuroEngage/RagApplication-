@@ -1,0 +1,1430 @@
+--- PAGE 1 ---
+Data Science Cheatsheet
+Compiled by Maverick Lin (http://mavericklin.com)
+Last Updated August 13, 2018
+Multi-disciplinary ﬁeld that brings together concepts
+from computer science, statistics/machine learning, and
+data analysis to understand and extract insights from the
+ever-increasing amounts of data.
+Two paradigms of data research.
+1. Hypothesis-Driven: Given a problem, what kind
+of data do we need to help solve it?
+2. Data-Driven: Given some data, what interesting
+problems can be solved with it?
+The heart of data science is to always ask questions. Al-
+ways be curious about the world.
+1. What can we learn from this data?
+2. What actions can we take once we ﬁnd whatever it
+is we are looking for?
+What is Data Science?
+Structured: Data that has predeﬁned structures.
+e.g.
+tables, spreadsheets, or relational databases.
+Unstructured Data:
+Data with no predeﬁned struc-
+ture, comes in any size or form, cannot be easily stored
+in tables. e.g. blobs of text, images, audio
+Quantitative Data: Numerical. e.g. height, weight
+Categorical Data: Data that can be labeled or divided
+into groups. e.g. race, sex, hair color.
+Big Data:
+Massive datasets, or data that contains
+greater variety arriving in increasing volumes and with
+ever-higher velocity (3 Vs). Cannot ﬁt in the memory of
+a single machine.
+Data Sources/Fomats
+Most Common Data Formats CSV, XML, SQL,
+JSON, Protocol Buﬀers
+Data Sources Companies/Proprietary Data, APIs, Gov-
+ernment, Academic, Web Scraping/Crawling
+;
+Types of Data
+Two problems arise repeatedly in data science.
+Classiﬁcation: Assigning something to a discrete set of
+possibilities. e.g. spam or non-spam, Democrat or Repub-
+lican, blood type (A, B, AB, O)
+Regression: Predicting a numerical value. e.g. some-
+one’s income, next year GDP, stock price
+Main Types of Problems
+Probability theory provides a framework for reasoning
+about likelihood of events.
+Terminology
+Experiment: procedure that yields one of a possible set
+of outcomes e.g. repeatedly tossing a die or coin
+Sample Space S: set of possible outcomes of an experi-
+ment e.g. if tossing a die, S = (1,2,3,4,5,6
+Event E: set of outcomes of an experiment e.g.
+event
+that a roll is 5, or the event that sum of 2 rolls is 7
+Probability of an Outcome s or P(s): number that
+satisﬁes 2 properties
+1. for each outcome s, 0 ≤P(s) ≤1
+2. P p(s) = 1
+Probability of Event E: sum of the probabilities of the
+outcomes of the experiment: p(E) = P
+s⊂E p(s)
+Random Variable V: numerical function on the out-
+comes of a probability space
+Expected Value of Random Variable V: E(V) =
+P
+s⊂S p(s) * V(s)
+Independence, Conditional, Compound
+Independent Events: A and B are independent iﬀ:
+P(A ∩B) = P(A)P(B)
+P(A|B) = P(A)
+P(B|A) = P(B)
+Conditional Probability: P(A|B) = P(A,B)/P(B)
+Bayes Theorem: P(A|B) = P(B|A)P(A)/P(B)
+Joint Probability: P(A,B) = P(B|A)P(A)
+Marginal Probability: P(A)
+Probability Distributions
+Probability Density Function (PDF) Gives the prob-
+ability that a rv takes on the value x: pX(x) = P(X = x)
+Cumulative Density Function (CDF) Gives the prob-
+ability that a random variable is less than or equal to x:
+FX(x) = P(X ≤x)
+Note: The PDF and the CDF of a given random variable
+contain exactly the same information.
+Probability Overview
+Provides a way of capturing a given data set or sample.
+There are two main types: centrality and variability
+measures.
+Centrality
+Arithmetic Mean Useful to characterize symmetric
+distributions without outliers µX = 1
+n
+P x
+Geometric Mean Useful for averaging ratios.
+Always
+less than arithmetic mean = n√a1a2...a3
+Median Exact middle value among a dataset. Useful for
+skewed distribution or data with outliers.
+Mode Most frequent element in a dataset.
+Variability
+Standard Deviation
+Measures the squares diﬀerences
+between the individual elements and the mean
+σ =
+q PN
+i=1(xi−x)2
+N−1
+Variance V = σ2
+Interpreting Variance
+Variance is an inherent part of the universe. It is impossi-
+ble to obtain the same results after repeated observations
+of the same event due to random noise/error. Variance
+can be explained away by attributing to sampling or
+measurement errors. Other times, the variance is due to
+the random ﬂuctuations of the universe.
+Correlation Analysis
+Correlation coeﬃcients r(X,Y) is a statistic that measures
+the degree that Y is a function of X and vice versa.
+Correlation values range from -1 to 1, where 1 means
+fully correlated, -1 means negatively-correlated, and 0
+means no correlation.
+Pearson Coeﬃcient Measures the degree of the rela-
+tionship between linearly related variables
+r = Cov(X,Y )
+σ(X)σ(Y )
+Spearman Rank Coeﬃcient Computed on ranks and
+depicts monotonic relationships
+Note: Correlation does not imply causation!
+Descriptive Statistics
+
+--- PAGE 2 ---
+Data Cleaning is the process of turning raw data into
+a clean and analyzable data set.
+”Garbage in, garbage
+out.” Make sure garbage doesn’t get put in.
+Errors vs. Artifacts
+1. Errors:
+information that is lost during acquisi-
+tion and can never be recovered e.g. power outage,
+crashed servers
+2. Artifacts:
+systematic problems that arise from
+the data cleaning process.
+these problems can be
+corrected but we must ﬁrst discover them
+Data Compatibility
+Data compatibility problems arise when merging datasets.
+Make sure you are comparing ”apples to apples” and
+not
+”apples
+to
+oranges”.
+Main
+types
+of
+conver-
+sions/uniﬁcations:
+• units (metric vs. imperial)
+• numbers (decimals vs. integers),
+• names (John Smith vs. Smith, John),
+• time/dates (UNIX vs. UTC vs. GMT),
+• currency (currency type, inﬂation-adjusted, divi-
+dends)
+Data Imputation
+Process of dealing with missing values. The proper meth-
+ods depend on the type of data we are working with. Gen-
+eral methods include:
+• Drop all records containing missing data
+• Heuristic-Based: make a reasonable guess based on
+knowledge of the underlying domain
+• Mean Value: ﬁll in missing data with the mean
+• Random Value
+• Nearest Neighbor: ﬁll in missing data using similar
+data points
+• Interpolation: use a method like linear regression to
+predict the value of the missing data
+Outlier Detection
+Outliers can interfere with analysis and often arise from
+mistakes during data collection. It makes sense to run a
+”sanity check”.
+Miscellaneous
+Lowercasing,
+removing
+non-alphanumeric,
+repairing,
+unidecode, removing unknown characters
+Note: When cleaning data, always maintain both the raw
+data and the cleaned version(s). The raw data should be
+kept intact and preserved for future use. Any type of data
+cleaning/analysis should be done on a copy of the raw
+data.
+Data Cleaning
+Feature engineering is the process of using domain knowl-
+edge to create features or input variables that help ma-
+chine learning algorithms perform better. Done correctly,
+it can help increase the predictive power of your models.
+Feature engineering is more of an art than science. FE is
+one of the most important steps in creating a good model.
+As Andrew Ng puts it:
+“Coming up with features is diﬃcult, time-consuming,
+requires expert knowledge. ‘Applied machine learning’ is
+basically feature engineering.”
+Continuous Data
+Raw Measures: data that hasn’t been transformed yet
+Rounding:
+sometimes precision is noise;
+round to
+nearest integer, decimal etc..
+Scaling: log, z-score, minmax scale
+Imputation: ﬁll in missing values using mean, median,
+model output, etc..
+Binning: transforming numeric features into categorical
+ones (or binned) e.g. values between 1-10 belong to A,
+between 10-20 belong to B, etc.
+Interactions: interactions between features: e.g.
+sub-
+traction, addition, multiplication, statistical test
+Statistical:
+log/power transform (helps turn skewed
+distributions more normal), Box-Cox
+Row Statistics: number of NaN’s, 0’s, negative values,
+max, min, etc
+Dimensionality Reduction:
+using PCA, clustering,
+factor analysis etc
+Discrete Data
+Encoding: since some ML algorithms cannot work on
+categorical data, we need to turn categorical data into nu-
+merical data or vectors
+Ordinal Values: convert each distinct feature into a ran-
+dom number (e.g. [r,g,b] becomes [1,2,3])
+One-Hot Encoding: each of the m features becomes a
+vector of length m with containing only one 1 (e.g. [r, g,
+b] becomes [[1,0,0],[0,1,0],[0,0,1]])
+Feature Hashing Scheme: turns arbitrary features into
+indices in a vector or matrix
+Embeddings: if using words, convert words to vectors
+(word embeddings)
+Feature Engineering
+Process of statistical reasoning: there is an underlying
+population of possible things we can potentially observe
+and only a small subset of them are actually sampled (ide-
+ally at random). Probability theory describes what prop-
+erties our sample should have given the properties of the
+population, but statistical inference allows us to deduce
+what the full population is like after analyzing the sample.
+Sampling From Distributions
+Inverse Transform Sampling Sampling points from
+a given probability distribution is sometimes necessary
+to run simulations or whether your data ﬁts a particular
+distribution.
+The general technique is called inverse
+transform sampling or Smirnov transform.
+First draw
+a random number p between [0,1].
+Compute value x
+such that the CDF equals p: FX(x) = p. Use x as the
+value to be the random value drawn from the distribution
+described by FX(x).
+Monte Carlo Sampling In higher dimensions, correctly
+sampling from a given distribution becomes more tricky.
+Generally want to use Monte Carlo methods, which
+typically follow these rules: deﬁne a domain of possible
+inputs,
+generate
+random
+inputs
+from
+a
+probability
+distribution over the domain, perform a deterministic
+calculation, and analyze the results.
+Statistical Analysis
+
+--- PAGE 3 ---
+Binomial Distribution (Discrete)
+Assume X is distributed Bin(n,p).
+X is the number of
+”successes” that we will achieve in n independent trials,
+where each trial is either a success or failure and each
+success occurs with the same probability p and each
+failure occurs with probability q=1-p.
+PDF: P(X = x) =
+ n
+k
+
+px(1 −p)n−x
+EV: µ = np
+Variance = npq
+Normal/Gaussian Distribution (Continuous)
+Assume X in distributed N(µ, σ2).
+It is a bell-shaped
+and symmetric distribution. Bulk of the values lie close
+to the mean and no value is too extreme. Generalization
+of the binomial distribution as n →∞.
+PDF: P(x) =
+1
+σ
+√
+2π e−(x−µ)2/2σ2
+EV: µ
+Variance: σ2
+Implications: 68%-95%-99% rule.
+68% of probability
+mass fall within 1σ of the mean, 95% within 2σ, and
+99.7% within 3σ.
+Poisson Distribution (Discrete)
+Assume X is distributed Pois(λ).
+Poisson expresses
+the probability of a given number of events occurring
+in a ﬁxed interval of time/space if these events occur
+independently and with a known constant rate λ.
+PDF: P (x) = e−λλx
+x!
+EV: λ
+Variance = λ
+Power Law Distributions (Discrete)
+Many data distributions have much longer tails than
+the normal or Poisson distributions.
+In other words,
+the change in one quantity varies as a power of another
+quantity.
+It helps measure the inequality in the world.
+e.g. wealth, word frequency and Pareto Principle (80/20
+Rule)
+PDF: P(X=x) = cx−α, where α is the law’s exponent
+and c is the normalizing constant
+Classic Statistical Distributions
+Modeling is the process of incorporating information into
+a tool which can forecast and make predictions. Usually,
+we are dealing with statistical modeling where we want
+to analyze relationships between variables. Formally, we
+want to estimate a function f(X) such that:
+Y = f(X) + ϵ
+where X = (X1, X2, ...Xp) represents the input variables,
+Y represents the output variable, and ϵ represents random
+error.
+Statistical learning is set of approaches for estimating
+this f(X).
+Why Estimate f(X)?
+Prediction: once we have a good estimate ˆf(X), we can
+use it to make predictions on new data. We treat ˆf as a
+black box, since we only care about the accuracy of the
+predictions, not why or how it works.
+Inference:
+we want to understand the relationship
+between X and Y. We can no longer treat ˆf as a black
+box since we want to understand how Y changes with
+respect to X = (X1, X2, ...Xp)
+More About ϵ
+The error term ϵ is composed of the reducible and irre-
+ducible error, which will prevent us from ever obtaining a
+perfect ˆf estimate.
+• Reducible: error that can potentially be reduced
+by using the most appropriate statistical learning
+technique to estimate f.
+The goal is to minimize
+the reducible error.
+• Irreducible:
+error that cannot be reduced no
+matter how well we estimate f. Irreducible error is
+unknown and unmeasurable and will always be an
+upper bound for ϵ.
+Note:
+There will always be trade-oﬀs between model
+ﬂexibility (prediction) and model interpretability (infer-
+ence). This is just another case of the bias-variance trade-
+oﬀ. Typically, as ﬂexibility increases, interpretability de-
+creases. Much of statistical learning/modeling is ﬁnding a
+way to balance the two.
+Modeling- Overview
+Modeling is the process of incorporating information
+into a tool which can forecast and make predictions.
+Designing and validating models is important, as well as
+evaluating the performance of models. Note that the best
+forecasting model may not be the most accurate one.
+Philosophies of Modeling
+Occam’s Razor Philosophical principle that the simplest
+explanation is the best explanation. In modeling, if we
+are given two models that predicts equally well, we should
+choose the simpler one. Choosing the more complex one
+can often result in overﬁtting.
+Bias Variance Trade-OﬀInherent part of predictive
+modeling, where models with lower bias will have higher
+variance and vice versa. Goal is to achieve low bias and
+low variance.
+• Bias: error from incorrect assumptions to make tar-
+get function easier to learn (high bias →missing rel-
+evant relations or underﬁtting)
+• Variance: error from sensitivity to ﬂuctuations in
+the dataset, or how much the target estimate would
+diﬀer if diﬀerent training data was used (high vari-
+ance →modeling noise or overﬁtting)
+No Free Lunch Theorem No single machine learning
+algorithm is better than all the others on all problems.
+It is common to try multiple models and ﬁnd one that
+works best for a particular problem.
+Thinking Like Nate Silver
+1. Think Probabilistically Probabilistic forecasts are
+more meaningful than concrete statements and should be
+reported as probability distributions (including σ along
+with mean prediction µ.
+2.
+Incorporate New Information Use live models,
+which continually updates using new information. To up-
+date, use Bayesian reasoning to calculate how probabilities
+change in response to new evidence.
+3. Look For Consensus Forecast Use multiple distinct
+sources of evidence. Ssome models operate this way, such
+as boosting and bagging, which uses large number of weak
+classiﬁers to produce a strong one.
+Modeling- Philosophies
+
+--- PAGE 4 ---
+There are many diﬀerent types of models. It is important
+to understand the trade-oﬀs and when to use a certain
+type of model.
+Parametric vs. Nonparametric
+• Parametric: models that ﬁrst make an assumption
+about a function form, or shape, of f (linear). Then
+ﬁts the model.
+This reduces estimating f to just
+estimating set of parameters, but if our assumption
+was wrong, will lead to bad results.
+• Non-Parametric: models that don’t make any as-
+sumptions about f, which allows them to ﬁt a wider
+range of shapes; but may lead to overﬁtting
+Supervised vs. Unsupervised
+• Supervised: models that ﬁt input variables xi =
+(x1, x2, ...xn) to a known output variables yi =
+(y1, y2, ...yn)
+• Unsupervised: models that take in input variables
+xi = (x1, x2, ...xn), but they do not have an asso-
+ciated output to supervise the training.
+The goal
+is understand relationships between the variables or
+observations.
+Blackbox vs. Descriptive
+• Blackbox: models that make decisions, but we do
+not know what happens ”under the hood” e.g. deep
+learning, neural networks
+• Descriptive: models that provide insight into why
+they make their decisions e.g. linear regression, de-
+cision trees
+First-Principle vs. Data-Driven
+• First-Principle: models based on a prior belief of
+how the system under investigation works, incorpo-
+rates domain knowledge (ad-hoc)
+• Data-Driven: models based on observed correla-
+tions between input and output variables
+Deterministic vs. Stochastic
+• Deterministic: models that produce a single ”pre-
+diction” e.g. yes or no, true or false
+• Stochastic: models that produce probability distri-
+butions over possible events
+Flat vs. Hierarchical
+• Flat: models that solve problems on a single level,
+no notion of subproblems
+• Hierarchical: models that solve several diﬀerent
+nested subproblems
+Modeling- Taxonomy
+Need to determine how good our model is. Best way to
+assess models is out-of-sample predictions (data points
+your model has never seen).
+Classiﬁcation
+Predicted Yes
+Predicted No
+Actual Yes
+True Positives (TP)
+False Negatives (FN)
+Actual No
+False Positives (FP)
+True Negatives (TN)
+Accuracy:
+ratio of correct predictions over total pre-
+dictions.
+Misleading when class sizes are substantially
+diﬀerent. accuracy =
+T P +T N
+T P +T N+F N+F P
+Precision:
+how often the classiﬁer is correct when it
+predicts positive: precision =
+T P
+T P +F P
+Recall: how often the classiﬁer is correct for all positive
+instances: recall =
+T P
+T P +F N
+F-Score: single measurement to describe performance:
+F = 2 ·
+precision·recall
+precision + recall
+ROC Curves: plots true positive rates and false pos-
+itive rates for various thresholds, or where the model
+determines if a data point is positive or negative (e.g. if
+>0.8, classify as positive). Best possible area under the
+ROC curve (AUC) is 1, while random is 0.5, or the main
+diagonal line.
+Regression
+Errors are deﬁned as the diﬀerence between a prediction
+y′ and the actual result y.
+Absolute Error: ∆= y′ −y
+Squared Error: ∆2 = (y′ −y)2
+Mean-Squared Error: MSE = 1
+n
+Pn
+i=1(y′i −yi)2
+Root Mean-Squared Error: RMSD =
+√
+MSE
+Absolute Error Distribution: Plot absolute error dis-
+tribution: should be symmetric, centered around 0, bell-
+shaped, and contain rare extreme outliers.
+Modeling- Evaluation Metrics
+Evaluation metrics provides use with the tools to estimate
+errors, but what should be the process to obtain the
+best estimate?
+Resampling involves repeatedly drawing
+samples from a training set and reﬁtting a model to each
+sample, which provides us with additional information
+compared to ﬁtting the model once, such as obtaining a
+better estimate for the test error.
+Key Concepts
+Training Data: data used to ﬁt your models or the set
+used for learning
+Validation Data: data used to tune the parameters of
+a model
+Test Data: data used to evaluate how good your model
+is. Ideally your model should never touch this data until
+ﬁnal testing/evaluation
+Cross Validation
+Class of methods that estimate test error by holding out
+a subset of training data from the ﬁtting process.
+Validation Set: split data into training set and valida-
+tion set. Train model on training and estimate test error
+using validation. e.g. 80-20 split
+Leave-One-Out
+CV
+(LOOCV):
+split
+data
+into
+training set and validation set, but the validation set
+consists of 1 observation. Then repeat n-1 times until all
+observations have been used as validation.
+Test erro is
+the average of these n test error estimates.
+k-Fold CV: randomly divide data into k groups (folds) of
+approximately equal size. First fold is used as validation
+and the rest as training. Then repeat k times and ﬁnd
+average of the k estimates.
+Bootstrapping
+Methods that rely on random sampling with replacement.
+Bootstrapping helps with quantifying uncertainty associ-
+ated with a given estimate or model.
+Amplifying Small Data Sets
+What can we do it we don’t have enough data?
+• Create Negative Examples- e.g. classifying pres-
+idential candidates, most people would be unquali-
+ﬁed so label most as unqualiﬁed
+• Synthetic Data- create additional data by adding
+noise to the real data
+Modeling- Evaluation Environment
+
+--- PAGE 5 ---
+Linear regression is a simple and useful tool for predicting
+a quantitative response. The relationship between input
+variables X = (X1, X2, ...Xp) and output variable Y takes
+the form:
+Y ≈β0 + β1X1 + ... + βpXp + ϵ
+β0...βp are the unknown coeﬃcients (parameters) which
+we are trying to determine.
+The best coeﬃcients
+will lead us to the best ”ﬁt”, which can be found by
+minimizing the residual sum squares
+(RSS), or the
+sum of the diﬀerences between the actual ith value and
+the predicted ith value. RSS = Pn
+i=1 ei, where ei = yi−ˆyi
+How to ﬁnd best ﬁt?
+Matrix Form: We can solve the closed-form equation for
+coeﬃcient vector w: w = (XT X)−1XT Y . X represents
+the input data and Y represents the output data. This
+method is used for smaller matrices, since inverting a
+matrix is computationally expensive.
+Gradient Descent: First-order optimization algorithm.
+We can ﬁnd the minimum of a convex
+function by
+starting at an arbitrary point and repeatedly take steps
+in the downward direction, which can be found by taking
+the negative direction of the gradient.
+After several
+iterations, we will eventually converge to the minimum.
+In our case, the minimum corresponds to the coeﬃcients
+with the minimum error, or the best line of ﬁt.
+The
+learning rate α determines the size of the steps we take
+in the downward direction.
+Gradient descent algorithm in two dimensions.
+Repeat
+until convergence.
+1. wt+1
+0
+:= wt
+0 −α
+∂
+∂w0 J(w0, w1)
+2. wt+1
+1
+:= wt
+1 −α
+∂
+∂w1 J(w0, w1)
+For non-convex functions, gradient descent no longer guar-
+antees an optimal solutions since there may be local min-
+imas. Instead, we should run the algorithm from diﬀerent
+starting points and use the best local minima we ﬁnd for
+the solution.
+Stochastic Gradient Descent: instead of taking a step
+after sampling the entire training set, we take a small
+batch of training data at random to determine our next
+step.
+Computationally more eﬃcient and may lead to
+faster convergence.
+Linear Regression
+Improving Linear Regression
+Subset/Feature Selection: approach involves identify-
+ing a subset of the p predictors that we believe to be best
+related to the response. Then we ﬁt model using the re-
+duced set of variables.
+• Best, Forward, and Backward Subset Selection
+Shrinkage/Regularization: all variables are used, but
+estimated coeﬃcients are shrunken towards zero relative
+to the least squares estimate.
+λ represents the tuning
+parameter- as λ increases, ﬂexibility decreases →de-
+creased variance but increased bias. The tuning parameter
+is key in determining the sweet spot between under and
+over-ﬁtting. In addition, while Ridge will always produce
+a model with p variables, Lasso can force coeﬃcients to
+be equal to zero.
+• Lasso (L1): min RSS + λ Pp
+j=1 |βj|
+• Ridge (L2): min RSS + λ Pp
+j=1 β2
+j
+Dimension Reduction: projecting p predictors into a
+M-dimensional subspace, where M < p. This is achieved
+by computing M diﬀerent linear combinations of the
+variables. Can use PCA.
+Miscellaneous:
+Removing outliers,
+feature scaling,
+removing multicollinearity (correlated variables)
+Evaluating Model Accuracy
+Residual Standard Error (RSE): RSE =
+q
+1
+n−2RSS.
+Generally, the smaller the better.
+R2:
+Measure of ﬁt that represents the proportion of
+variance explained, or the variability in Y that can be
+explained using X. It takes on a value between 0 and 1.
+Generally the higher the better. R2 = 1 −RSS
+T SS , where
+Total Sum of Squares (TSS) = P (yi −¯y)2
+Evaluating Coeﬃcient Estimates
+Standard Error (SE) of the coeﬃcients can be used to per-
+form hypothesis tests on the coeﬃcients:
+H0: No relationship between X and Y, Ha: Some rela-
+tionship exists.
+A p-value can be obtained and can be
+interpreted as follows: a small p-value indicates that a re-
+lationship between the predictor (X) and the response (Y)
+exists. Typical p-value cutoﬀs are around 5 or 1 %.
+Linear Regression II
+Logistic regression is used for classiﬁcation, where the
+response variable is categorical rather than numerical.
+The model works by predicting the probability that Y be-
+longs to a particular category by ﬁrst ﬁtting the data to a
+linear regression model, which is then passed to the logis-
+tic function (below). The logistic function will always pro-
+duce a S-shaped curve, so regardless of X, we can always
+obtain a sensible answer (between 0 and 1). If the prob-
+ability is above a certain predetermined threshold (e.g.
+P(Yes) > 0.5), then the model will predict Yes.
+p(X) =
+eβ0+β1X1+...+βpXp
+1+eβ0+β1X1+...+βpXp
+How to ﬁnd best coeﬃcients?
+Maximum Likelihood: The coeﬃcients β0...βp are un-
+known and must be estimated from the training data. We
+seek estimates for β0...βp such that the predicted proba-
+bility ˆp(xi) of each observation is a number close to one if
+its observed in a certain class and close to zero otherwise.
+This is done by maximizing the likelihood function:
+l(β0, β1) =
+Y
+i:yi=1
+p(xi)
+Y
+i′:yi′=1
+(1 −p(xi))
+Potential Issues
+Imbalanced Classes: imbalance in classes in training
+data lead to poor classiﬁers. It can result in a lot of false
+positives and also lead to few training data. Solutions in-
+clude forcing balanced data by removing observations from
+the larger class, replicate data from the smaller class, or
+heavily weigh the training examples toward instances of
+the larger class.
+Multi-Class Classiﬁcation: the more classes you try to
+predict, the harder it will be for the the classiﬁer to be ef-
+fective. It is possible with logistic regression, but another
+approach, such as Linear Discriminant Analysis (LDA),
+may prove better.
+Logistic Regression
+
+--- PAGE 6 ---
+Interpreting examples as points in space provides a way
+to ﬁnd natural groupings or clusters among data e.g.
+which stars are the closest to our sun? Networks can also
+be built from point sets (vertices) by connecting related
+points.
+Measuring Distances/Similarity Measure
+There are several ways of measuring distances between
+points a and b in d dimensions- with closer distances
+implying similarity.
+Minkowski Distance Metric: dk(a, b) =
+kqPd
+i=1 |ai −bi|k
+The parameter k provides a way to tradeoﬀbetween the
+largest and the total dimensional diﬀerence.
+In other
+words, larger values of k place more emphasis on large
+diﬀerences between feature values than smaller values. Se-
+lecting the right k can signiﬁcantly impact the the mean-
+ingfulness of your distance function. The most popular
+values are 1 and 2.
+• Manhattan (k=1): city block distance, or the sum
+of the absolute diﬀerence between two points
+• Euclidean (k=2): straight line distance
+Weighted Minkowski: dk(a, b) =
+kqPd
+i=1 wi|ai −bi|k, in
+some scenarios, not all dimensions are equal. Can convey
+this idea using wi.
+Generally not a good idea- should
+normalize data by Z-scores before computing distances.
+Cosine Similarity:
+cos(a, b)
+=
+a·b
+|a||b|,
+calculates the
+similarity between 2 non-zero vectors, where a · b is the
+dot product (normalized between 0 and 1), higher values
+imply more similar vectors
+Kullback-Leibler Divergence: KL(A||B) = Pd
+i=i ailog2
+ai
+bi
+KL divergence measures the distances between probabil-
+ity distributions by measuring the uncertainty gained or
+uncertainty lost when replacing distribution A with dis-
+tribution B. However, this is not a metric but forms the
+basis for the Jensen-Shannon Divergence Metric.
+Jensen-Shannon: JS(A, B) = 1
+2KL(A||M)+ 1
+2KL(M||B),
+where M is the average of A and B. The JS function is the
+right metric for calculating distances between probability
+distributions
+Distance/Network Methods
+Distance functions allow us to identify the points closest
+to a given target, or the nearest neighbors (NN) to a
+given point.
+The advantages of NN include simplicity,
+interpretability and non-linearity.
+k-Nearest Neighbors
+Given a positive integer k and a point x0, the KNN
+classiﬁer ﬁrst identiﬁes k points in the training data
+most
+similar
+to
+x0,
+then
+estimates
+the
+conditional
+probability of x0 being in class j as the fraction of
+the k points whose values belong to j.
+The opti-
+mal value for k can be found using cross validation.
+KNN Algorithm
+1. Compute distance D(a,b) from point b to all points
+2. Select k closest points and their labels
+3. Output class with most frequent labels in k points
+Optimizing KNN
+Comparing a query point a in d dimensions against n train-
+ing examples computes with a runtime of O(nd), which
+can cause lag as points reach millions or billions. Popular
+choices to speed up KNN include:
+• Vernoi Diagrams: partitioning plane into regions
+based on distance to points in a speciﬁc subset of
+the plane
+• Grid Indexes: carve up space into d-dimensional
+boxes or grids and calculate the NN in the same cell
+as the point
+• Locality Sensitive Hashing (LSH): abandons
+the idea of ﬁnding the exact nearest neighbors. In-
+stead, batch up nearby points to quickly ﬁnd the
+most appropriate bucket B for our query point. LSH
+is deﬁned by a hash function h(p) that takes a
+point/vector as input and produces a number/ code
+as output, such that it is likely that h(a) = h(b) if
+a and b are close to each other, and h(a)!= h(b) if
+they are far apart.
+Nearest Neighbor Classiﬁcation
+Clustering is the problem of grouping points by sim-
+ilarity using distance metrics, which ideally reﬂect the
+similarities you are looking for. Often items come from
+logical ”sources” and clustering is a good way to reveal
+those origins.
+Perhaps the ﬁrst thing to do with any
+data set.
+Possible applications include:
+hypothesis
+development, modeling over smaller subsets of data, data
+reduction, outlier detection.
+K-Means Clustering
+Simple and elegant algorithm to partition a dataset into
+K distinct, non-overlapping clusters.
+1. Choose a K. Randomly assign a number between 1
+and K to each observation.
+These serve as initial
+cluster assignments
+2. Iterate until cluster assignments stop changing
+(a) For each of the K clusters, compute the cluster
+centroid. The kth cluster centroid is the vector
+of the p feature means for the observations in
+the kth cluster.
+(b) Assign each observation to the cluster whose
+centroid is closest (where closest is deﬁned us-
+ing distance metric).
+Since the results of the algorithm depends on the initial
+random assignments, it is a good idea to repeat the
+algorithm from diﬀerent random initializations to obtain
+the best overall results. Can use MSE to determine which
+cluster assignment is better.
+Hierarchical Clustering
+Alternative clustering algorithm that does not require us
+to commit to a particular K. Another advantage is that it
+results in a nice visualization called a dendrogram. Ob-
+servations that fuse at bottom are similar, where those at
+the top are quite diﬀerent- we draw conclusions based on
+the location on the vertical rather than horizontal axis.
+1. Begin with n observations and a measure of all the
+(n)n−1
+2
+pairwise dissimilarities. Treat each observa-
+tion as its own cluster.
+2. For i = n, n-1, ...2
+(a) Examine all pairwise inter-cluster dissimilari-
+ties among the i clusters and identify the pair
+of clusters that are least dissimilar ( most simi-
+lar). Fuse these two clusters. The dissimilarity
+between these two clusters indicates height in
+dendrogram where fusion should be placed.
+(b) Assign each observation to the cluster whose
+centroid is closest (where closest is deﬁned us-
+ing distance metric).
+Linkage: Complete (max dissimilarity), Single (min), Av-
+erage, Centroid (between centroids of cluster A and B)
+Clustering
+
+--- PAGE 7 ---
+Comparing ML Algorithms
+Power and Expressibility: ML methods diﬀer in terms
+of complexity. Linear regression ﬁts linear functions while
+NN deﬁne piecewise-linear separation boundaries. More
+complex models can provide more accurate models, but
+at the risk of overﬁtting.
+Interpretability:
+some models are more transparent
+and understandable than others (white box vs. black box
+models)
+Ease
+of
+Use:
+some
+models
+feature
+few
+parame-
+ters/decisions
+(linear
+regression/NN),
+while
+others
+require more decision making to optimize (SVMs)
+Training Speed: models diﬀer in how fast they ﬁt the
+necessary parameters
+Prediction Speed: models diﬀer in how fast they make
+predictions given a query
+Naive Bayes
+Naive Bayes methods are a set of supervised learning
+algorithms based on applying Bayes’ theorem with the
+”naive” assumption of independence between every pair
+of features.
+Problem: Suppose we need to classify vector X = x1...xn
+into m classes, C1...Cm. We need to compute the proba-
+bility of each possible class given X, so we can assign X
+the label of the class with highest probability.
+We can
+calculate a probability using the Bayes’ Theorem:
+P(Ci|X) = P(X|Ci)P(Ci)
+P(X)
+Where:
+1. P(Ci): the prior probability of belonging to class i
+2. P(X): normalizing constant, or probability of seeing
+the given input vector over all possible input vectors
+3. P(X|Ci):
+the conditional probability of seeing
+input vector X given we know the class is Ci
+The prediction model will formally look like:
+C(X) = argmaxi∈classes(t)
+P (X|Ci)P (Ci)
+P (X)
+where C(X) is the prediction returned for input X.
+Machine Learning Part I
+Decision Trees
+Binary branching structure used to classify an arbitrary
+input vector X. Each node in the tree contains a sim-
+ple feature comparison against some ﬁeld (xi > 42?).
+Result of each comparison is either true or false, which
+determines if we should proceed along to the left or
+right child of the given node.
+Also known as some-
+times called classiﬁcation and regression trees (CART).
+Advantages:
+Non-linearity,
+support
+for
+categorical
+variables, easy to interpret, application to regression.
+Disadvantages:
+Prone to overﬁtting,
+instable (not
+robust to noise), high variance, low bias
+Note:
+rarely do models just use one decision tree.
+Instead, we aggregate many decision trees using methods
+like ensembling, bagging, and boosting.
+Ensembles, Bagging, Random Forests, Boosting
+Ensemble learning is the strategy of combining many
+diﬀerent classiﬁers/models into one predictive model. It
+revolves around the idea of voting: a so-called ”wisdom of
+crowds” approach. The most predicted class will be the
+ﬁnal prediction.
+Bagging: ensemble method that works by taking B boot-
+strapped subsamples of the training data and constructing
+B trees, each tree training on a distinct subsample as
+Random Forests: builds on bagging by decorrelating
+the trees. We do everything the same like in bagging, but
+when we build the trees, everytime we consider a split, a
+random sample of the p predictors is chosen as split can-
+didates, not the full set (typically m ≈√p). When m =
+p, then we are just doing bagging.
+Boosting: the main idea is to improve our model where
+it is not performing well by using information from previ-
+ously constructed classiﬁers. Slow learner. Has 3 tuning
+parameters: number of classiﬁers B, learning parameter λ,
+interaction depth d (controls interaction order of model).
+Machine Learning Part II
+Support Vector Machines
+Work
+by
+constructing
+a
+hyperplane
+that
+separates
+points between two classes.
+The hyperplane is de-
+termined using the maximal margin hyperplane, which
+is the hyperplane that is the maximum distance from
+the
+training
+observations.
+This
+distance
+is
+called
+the margin.
+Points that fall on one side of the
+hyperplane
+are
+classiﬁed
+as
+-1
+and
+the
+other
++1.
+Principal Component Analysis (PCA)
+Principal components allow us to summarize a set of
+correlated variables with a smaller set of variables that
+collectively explain most of the variability in the original
+set.
+Essentially, we are ”dropping” the least important
+feature variables.
+Principal Component Analysis is the process by
+which principal components are calculated and the use
+of them to analyzing and understanding the data. PCA
+is an unsupervised approach and is used for dimensional-
+ity reduction, feature extraction, and data visualization.
+Variables after performing PCA are independent.
+Scal-
+ing variables is also important while performing PCA.
+Machine Learning Part III
+
+--- PAGE 8 ---
+ML Terminology and Concepts
+Features: input data/variables used by the ML model
+Feature Engineering: transforming input features to
+be more useful for the models. e.g. mapping categories to
+buckets, normalizing between -1 and 1, removing null
+Train/Eval/Test: training is data used to optimize the
+model, evaluation is used to asses the model on new data
+during training, test is used to provide the ﬁnal result
+Classiﬁcation/Regression:
+regression is prediction a
+number (e.g.
+housing price), classiﬁcation is prediction
+from a set of categories(e.g. predicting red/blue/green)
+Linear Regression: predicts an output by multiplying
+and summing input features with weights and biases
+Logistic Regression:
+similar to linear regression but
+predicts a probability
+Overﬁtting: model performs great on the input data but
+poorly on the test data (combat by dropout, early stop-
+ping, or reduce # of nodes or layers)
+Bias/Variance: how much output is determined by the
+features. more variance often can mean overﬁtting, more
+bias can mean a bad model
+Regularization: variety of approaches to reduce over-
+ﬁtting, including adding the weights to the loss function,
+randomly dropping layers (dropout)
+Ensemble Learning: training multiple models with dif-
+ferent parameters to solve the same problem
+A/B testing: statistical way of comparing 2+ techniques
+to determine which technique performs better and also if
+diﬀerence is statistically signiﬁcant
+Baseline Model: simple model/heuristic used as refer-
+ence point for comparing how well a model is performing
+Bias: prejudice or favoritism towards some things, people,
+or groups over others that can aﬀect collection/sampling
+and interpretation of data, the design of a system, and
+how users interact with a system
+Dynamic Model: model that is trained online in a con-
+tinuously updating fashion
+Static Model: model that is trained oﬄine
+Normalization: process of converting an actual range of
+values into a standard range of values, typically -1 to +1
+Independently and Identically Distributed (i.i.d):
+data drawn from a distribution that doesn’t change, and
+where each value drawn doesn’t depend on previously
+drawn values; ideal but rarely found in real life
+Hyperparameters: the ”knobs” that you tweak during
+successive runs of training a model
+Generalization: refers to a model’s ability to make cor-
+rect predictions on new, previously unseen data as op-
+posed to the data used to train the model
+Cross-Entropy: quantiﬁes the diﬀerence between two
+probability distributions
+Machine Learning Part IV
+What is Deep Learning?
+Deep learning is a subset of machine learning. One popu-
+lar DL technique is based on Neural Networks (NN), which
+loosely mimic the human brain and the code structures
+are arranged in layers. Each layer’s input is the previous
+layer’s output, which yields progressively higher-level fea-
+tures and deﬁnes a hierarchy. A Deep Neural Network is
+just a NN that has more than 1 hidden layer.
+Recall that statistical learning is all about approximating
+f(X). Neural networks are known as universal approx-
+imators, meaning no matter how complex a function is,
+there exists a NN that can (approximately) do the job.
+We can increase the approximation (or complexity) by
+adding more hidden layers and neurons.
+Popular Architectures
+There are diﬀerent kinds of NNs that are suitable for
+certain problems, which depend on the NN’s architecture.
+Linear Classiﬁer:
+takes input features and combines
+them with weights and biases to predict output value
+DNN: deep neural net, contains intermediate layers of
+nodes that represent “hidden features” and activation
+functions to represent non-linearity
+CNN: convolutional NN, has a combination of convolu-
+tional, pooling, dense layers. popular for image classiﬁca-
+tion.
+Transfer Learning: use existing trained models as start-
+ing points and add additional layers for the speciﬁc use
+case.
+idea is that highly trained existing models know
+general features that serve as a good starting point for
+training a small network on speciﬁc examples
+RNN: recurrent NN, designed for handling a sequence of
+inputs that have ”memory” of the sequence. LSTMs are
+a fancy version of RNNs, popular for NLP
+GAN: general adversarial NN, one model creates fake ex-
+amples, and another model is served both fake example
+and real examples and is asked to distinguish
+Wide and Deep: combines linear classiﬁers with deep
+neural net classiﬁers, ”wide” linear parts represent mem-
+orizing speciﬁc examples and “deep” parts represent un-
+derstanding high level features
+Deep Learning Part I
+Tensorﬂow
+Tensorﬂow is an open source software library for numeri-
+cal computation using data ﬂow graphs.
+Everything in
+TF is a graph, where nodes represent operations on data
+and edges represent the data. Phase 1 of TF is building
+up a computation graph and phase 2 is executing it. It is
+also distributed, meaning it can run on either a cluster of
+machines or just a single machine.
+TF is extremely popular/suitable for working with Neural
+Networks, since the way TF sets up the computational
+graph pretty much resembles a NN.
+Tensors
+In a graph, tensors are the edges and are multidimensional
+data arrays that ﬂow through the graph.
+Central unit
+of data in TF and consists of a set of primitive values
+shaped into an array of any number of dimensions.
+A tensor is characterized by its rank (# dimensions
+in tensor), shape (# of dimensions and size of each di-
+mension), data type (data type of each element in tensor).
+Placeholders and Variables
+Variables: best way to represent shared, persistent state
+manipulated by your program. These are the parameters
+of the ML model are altered/trained during the training
+process. Training variables.
+Placeholders: way to specify inputs into a graph that
+hold the place for a Tensor that will be fed at runtime.
+They are assigned once, do not change after. Input nodes
+Deep Learning Part II
+
+--- PAGE 9 ---
+Deep Learning Terminology and Concepts
+Neuron: node in a NN, typically taking in multiple in-
+put values and generating one output value, calculates the
+output value by applying an activation function (nonlin-
+ear transformation) to a weighted sum of input values
+Weights: edges in a NN, the goal of training is to deter-
+mine the optimal weight for each feature; if weight = 0,
+corresponding feature does not contribute
+Neural Network: composed of neurons (simple building
+blocks that actually “learn”), contains activation functions
+that makes it possible to predict non-linear outputs
+Activation Functions: mathematical functions that in-
+troduce non-linearity to a network e.g. RELU, tanh
+Sigmoid Function: function that maps very negative
+numbers to a number very close to 0, huge numbers close
+to 1, and 0 to .5. Useful for predicting probabilities
+Gradient Descent/Backpropagation:
+fundamental
+loss optimizer algorithms, of which the other optimizers
+are usually based. Backpropagation is similar to gradient
+descent but for neural nets
+Optimizer: operation that changes the weights and bi-
+ases to reduce loss e.g. Adagrad or Adam
+Weights / Biases: weights are values that the input fea-
+tures are multiplied by to predict an output value. Biases
+are the value of the output given a weight of 0.
+Converge: algorithm that converges will eventually reach
+an optimal answer, even if very slowly. An algorithm that
+doesn’t converge may never reach an optimal answer.
+Learning Rate: rate at which optimizers change weights
+and biases. High learning rate generally trains faster but
+risks not converging, whereas a lower rate trains slower
+Numerical Instability: issues with very large/small val-
+ues due to limits of ﬂoating point numbers in computers
+Embeddings: mapping from discrete objects, such as
+words, to vectors of real numbers. useful because classi-
+ﬁers/neural networks work well on vectors of real numbers
+Convolutional Layer:
+series of convolutional opera-
+tions, each acting on a diﬀerent slice of the input matrix
+Dropout:
+method for regularization in training NNs,
+works by removing a random selection of some units in
+a network layer for a single gradient step
+Early Stopping: method for regularization that involves
+ending model training early
+Gradient Descent: technique to minimize loss by com-
+puting the gradients of loss with respect to the model’s
+parameters, conditioned on training data
+Pooling: Reducing a matrix (or matrices) created by an
+earlier convolutional layer to a smaller matrix.
+Pooling
+usually involves taking either the maximum or average
+value across the pooled area
+Deep Learning Part III
+Data can no longer ﬁt in memory on one machine
+(monolithic), so a new way of computing was devised
+using a group of computers to process this ”big data”
+(distributed).
+Such a group is called a cluster, which
+makes up server farms.
+All of these servers have to be
+coordinated in the following ways: partition data, coor-
+dinate computing tasks, handle fault tolerance/recovery,
+and allocate capacity to process.
+Hadoop
+Hadoop is an open source distributed processing frame-
+work that manages data processing and storage for big
+data applications running in clustered systems. It is com-
+prised of 3 main components:
+• Hadoop Distributed File System (HDFS):
+a
+distributed
+ﬁle
+system
+that
+provides
+high-
+throughput access to application data by partition-
+ing data across many machines
+• YARN: framework for job scheduling and cluster
+resource management (task coordination)
+• MapReduce:
+YARN-based system for parallel
+processing of large data sets on multiple machines
+HDFS
+Each disk on a diﬀerent machine in a cluster is comprised
+of 1 master node and the rest are workers/data nodes.
+The master node manages the overall ﬁle system by
+storing the directory structure and the metadata of the
+ﬁles. The data nodes physically store the data. Large
+ﬁles are broken up and distributed across multiple ma-
+chines, which are also replicated across multiple machines
+to provide fault tolerance.
+MapReduce
+Parallel programming paradigm which allows for process-
+ing of huge amounts of data by running processes on mul-
+tiple machines. Deﬁning a MapReduce job requires two
+stages: map and reduce.
+• Map: operation to be performed in parallel on small
+portions of the dataset. the output is a key-value
+pair < K, V >
+• Reduce: operation to combine the results of Map
+YARN- Yet Another Resource Negotiator
+Coordinates tasks running on the cluster and assigns new
+nodes in case of failure. Comprised of 2 subcomponents:
+the resource manager and the node manager.
+The re-
+source manager runs on a single master node and sched-
+ules tasks across nodes. The node manager runs on all
+other nodes and manages tasks on the individual node.
+;
+Big Data- Hadoop Overview
+An entire ecosystem of tools have emerged around
+Hadoop, which are based on interacting with HDFS.
+Below are some popular ones:
+Hive: data warehouse software built o top of Hadoop that
+facilitates reading, writing, and managing large datasets
+residing in distributed storage using SQL-like queries
+(HiveQL). Hive abstracts away underlying MapReduce
+jobs and returns HDFS in the form of tables (not HDFS).
+Pig:
+high level scripting language (Pig Latin) that
+enables writing complex data transformations.
+It pulls
+unstructured/incomplete data from sources, cleans it, and
+places it in a database/data warehouses.
+Pig performs
+ETL into data warehouse while Hive queries from data
+warehouse to perform analysis (GCP: DataFlow).
+Spark: framework for writing fast, distributed programs
+for data processing and analysis.
+Spark solves similar
+problems as Hadoop MapReduce but with a fast in-
+memory approach. It is an uniﬁed engine that supports
+SQL queries,
+streaming data,
+machine learning and
+graph processing. Can operate separately from Hadoop
+but integrates well with Hadoop.
+Data is processed
+using Resilient Distributed Datasets (RDDs), which are
+immutable, lazily evaluated, and tracks lineage.
+Hbase:
+non-relational,
+NoSQL,
+column-oriented
+database
+management
+system
+that
+runs
+on
+top
+of
+HDFS. Well suited for sparse data sets (GCP: BigTable)
+Flink/Kafka:
+stream processing framework.
+Batch
+streaming is for bounded, ﬁnite datasets, with periodic
+updates, and delayed processing.
+Stream processing
+is for unbounded datasets, with continuous updates,
+and immediate processing.
+Stream data and stream
+processing must be decoupled via a message queue.
+Can group streaming data (windows) using tumbling
+(non-overlapping time), sliding (overlapping time), or
+session (session gap) windows.
+Beam: programming model to deﬁne and execute data
+processing pipelines, including ETL, batch and stream
+(continuous) processing.
+After building the pipeline,
+it is executed by one of Beam’s distributed processing
+back-ends (Apache Apex, Apache Flink, Apache Spark,
+and Google Cloud Dataﬂow).
+Modeled as a Directed
+Acyclic Graph (DAG).
+Oozie:
+workﬂow scheduler system to manage Hadoop
+jobs
+Sqoop: transferring framework to transfer large amounts
+of data into HDFS from relational databases (MySQL)
+;
+Big Data- Hadoop Ecosystem
+
+--- PAGE 10 ---
+Structured
+Query
+Language
+(SQL)
+is
+a
+declarative
+language used to access & manipulate data in databases.
+Usually the database is a Relational Database Man-
+agement System (RDBMS), which stores data arranged
+in relational database tables.
+A table is arranged in
+columns and rows, where columns represent character-
+istics of stored data and rows represent actual data entries.
+Basic Queries
+- ﬁlter columns: SELECT col1, col3... FROM table1
+- ﬁlter the rows: WHERE col4 = 1 AND col5 = 2
+- aggregate the data: GROUP BY. . .
+- limit aggregated data: HAVING count(*) > 1
+- order of the results: ORDER BY col2
+Useful Keywords for SELECT
+DISTINCT- return unique results
+BETWEEN a AND b- limit the range, the values can
+be numbers, text, or dates
+LIKE- pattern search within the column text
+IN (a, b, c) - check if the value is contained among given
+Data Modiﬁcation
+- update speciﬁc data with the WHERE clause:
+UPDATE table1 SET col1 = 1 WHERE col2 = 2
+- insert values manually
+INSERT INTO table1 (col1,col3) VALUES (val1,val3);
+- by using the results of a query
+INSERT INTO table1 (col1,col3) SELECT col,col2
+FROM table2;
+Joins
+The JOIN clause is used to combine rows from two or more
+tables, based on a related column between them.
+SQL Part I
+Data structures are a way of storing and manipulating
+data and each data structure has its own strengths and
+weaknesses. Combined with algorithms, data structures
+allow us to eﬃciently solve problems. It is important to
+know the main types of data structures that you will need
+to eﬃciently solve problems.
+Lists: or arrays, ordered sequences of objects, mutable
+>>> l = [42, 3.14, "hello","world"]
+Tuples: like lists, but immutable
+>>> t = (42, 3.14, "hello","world")
+Dictionaries: hash tables, key-value pairs, unsorted
+>>> d = {"life": 42, "pi": 3.14}
+Sets: mutable, unordered sequence of unique elements.
+frozensets are just immutable sets
+>>> s = set([42, 3.14, "hello","world"])
+Collections Module
+deque: double-ended queue, generalization of stacks and
+queues; supports append, appendLeft, pop, rotate, etc
+>>> s = deque([42, 3.14, "hello","world"])
+Counter: dict subclass, unordered collection where ele-
+ments are stored as keys and counts stored as values
+>>> c = Counter('apple')
+>>> print(c)
+Counter({'p': 2, 'a': 1, 'l': 1, 'e': 1})
+heqpq Module
+Heap Queue: priority queue, heaps are binary trees for
+which every parent node has a value greater than or equal
+to any of its children (max-heap), order is important; sup-
+ports push, pop, pushpop, heapify, replace functionality
+>>> heap = []
+>>> for n in data:
+...
+heappush(heap, n)
+>>> heap
+[0, 1, 3, 6, 2, 8, 4, 7, 9, 5]
+Python- Data Structures
+• Data Science Design Manual
+(www.springer.com/us/book/9783319554433)
+• Introduction to Statistical Learning
+(www-bcf.usc.edu/~gareth/ISL/)
+• Probability Cheatsheet
+(/www.wzchen.com/probability-cheatsheet/)
+• Google’s Machine Learning Crash Course
+(developers.google.com/machine-learning/
+crash-course/)
+Recommended Resources
+

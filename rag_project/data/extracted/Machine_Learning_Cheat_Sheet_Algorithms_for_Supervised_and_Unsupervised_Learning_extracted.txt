@@ -1,0 +1,579 @@
+--- PAGE 1 ---
+Cheat Sheet: Algorithms for Supervised- and Unsupervised Learning 1
+Algorithm
+Description
+Model
+Objective
+Training
+Regularisation
+Complexity
+Non-linear
+Online learning
+k-nearest
+neighbour
+The label of a new point ˆx is classiﬁed
+with the most frequent label ˆt of the k
+nearest training instances.
+ˆt = arg max
+C
+￿
+i:xi∈Nk(x,ˆx)
+δ(ti, C)
+• Nk(x, ˆx) ←k points in x
+closest to ˆx
+• Euclidean distance formula:
+￿￿D
+i=1(xi −ˆxi)2
+• δ(a, b) ←1 if a = b; 0 o/w
+No optimisation needed.
+Use cross-validation to learn the appropriate k; otherwise no
+training, classiﬁcation based on existing points.
+k acts as to regularise the classiﬁer: as k →N the
+boundary becomes smoother.
+O(NM) space complexity, since all
+training instances and all their
+features need to be kept in memory.
+Natively ﬁnds non-linear boundaries.
+To be added.
+Naive Bayes
+Learn p(Ck|x) by modelling p(x|Ck)
+and p(Ck), using Bayes’ rule to infer
+the class conditional probability.
+Assumes each feature independent of
+all others, ergo ‘Naive.’
+y(x) = arg max
+k
+p(Ck|x)
+= arg max
+k
+p(x|Ck) × p(Ck)
+= arg max
+k
+D
+￿
+i=1
+p(xi|Ck) × p(Ck)
+= arg max
+k
+D
+￿
+i=1
+log p(xi|Ck) + log p(Ck)
+No optimisation needed.
+Multivariate likelihood p(x|Ck) = ￿D
+i=1 log p(xi|Ck)
+pMLE(xi
+=
+v|Ck)
+=
+￿N
+j=1 δ(tj = Ck ∧xji = v)
+￿N
+j=1 δ(tj = Ck)
+Multinomial likelihood p(x|Ck) = ￿D
+i=1 p(wordi|Ck)xi
+pMLE(wordi = v|Ck) =
+￿N
+j=1 δ(tj = Ck) × xji
+￿N
+j=1
+￿D
+d=1 δ(tj = Ck) × xdi
+. . . where:
+• xji is the count of word i in test example j;
+• xdi is the count of feature d in test example j.
+Gaussian likelihood p(x|Ck) = ￿D
+i=1 N(v; µik, σik)
+Use a Dirichlet prior on the parameters to obtain a
+MAP estimate.
+Multivariate likelihood
+pMAP(xi = v|Ck) =
+(βi −1) + ￿N
+j=1 δ(tj = Ck ∧xji = v)
+|xi|(βi −1) + ￿N
+j=1 δ(tj = Ck)
+Multinomial likelihood
+pMAP(wordi = v|Ck) =
+(αi −1) + ￿N
+j=1 δ(tj = Ck) × xji
+￿N
+j=1
+￿D
+d=1 (δ(tj = Ck) × xdi) −D + ￿D
+d=1 αd
+O(NM), each training instance must
+be visited and each of its features
+counted.
+Can only learn linear boundaries for
+multivariate/multinomial attributes.
+With Gaussian attributes, quadratic
+boundaries can be learned with uni-modal
+distributions.
+To be added.
+Log-linear
+Estimate p(Ck|x) directly, by
+assuming a maximum entropy
+distribution and optimising an
+objective function over the
+conditional entropy distribution.
+y(x) = arg max
+k
+p(Ck|x)
+= arg max
+k
+￿
+m
+λmφm(x, Ck)
+. . . where:
+p(Ck|x) =
+1
+Zλ(x) e
+￿
+m λmφm(x,Ck)
+Zλ(x) =
+￿
+k
+e
+￿
+m λmφm(x,Ck)
+Minimise the negative log-likelihood:
+LMLE(λ, D) =
+￿
+(x,t)∈D
+p(t|x) = −
+￿
+(x,t)∈D
+log p(t|x)
+=
+￿
+(x,t)∈D
+￿
+log Zλ(x) −
+￿
+m
+λmφm(x, t)
+￿
+=
+￿
+(x,t)∈D
+￿
+log
+￿
+k
+e
+￿
+m λmφm(x,Ck) −
+￿
+m
+λmφm(x, t)
+￿
+Gradient descent (or gradient ascent if maximising
+objective):
+λn+1 = λn −η∆L
+. . . where η is the step parameter.
+∆LMLE(λ, D) =
+￿
+(x,t)∈D
+E[φ(x, ·)] −φ(x, t)
+∆LMAP(λ, D, σ) = λ
+σ2 +
+￿
+(x,t)∈D
+E[φ(x, ·)] −
+￿
+(x,t)∈D
+φ(x, t)
+. . . where ￿
+(x,t)∈D φ(x, t) are the empirical counts.
+For each class Ck:
+￿
+(x,t)∈D
+E[φ(x, ·)] =
+￿
+(x,t)∈D
+φ(x, ·)p(Ck|x)
+Penalise large values for the λ parameters, by
+introducing a prior distribution over them (typically
+a Gaussian).
+Objective function
+LMAP(λ, D, σ) = arg min
+λ
+
+−log p(λ) −
+￿
+(x,t)∈D
+log p(t|x)
+
+
+= arg min
+λ
+
+−log e
+(0−λ)2
+2σ2
+−
+￿
+(x,t)∈D
+log p(t|x)
+
+
+= arg min
+λ
+
+
+￿
+m λ2
+m
+2σ2
+−
+￿
+(x,t)∈D
+log p(t|x)
+
+
+O(INMK), since each training
+instance must be visited and each
+combination of class and features
+must be calculated for the
+appropriate feature mapping.
+Reformulate the class conditional distribution
+in terms of a kernel K(x, x￿), and use a
+non-linear kernel (for example
+K(x, x￿) = (1 + wT x)2). By the Representer
+Theorem:
+p(Ck|x) =
+1
+Zλ(x) eλT φ(x,Ck)
+=
+1
+Zλ(x) e
+￿N
+n=1
+￿K
+i=1 αnkφ(xn,Ci)T φ(x,Ck)
+=
+1
+Zλ(x) e
+￿N
+n=1
+￿K
+i=1 αnkK((xn,Ci),(x,Ck))
+=
+1
+Zλ(x) e
+￿N
+n=1 αnkK(xn,x)
+Online Gradient Descent: Update the
+parameters using GD after seeing each
+training instance.
+Perceptron
+Directly estimate the linear function
+y(x) by iteratively updating the
+weight vector when incorrectly
+classifying a training instance.
+Binary, linear classiﬁer:
+y(x) = sign(wT x)
+. . . where:
+sign(x) =
+￿+1
+if x ≥0
+−1
+if x < 0
+Multiclass perceptron:
+y(x) = arg max
+Ck
+wT φ(x, Ck)
+Tries to minimise the Error function; the number of
+incorrectly classiﬁed input vectors:
+arg min
+w
+EP (w) = arg min
+w
+−
+￿
+n∈M
+wT xntn
+. . . where M is the set of misclassiﬁed training
+vectors.
+Iterate over each training example xn, and update the
+weight vector if misclassiﬁcation:
+wi+1 = wi + η∆EP (w)
+= wi + ηxntn
+. . . where typically η = 1.
+For the multiclass perceptron:
+wi+1 = wi + φ(x, t) −φ(x, y(x))
+The Voted Perceptron: run the perceptron i times
+and store each iteration’s weight vector. Then:
+y(x) = sign
+￿￿
+i
+ci × sign(wT
+i x)
+￿
+. . . where ci is the number of correctly classiﬁed
+training instances for wi.
+O(INML), since each combination of
+instance, class and features must be
+calculated (see log-linear).
+Use a kernel K(x, x￿), and 1 weight per
+training instance:
+y(x) = sign
+￿N
+￿
+n=1
+wntnK(x, xn)
+￿
+. . . and the update:
+wi+1
+n
+= wi
+n + 1
+The perceptron is an online algorithm
+per default.
+Support
+vector
+machines
+A maximum margin classiﬁer: ﬁnds
+the separating hyperplane with the
+maximum margin to its closest data
+points.
+y(x) =
+N
+￿
+n=1
+λntnxT xn + w0
+Primal
+arg min
+w,w0
+1
+2 ||w||2
+s.t.
+tn(wT xn + w0) ≥1
+∀n
+Dual
+˜L(∧) =
+N
+￿
+n=1
+λn −
+N
+￿
+n=1
+N
+￿
+m=1
+λnλmtntmxT
+n xm
+s.t.
+λn ≥0,
+N
+￿
+n=1
+λntn = 0,
+∀n
+• Quadratic Programming (QP)
+• SMO, Sequential Minimal Optimisation (chunking).
+The soft margin SVM: penalise a hyperplane by the
+number and distance of misclassiﬁed points.
+Primal
+arg min
+w,w0
+1
+2 ||w||2 + C
+N
+￿
+n=1
+ξn
+s.t.
+tn(wT xn + w0) ≥1 −ξn,
+ξn > 0
+∀n
+Dual
+˜L(∧) =
+N
+￿
+n=1
+λn −
+N
+￿
+n=1
+N
+￿
+m=1
+λnλmtntmxT
+n xm
+s.t.
+0 ≤λn ≤C,
+N
+￿
+n=1
+λntn = 0,
+∀n
+• QP: O(n3);
+• SMO: much more eﬃcient than
+QP, since computation based
+only on support vectors.
+Use a non-linear kernel K(x, x￿):
+y(x) =
+N
+￿
+n=1
+λntnxT xn + w0
+=
+N
+￿
+n=1
+λntnK(x, xn) + w0
+˜L(∧) =
+N
+￿
+n=1
+λn −
+N
+￿
+n=1
+N
+￿
+m=1
+λnλmtntmxT
+n xm
+=
+N
+￿
+n=1
+λn −
+N
+￿
+n=1
+N
+￿
+m=1
+λnλmtntmK(xn, xm)
+Online SVM. See, for example:
+• The Huller: A Simple and
+Eﬃcient Online SVM, Bordes
+& Bottou (2005)
+• Pegasos: Primal Estimated
+sub-Gradient Solver for SVM,
+Shalev-Shwartz et al. (2007)
+k-means
+A hard-margin, geometric clustering
+algorithm, where each data point is
+assigned to its closest centroid.
+Hard assignments rnk ∈{0, 1} s.t.
+∀n ￿
+k rnk = 1, i.e. each data point is
+assigned to one cluster k.
+Geometric distance: The Euclidean
+distance, l2 norm:
+||xn −µk||2 =
+￿
+￿
+￿
+￿
+D
+￿
+i=1
+(xni −µki)2
+arg min
+r,µ
+N
+￿
+n=1
+K
+￿
+k=1
+rnk||xn −µk||2
+2
+. . . i.e. minimise the distance from each cluster centre
+to each of its points.
+Expectation:
+rnk =
+￿
+1
+if ||xn −µk||2 minimal for k
+0
+o/w
+Maximisation:
+µ(k)
+MLE =
+￿
+n rnkxn
+￿
+n rnk
+. . . where µ(k) is the centroid of cluster k.
+Only hard-margin assignment to clusters.
+To be added.
+For non-linearly separable data, use kernel
+k-means as suggested in:
+Kernel k-means, Spectral Clustering and
+Normalized Cuts, Dhillon et al. (2004).
+Sequential k-means: update the cen-
+troids after processing one point at a
+time.
+Mixture of
+Gaussians
+A probabilistic clustering algorithm,
+where clusters are modelled as latent
+Guassians and each data point is
+assigned the probability of being
+drawn from a particular Gaussian.
+Assignments to clusters by specifying
+probabilities
+p(x(i), z(i)) = p(x(i)|z(i))p(z(i))
+. . . with z(i) ∼Multinomial(γ), and
+γnk ≡p(k|xn) s.t. ￿k
+j=1 γnj = 1. I.e.
+want to maximise the probability of
+the observed data x.
+L(x, π, µ, Σ) = log p(x|π, µ, Σ)
+=
+N
+￿
+n=1
+log
+￿K
+￿
+k=1
+πkNk(xn|µk, Σk)
+￿
+Expectation: For each n, k set:
+γnk = p(z(i) = k|x(i); γ, µ, Σ)
+(= p(k|xn))
+=
+p(x(i)|z(i) = k; µ, Σ)p(z(i) = k; π)
+￿K
+j=1 p(x(i)|z(i) = l; µ, Σ)p(z(i) = l; π)
+=
+πkN(xn|µk, Σk)
+￿K
+j=1 πjN(xn|µj, Σj)
+Maximisation:
+πk = 1
+N
+N
+￿
+n=1
+γnk
+Σk =
+￿N
+n=1 γnk(xn −µk)(xn −µk)T
+￿N
+n=1 γnk
+µk =
+￿N
+n=1 γnkxn
+￿N
+n=1 γnk
+The mixture of Gaussians assigns probabilities for
+each cluster to each data point, and as such is
+capable of capturing ambiguities in the data set.
+To be added.
+Not applicable.
+Online Gaussian Mixture Models. A
+good start is:
+A View of the EM Algorithm that Jus-
+tiﬁes Incremental, Sparse, and Other
+Variants, Neal & Hinton (1998).
+1Created by Emanuel Ferm, HT2011, for semi-procrastinational reasons while studying for a Machine Learning exam. Last updated May 5, 2011.
+

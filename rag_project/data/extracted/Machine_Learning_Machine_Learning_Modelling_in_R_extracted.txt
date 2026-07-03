@@ -1,0 +1,8 @@
+--- PAGE 1 ---
+Machine Learning Modelling in R : : CHEAT SHEET  
+Standard Modelling Workflow 
+Time Series View 
+CC BY SA Arnaud Amsellem •  thertrader@gmail.com • www.thertrader.com • Updated: 2018-03 
+Supervised & Unsupervised Learning 
+Meta-Algorithm, Time Series & Model Validation 
+

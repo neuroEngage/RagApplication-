@@ -1,0 +1,139 @@
+--- PAGE 1 ---
+CME 102 – Ordinary Differential Equations for Engineers
+https://stanford.edu/~shervine
+VIP Refresher: Linear Algebra
+Shervine Amidi
+June 2, 2018
+Matrix notations
+Ì Vector – We note x ∈Rn a vector with n entries, where xi ∈R is the ith entry:
+x =
+
+
+x1
+x2
+...
+xn
+
+∈Rn
+Ì Matrix – We note A ∈Rm×n a matrix with n rows and m, where ai,j ∈R is the entry
+located in the ith row and jth column:
+A =
+ 
+a1,1
+· · ·
+a1,n
+...
+...
+am,1
+· · ·
+am,n
+!
+∈Rm×n
+Remark: the vector x deﬁned above can be viewed as a n × 1 matrix and is more particularly
+called a column-vector.
+Ì Matrix-vector multiplication – The product of matrix A ∈Rm×n and vector x ∈Rn is a
+vector of size Rn, such that:
+Ax =
+
+
+
+
+
+
+
+
+n
+X
+j=1
+a1,jxj
+...
+n
+X
+j=1
+am,jxj
+
+
+
+
+
+
+
+
+∈Rm
+Ì System of equations – The system of equations
+
+
+
+y1
+= a1,1x1 + a1,2x2 + ... + a1,nxn
+y2
+= a2,1x1 + a2,2x2 + ... + a2,nxn
+...ym
+= am,1x1 + am,2x2 + ... + am,nxn
+can be rewritten in matrix form y = Ax with y ∈Rm, A ∈Rm×n and x ∈Rn.
+Determinant
+Ì Deﬁnition – The determinant of a square matrix A ∈Rn×n, noted |A| or det(A) is expressed
+recursively in terms of A\i,\j, which is the matrix A without its ith row and jth column, as
+follows:
+det(A) = |A| =
+n
+X
+j=1
+(−1)i+jai,j|A\i,\j|
+Remark: A is invertible if and only if |A|̸ = 0. Also, |AB| = |A||B| and |AT | = |A|.
+Ì Characteristic equation – The characteristic equation of a linear system of n equations
+represented by A is given by:
+det(A −λI) = 0
+For n = 2, this equation can be written as:
+λ2 −(a11 + a22)λ + (a11a22 −a12a21) = 0
+Ì Eigenvector, eigenvalue – The roots λ of the characteristic equation are the eigenvalues
+of A. The solutions⃗v of the equation A⃗v = λI are called the eigenvectors associated with the
+eigenvalue λ.
+Ì Computing the determinant in particular cases – We have the following cases:
+– For a 2 × 2 matrix – The determinant of a given matrix A ∈R2×2 =
+ a
+b
+c
+d
+
+can be
+computed as follows:
+det(A) = ad −bc
+– For a 3 × 3 matrix – The determinant of a given matrix A ∈R3×3 =
+ a
+b
+c
+d
+e
+f
+g
+h
+i
+!
+can be
+computed as follows:
+det(A) = a(ei −fh) −b(di −fg) + c(dh −eg)
+Partial fractions
+Ì Concept – A fraction P (x)
+Q(x) with P and Q polynomial functions of x and deg(P) < deg(Q)
+can be decomposed into partial fractions by distinguishing the types of roots that are in the
+factorized form of Q(x), as detailed in the table below:
+Factor of Q(x)
+Type of root
+Associated partial fraction
+(x −a)n
+Real root of multiplicity n ⩾1
+A1
+x −a + ... +
+An
+(x −a)n
+(ax2 + bx + c)n
+Complex roots of multiplicity n ⩾1
+A1x + B1
+ax2 + bx + c + ... +
+Anx + Bn
+(ax2 + bx + c)n
+Stanford University
+1
+Spring 2018
+

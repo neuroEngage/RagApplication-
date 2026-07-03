@@ -1,0 +1,317 @@
+--- PAGE 1 ---
+Probability Cheatsheet
+Yahya Almardeny
+almardeny@gmail.com
+June 2019
+1
+
+--- PAGE 2 ---
+1
+Overview
+Probability provides measures for reasoning the like-
+lihood that an event will occur in an experiment.
+2
+Terminology
+1. Experiment: Procedure that yields one of the
+possible outcomes. E.g. Tossing a coin.
+2. Sample Space S: A set of all possible outcomes
+of an experiment. E.g. S = {Head, Tail} when
+tossing a fair coin.
+3. Event E: Set of outcomes of an experiment.
+Note that if the Event contains only one out-
+come, it is then called an elementary event. E.g.
+The event that coin is Head.
+3
+Random Variable R.V
+A variable that its possible values are the outcomes
+of an experiment. It has two types:
+1. Discrete R.V: Take one countable number of
+distinct values. E.g 1, 2, 3, 4
+2. Continuous R.V: Take inﬁnite number of pos-
+sible values (usually measurements).
+E.g.
+all
+interval values in the rage [1 - 2].
+4
+Probability of Events
+1. Marginal probability:
+Simply P(A) which
+means ”unconditional probability”.
+And for
+each outcome s, it should satisfy: 0 ≤P(s) ≤1
+and ΣP(si) = 1.
+2. Addition Rule: P(A ∪B) = P(A) + P(B) −
+P(A ∩B) where ∪means OR, ∩means AND.
+3. Joint (Compound) Probability Rule:
+(a) Independent Events: P(A ∩B) = P(A) ×
+P(B).
+(b) Dependent Events: P(A ∩B) = P(A) ×
+P(B|A). where P(B|A) read: Probability
+of B given A had happened.
+4. Conditional Probability: P(A|B) = P(A∩B)
+P(B)
+5. Bayes Theorem: P(A|B) = P(B|A)×P(A)
+P(B)
+. It
+gives the probability of A based on prior knowl-
+edge of B.
+5
+Probability Distributions
+1. Probability Mass Function (PMF): Gives
+the probability a discrete R.V X takes on the
+value x: P(X = x).
+2. Probability
+Density
+Function
+(PDF):
+Gives the probability a continuous R.V X takes
+on the value x: P(X = x) which means how
+dense the probability of X near x, and it will
+be the deﬁnite Integrals between two points.
+3. Cumulative
+Density
+Function
+(CDF):
+Gives the probability a R.V X is less than or
+equals the value x: P(X ≤x). It is cumulative
+because it adds the probabilities up to x.
+(a) For Discrete R.V: It is the summation of
+previous probabilities Σp(xi).
+(b) For Continuous R.V: It is the integral
+R x
+−∞p(x)dx
+1
+
+--- PAGE 3 ---
+6
+Expected Value of R.V
+Intuitively, it is the long-run average value of repeti-
+tions of the same experiment it represents (i.e. what
+outcome to expect on long run)
+1. For a Discrete R.V: It is the average of R.V
+values based on their associated probabilities
+E(X) = Σ(xi × p(xi)).
+2. For
+a
+Continuous
+R.V:
+E(X)
+=
+R ∞
+−∞xf(x)dx where f(x) is probability density
+function.
+7
+Combining Random Variables
+If we have two independent random variables X and
+Y , we can add or subtract to get the total or the
+diﬀerence of their means (expected values) and vari-
+ances: T = X ± Y ⇒µT = µX ± µY
+and
+σ2
+T =
+σ2
+X ± σ2
+Y .
+8
+The Law of Large Numbers
+Let X be R.V of a population where its expected
+value (i.e Mean) is E(X). Let Xn = x1+x2+...xn
+n
+be
+the mean of n samples ∈X. As n →∞: Xn →
+E(X). Which means as we do more experiments, the
+outcomes become closer and closer to the outcomes
+of the probability theory.
+9
+Statistical Distributions
+1
+1. Binomial Distribution: How many success in
+ﬁnite number of trials:
+• Made up of independent trials.
+• Each trial has one of two discrete outcomes
+(success or failure).
+• Fixed number of trials
+• Probability of success in each trial is con-
+stant.
+• E.g. X = number of heads after 10 ﬂips of
+a coin.
+1Included because it is related directly to probability
+• 10% Rule: We assume independence if the
+sample ≤10% of the population.
+• PMF: P(X = x) = (k
+n)px(1 −p)n−x which
+means the probability of k successes in n
+trials.
+• E(X) = µX = n.p where p is the probabil-
+ity of success per trial.
+• σX =
+p
+var(X) =
+p
+n.p(1 −p).
+• The more trials we do, the more Binomial
+becomes Normal distribution.
+2. Bernoulli Distribution: Simply a Binomial
+Distribution with just one trial.
+3. Geometric Distribution: How many trials
+until success?.
+It is similar to Binomial dist.
+but here we do not have ﬁxed number of trials
+because we do not know ahead how many trials
+until we get the desired outcome:
+• PMF: P(X = x) = (1 −p)k−1p.
+• E(X) = µX = 1
+p.
+• σX =
+p
+var(X) =
+q
+1−p
+p2 .
+4. Hypergeometric Distribution: It is a dis-
+crete probability distribution that describes the
+probability of k successes in n draws, without
+replacement, from a ﬁnite population of size N
+that contains exactly K objects.
+In contrast,
+the binomial distribution describes the proba-
+bility of k successes in n draws with replace-
+ment.
+5. Poisson Distribution: It is a discrete proba-
+bility distribution that predicts rare events that
+are independent of one another and occur with
+a known constant rate λ. It is usually used in-
+stead of Binomial dist. if the number of trials is
+very high (ﬁxed interval of time) and the prob-
+ability (occurrence) of each is relatively low:
+• PMF: P (x) = λx
+x! e−λ.
+• Mean is E(X) = λ. and Variance is λ.
+6. Normal Distribution (a.k.a Gaussian): It
+is a continuous probability distribution that has
+the notation X ∼N(µ, σ2).
+It is symmetric
+and has a bell shape where most of the values
+2
+
+--- PAGE 4 ---
+are near to the mean and follows the 68–95–99.7
+rule (a.k.a empirical rule). This rule states that
+68.27%, 95.45% and 99.73% of the values lie
+within one, two and three standard deviations
+of the mean, respectively:
+• PDF: P(x) =
+1
+σ
+√
+2πe−(x−µ)2/2σ2.
+• Mean is E(X) = µX. and Variance is σ2
+X.
+7. Log-Normal Distribution: It is a continuous
+probability distribution of a random variable
+whose logarithm is normally distributed.Because
+the values in a log-normal distribution are pos-
+itive, they create a right-skewed curve which
+is important in determining which distribution
+is appropriate to use in investment decision-
+making. One of the most common applications
+of log-normal distributions is in the analysis
+of stock prices. A log-normal distribution can
+be translated to a normal distribution and vice
+versa using associated logarithmic calculations.
+8. Uniform Distribution: It is a probability dis-
+tribution that has constant probability.
+(a) Discrete Uniform Dist.: It takes one of a
+ﬁnite n possible values:
+• PMF: P(X = x) = 1
+n
+• E(X) = µX = (a+b)
+2
+• σ2
+X = (b−a+1)2 −1
+12
+(b) Continuous Uniform Dist.: It takes values
+within a speciﬁed range a to b:
+• PDF:
+P(X = x) =
+(
+1
+b−a if x ∈[a, b]
+0 otherwise
+• E(X) = µX = 1
+2(a + b)
+• σ2
+X = 1
+12(b −a)2
+9. Gamma Distribution: It is a family of a con-
+tinuous, positive-only, unimodal distributions
+that encode the time required for alpha events
+to occur in a Poisson process with mean arrival
+time of beta. These distributions are useful in
+real-life where something has a natural mini-
+mum of 0. For example, it is commonly used
+in ﬁnance, for elapsed times, or during Poisson
+processes. In other words, it is a generalization
+of both the exponential and chi-squared distri-
+butions.
+10. Exponential Distribution:
+Special case of
+Gamma Distribution. It is a continuous ana-
+logue of the geometric distribution and often
+used to model the time elapsed between events.
+Formally, it is the probability distribution of the
+time between events in a process where events
+occur continuously and independently at a con-
+stant average rate (i.e. Poisson process):
+• PDF: P(X = x) = λe−λx
+• E(X) = µX = λ−1 = β
+• σ2
+X = λ−2 = β2
+11. Chi-Square Distribution: It is a special case
+of the Gamma distribution. It is a continuous
+distribution of a sum of the squares of k inde-
+pendent standard normal deviates (where k is
+known as degree of freedom). A standard nor-
+mal deviate is a random sample from the stan-
+dard normal distribution.
+• PDF: P(X = x) =
+1
+2
+k
+2 Γ( K
+2 )
+x
+k
+2 −1 e
+−x
+2
+where
+Γ is the gamma function
+• E(X) = µX = k
+• σ2
+X = 2k
+12. Student’s t-Distribution: It is a probability
+distribution used to estimate population param-
+eters when the sample size is small and standard
+deviation is unknown. It is mainly used by ap-
+plying Student’s t-test for assessing the statis-
+tical signiﬁcance of the diﬀerence between two
+sample means, and in linear regression analysis.
+• PDF:
+Γ(ν+1
+2 )
+√νπΓ(ν
+2)(1 + x2
+ν )−ν+1
+2
+where ν is the number of degrees of free-
+dom and Γ is the gamma function.
+• E(X) = µX = 0 for ν > 1, otherwise
+undeﬁned.
+• σ2
+X =
+ν
+ν−2 for ν > 2, ∞for 1 < ν ≤2,
+otherwise undeﬁned.
+3
+

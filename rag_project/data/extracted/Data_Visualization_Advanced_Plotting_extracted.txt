@@ -1,0 +1,274 @@
+--- PAGE 1 ---
+Data Visualization
+Steve Iannaccone • 04.21.2017
+
+--- PAGE 2 ---
+Overview
+Objectives
+●
+Learn fundamentals of graphic design
+●
+Use Seaborn and Bokeh to make great 
+static plots
+●
+Use plotly and folium to make great 
+interactive plots
+
+--- PAGE 3 ---
+Graphic Design
+The Thinking Eye
+●
+How do we display information so that it is easily interpretable 
+to the viewer?
+●
+Our eyes are connected to our brains
+●
+This processing comes at a cost
+
+--- PAGE 4 ---
+Graphic Design
+The Thinking Eye
+●
+We are easily fooled!
+●
+Which line is the longest?
+
+--- PAGE 5 ---
+Graphic Design
+
+--- PAGE 6 ---
+The Grammar of Graphics
+
+--- PAGE 7 ---
+Graphic Design
+We can Control How We Show Data
+•Size
+•Color
+•Weight
+•Position
+•Shape
+•Scale
+
+--- PAGE 8 ---
+Graphic Design
+Changing Size
+Bubblecharts - Change point sizes to reflect the input data
+
+--- PAGE 9 ---
+
+--- PAGE 10 ---
+Graphic Design
+A Quick Side Note About Color
+Colorspaces:
+●
+RGBa - (red, green, blue, alpha) usually 8bits per channel
+●
+Hexadecimal - 2 hex values per R, G and B (#00FF00)
+●
+CMYK - Cyan, Magenta, Yellow, Black
+●
+HSV - Hue, Saturation, Value
+
+--- PAGE 11 ---
+Graphic Design
+Changing Color
+Scatterplots - Change color to reflect classification
+
+--- PAGE 12 ---
+
+--- PAGE 13 ---
+Graphic Design
+Changing Color
+Scatterplots - Change transparency to show density
+
+--- PAGE 14 ---
+
+--- PAGE 15 ---
+Graphic Design
+Changing Weight
+Line plots - Change line width to show importance
+
+--- PAGE 16 ---
+
+--- PAGE 17 ---
+Graphic Design
+Changing Position
+Subplots - We can add multiple plots to the same figure to 
+show that these graphics are related to one another
+
+--- PAGE 18 ---
+
+--- PAGE 19 ---
+Graphic Design
+Changing Shape
+Boxplots - If your plot has to be in B&W we can use shapes 
+and textures to indicate classification
+
+--- PAGE 20 ---
+
+--- PAGE 21 ---
+Graphic Design
+Changing Scale
+Log plots - If your data is not linear, you can scale your axes to 
+show logarithmic effects
+
+--- PAGE 22 ---
+
+--- PAGE 23 ---
+Some Pitfalls
+
+--- PAGE 24 ---
+
+--- PAGE 25 ---
+
+--- PAGE 26 ---
+
+--- PAGE 27 ---
+
+--- PAGE 28 ---
+
+--- PAGE 29 ---
+
+--- PAGE 30 ---
+Using Seaborn & Bokeh
+
+--- PAGE 31 ---
+Advanced Plotting in Python
+Seaborn
+A python package that uses MatPlotLib under the hood
+●
+Simple to use
+●
+Great plots out of the box
+●
+Some added features
+
+--- PAGE 32 ---
+
+--- PAGE 33 ---
+
+--- PAGE 34 ---
+Advanced Plotting in Python
+Seaborn
+Check out their Gallery for code examples:
+https://seaborn.pydata.org/examples/index.html
+
+--- PAGE 35 ---
+Advanced Plotting in Python
+Bokeh
+A python package that uses JavaScript under the hood and 
+your web-browser to display
+●
+Great looking plot, perfect if you need to host your figure 
+online
+●
+Can add in interaction (like hover states)
+●
+But, less simple to use (interactions are awkward at best)
+
+--- PAGE 36 ---
+
+--- PAGE 37 ---
+Using Plotly & Folium
+
+--- PAGE 38 ---
+Interactive Plotting
+Plotly
+A python package written by Hadley Wickham that uses D3 
+under the hood
+●
+Making interactive plots less cumbersome
+●
+Input arguments look like JSON objects
+●
+Documentation is hard to read and navigate
+
+--- PAGE 39 ---
+Interactive Plotting
+Plotly
+They are trying to run a business, so they imply that you need 
+an account to make plots...Thankfully this isn’t true. Just run it 
+in `offline` mode.
+
+--- PAGE 40 ---
+Plotly
+$ pip install plotly
+import plotly
+import plotly.plotly as py
+from plotly.graph_objs import *
+from plotly.offline import download_plotlyjs,
+init_notebook_mode, plot, iplot
+Interactive Plotting
+
+--- PAGE 41 ---
+Interactive Plotting
+Plotly
+Now in plotly’s examples wherever you see:
+plotly.iplot()
+or: 
+py.iplot()
+Use this instead:
+plotly.offline.plot()
+
+--- PAGE 42 ---
+Interactive Plotting
+Plotly
+Example:
+https://plot.ly/python/line-and-scatter/#style-scatter-plots
+
+--- PAGE 43 ---
+Interactive Plotting
+Plotly
+This writes a local HTML file that has all the necessary JS 
+functions minified in the script tag. This file allows you to 
+interact with your graph as a stand alone file.
+
+--- PAGE 44 ---
+Interactive Plotting
+Plotly
+Parameters of the plot look like JavaScript Object Notation 
+(JSON).
+In Python, this means it looks like nested dict() calls.
+
+--- PAGE 45 ---
+Interactive Plotting
+Plotly
+marker = dict(
+        size = 10,
+        color = 'rgba(255, 182, 193, .9)',
+        line = dict(
+            width = 2,
+        )...
+
+--- PAGE 46 ---
+Interactive Plotting
+Plotly
+Using APIs like Mapbox are awesome at plotting on top of 
+great looking maps.
+This will often require setting up an account to get 
+access-tokens to use.
+
+--- PAGE 47 ---
+Interactive Plotting
+Folium
+Allows us to use Python to interact with Leaflet.JS mapping 
+tools much in the same why Mapbox and Plotly do, but 
+without any accounts or access-tokens.
+
+--- PAGE 48 ---
+Recap
+1.
+What are the things we can 
+change to make better figures?
+2.
+What is a hexadecimal color, 
+and where do we see them most 
+often?
+3.
+Name at least 3 packages that 
+let us make plots in python.
+
+--- PAGE 49 ---
+Assignment
+Use folium to make an interactive map.
+

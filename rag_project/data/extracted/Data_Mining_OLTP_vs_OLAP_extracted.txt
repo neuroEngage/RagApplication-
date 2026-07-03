@@ -1,0 +1,280 @@
+--- PAGE 1 ---
+Ahmed Yasir Khan 
+ 
+Page 1 of 7 
+ 
+OLTP vs OLAP: What's the Difference? 
+What is OLAP? 
+Online Analytical Processing, a category of software tools which provide analysis of 
+data for business decisions. OLAP systems allow users to analyze database 
+information from multiple database systems at one time. 
+The primary objective is data analysis and not data processing. 
+What is OLTP? 
+Online transaction processing shortly known as OLTP supports transaction-
+oriented applications in a 3-tier architecture. OLTP administers day to day 
+transaction of an organization. 
+The primary objective is data processing and not data analysis 
+Example of OLAP 
+Any Datawarehouse system is an OLAP system. Uses of OLAP are as follows 
+• A company might compare their mobile phone sales in September with sales 
+in October, then compare those results with the with another location which 
+may be stored in a sperate database. 
+• Amazon analyzes purchases by its customers to come up with a personalized 
+homepage with products which likely interest to their customer. 
+Example of OLTP system 
+An example of OLTP system is ATM center. Assume that a couple has a joint 
+account with a bank. One day both simultaneously reach different ATM centers at 
+precisely the same time and want to withdraw total amount present in their bank 
+account. 
+However, the person that completes authentication process first will be able to get 
+money. In this case, OLTP system makes sure that withdrawn amount will be never 
+
+--- PAGE 2 ---
+Ahmed Yasir Khan 
+ 
+Page 2 of 7 
+ 
+more than the amount present in the bank. The key to note here is that OLTP 
+systems are optimized for transactional superiority instead data analysis. 
+Other examples of OLTP system are: 
+• Online banking 
+• Online airline ticket booking 
+• Sending a text message 
+• Order entry 
+• Add a book to shopping cart 
+Benefits of using OLAP services 
+• OLAP creates a single platform for all type of business analytical needs which 
+includes planning, budgeting, forecasting, and analysis. 
+• The main benefit of OLAP is the consistency of information and calculations. 
+• Easily apply security restrictions on users and objects to comply with 
+regulations and protect sensitive data. 
+Benefits of OLTP method 
+• It administers daily transactions of an organization. 
+• OLTP widens the customer base of an organization by simplifying individual 
+processes. 
+Drawbacks of OLAP service 
+• Implementation and maintenance are dependent on IT professional because 
+the traditional OLAP tools require a complicated modeling procedure. 
+• OLAP tools need cooperation between people of various departments to be 
+effective which might always be not possible. 
+Drawbacks of OLTP method 
+• If OLTP system faces hardware failures, then online transactions get severely 
+affected. 
+• OLTP systems allow multiple users to access and change the same data at 
+the same time which many times created unprecedented situation. 
+
+--- PAGE 3 ---
+Ahmed Yasir Khan 
+ 
+Page 3 of 7 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Difference between OLTP and OLAP 
+ 
+Parameters 
+OLTP 
+OLAP 
+Process 
+It is an online 
+transactional system. It 
+manages database 
+modification. 
+OLAP is an online analysis and 
+data retrieving process. 
+Characteristic It is characterized by large 
+numbers of short online 
+transactions. 
+It is characterized by a large 
+volume of data. 
+
+--- PAGE 4 ---
+Ahmed Yasir Khan 
+ 
+Page 4 of 7 
+ 
+Functionality 
+OLTP is an online 
+database modifying 
+system. 
+OLAP is an online database query 
+management system. 
+Method 
+OLTP uses traditional 
+DBMS. 
+OLAP uses the data warehouse. 
+Query 
+Insert, Update, and Delete 
+information from the 
+database. 
+Mostly select operations 
+Table 
+Tables in OLTP database 
+are normalized. 
+Tables in OLAP database are not 
+normalized. 
+Source 
+OLTP and its transactions 
+are the sources of data. 
+Different OLTP databases become 
+the source of data for OLAP. 
+Data Integrity OLTP database must 
+maintain data integrity 
+constraint. 
+OLAP database does not get 
+frequently modified. Hence, data 
+integrity is not an issue. 
+Response 
+time 
+It's response time is in 
+millisecond. 
+Response time in seconds to 
+minutes. 
+Data quality 
+The data in the OLTP 
+database is always 
+detailed and organized. 
+The data in OLAP process might 
+not be organized. 
+Usefulness 
+It helps to control and run 
+fundamental business 
+tasks. 
+It helps with planning, problem-
+solving, and decision support. 
+
+--- PAGE 5 ---
+Ahmed Yasir Khan 
+ 
+Page 5 of 7 
+ 
+Operation 
+Allow read/write 
+operations. 
+Only read and rarely write. 
+Audience 
+It is a market orientated 
+process. 
+It is a customer orientated process. 
+Query Type 
+Queries in this process are 
+standardized and simple. 
+Complex queries involving 
+aggregations. 
+Back-up 
+Complete backup of the 
+data combined with 
+incremental backups. 
+OLAP only need a backup from 
+time to time. Backup is not 
+important compared to OLTP 
+Design 
+DB design is application 
+oriented. Example: 
+Database design changes 
+with industry like Retail, 
+Airline, Banking, etc. 
+DB design is subject oriented. 
+Example: Database design changes 
+with subjects like sales, marketing, 
+purchasing, etc. 
+User type 
+It is used by Data critical 
+users like clerk, DBA & 
+Data Base professionals. 
+Used by Data knowledge users like 
+workers, managers, and CEO. 
+Purpose 
+Designed for real time 
+business operations. 
+Designed for analysis of business 
+measures by category and 
+attributes. 
+Performance 
+metric 
+Transaction throughput is 
+the performance metric 
+Query throughput is the 
+performance metric. 
+
+--- PAGE 6 ---
+Ahmed Yasir Khan 
+ 
+Page 6 of 7 
+ 
+Number of 
+users 
+This kind of Database 
+users allows thousands of 
+users. 
+This kind of Database allows only 
+hundreds of users. 
+Productivity 
+It helps to Increase user's 
+self-service and 
+productivity 
+Help to Increase productivity of 
+the business analysts. 
+Challenge 
+Data Warehouses 
+historically have been a 
+development project 
+which may prove costly to 
+build. 
+An OLAP cube is not an open SQL 
+server data warehouse. Therefore, 
+technical knowledge and 
+experience is essential to manage 
+the OLAP server. 
+Process 
+It provides fast result for 
+daily used data. 
+It ensures that response to the 
+query is quicker consistently. 
+Characteristic It is easy to create and 
+maintain. 
+It lets the user create a view with 
+the help of a spreadsheet. 
+Style 
+OLTP is designed to have 
+fast response time, low 
+data redundancy and is 
+normalized. 
+A data warehouse is created 
+uniquely so that it can integrate 
+different data sources for building 
+a consolidated database 
+ 
+ 
+ 
+ 
+
+--- PAGE 7 ---
+Ahmed Yasir Khan 
+ 
+Page 7 of 7 
+ 
+Summary: 
+• Online Analytical Processing is a category of software tools that analyze of 
+data stored in a database. 
+• Online transaction processing shortly known as OLTP supports transaction-
+oriented applications in a 3-tier architecture 
+• OLAP creates a single platform for all type of business analysis needs which 
+includes planning, budgeting, forecasting, and analysis. 
+• OLTP is useful to administer day to day transactions of an organization. 
+• OLAP is characterized by a large volume of data. 
+• OLTP is characterized by large numbers of short online transactions. 
+• A data warehouse is created uniquely so that it can integrate different data 
+sources for building a consolidated database. 
+• An OLAP Cube takes a spreadsheet and three-dimensionless the experiences 
+of analysis. 
+ 
+ 
+

@@ -1,0 +1,289 @@
+--- PAGE 1 ---
+CME 102 – Ordinary Differential Equations for Engineers
+https://stanford.edu/~shervine
+VIP Refresher: Trigonometry
+Shervine Amidi
+May 28, 2018
+Deﬁnitions
+Ì Trigonometric functions – The following common trigonometric functions are 2π-periodic
+and are deﬁned as follows:
+Function
+Domain and Image
+Deﬁnition
+Derivative
+Cosine
+θ ∈R
+adjacent
+hypotenuse
+−sin(θ)
+cos(θ)
+cos(θ) ∈[−1,1]
+Sine
+θ ∈R
+opposite
+hypotenuse
+cos(θ)
+sin(θ)
+sin(θ) ∈[−1,1]
+Tangent
+θ ∈R\{2kπ}
+sin(θ)
+cos(θ) = opposite
+adjacent
+1 + tan2(θ)
+tan(θ)
+tan(θ) ∈] −∞, + ∞[
+Ì Euler’s formula – The following formula establishes a fundamental relationship between the
+trigonometric functions and the complex exponential function as follows:
+eiθ = cos(θ) + i sin(θ)
+Therefore, we have:
+cos(θ) = eiθ + e−iθ
+2
+and
+sin(θ) = eiθ −e−iθ
+2i
+and
+tan(θ) =
+eiθ −e−iθ
+i(eiθ + e−iθ)
+Ì Inverse trigonometric functions – The common inverse trigonometric functions are deﬁned
+as follows:
+Function
+Domain and Image
+Deﬁnition
+Derivative
+Arccosine
+x ∈[−1,1]
+cos(arccos(x)) = x
+−
+1
+√
+1 −x2
+arccos(x)
+arccos(x) ∈[0,π]
+Arcsine
+x ∈[−1,1]
+sin(arcsin(x)) = x
+1
+√
+1 −x2
+arcsin(x)
+arcsin(x) ∈[−π
+2 , π
+2 ]
+Arctangent
+x ∈] −∞, + ∞[
+tan(arctan(x)) = x
+1
+1 + x2
+arctan(x)
+arctan(x) ∈] −π
+2 , π
+2 [
+Trigonometric identities
+Ì Pythagorean identity – The following identity is commonly used:
+∀θ,
+cos2(θ) + sin2(θ) = 1
+Ì Inverse trigonometric identities – The following identities are commonly used:
+∀x,
+arccos(x) + arcsin(x) = π
+2
+∀x,
+arctan(x) + arctan
+ 1
+x
+
+=
+
+
+
+π
+2
+(x > 0)
+−π
+2
+(x < 0)
+Ì Addition formulas – The following identities are commonly used:
+Name
+Formula
+Cosine addition
+cos(a + b) = cos(a) cos(b) −sin(a) sin(b)
+Sine addition
+sin(a + b) = sin(a) cos(b) + sin(b) cos(a)
+Tangent addition
+tan(a + b) =
+tan(a) + tan(b)
+1 −tan(a) tan(b)
+Ì Symmetry identities – The following identities are commonly used:
+By α = 0
+By α = π
+4
+By α = π
+2
+cos (−θ) = cos(θ)
+cos
+ π
+2 −θ
+
+= sin(θ)
+cos (π −θ) = −cos(θ)
+sin (−θ) = −sin(θ)
+sin
+ π
+2 −θ
+
+= cos(θ)
+sin (π −θ) = sin(θ)
+tan (−θ) = −tan(θ)
+tan
+ π
+2 −θ
+
+=
+1
+tan(θ)
+tan (π −θ) = −tan(θ)
+Ì Shift identities – The following identities are commonly used:
+By π
+2
+By π
+cos
+
+θ + π
+2
+
+= −sin(θ)
+cos (θ + π) = −cos(θ)
+sin
+
+θ + π
+2
+
+= cos(θ)
+sin (θ + π) = −sin(θ)
+tan
+
+θ + π
+2
+
+= −
+1
+tan(θ)
+tan (θ + π) = tan(θ)
+Stanford University
+1
+Spring 2018
+
+--- PAGE 2 ---
+CME 102 – Ordinary Differential Equations for Engineers
+https://stanford.edu/~shervine
+Ì Product-to-sum and sum-to-product identities – The following identities are commonly
+used:
+Name
+Formula
+cos(a) cos(b) = 1
+2 (cos(a −b) + cos(a + b))
+sin(a) sin(b) = 1
+2 (cos(a −b) −cos(a + b))
+Product-to-sum
+sin(a) cos(b) = 1
+2 (sin(a + b) + sin(a −b))
+cos(a) sin(b) = 1
+2 (sin(a + b) −sin(a −b))
+tan(a) tan(b) = cos(a −b) −cos(a + b)
+cos(a −b) + cos(a + b)
+cos(a) + cos(b) = 2 cos
+ a + b
+2
+
+cos
+ a −b
+2
+
+cos(a) −cos(b) = −2 sin
+ a + b
+2
+
+sin
+ a −b
+2
+
+Sum-to-product
+sin(a) + sin(b) = 2 sin
+ a + b
+2
+
+cos
+ a −b
+2
+
+sin(a) −sin(b) = 2 sin
+ a −b
+2
+
+cos
+ a + b
+2
+
+Miscellaneous
+Ì Values for common angles – The following table sums up the values for common angles
+to have in mind:
+Angle θ (radians ↔degrees)
+cos(θ)
+sin(θ)
+tan(θ)
+0 ↔0◦
+1
+0
+0
+π
+6 ↔30◦
+√
+3
+2
+1
+2
+√
+3
+3
+π
+4 ↔45◦
+√
+2
+2
+√
+2
+2
+1
+π
+3 ↔60◦
+1
+2
+√
+3
+2
+√
+3
+π
+2 ↔90◦
+0
+1
+∞
+Ì Kashani theorem – The Kashani theorem, also known as the law of cosines, states that in a
+triangle, the lengths a, b, c and the angle γ between sides of length a and b satisfy the following
+equation:
+c2 = a2 + b2 −2ab cos(γ)
+Remark: for γ = π
+2 , the triangle is right and the identity is the Pythagorean theorem.
+Ì Law of sines – In a given triangle of lengths a,b,c and opposite angles A,B,C, the law of
+sines states that we have:
+a
+sin(A) =
+b
+sin(B) =
+c
+sin(C)
+Stanford University
+2
+Spring 2018
+

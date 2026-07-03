@@ -1,0 +1,169 @@
+--- PAGE 1 ---
+8/11/2019
+What is Exploratory Data Analysis? - Towards Data Science
+https://towardsdatascience.com/exploratory-data-analysis-8fc1cb20fd15
+1/8
+What is Exploratory Data Analysis?
+Prasad Patil
+Mar 23, 2018 · 6 min read
+. . .
+As I was contemplating what could be the maiden topic I should begin writing my blog
+with, in no time EDA popped up to my mind.Logically apt , isn’t it ?! Why? You’ll find
+out soon!
+Intuition
+Imagine your wolf pack decides to watch a movie you haven’t heard of.There is
+absolutely no debate about that,it will lead to a state where you find yourself puzzled
+with lot of questions which needs to be answered in order to make a decision.Being a
+good chieftain the first question you would ask, what is the cast and crew of the movie?
+As a regular practice,you would also watch the trailer of the movie on
+YouTube.Furthermore,you’d find out ratings and reviews the movie has received from
+the audience.
+Whatever investigating measures you would take before finally buying popcorn for
+your clan in theater,is nothing but what data scientists in their lingo call ‘Exploratory
+Data Analysis’.
+
+--- PAGE 2 ---
+8/11/2019
+What is Exploratory Data Analysis? - Towards Data Science
+https://towardsdatascience.com/exploratory-data-analysis-8fc1cb20fd15
+2/8
+Exploratory Data Analysis refers to the critical
+process of performing initial investigations on data
+so as to discover patterns,to spot anomalies,to test
+hypothesis and to check assumptions with the help
+of summary statistics and graphical
+representations.
+It is a good practice to understand the data first and try to gather as many insights from
+it. EDA is all about making sense of data in hand,before getting them dirty with it.
+EDA explained using sample Data set:
+To share my understanding of the concept and techniques I know,I’ll take an example
+of white variant of Wine Quality data set which is available on UCI Machine Learning
+Repository and try to catch hold of as many insights from the data set using EDA.
+To starts with,I imported necessary libraries (for this example pandas,
+numpy,matplotlib and seaborn) and loaded the data set.
+Note : Whatever inferences I could extract,I’ve mentioned with bullet points.
+Original data is separated by delimiter “ ; “ in given data set.
+To take a closer look at the data took help of “ .head()”function of pandas library
+which returns first five observations of the data set.Similarly “.tail()” returns last
+five observations of the data set.
+I found out the total number of rows and columns in the data set using “.shape”.
+
+--- PAGE 3 ---
+8/11/2019
+What is Exploratory Data Analysis? - Towards Data Science
+https://towardsdatascience.com/exploratory-data-analysis-8fc1cb20fd15
+3/8
+Dataset comprises of 4898 observations and 12 characteristics.
+Out of which one is dependent variable and rest 11 are independent variables —
+physico-chemical characteristics.
+It is also a good practice to know the columns and their corresponding data types,along
+with finding whether they contain null values or not.
+Data has only float and integer values.
+No variable column has null/missing values.
+The describe() function in pandas is very handy in getting various summary
+statistics.This function returns the count, mean, standard deviation, minimum and
+maximum values and the quantiles of the data.
+
+--- PAGE 4 ---
+8/11/2019
+What is Exploratory Data Analysis? - Towards Data Science
+https://towardsdatascience.com/exploratory-data-analysis-8fc1cb20fd15
+4/8
+Here as you can notice mean value is less than median value of each column which
+is represented by 50%(50th percentile) in index column.
+There is notably a large difference between 75th %tile and max values of predictors
+“residual sugar”,”free sulfur dioxide”,”total sulfur dioxide”.
+Thus observations 1 and 2 suggests that there are extreme values-Outliers in our
+data set.
+Few key insights just by looking at dependent variable are as follows:
+Target variable/Dependent variable is discrete and categorical in nature.
+“quality” score scale ranges from 1 to 10;where 1 being poor and 10 being the best.
+1,2 & 10 Quality ratings are not given by any observation. Only scores obtained are
+between 3 to 9.
+This tells us vote count of each quality score in descending order.
+“quality” has most values concentrated in the categories 5, 6 and 7.
+Only a few observations made for the categories 3 & 9.
+I got a good a glimpse of data. But that’s the thing with Data Science the more you get
+involved the harder it is for you to stop exploring.Let’s now explore data with beautiful
+graphs. Python has a visualization library ,Seaborn which build on top of matplotlib. It
+provides very attractive statistical graphs in order to perform both Univariate and
+Multivariate analysis.
+
+--- PAGE 5 ---
+8/11/2019
+What is Exploratory Data Analysis? - Towards Data Science
+https://towardsdatascience.com/exploratory-data-analysis-8fc1cb20fd15
+5/8
+To use linear regression for modelling,its necessary to remove correlated variables to
+improve your model.One can find correlations using pandas “.corr()” function and can
+visualize the correlation matrix using a heatmap in seaborn.
+Heatmap
+Dark shades represents positive correlation while lighter shades represents
+negative correlation.
+If you set annot=True, you’ll get values by which features are correlated to each
+other in grid-cells.
+It’s a good practice to remove correlated variables during feature selection.
+
+--- PAGE 6 ---
+8/11/2019
+What is Exploratory Data Analysis? - Towards Data Science
+https://towardsdatascience.com/exploratory-data-analysis-8fc1cb20fd15
+6/8
+Correlation Matrix
+Here we can infer that “density” has strong positive correlation with “residual
+sugar” whereas it has strong negative correlation with “alcohol”.
+“free sulphur dioxide” and “citric acid” has almost no correlation with “quality”.
+Since correlation is zero we can infer there is no linear relationship between these
+two predictors.However it is safe to drop these features in case you’re applying
+Linear Regression model to the dataset.
+A box plot (or box-and-whisker plot) shows the distribution of quantitative data in a
+way that facilitates comparisons between variables.The box shows the quartiles of the
+dataset while the whiskers extend to show the rest of the distribution.
+The box plot (a.k.a. box and whisker diagram) is a standardized way of displaying the
+distribution of data based on the five number summary:
+Minimum
+First quartile
+Median
+Third quartile
+Maximum.
+
+--- PAGE 7 ---
+8/11/2019
+What is Exploratory Data Analysis? - Towards Data Science
+https://towardsdatascience.com/exploratory-data-analysis-8fc1cb20fd15
+7/8
+In the simplest box plot the central rectangle spans the first quartile to the third
+quartile (the interquartile range or IQR).
+A segment inside the rectangle shows the median and “whiskers” above and below the
+box show the locations of the minimum and maximum.
+Boxplot
+Outliers are either 3×IQR or more above the third quartile or 3×IQR or more below
+the first quartile.
+In our data set except “alcohol” all other features columns shows outliers.
+Now to check the linearity of the variables it is a good practice to plot distribution
+graph and look for skewness of features. Kernel density estimate (kde) is a quite useful
+tool for plotting the shape of a distribution.
+Distribution Plot
+“pH” column appears to be normally distributed
+remaining all independent variables are right skewed/positively skewed.
+
+--- PAGE 8 ---
+8/11/2019
+What is Exploratory Data Analysis? - Towards Data Science
+https://towardsdatascience.com/exploratory-data-analysis-8fc1cb20fd15
+8/8
+Lastly, to sum up all Exploratory Data Analysis is a philosophical and an artistical
+approach to guage every nuance from the data at early encounter.
+You can glance through my jupyter notebook here and try-test with different
+approaches, for eg. try out a pairplot and share what all inferences you could grab from
+it or if I failed to capture any useful information in my own approach,do share that too
+in comments.
+Data Science
+Exploratory Data Analysis
+Machine Learning
+Data Visualization
+Pipeline
+About
+Help
+Legal
+

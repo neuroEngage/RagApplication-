@@ -1,0 +1,191 @@
+--- PAGE 1 ---
+Kubernetes Cheat 
+Sheet
+What is Kubernetes?
+http://linuxacademy.com
+Kubernetes is a platform for managing containerized 
+workloads. Kubernetes orchestrates computing, 
+networking and storage to provide a seamless portability 
+across infrastructure providers.
+Viewing Resource Information
+Nodes
+$ kubect l get no
+$ kubect l get no - o wi de
+$ kubect l descr i be no
+$ kubect l get no - o yaml
+$ kubect l get node - - sel ect or =[ l abel _name]
+$ kubect l get nodes - o 
+j sonpat h=' { . i t ems[ * ] . st at us. addr esses
+[ ?( @. t ype==" Ext er nal I P" ) ] . addr ess} '
+$ kubect l t op node [ node_name]
+Pods
+$ kubect l get po
+$ kubect l get po - o wi de
+$ kubect l descr i be po
+$ kubect l get po - - show- l abel s
+$ kubect l get po - l app=ngi nx
+$ kubect l get po - o yaml
+$ kubect l get pod [ pod_name] - o yaml 
+- - expor t
+$ kubect l get pod [ pod_name] - o yaml 
+- - expor t > nameof f i l e. yaml
+$ kubect l get pods - - f i el d- sel ect or 
+st at us. phase=Runni ng
+Namespaces
+$ kubect l get ns
+$ kubect l get ns - o yaml
+$ kubect l descr i be ns
+Deployments
+$ kubect l get depl oy
+$ kubect l descr i be depl oy
+$ kubect l get depl oy - o wi de
+$ kubect l get depl oy - o yaml
+Services
+$ kubect l get svc
+$ kubect l descr i be svc
+$ kubect l get svc - o wi de
+$ kubect l get svc - o yaml
+$ kubect l get svc - - show- l abel s
+DaemonSets
+$ kubect l get ds
+$ kubect l get ds - - al l - namespaces
+$ kubect l descr i be ds [ daemonset _name] - n 
+[ namespace_name]
+$ kubect l get ds [ ds_name] - n [ ns_name] - o 
+yaml
+Events
+$ kubect l get event s
+$ kubect l get event s - n kube- syst em
+$ kubect l get event s - w
+Logs
+$ kubect l l ogs [ pod_name]
+$ kubect l l ogs - - si nce=1h [ pod_name]
+$ kubect l l ogs - - t ai l =20 [ pod_name]
+$ kubect l l ogs - f - c [ cont ai ner _name] 
+[ pod_name]
+$ kubect l l ogs [ pod_name] > pod. l og
+Service Accounts
+$ kubect l get sa
+$ kubect l get sa - o yaml
+$ kubect l get ser vi ceaccount s def aul t - o 
+yaml > . / sa. yaml
+$ kubect l r epl ace ser vi ceaccount def aul t - f 
+. / sa. yaml
+ReplicaSets
+$ kubect l get r s
+$ kubect l descr i be r s
+$ kubect l get r s - o wi de
+$ kubect l get r s - o yaml
+Roles
+$ kubect l get r ol es - - al l - namespaces
+$ kubect l get r ol es - - al l - namespaces - o yaml
+Secrets
+$ kubect l get secr et s
+$ kubect l get secr et s - - al l - namespaces
+$ kubect l get secr et s - o yaml
+ConfigMaps
+$ kubect l get cm
+$ kubect l get cm - - al l - namespaces
+$ kubect l get cm - - al l - namespaces - o yaml
+Ingress
+$ kubect l get i ng
+$ kubect l get i ng - - al l - namespaces
+PersistentVolume
+$ kubect l get pv
+$ kubect l descr i be pv
+PersistentVolumeClaim
+$ kubect l get pvc
+$ kubect l descr i be pvc
+
+--- PAGE 2 ---
+Kubernetes Cheat 
+Sheet
+http://linuxacademy.com
+Viewing Resource Information (cont.)
+StorageClass
+$ kubect l get sc
+$ kubect l get sc - o yaml
+Multiple Resources
+$ kubect l get svc, po
+$ kubect l get depl oy, no
+$ kubect l get al l
+$ kubect l get al l - - al l - namespaces
+Deployments/Namespaces
+$ kubect l edi t depl oy [ depl oy_name]
+$ kubect l del et e depl oy [ depl oy_name]
+$ kubect l expose depl oy [ depl oy_name] 
+- - por t =80 - - t ype=NodePor t
+$ kubect l scal e depl oy [ depl oy_name] 
+- - r epl i cas=5
+$ kubect l del et e ns 
+$ kubect l edi t ns [ ns_name]
+Services
+$ kubect l edi t svc [ svc_name]
+$ kubect l del et e svc [ svc_name]
+Taint
+$ kubect l t ai nt [ node_name] [ t ai nt _name] 
+Labels
+$ kubect l l abel [ node_name] di skt ype=ssd
+$ kubr ect l l abel [ pod_name] env=pr od
+DaemonSets
+$ kubect l edi t ds [ ds_name] - n kube- syst em
+$ kubect l del et e ds [ ds_name]
+Service Accounts
+$ kubect l edi t sa [ sa_name]
+$ kubect l del et e sa [ sa_name]
+Changing Resource Attributes
+page 2
+Cordon/Uncordon
+$ kubect l cor don [ node_name]
+$ kunect l uncor don [ node_name]
+Drain
+$ kubect l dr ai n [ node_name]
+Nodes/Pods
+$ kubect l del et e node [ node_name]
+$ kubect l del et e pod [ pod_name]
+$ kubect l edi t node [ node_name]
+$ kubect l edi t pod [ pod_name] 
+Annotate
+$ kubect l annot at e po [ pod_name] 
+[ annot at i on]
+$ kubect l annot at e no [ node_name]
+Adding Resources
+Creating a Pod
+$ kubect l cr eat e - f [ name_of _f i l e]
+$ kubect l appl y - f [ name_of _f i l e]
+$ kubect l r un [ pod_name] - - i mage=ngi nx 
+- - r est ar t =Never
+$ kubect l r un [ pod_name] 
+- - gener at or =r un- pod/ v1 - - i mage=ngi nx
+$ kubect l r un [ pod_name] - - i mage=ngi nx 
+- - r est ar t =Never
+Creating a Deployment
+$ kubect l cr eat e - f [ name_of _f i l e]
+$ kubect l appl y - f [ name_of _f i l e]
+$ kubect l cr eat e depl oy [ depl oy_name] 
+- - i mage=ngi nx
+Requests
+API Call
+$ kubect l get - - r aw / api s/ met r i cs. k8s. i o/
+Cluster Info
+$ kubect l conf i g 
+$ kubect l cl ust er - i nf o
+$ kubect l get component st at uses
+Interactive Pod
+$ kubect l r un [ pod_name] - - i mage=busybox 
+- - r m - i t - - r est ar t =Never - - sh
+Output YAML to a File
+$ kubect l cr eat e depl oy [ depl oy_name] 
+- - i mage=ngi nx - - dr y- r un - o yaml > 
+depl oy. yaml
+$ kubect l get po [ pod_name] - o yaml - - expor t 
+> pod. yaml
+Getting Help
+$ kubect l - h 
+$ kubect l cr eat e - h
+$ kubect l r un - h
+$ kubect l expl ai n depl oy. spec
+Creating a Service
+$ kubect l cr eat e svc nodepor t [ svc_name] 
+- - t cp=8080: 80
+

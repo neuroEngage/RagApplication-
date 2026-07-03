@@ -1,0 +1,367 @@
+--- PAGE 1 ---
+Ahmed Yasir Khan 
+ 
+Page 1 of 12 
+ 
+What is OLAP (Online Analytical Processing): 
+Cube, Operations & Types 
+What is Online Analytical Processing? 
+OLAP is a category of software that allows users to analyze information from 
+multiple database systems at the same time. It is a technology that enables 
+analysts to extract and view business data from different points of view. OLAP 
+stands for Online Analytical Processing. 
+Analysts frequently need to group, aggregate and join data. These operations in 
+relational databases are resource intensive. With OLAP data can be pre-calculated 
+and pre-aggregated, making analysis faster. 
+OLAP databases are divided into one or more cubes. The cubes are designed in 
+such a way that creating and viewing reports become easy. 
+OLAP cube: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 2 ---
+Ahmed Yasir Khan 
+ 
+Page 2 of 12 
+ 
+At the core of the OLAP, concept is an OLAP Cube. The OLAP cube is a data 
+structure optimized for very quick data analysis. 
+The OLAP Cube consists of numeric facts called measures which are categorized by 
+dimensions. OLAP Cube is also called the hypercube. 
+Usually, data operations and analysis are performed using the simple spreadsheet, 
+where data values are arranged in row and column format. This is ideal for two-
+dimensional data. However, OLAP contains multidimensional data, with data 
+usually obtained from a different and unrelated source. Using a spreadsheet is not 
+an optimal option. The cube can store and analyze multidimensional data in a 
+logical and orderly manner. 
+How does it work? 
+A Data warehouse would extract information from multiple data sources and 
+formats like text files, excel sheet, multimedia files, etc. 
+The extracted data is cleaned and transformed. Data is loaded into an OLAP server 
+(or OLAP cube) where information is pre-calculated in advance for further analysis. 
+Basic analytical operations of OLAP 
+Four types of analytical operations in OLAP are: 
+1. Roll-up 
+2. Drill-down 
+3. Slice and dice 
+4. Pivot (rotate) 
+1) Roll-up: 
+Roll-up is also known as "consolidation" or "aggregation." The Roll-up operation 
+can be performed in 2 ways 
+1. Reducing dimensions 
+2. Climbing up concept hierarchy. Concept hierarchy is a system of grouping 
+things based on their order or level. 
+
+--- PAGE 3 ---
+Ahmed Yasir Khan 
+ 
+Page 3 of 12 
+ 
+Consider the following diagram 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+• In this example, cities New jersey and Lost Angles and rolled up into country 
+USA 
+• The sales figure of New Jersey and Los Angeles are 440 and 1560 
+respectively. They become 2000 after roll-up 
+• In this aggregation process, data is location hierarchy moves up from city to 
+the country. 
+• In the roll-up process at least one or more dimensions need to be removed. 
+In this example, Quater dimension is removed. 
+ 
+ 
+
+--- PAGE 4 ---
+Ahmed Yasir Khan 
+ 
+Page 4 of 12 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 5 ---
+Ahmed Yasir Khan 
+ 
+Page 5 of 12 
+ 
+ 
+2) Drill-down 
+In drill-down data is fragmented into smaller parts. It is the opposite of the rollup 
+process. It can be done via 
+• Moving down the concept hierarchy 
+• Increasing a dimension 
+Consider the diagram above 
+• Quater Q1 is drilled down to months January, February, and March. 
+Corresponding sales are also registers. 
+• In this example, dimension months are added. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 6 ---
+Ahmed Yasir Khan 
+ 
+Page 6 of 12 
+ 
+3) Slice: 
+Here, one dimension is selected, and a new sub-cube is created. 
+Following diagram explain how slice operation performed: 
+ 
+• Dimension Time is Sliced with Q1 as the filter. 
+• A new cube is created altogether. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 7 ---
+Ahmed Yasir Khan 
+ 
+Page 7 of 12 
+ 
+Dice: 
+This operation is similar to a slice. The difference in dice is you select 2 or more 
+dimensions that result in the creation of a sub-cube. 
+ 
+4) Pivot 
+In Pivot, you rotate the data axes to provide a substitute presentation of data. 
+In the following example, the pivot is based on item types. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 8 ---
+Ahmed Yasir Khan 
+ 
+Page 8 of 12 
+ 
+Types of OLAP systems 
+OLAP Hierarchical Structure 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 9 ---
+Ahmed Yasir Khan 
+ 
+Page 9 of 12 
+ 
+Type of OLAP 
+Explanation 
+Relational OLAP(ROLAP): 
+ROLAP is an extended RDBMS along with 
+multidimensional data mapping to perform the 
+standard relational operation. 
+Multidimensional OLAP 
+(MOLAP) 
+MOLAP Implements operation in 
+multidimensional data. 
+Hybrid Online Analytical 
+Processing (HOLAP) 
+In HOLAP approach the aggregated totals are 
+stored in a multidimensional database while 
+the detailed data is stored in the relational 
+database. This offers both data efficiency of the 
+ROLAP model and the performance of the 
+MOLAP model. 
+Desktop OLAP (DOLAP) 
+In Desktop OLAP, a user downloads a part of the 
+data from the database locally, or on their 
+desktop and analyze it. 
+ 
+DOLAP is relatively cheaper to deploy as it 
+offers very few functionalities compares to 
+other OLAP systems. 
+Web OLAP (WOLAP) 
+Web OLAP which is OLAP system accessible via 
+the web browser. WOLAP is a three-tiered 
+architecture. It consists of three components: 
+client, middleware, and a database server. 
+Mobile OLAP: 
+Mobile OLAP helps users to access and analyze 
+OLAP data using their mobile devices 
+
+--- PAGE 10 ---
+Ahmed Yasir Khan 
+ 
+Page 10 of 12 
+ 
+Spatial OLAP : 
+SOLAP is created to facilitate management of 
+both spatial and non-spatial data in a 
+Geographic Information system (GIS) 
+ROLAP 
+ROLAP works with data that exist in a relational database. Facts and dimension 
+tables are stored as relational tables. It also allows multidimensional analysis of 
+data and is the fastest growing OLAP. 
+Advantages of ROLAP model: 
+• High data efficiency. It offers high data efficiency because query 
+performance and access language are optimized particularly for the 
+multidimensional data analysis. 
+• Scalability. This type of OLAP system offers scalability for managing large 
+volumes of data, and even when the data is steadily increasing. 
+Drawbacks of ROLAP model: 
+• Demand for higher resources: ROLAP needs high utilization of manpower, 
+software, and hardware resources. 
+• Aggregately data limitations. ROLAP tools use SQL for all calculation of 
+aggregate data. However, there are no set limits to the for handling 
+computations. 
+• Slow query performance. Query performance in this model is slow when 
+compared with MOLAP 
+MOLAP 
+MOLAP uses array-based multidimensional storage engines to display 
+multidimensional views of data. Basically, they use an OLAP cube. 
+ 
+ 
+
+--- PAGE 11 ---
+Ahmed Yasir Khan 
+ 
+Page 11 of 12 
+ 
+Hybrid OLAP 
+Hybrid OLAP is a mixture of both ROLAP and MOLAP. It offers fast computation of 
+MOLAP and higher scalability of ROLAP. HOLAP uses two databases. 
+1. Aggregated or computed data is stored in a multidimensional OLAP cube 
+2. Detailed information is stored in a relational database. 
+Benefits of Hybrid OLAP: 
+• This kind of OLAP helps to economize the disk space, and it also remains 
+compact which helps to avoid issues related to access speed and 
+convenience. 
+• Hybrid HOLAP's uses cube technology which allows faster performance for 
+all types of data. 
+• ROLAP are instantly updated and HOLAP users have access to this real-time 
+instantly updated data. MOLAP brings cleaning and conversion of data 
+thereby improving data relevance. This brings best of both worlds. 
+Drawbacks of Hybrid OLAP: 
+• Greater complexity level: The major drawback in HOLAP systems is that it 
+supports both ROLAP and MOLAP tools and applications. Thus, it is very 
+complicated. 
+• Potential overlaps: There are higher chances of overlapping especially into 
+their functionalities. 
+Advantages of OLAP 
+• OLAP is a platform for all type of business includes planning, budgeting, 
+reporting, and analysis. 
+• Information and calculations are consistent in an OLAP cube. This is a crucial 
+benefit. 
+• Quickly create and analyze "What if" scenarios 
+• Easily search OLAP database for broad or specific terms. 
+• OLAP provides the building blocks for business modeling tools, Data mining 
+tools, performance reporting tools. 
+
+--- PAGE 12 ---
+Ahmed Yasir Khan 
+ 
+Page 12 of 12 
+ 
+• Allows users to do slice and dice cube data all by various dimensions, 
+measures, and filters. 
+• It is good for analyzing time series. 
+• Finding some clusters and outliers is easy with OLAP. 
+• It is a powerful visualization online analytical process system which provides 
+faster response times 
+Disadvantages of OLAP 
+• OLAP requires organizing data into a star or snowflake schema. These 
+schemas are complicated to implement and administer 
+• You cannot have large number of dimensions in a single OLAP cube 
+• Transactional data cannot be accessed with OLAP system. 
+• Any modification in an OLAP cube needs a full update of the cube. This is a 
+time-consuming process 
+Summary: 
+• OLAP is a technology that enables analysts to extract and view business data 
+from different points of view. 
+• At the core of the OLAP, the concept is an OLAP Cube. 
+• Various business applications and other data operations require the use of 
+OLAP Cube. 
+• There are primary five types of analytical operations in OLAP 1) Roll-up 2) 
+Drill-down 3) Slice 4) Dice and 5) Pivot 
+• Three types of widely used OLAP systems are MOLAP, ROLAP, and Hybrid 
+OLAP. 
+• Desktop OLAP, Web OLAP, and Mobile OLAP are some other types of OLAP 
+systems. 
+ 
+

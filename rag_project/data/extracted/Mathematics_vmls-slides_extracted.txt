@@ -1,0 +1,9018 @@
+--- PAGE 1 ---
+Lecture slides for
+Introduction to Applied Linear Algebra:
+Vectors, Matrices, and Least Squares
+Stephen Boyd
+Lieven Vandenberghe
+
+--- PAGE 2 ---
+1. Vectors
+
+--- PAGE 3 ---
+Outline
+Notation
+Examples
+Addition and scalar multiplication
+Inner product
+Complexity
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+1.1
+
+--- PAGE 4 ---
+Vectors
+▶a vector is an ordered list of numbers
+▶written as
+
+−1.1
+0.0
+3.6
+−7.2
+
+or
+*....
+,
+−1.1
+0.0
+3.6
+−7.2
++////
+-
+or (−1.1,0,3.6,−7.2)
+▶numbers in the list are the elements (entries, coeﬃcients, components)
+▶number of elements is the size (dimension, length) of the vector
+▶vector above has dimension 4; its third entry is 3.6
+▶vector of size n is called an n-vector
+▶numbers are called scalars
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+1.2
+
+--- PAGE 5 ---
+Vectors via symbols
+▶we’ll use symbols to denote vectors, e.g., a, X, p, β, Eaut
+▶other conventions: g,⃗a
+▶ith element of n-vector a is denoted ai
+▶if a is vector above, a3 = 3.6
+▶in ai, i is the index
+▶for an n-vector, indexes run from i = 1 to i = n
+▶warning: sometimes ai refers to the ith vector in a list of vectors
+▶two vectors a and b of the same size are equal if ai = bi for all i
+▶we overload = and write this as a = b
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+1.3
+
+--- PAGE 6 ---
+Block vectors
+▶suppose b, c, and d are vectors with sizes m, n, p
+▶the stacked vector or concatenation (of b, c, and d) is
+a =
+
+b
+c
+d
+
+▶also called a block vector, with (block) entries b, c, d
+▶a has size m + n + p
+a = (b1,b2,. . . ,bm,c1,c2,. . . ,cn,d1,d2,. . . ,dp)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+1.4
+
+--- PAGE 7 ---
+Zero, ones, and unit vectors
+▶n-vector with all entries 0 is denoted 0n or just 0
+▶n-vector with all entries 1 is denoted 1n or just 1
+▶a unit vector has one entry 1 and all others 0
+▶denoted ei where i is entry that is 1
+▶unit vectors of length 3:
+e1 =
+
+1
+0
+0
+
+,
+e2 =
+
+0
+1
+0
+
+,
+e3 =
+
+0
+0
+1
+
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+1.5
+
+--- PAGE 8 ---
+Sparsity
+▶a vector is sparse if many of its entries are 0
+▶can be stored and manipulated eﬃciently on a computer
+▶nnz(x) is number of entries that are nonzero
+▶examples: zero vectors, unit vectors
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+1.6
+
+--- PAGE 9 ---
+Outline
+Notation
+Examples
+Addition and scalar multiplication
+Inner product
+Complexity
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+1.7
+
+--- PAGE 10 ---
+Location or displacement in 2-D or 3-D
+2-vector (x1,x2) can represent a location or a displacement in 2-D
+x
+x1
+x2
+x1
+x2
+x
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+1.8
+
+--- PAGE 11 ---
+More examples
+▶color: (R,G,B)
+▶quantities of n diﬀerent commodities (or resources), e.g., bill of materials
+▶portfolio: entries give shares (or $ value or fraction) held in each of n
+assets, with negative meaning short positions
+▶cash ﬂow: xi is payment in period i to us
+▶audio: xi is the acoustic pressure at sample time i
+(sample times are spaced 1/44100 seconds apart)
+▶features: xi is the value of ith feature or attribute of an entity
+▶customer purchase: xi is the total $ purchase of product i by a customer
+over some period
+▶word count: xi is the number of times word i appears in a document
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+1.9
+
+--- PAGE 12 ---
+Word count vectors
+▶a short document:
+Word count vectors are used in computer based document
+analysis. Each entry of the word count vector is the number of
+times the associated dictionary word appears in the document.
+▶a small dictionary (left) and word count vector (right)
+word
+in
+number
+horse
+the
+document
+
+3
+2
+1
+0
+4
+2
+
+▶dictionaries used in practice are much larger
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+1.10
+
+--- PAGE 13 ---
+Outline
+Notation
+Examples
+Addition and scalar multiplication
+Inner product
+Complexity
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+1.11
+
+--- PAGE 14 ---
+Vector addition
+▶n-vectors a and b and can be added, with sum denoted a + b
+▶to get sum, add corresponding entries:
+
+0
+7
+3
+
++
+
+1
+2
+0
+
+=
+
+1
+9
+3
+
+▶subtraction is similar
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+1.12
+
+--- PAGE 15 ---
+Properties of vector addition
+▶commutative: a + b = b + a
+▶associative: (a + b) + c = a + (b + c)
+(so we can write both as a + b + c)
+▶a + 0 = 0 + a = a
+▶a −a = 0
+these are easy and boring to verify
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+1.13
+
+--- PAGE 16 ---
+Adding displacements
+if 3-vectors a and b are displacements, a + b is the sum displacement
+a
+b
+a + b
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+1.14
+
+--- PAGE 17 ---
+Displacement from one point to another
+displacement from point q to point p is p −q
+p −q
+p
+q
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+1.15
+
+--- PAGE 18 ---
+Scalar-vector multiplication
+▶scalar β and n-vector a can be multiplied
+βa = (βa1,. . . , βan)
+▶also denoted aβ
+▶example:
+(−2)
+
+1
+9
+6
+
+=
+
+−2
+−18
+−12
+
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+1.16
+
+--- PAGE 19 ---
+Properties of scalar-vector multiplication
+▶associative: (βγ)a = β(γa)
+▶left distributive: (β + γ)a = βa + γa
+▶right distributive: β(a + b) = βa + βb
+these equations look innocent, but be sure you understand them perfectly
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+1.17
+
+--- PAGE 20 ---
+Linear combinations
+▶for vectors a1,. . . ,am and scalars β1,. . . , βm,
+β1a1 + · · · + βmam
+is a linear combination of the vectors
+▶β1,. . . , βm are the coeﬃcients
+▶a very important concept
+▶a simple identity: for any n-vector b,
+b = b1e1 + · · · + bnen
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+1.18
+
+--- PAGE 21 ---
+Example
+two vectors a1 and a2, and linear combination b = 0.75a1 + 1.5a2
+a1
+a2
+0.75a1
+1.5a2
+b
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+1.19
+
+--- PAGE 22 ---
+Replicating a cash ﬂow
+▶c1 = (1,−1.1,0) is a $1 loan from period 1 to 2 with 10% interest
+▶c2 = (0,1,−1.1) is a $1 loan from period 2 to 3 with 10% interest
+▶linear combination
+d = c1 + 1.1c2 = (1,0,−1.21)
+is a two period loan with 10% compounded interest rate
+▶we have replicated a two period loan from two one period loans
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+1.20
+
+--- PAGE 23 ---
+Outline
+Notation
+Examples
+Addition and scalar multiplication
+Inner product
+Complexity
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+1.21
+
+--- PAGE 24 ---
+Inner product
+▶inner product (or dot product) of n-vectors a and b is
+aTb = a1b1 + a2b2 + · · · + anbn
+▶other notation used: ⟨a,b⟩, ⟨a|b⟩, (a,b), a · b
+▶example:
+
+−1
+2
+2
+
+T 
+1
+0
+−3
+
+= (−1)(1) + (2)(0) + (2)(−3) = −7
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+1.22
+
+--- PAGE 25 ---
+Properties of inner product
+▶aTb = bTa
+▶(γa)Tb = γ(aTb)
+▶(a + b)Tc = aTc + bTc
+can combine these to get, for example,
+(a + b)T(c + d) = aTc + aTd + bTc + bTd
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+1.23
+
+--- PAGE 26 ---
+General examples
+▶eT
+i a = ai
+(picks out ith entry)
+▶1Ta = a1 + · · · + an
+(sum of entries)
+▶aTa = a2
+1 + · · · + a2
+n
+(sum of squares of entries)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+1.24
+
+--- PAGE 27 ---
+Examples
+▶w is weight vector, f is feature vector; wTf is score
+▶p is vector of prices, q is vector of quantities; pTq is total cost
+▶c is cash ﬂow, d is discount vector (with interest rate r):
+d = (1,1/(1 + r),. . . ,1/(1 + r)n−1)
+dTc is net present value (NPV) of cash ﬂow
+▶s gives portfolio holdings (in shares), p gives asset prices; pTs is total
+portfolio value
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+1.25
+
+--- PAGE 28 ---
+Outline
+Notation
+Examples
+Addition and scalar multiplication
+Inner product
+Complexity
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+1.26
+
+--- PAGE 29 ---
+Flop counts
+▶computers store (real) numbers in ﬂoating-point format
+▶basic arithmetic operations (addition, multiplication, ...) are called ﬂoating
+point operations or ﬂops
+▶complexity of an algorithm or operation: total number of ﬂops needed, as
+function of the input dimension(s)
+▶this can be very grossly approximated
+▶crude approximation of time to execute: computer speed/ﬂops
+▶current computers are around 1Gﬂop/sec (109 ﬂops/sec)
+▶but this can vary by factor of 100
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+1.27
+
+--- PAGE 30 ---
+Complexity of vector addition, inner product
+▶x + y needs n additions, so: n ﬂops
+▶xTy needs n multiplications, n −1 additions so: 2n −1 ﬂops
+▶we simplify this to 2n (or even n) ﬂops for xTy
+▶and much less when x or y is sparse
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+1.28
+
+--- PAGE 31 ---
+2. Linear functions
+
+--- PAGE 32 ---
+Outline
+Linear and aﬃne functions
+Taylor approximation
+Regression model
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+2.1
+
+--- PAGE 33 ---
+Superposition and linear functions
+▶f : Rn →R means f is a function mapping n-vectors to numbers
+▶f satisﬁes the superposition property if
+f (αx + βy) = αf (x) + βf (y)
+holds for all numbers α, β, and all n-vectors x,y
+▶be sure to parse this very carefully!
+▶a function that satisﬁes superposition is called linear
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+2.2
+
+--- PAGE 34 ---
+The inner product function
+▶with a an n-vector, the function
+f (x) = aTx = a1x1 + a2x2 + · · · + anxn
+is the inner product function
+▶f (x) is a weighted sum of the entries of x
+▶the inner product function is linear:
+f (αx + βy)
+=
+aT(αx + βy)
+=
+aT(αx) + aT(βy)
+=
+α(aTx) + β(aTy)
+=
+αf (x) + βf (y)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+2.3
+
+--- PAGE 35 ---
+...and all linear functions are inner products
+▶suppose f : Rn →R is linear
+▶then it can be expressed as f (x) = aTx for some a
+▶speciﬁcally: ai = f (ei)
+▶follows from
+f (x)
+=
+f (x1e1 + x2e2 + · · · + xnen)
+=
+x1f (e1) + x2f (e2) + · · · + xnf (en)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+2.4
+
+--- PAGE 36 ---
+Aﬃne functions
+▶a function that is linear plus a constant is called aﬃne
+▶general form is f (x) = aTx + b, with a an n-vector and b a scalar
+▶a function f : Rn →R is aﬃne if and only if
+f (αx + βy) = αf (x) + βf (y)
+holds for all α, β with α + β = 1, and all n-vectors x, y
+▶sometimes (ignorant) people refer to aﬃne functions as linear
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+2.5
+
+--- PAGE 37 ---
+Linear versus aﬃne functions
+f is linear
+g is aﬃne, not linear
+x
+f (x)
+x
+g(x)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+2.6
+
+--- PAGE 38 ---
+Outline
+Linear and aﬃne functions
+Taylor approximation
+Regression model
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+2.7
+
+--- PAGE 39 ---
+First-order Taylor approximation
+▶suppose f : Rn →R
+▶ﬁrst-order Taylor approximation of f , near point z:
+ˆf (x) = f (z) + ∂f
+∂x1
+(z)(x1 −z1) + · · · + ∂f
+∂xn
+(z)(xn −zn)
+▶ˆf (x) is very close to f (x) when xi are all near zi
+▶ˆf is an aﬃne function of x
+▶can write using inner product as
+ˆf (x) = f (z) + ∇f (z)T(x −z)
+where n-vector ∇f (z) is the gradient of f at z,
+∇f (z) =
+ ∂f
+∂x1
+(z),. . . , ∂f
+∂xn
+(z)
+!
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+2.8
+
+--- PAGE 40 ---
+Example
+z
+ˆf (x)
+f (x)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+2.9
+
+--- PAGE 41 ---
+Outline
+Linear and aﬃne functions
+Taylor approximation
+Regression model
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+2.10
+
+--- PAGE 42 ---
+Regression model
+▶regression model is (the aﬃne function of x)
+ˆy = xT β + v
+▶x is a feature vector; its elements xi are called regressors
+▶n-vector β is the weight vector
+▶scalar v is the oﬀset
+▶scalar ˆy is the prediction
+(of some actual outcome or dependent variable, denoted y)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+2.11
+
+--- PAGE 43 ---
+Example
+▶y is selling price of house in $1000 (in some location, over some period)
+▶regressor is
+x = (house area, # bedrooms)
+(house area in 1000 sq.ft.)
+▶regression model weight vector and oﬀset are
+β = (148.73,−18.85),
+v = 54.40
+▶we’ll see later how to guess β and v from sales data
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+2.12
+
+--- PAGE 44 ---
+Example
+House
+x1 (area)
+x2 (beds)
+y (price)
+ˆy (prediction)
+1
+0.846
+1
+115.00
+161.37
+2
+1.324
+2
+234.50
+213.61
+3
+1.150
+3
+198.00
+168.88
+4
+3.037
+4
+528.00
+430.67
+5
+3.984
+5
+572.50
+552.66
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+2.13
+
+--- PAGE 45 ---
+Example
+0
+200
+400
+600
+800
+0
+200
+400
+600
+800
+House 1
+House 2
+House 3
+House 4
+House 5
+Actual price y (thousand dollars)
+Predicted price ˆy (thousand dollars)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+2.14
+
+--- PAGE 46 ---
+3. Norm and distance
+
+--- PAGE 47 ---
+Outline
+Norm
+Distance
+Standard deviation
+Angle
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+3.1
+
+--- PAGE 48 ---
+Norm
+▶the Euclidean norm (or just norm) of an n-vector x is
+∥x∥=
+q
+x2
+1 + x2
+2 + · · · + x2n =
+p
+xTx
+▶used to measure the size of a vector
+▶reduces to absolute value for n = 1
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+3.2
+
+--- PAGE 49 ---
+Properties
+for any n-vectors x and y, and any scalar β
+▶homogeneity: ∥βx∥= | β|∥x∥
+▶triangle inequality: ∥x + y∥≤∥x∥+ ∥y∥
+▶nonnegativity: ∥x∥≥0
+▶deﬁniteness: ∥x∥= 0 only if x = 0
+easy to show except triangle inequality, which we show later
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+3.3
+
+--- PAGE 50 ---
+RMS value
+▶mean-square value of n-vector x is
+x2
+1 + · · · + x2
+n
+n
+= ∥x∥2
+n
+▶root-mean-square value (RMS value) is
+rms(x) =
+s
+x2
+1 + · · · + x2n
+n
+= ∥x∥
+√n
+▶rms(x) gives ‘typical’ value of |xi|
+▶e.g., rms(1) = 1 (independent of n)
+▶RMS value useful for comparing sizes of vectors of diﬀerent lengths
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+3.4
+
+--- PAGE 51 ---
+Norm of block vectors
+▶suppose a,b,c are vectors
+▶∥(a,b,c)∥2 = aTa + bTb + cTc = ∥a∥2 + ∥b∥2 + ∥c∥2
+▶so we have
+∥(a,b,c)∥=
+q
+∥a∥2 + ∥b∥2 + ∥c∥2 = ∥(∥a∥, ∥b∥, ∥c∥)∥
+(parse RHS very carefully!)
+▶we’ll use these ideas later
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+3.5
+
+--- PAGE 52 ---
+Chebyshev inequality
+▶suppose that k of the numbers |x1|,. . . ,|xn| are ≥a
+▶then k of the numbers x2
+1,. . . ,x2
+n are ≥a2
+▶so ∥x∥2 = x2
+1 + · · · + x2
+n ≥ka2
+▶so we have k ≤∥x∥2/a2
+▶number of xi with |xi| ≥a is no more than ∥x∥2/a2
+▶this is the Chebyshev inequality
+▶in terms of RMS value:
+fraction of entries with |xi| ≥a is no more than
+ rms(x)
+a
+!2
+▶example: no more than 4% of entries can satisfy |xi| ≥5 rms(x)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+3.6
+
+--- PAGE 53 ---
+Outline
+Norm
+Distance
+Standard deviation
+Angle
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+3.7
+
+--- PAGE 54 ---
+Distance
+▶(Euclidean) distance between n-vectors a and b is
+dist(a,b) = ∥a −b∥
+▶agrees with ordinary distance for n = 1,2,3
+a
+b
+▶rms(a −b) is the RMS deviation between a and b
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+3.8
+
+--- PAGE 55 ---
+Triangle inequality
+▶triangle with vertices at positions a,b,c
+▶edge lengths are ∥a −b∥, ∥b −c∥, ∥a −c∥
+▶by triangle inequality
+∥a −c∥= ∥(a −b) + (b −c)∥≤∥a −b∥+ ∥b −c∥
+i.e., third edge length is no longer than sum of other two
+∥a −b∥
+∥b −c∥
+∥a −c∥
+a
+b
+c
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+3.9
+
+--- PAGE 56 ---
+Feature distance and nearest neighbors
+▶if x and y are feature vectors for two entities, ∥x −y∥is the feature distance
+▶if z1,. . . ,zm is a list of vectors, zj is the nearest neighbor of x if
+∥x −zj∥≤∥x −zi∥,
+i = 1,. . . ,m
+z1
+z2
+z3
+z4
+z5
+z6
+x
+▶these simple ideas are very widely used
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+3.10
+
+--- PAGE 57 ---
+Document dissimilarity
+▶5 Wikipedia articles: ‘Veterans Day’, ‘Memorial Day’, ‘Academy Awards’,
+‘Golden Globe Awards’, ‘Super Bowl’
+▶word count histograms, dictionary of 4423 words
+▶pairwise distances shown below
+Veterans
+Memorial
+Academy
+Golden Globe
+Super Bowl
+Day
+Day
+Awards
+Awards
+Veterans Day
+0
+0.095
+0.130
+0.153
+0.170
+Memorial Day
+0.095
+0
+0.122
+0.147
+0.164
+Academy A.
+0.130
+0.122
+0
+0.108
+0.164
+Golden Globe A.
+0.153
+0.147
+0.108
+0
+0.181
+Super Bowl
+0.170
+0.164
+0.164
+0.181
+0
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+3.11
+
+--- PAGE 58 ---
+Outline
+Norm
+Distance
+Standard deviation
+Angle
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+3.12
+
+--- PAGE 59 ---
+Standard deviation
+▶for n-vector x, avg(x) = 1Tx/n
+▶de-meaned vector is ˜x = x −avg(x)1
+(so avg(˜x) = 0)
+▶standard deviation of x is
+std(x) = rms(˜x) = ∥x −(1Tx/n)1∥
+√n
+▶std(x) gives ‘typical’ amount xi vary from avg(x)
+▶std(x) = 0 only if x = α1 for some α
+▶greek letters µ, σ commonly used for mean, standard deviation
+▶a basic formula:
+rms(x)2 = avg(x)2 + std(x)2
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+3.13
+
+--- PAGE 60 ---
+Mean return and risk
+▶x is time series of returns (say, in %) on some investment or asset over
+some period
+▶avg(x) is the mean return over the period, usually just called return
+▶std(x) measures how variable the return is over the period, and is called
+the risk
+▶multiple investments (with diﬀerent return time series) are often compared
+in terms of return and risk
+▶often plotted on a risk-return plot
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+3.14
+
+--- PAGE 61 ---
+Risk-return example
+−5
+0
+5
+10
+k
+ak
+−5
+0
+5
+10
+k
+bk
+−5
+0
+5
+10
+k
+ck
+−5
+0
+5
+10
+k
+dk
+0
+2
+4
+0
+1
+2
+3
+a
+b
+c
+d
+risk
+(mean) return
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+3.15
+
+--- PAGE 62 ---
+Chebyshev inequality for standard deviation
+▶x is an n-vector with mean avg(x), standard deviation std(x)
+▶rough idea: most entries of x are not too far from the mean
+▶by Chebyshev inequality, fraction of entries of x with
+|xi −avg(x)| ≥α std(x)
+is no more than 1/α2 (for α > 1)
+▶for return time series with mean 8% and standard deviation 3%, loss
+(xi ≤0) can occur in no more than (3/8)2 = 14.1% of periods
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+3.16
+
+--- PAGE 63 ---
+Outline
+Norm
+Distance
+Standard deviation
+Angle
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+3.17
+
+--- PAGE 64 ---
+Cauchy–Schwarz inequality
+▶for two n-vectors a and b, |aTb| ≤∥a∥∥b∥
+▶written out,
+|a1b1 + · · · + anbn| ≤
+
+a2
+1 + · · · + a2
+n
+1/2 
+b2
+1 + · · · + b2
+n
+1/2
+▶now we can show triangle inequality:
+∥a + b∥2
+=
+∥a∥2 + 2aTb + ∥b∥2
+≤
+∥a∥2 + 2∥a∥∥b∥+ ∥b∥2
+=
+(∥a∥+ ∥b∥)2
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+3.18
+
+--- PAGE 65 ---
+Derivation of Cauchy–Schwarz inequality
+▶it’s clearly true if either a or b is 0
+▶so assume α = ∥a∥and β = ∥b∥are nonzero
+▶we have
+0
+≤
+∥βa −αb∥2
+=
+∥βa∥2 −2(βa)T(αb) + ∥αb∥2
+=
+β2∥a∥2 −2βα(aTb) + α2∥b∥2
+=
+2∥a∥2∥b∥2 −2∥a∥∥b∥(aTb)
+▶divide by 2∥a∥∥b∥to get aTb ≤∥a∥∥b∥
+▶apply to −a, b to get other half of Cauchy–Schwarz inequality
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+3.19
+
+--- PAGE 66 ---
+Angle
+▶angle between two nonzero vectors a, b deﬁned as
+∠(a,b) = arccos
+ 
+aTb
+∥a∥∥b∥
+!
+▶∠(a,b) is the number in [0,π] that satisﬁes
+aTb = ∥a∥∥b∥cos (∠(a,b))
+▶coincides with ordinary angle between vectors in 2-D and 3-D
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+3.20
+
+--- PAGE 67 ---
+Classiﬁcation of angles
+θ = ∠(a,b)
+▶θ = π/2 = 90◦: a and b are orthogonal, written a ⊥b (aTb = 0)
+▶θ = 0: a and b are aligned (aTb = ∥a∥∥b∥)
+▶θ = π = 180◦: a and b are anti-aligned (aTb = −∥a∥∥b∥)
+▶θ ≤π/2 = 90◦: a and b make an acute angle (aTb ≥0)
+▶θ ≥π/2 = 90◦: a and b make an obtuse angle (aTb ≤0)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+3.21
+
+--- PAGE 68 ---
+Spherical distance
+if a, b are on sphere of radius R, distance along the sphere is R∠(a,b)
+a
+b
+0
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+3.22
+
+--- PAGE 69 ---
+Document dissimilarity by angles
+▶measure dissimilarity by angle of word count histogram vectors
+▶pairwise angles (in degrees) for 5 Wikipedia pages shown below
+Veterans Memorial Academy Golden Globe Super Bowl
+Day
+Day
+Awards
+Awards
+Veterans Day
+0
+60.6
+85.7
+87.0
+87.7
+Memorial Day
+60.6
+0
+85.6
+87.5
+87.5
+Academy A.
+85.7
+85.6
+0
+58.7
+85.7
+Golden Globe A.
+87.0
+87.5
+58.7
+0
+86.0
+Super Bowl
+87.7
+87.5
+86.1
+86.0
+0
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+3.23
+
+--- PAGE 70 ---
+Correlation coeﬃcient
+▶vectors a and b, and de-meaned vectors
+˜a = a −avg(a)1,
+˜b = b −avg(b)1
+▶correlation coeﬃcient (between a and b, with ˜a , 0, ˜b , 0)
+ρ =
+˜aT ˜b
+∥˜a∥∥˜b∥
+▶ρ = cos ∠(˜a, ˜b)
+– ρ = 0: a and b are uncorrelated
+– ρ > 0.8 (or so): a and b are highly correlated
+– ρ < −0.8 (or so): a and b are highly anti-correlated
+▶very roughly: highly correlated means ai and bi are typically both above
+(below) their means together
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+3.24
+
+--- PAGE 71 ---
+Examples
+k
+ak
+k
+bk
+ρ = 97%
+ak
+bk
+k
+ak
+k
+bk
+ρ = −99%
+ak
+bk
+k
+ak
+k
+bk
+ρ = 0.4%
+ak
+bk
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+3.25
+
+--- PAGE 72 ---
+Examples
+▶highly correlated vectors:
+– rainfall time series at nearby locations
+– daily returns of similar companies in same industry
+– word count vectors of closely related documents
+(e.g., same author, topic, ...)
+– sales of shoes and socks (at diﬀerent locations or periods)
+▶approximately uncorrelated vectors
+– unrelated vectors
+– audio signals (even diﬀerent tracks in multi-track recording)
+▶(somewhat) negatively correlated vectors
+– daily temperatures in Palo Alto and Melbourne
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+3.26
+
+--- PAGE 73 ---
+4. Clustering
+
+--- PAGE 74 ---
+Outline
+Clustering
+Algorithm
+Examples
+Applications
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+4.1
+
+--- PAGE 75 ---
+Clustering
+▶given N n-vectors x1,. . . ,xN
+▶goal: partition (divide, cluster) into k groups
+▶want vectors in the same group to be close to one another
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+4.2
+
+--- PAGE 76 ---
+Example settings
+▶topic discovery and document classiﬁcation
+– xi is word count histogram for document i
+▶patient clustering
+– xi are patient attributes, test results, symptoms
+▶customer market segmentation
+– xi is purchase history and other attributes of customer i
+▶color compression of images
+– xi are RGB pixel values
+▶ﬁnancial sectors
+– xi are n-vectors of ﬁnancial attributes of company i
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+4.3
+
+--- PAGE 77 ---
+Clustering objective
+▶Gj ⊂{1,. . . ,N} is group j, for j = 1,. . . ,k
+▶ci is group that xi is in: xi ∈Gci
+▶group representatives: n-vectors z1,. . . ,zk
+▶clustering objective is
+Jclust = 1
+N
+N
+X
+i=1
+∥xi −zci∥2
+mean square distance from vectors to associated representative
+▶Jclust small means good clustering
+▶goal: choose clustering ci and representatives zj to minimize Jclust
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+4.4
+
+--- PAGE 78 ---
+Outline
+Clustering
+Algorithm
+Examples
+Applications
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+4.5
+
+--- PAGE 79 ---
+Partitioning the vectors given the representatives
+▶suppose representatives z1,. . . ,zk are given
+▶how do we assign the vectors to groups, i.e., choose c1,. . . ,cN?
+▶ci only appears in term ∥xi −zci ∥2 in Jclust
+▶to minimize over ci, choose ci so ∥xi −zci∥2 = minj ∥xi −zj∥2
+▶i.e., assign each vector to its nearest representative
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+4.6
+
+--- PAGE 80 ---
+Choosing representatives given the partition
+▶given the partition G1,. . . ,Gk, how do we choose representatives
+z1,. . . ,zk to minimize Jclust?
+▶Jclust splits into a sum of k sums, one for each zj:
+Jclust = J1 + · · · + Jk,
+Jj = (1/N)
+X
+i∈Gj
+∥xi −zj∥2
+▶so we choose zj to minimize mean square distance to the points in its
+partition
+▶this is the mean (or average or centroid) of the points in the partition:
+zj = (1/|Gj|)
+X
+i∈Gj
+xi
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+4.7
+
+--- PAGE 81 ---
+k-means algorithm
+▶alternate between updating the partition, then the representatives
+▶a famous algorithm called k-means
+▶objective Jclust decreases in each step
+given x1,. . . ,xN ∈Rn and z1,. . . ,zk ∈Rn
+repeat
+Update partition: assign i to Gj, j = argminj′ ∥xi −zj′∥2
+Update centroids: zj =
+1
+|Pj |
+P
+i∈Pj xi
+until z1,. . . ,zk stop changing
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+4.8
+
+--- PAGE 82 ---
+Convergence of k-means algorithm
+▶Jclust goes down in each step, until the zj’s stop changing
+▶but (in general) the k-means algorithm does not ﬁnd the partition that
+minimizes Jclust
+▶k-means is a heuristic: it is not guaranteed to ﬁnd the smallest possible
+value of Jclust
+▶the ﬁnal partition (and its value of Jclust) can depend on the initial
+representatives
+▶common approach:
+– run k-means 10 times, with diﬀerent (often random) initial representatives
+– take as ﬁnal partition the one with the smallest value of Jclust
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+4.9
+
+--- PAGE 83 ---
+Outline
+Clustering
+Algorithm
+Examples
+Applications
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+4.10
+
+--- PAGE 84 ---
+Data
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+4.11
+
+--- PAGE 85 ---
+Iteration 1
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+4.12
+
+--- PAGE 86 ---
+Iteration 2
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+4.13
+
+--- PAGE 87 ---
+Iteration 3
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+4.14
+
+--- PAGE 88 ---
+Iteration 10
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+4.15
+
+--- PAGE 89 ---
+Final clustering
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+4.16
+
+--- PAGE 90 ---
+Convergence
+1
+3
+5
+7
+9
+11
+13
+15
+0.5
+1
+1.5
+Iteration
+Jclust
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+4.17
+
+--- PAGE 91 ---
+Outline
+Clustering
+Algorithm
+Examples
+Applications
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+4.18
+
+--- PAGE 92 ---
+Handwritten digit image set
+▶MNIST images of handwritten digits (via Yann Lecun)
+▶N = 60,000 28 × 28 images, represented as 784-vectors xi
+▶25 examples shown below
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+4.19
+
+--- PAGE 93 ---
+k-means image clustering
+▶k = 20, run 20 times with diﬀerent initial assignments
+▶convergence shown below (including best and worst)
+1
+5
+9
+13
+17
+21
+25
+36
+38
+40
+42
+Iteration
+Jclust
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+4.20
+
+--- PAGE 94 ---
+Group representatives, best clustering
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+4.21
+
+--- PAGE 95 ---
+Topic discovery
+▶N = 500 Wikipedia articles, word count histograms with n = 4423
+▶k = 9, run 20 times with diﬀerent initial assignments
+▶convergence shown below (including best and worst)
+1
+5
+10
+15
+20
+7
+7.5
+8
+·10−3
+Iteration
+Jclust
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+4.22
+
+--- PAGE 96 ---
+Topics discovered (clusters 1–3)
+▶words with largest representative coeﬃcients
+Cluster 1
+Cluster 2
+Cluster 3
+Word
+Coef.
+Word
+Coef.
+Word
+Coef.
+ﬁght
+0.038
+holiday
+0.012
+united
+0.004
+win
+0.022
+celebrate
+0.009
+family
+0.003
+event
+0.019
+festival
+0.007
+party
+0.003
+champion
+0.015
+celebration
+0.007
+president
+0.003
+ﬁghter
+0.015
+calendar
+0.006
+government
+0.003
+▶titles of articles closest to cluster representative
+1. “Floyd Mayweather, Jr”, “Kimbo Slice”, “Ronda Rousey”, “José Aldo”, “Joe Frazier”,
+“Wladimir Klitschko”, “Saul Álvarez”, “Gennady Golovkin”, “Nate Diaz”, ...
+2. “Halloween”, “Guy Fawkes Night” “Diwali”, “Hanukkah”, “Groundhog Day”, “Rosh
+Hashanah”, “Yom Kippur”, “Seventh-day Adventist Church”, “Remembrance Day”, ...
+3. “Mahatma Gandhi”, “Sigmund Freud”, “Carly Fiorina”, “Frederick Douglass”, “Marco
+Rubio”, “Christopher Columbus”, “Fidel Castro”, “Jim Webb”, ...
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+4.23
+
+--- PAGE 97 ---
+Topics discovered (clusters 4–6)
+▶words with largest representative coeﬃcients
+Cluster 4
+Cluster 5
+Cluster 6
+Word
+Coef.
+Word
+Coef.
+Word
+Coef.
+album
+0.031
+game
+0.023
+series
+0.029
+release
+0.016
+season
+0.020
+season
+0.027
+song
+0.015
+team
+0.018
+episode
+0.013
+music
+0.014
+win
+0.017
+character
+0.011
+single
+0.011
+player
+0.014
+ﬁlm
+0.008
+▶titles of articles closest to cluster representative
+1. “David Bowie”, “Kanye West” “Celine Dion”, “Kesha”, “Ariana Grande”, “Adele”, “Gwen
+Stefani”, “Anti (album)”, “Dolly Parton”, “Sia Furler”, ...
+2. “Kobe Bryant”, “Lamar Odom”, “Johan Cruyﬀ”, “Yogi Berra”, “José Mourinho”, “Halo 5:
+Guardians”, “Tom Brady”, “Eli Manning”, “Stephen Curry”, “Carolina Panthers”, ...
+3. “The X-Files”, “Game of Thrones”, “House of Cards (U.S. TV series)”, “Daredevil (TV
+series)”, “Supergirl (U.S. TV series)”, “American Horror Story”, ...
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+4.24
+
+--- PAGE 98 ---
+Topics discovered (clusters 7–9)
+▶words with largest representative coeﬃcients
+Cluster 7
+Cluster 8
+Cluster 9
+Word
+Coef.
+Word
+Coef.
+Word
+Coef.
+match
+0.065
+ﬁlm
+0.036
+ﬁlm
+0.061
+win
+0.018
+star
+0.014
+million
+0.019
+championship
+0.016
+role
+0.014
+release
+0.013
+team
+0.015
+play
+0.010
+star
+0.010
+event
+0.015
+series
+0.009
+character
+0.006
+▶titles of articles closest to cluster representative
+1. “Wrestlemania 32”, “Payback (2016)”, “Survivor Series (2015)”, “Royal Rumble (2016)”,
+“Night of Champions (2015)”, “Fastlane (2016)”, “Extreme Rules (2016)”, ...
+2. “Ben Aﬄeck”, “Johnny Depp”, “Maureen O’Hara”, “Kate Beckinsale”, “Leonardo
+DiCaprio”, “Keanu Reeves”, “Charlie Sheen”, “Kate Winslet”, “Carrie Fisher”, ...
+3. “Star Wars: The Force Awakens”, “Star Wars Episode I: The Phantom Menace”, “The
+Martian (ﬁlm)”, “The Revenant (2015 ﬁlm)”, “The Hateful Eight”, ...
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+4.25
+
+--- PAGE 99 ---
+5. Linear independence
+
+--- PAGE 100 ---
+Outline
+Linear independence
+Basis
+Orthonormal vectors
+Gram–Schmidt algorithm
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+5.1
+
+--- PAGE 101 ---
+Linear dependence
+▶set of n-vectors {a1,. . . ,ak} (with k ≥1) is linearly dependent if
+β1a1 + · · · + βkak = 0
+holds for some β1,. . . , βk, that are not all zero
+▶equivalent to: at least one ai is a linear combination of the others
+▶we say ‘a1,. . . ,ak are linearly dependent’
+▶{a1} is linearly dependent only if a1 = 0
+▶{a1,a2} is linearly dependent only if one ai is a multiple of the other
+▶for more than two vectors, there is no simple to state condition
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+5.2
+
+--- PAGE 102 ---
+Example
+▶the vectors
+a1 =
+
+0.2
+−7
+8.6
+
+,
+a2 =
+
+−0.1
+2
+−1
+
+,
+a3 =
+
+0
+−1
+2.2
+
+are linearly dependent, since a1 + 2a2 −3a3 = 0
+▶can express any of them as linear combination of the other two, e.g.,
+a2 = (−1/2)a1 + (3/2)a3
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+5.3
+
+--- PAGE 103 ---
+Linear independence
+▶set of n-vectors {a1,. . . ,ak} (with k ≥1) is linearly independent if it is not
+linearly dependent, i.e.,
+β1a1 + · · · + βkak = 0
+holds only when β1 = · · · = βk = 0
+▶we say ‘a1,. . . ,ak are linearly independent’
+▶equivalent to: no ai is a linear combination of the others
+▶example: the unit n-vectors e1,. . . ,en are linearly independent
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+5.4
+
+--- PAGE 104 ---
+Linear combinations of linearly independent vectors
+▶suppose x is linear combination of linearly independent vectors a1,. . . ,ak:
+x = β1a1 + · · · + βkak
+▶the coeﬃcients β1,. . . , βk are unique, i.e., if
+x = γ1a1 + · · · + γkak
+then βi = γi for i = 1,. . . ,k
+▶this means that (in principle) we can deduce the coeﬃcients from x
+▶to see why, note that
+(β1 −γ1)a1 + · · · + (βk −γk)ak = 0
+and so (by linear independence) β1 −γ1 = · · · = βk −γk = 0
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+5.5
+
+--- PAGE 105 ---
+Outline
+Linear independence
+Basis
+Orthonormal vectors
+Gram–Schmidt algorithm
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+5.6
+
+--- PAGE 106 ---
+Independence-dimension inequality
+▶a linearly independent set of n-vectors can have at most n elements
+▶put another way: any set of n + 1 or more n-vectors is linearly dependent
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+5.7
+
+--- PAGE 107 ---
+Basis
+▶a set of n linearly independent n-vectors a1,. . . ,an is called a basis
+▶any n-vector b can be expressed as a linear combination of them:
+b = β1a1 + · · · + βnan
+for some β1,. . . , βn
+▶and these coeﬃcients are unique
+▶formula above is called expansion of b in the a1,. . . ,an basis
+▶example: e1,. . . ,en is a basis, expansion of b is
+b = b1e1 + · · · + bnen
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+5.8
+
+--- PAGE 108 ---
+Outline
+Linear independence
+Basis
+Orthonormal vectors
+Gram–Schmidt algorithm
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+5.9
+
+--- PAGE 109 ---
+Orthonormal vectors
+▶set of n-vectors a1,. . . ,ak are (mutually) orthogonal if ai ⊥aj for i , j
+▶they are normalized if ∥ai∥= 1 for i = 1,. . . ,k
+▶they are orthonormal if both hold
+▶can be expressed using inner products as
+aT
+i aj =
+( 1
+i = j
+0
+i , j
+▶orthonormal sets of vectors are linearly independent
+▶by independence-dimension inequality, must have k ≤n
+▶when k = n, a1,. . . ,an are an orthonormal basis
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+5.10
+
+--- PAGE 110 ---
+Examples of orthonormal bases
+▶standard unit n-vectors e1,. . . ,en
+▶the 3-vectors
+
+0
+0
+−1
+
+,
+1√
+2
+
+1
+1
+0
+
+,
+1√
+2
+
+1
+−1
+0
+
+▶the 2-vectors shown below
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+5.11
+
+--- PAGE 111 ---
+Orthonormal expansion
+▶if a1,. . . ,an is an orthonormal basis, we have for any n-vector x
+x = (aT
+1x)a1 + · · · + (aT
+nx)an
+▶called orthonormal expansion of x (in the orthonormal basis)
+▶to verify formula, take inner product of both sides with ai
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+5.12
+
+--- PAGE 112 ---
+Outline
+Linear independence
+Basis
+Orthonormal vectors
+Gram–Schmidt algorithm
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+5.13
+
+--- PAGE 113 ---
+Gram–Schmidt (orthogonalization) algorithm
+▶an algorithm to check if a1,. . . ,ak are linearly independent
+▶we’ll see later it has many other uses
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+5.14
+
+--- PAGE 114 ---
+Gram–Schmidt algorithm
+given n-vectors a1,. . . ,ak
+for i = 1,. . . ,k
+1. Orthogonalization: ˜qi = ai −(qT
+1ai)q1 −· · · −(qT
+i−1ai)qi−1
+2. Test for linear dependence: if ˜qi = 0, quit
+3. Normalization: qi = ˜qi/∥˜qi∥
+▶if G–S does not stop early (in step 2), a1,. . . ,ak are linearly independent
+▶if G–S stops early in iteration i = j, then aj is a linear combination of
+a1,. . . ,aj−1 (so a1,. . . ,ak are linearly dependent)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+5.15
+
+--- PAGE 115 ---
+Example
+a1
+a2
+˜q1
+a2
+q1
+a2
+q1
+a2
+−(qT
+1a2)q1
+˜q2
+q1
+q2
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+5.16
+
+--- PAGE 116 ---
+Analysis
+let’s show by induction that q1,. . . ,qi are orthonormal
+▶assume it’s true for i −1
+▶orthogonalization step ensures that
+˜qi ⊥q1,. . . , ˜qi ⊥qi−1
+▶to see this, take inner product of both sides with qj, j < i
+qT
+j ˜qi
+=
+qT
+j ai −(qT
+1ai)(qT
+j q1) −· · · −(qT
+i−1ai)(qT
+j qi−1)
+=
+qT
+j ai −qT
+j ai = 0
+▶so qi ⊥q1,. . . ,qi ⊥qi−1
+▶normalization step ensures that ∥qi∥= 1
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+5.17
+
+--- PAGE 117 ---
+Analysis
+assuming G–S has not terminated before iteration i
+▶ai is a linear combination of q1,. . . ,qi:
+ai = ∥˜qi∥qi + (qT
+1ai)q1 + · · · + (qT
+i−1ai)qi−1
+▶qi is a linear combination of a1,. . . ,ai: by induction on i,
+qi = (1/∥˜qi∥)
+
+ai −(qT
+1ai)q1 −· · · −(qT
+i−1ai)qi−1
+
+and (by induction assumption) each q1,. . . ,qi−1 is a linear combination of
+a1,. . . ,ai−1
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+5.18
+
+--- PAGE 118 ---
+Early termination
+suppose G–S terminates in step j
+▶aj is linear combination of q1,. . . ,qj−1
+aj = (qT
+1aj)q1 + · · · + (qT
+j−1aj)qj−1
+▶and each of q1,. . . ,qj−1 is linear combination of a1,. . . ,aj−1
+▶so aj is a linear combination of a1,. . . ,aj−1
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+5.19
+
+--- PAGE 119 ---
+Complexity of Gram–Schmidt algorithm
+▶step 1 of iteration i requires i −1 inner products,
+qT
+1ai,. . . ,qT
+i−1ai
+which costs (i −1)(2n −1) ﬂops
+▶n(i −1) ﬂops to compute ˜qi
+▶3n ﬂops to compute ∥˜qi∥and qi
+▶total is
+k
+X
+i=1
+((4n −1)(i −1) + 3n) = (4n −1) k(k −1)
+2
++ 3nk ≈2nk2
+using Pk
+i=1(i −1) = k(k −1)/2
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+5.20
+
+--- PAGE 120 ---
+6. Matrices
+
+--- PAGE 121 ---
+Outline
+Matrices
+Matrix-vector multiplication
+Examples
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+6.1
+
+--- PAGE 122 ---
+Matrices
+▶a matrix is a rectangular array of numbers, e.g.,
+
+0
+1
+−2.3
+0.1
+1.3
+4
+−0.1
+0
+4.1
+−1
+0
+1.7
+
+▶its size is given by (row dimension) × (column dimension)
+e.g., matrix above is 3 × 4
+▶elements also called entries or coeﬃcients
+▶Bij is i,j element of matrix B
+▶i is the row index, j is the column index; indexes start at 1
+▶two matrices are equal (denoted with =) if they are the same size and
+corresponding entries are equal
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+6.2
+
+--- PAGE 123 ---
+Matrix shapes
+an m × n matrix A is
+▶tall if m > n
+▶wide if m < n
+▶square if m = n
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+6.3
+
+--- PAGE 124 ---
+Column and row vectors
+▶we consider an n × 1 matrix to be an n-vector
+▶we consider a 1 × 1 matrix to be a number
+▶a 1 × n matrix is called a row vector, e.g.,
+f
+1.2
+−0.3
+1.4
+2.6
+g
+which is not the same as the (column) vector
+
+1.2
+−0.3
+1.4
+2.6
+
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+6.4
+
+--- PAGE 125 ---
+Columns and rows of a matrix
+▶suppose A is an m × n matrix with entries Aij for i = 1,. . . ,m, j = 1,. . . ,n
+▶its jth column is (the m-vector)
+
+A1j
+...
+Amj
+
+▶its ith row is (the n-row-vector)
+f
+Ai1
+· · ·
+Ain
+g
+▶slice of matrix: Ap:q,r:s is the (q −p + 1) × (s −r + 1) matrix
+Ap:q,r:s =
+
+Apr
+Ap,r+1
+· · ·
+Aps
+Ap+1,r
+Ap+1,r+1
+· · ·
+Ap+1,s
+...
+...
+...
+Aqr
+Aq,r+1
+· · ·
+Aqs
+
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+6.5
+
+--- PAGE 126 ---
+Block matrices
+▶we can form block matrices, whose entries are matrices, such as
+A =
+" B
+C
+D
+E
+#
+where B, C, D, and E are matrices (called submatrices or blocks of A)
+▶matrices in each block row must have same height (row dimension)
+▶matrices in each block column must have same width (column dimension)
+▶example: if
+B =
+f
+0
+2
+3
+g
+,
+C =
+f
+−1
+g
+,
+D =
+" 2
+2
+1
+1
+3
+5
+#
+,
+E =
+" 4
+4
+#
+then
+" B
+C
+D
+E
+#
+=
+
+0
+2
+3
+−1
+2
+2
+1
+4
+1
+3
+5
+4
+
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+6.6
+
+--- PAGE 127 ---
+Column and row representation of matrix
+▶A is an m × n matrix
+▶can express as block matrix with its (m-vector) columns a1,. . . ,an
+A =
+f
+a1
+a2
+· · ·
+an
+g
+▶or as block matrix with its (n-row-vector) rows b1,. . . ,bm
+A =
+
+b1
+b2
+...
+bm
+
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+6.7
+
+--- PAGE 128 ---
+Examples
+▶image: Xij is i,j pixel value in a monochrome image
+▶rainfall data: Aij is rainfall at location i on day j
+▶multiple asset returns: Rij is return of asset j in period i
+▶contingency table: Aij is number of objects with ﬁrst attribute i and second
+attribute j
+▶feature matrix: Xij is value of feature i for entity j
+in each of these, what do the rows and columns mean?
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+6.8
+
+--- PAGE 129 ---
+Graph or relation
+▶a relation is a set of pairs of objects, labeled 1,. . . ,n, such as
+R = {(1,2), (1,3), (2,1), (2,4), (3,4), (4,1)}
+▶same as directed graph
+1
+2
+3
+4
+▶can be represented as n × n matrix with Aij = 1 if (i,j) ∈R
+A =
+
+0
+1
+1
+0
+1
+0
+0
+1
+0
+0
+0
+1
+1
+0
+0
+0
+
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+6.9
+
+--- PAGE 130 ---
+Special matrices
+▶m × n zero matrix has all entries zero, written as 0m×n or just 0
+▶identity matrix is square matrix with Iii = 1 and Iij = 0 for i , j, e.g.,
+" 1
+0
+0
+1
+#
+,
+
+1
+0
+0
+0
+0
+1
+0
+0
+0
+0
+1
+0
+0
+0
+0
+1
+
+▶sparse matrix: most entries are zero
+– examples: 0 and I
+– can be stored and manipulated eﬃciently
+– nnz(A) is number of nonzero entries
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+6.10
+
+--- PAGE 131 ---
+Diagonal and triangular matrices
+▶diagonal matrix: square matrix with Aij = 0 when i , j
+▶diag(a1,. . . ,an) denotes the diagonal matrix with Aii = ai for i = 1,. . . ,n
+▶example:
+diag(0.2,−3,1.2) =
+
+0.2
+0
+0
+0
+−3
+0
+0
+0
+1.2
+
+▶lower triangular matrix: Aij = 0 for i < j
+▶upper triangular matrix: Aij = 0 for i > j
+▶examples:
+
+1
+−1
+0.7
+0
+1.2
+−1.1
+0
+0
+3.2
+
+(upper triangular),
+" −0.6
+0
+−0.3
+3.5
+#
+(lower triangular)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+6.11
+
+--- PAGE 132 ---
+Transpose
+▶the transpose of an m × n matrix A is denoted AT, and deﬁned by
+(AT)ij = Aji,
+i = 1,. . . ,n,
+j = 1,. . . ,m
+▶for example,
+
+0
+4
+7
+0
+3
+1
+
+T
+=
+" 0
+7
+3
+4
+0
+1
+#
+▶transpose converts column to row vectors (and vice versa)
+▶(AT)T = A
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+6.12
+
+--- PAGE 133 ---
+Addition, subtraction, and scalar multiplication
+▶(just like vectors) we can add or subtract matrices of the same size:
+(A + B)ij = Aij + Bij,
+i = 1,. . . ,m,
+j = 1,. . . ,n
+(subtraction is similar)
+▶scalar multiplication:
+(αA)ij = αAij,
+i = 1,. . . ,m,
+j = 1,. . . ,n
+▶many obvious properties, e.g.,
+A + B = B + A,
+α(A + B) = αA + αB,
+(A + B)T = AT + BT
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+6.13
+
+--- PAGE 134 ---
+Matrix norm
+▶for m × n matrix A, we deﬁne
+∥A∥= *.
+,
+m
+X
+i=1
+n
+X
+j=1
+A2
+ij+/
+-
+1/2
+▶agrees with vector norm when n = 1
+▶satisﬁes norm properties:
+∥αA∥= |α|∥A∥
+∥A + B∥≤∥A∥+ ∥B∥
+∥A∥≥0
+∥A∥= 0 only if A = 0
+▶distance between two matrices: ∥A −B∥
+▶(there are other matrix norms, which we won’t use)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+6.14
+
+--- PAGE 135 ---
+Outline
+Matrices
+Matrix-vector multiplication
+Examples
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+6.15
+
+--- PAGE 136 ---
+Matrix-vector product
+▶matrix-vector product of m × n matrix A, n-vector x, denoted y = Ax, with
+yi = Ai1x1 + · · · + Ainxn,
+i = 1,. . . ,m
+▶for example,
+"
+0
+2
+−1
+−2
+1
+1
+# 
+2
+1
+−1
+
+=
+"
+3
+−4
+#
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+6.16
+
+--- PAGE 137 ---
+Row interpretation
+▶y = Ax can be expressed as
+yi = bT
+i x,
+i = 1,. . . ,m
+where bT
+1,. . . ,bT
+m are rows of A
+▶so y = Ax is a ‘batch’ inner product of all rows of A with x
+▶example: A1 is vector of row sums of matrix A
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+6.17
+
+--- PAGE 138 ---
+Column interpretation
+▶y = Ax can be expressed as
+y = x1a1 + x2a2 + · · · + xnan
+where a1,. . . ,an are columns of A
+▶so y = Ax is linear combination of columns of A, with coeﬃcients x1,. . . ,xn
+▶important example: Aej = aj
+▶columns of A are linearly independent if Ax = 0 implies x = 0
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+6.18
+
+--- PAGE 139 ---
+Outline
+Matrices
+Matrix-vector multiplication
+Examples
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+6.19
+
+--- PAGE 140 ---
+General examples
+▶0x = 0, i.e., multiplying by zero matrix gives zero
+▶Ix = x, i.e., multiplying by identity matrix does nothing
+▶inner product aTb is matrix-vector product of 1 × n matrix aT and n-vector b
+▶˜x = Ax is de-meaned version of x, with
+A =
+
+1 −1/n
+−1/n
+· · ·
+−1/n
+−1/n
+1 −1/n
+· · ·
+−1/n
+...
+...
+...
+−1/n
+−1/n
+· · ·
+1 −1/n
+
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+6.20
+
+--- PAGE 141 ---
+Diﬀerence matrix
+▶(n −1) × n diﬀerence matrix is
+D =
+
+−1
+1
+0
+· · ·
+0
+0
+0
+0
+−1
+1
+· · ·
+0
+0
+0
+...
+...
+...
+...
+0
+0
+0
+· · ·
+−1
+1
+0
+0
+0
+0
+· · ·
+0
+−1
+1
+
+y = Dx is (n −1)-vector of diﬀerences of consecutive entries of x:
+Dx =
+
+x2 −x1
+x3 −x2
+...
+xn −xn−1
+
+▶Dirichlet energy: ∥Dx∥2 is measure of wiggliness for x a time series
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+6.21
+
+--- PAGE 142 ---
+Return matrix – portfolio vector
+▶R is T × n matrix of asset returns
+▶Rij is return of asset j in period i (say, in percentage)
+▶n-vector w gives portfolio (investments in the assets)
+▶T-vector Rw is time series of the portfolio return
+▶avg(Rw) is the portfolio (mean) return, std(Rw) is its risk
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+6.22
+
+--- PAGE 143 ---
+Feature matrix – weight vector
+▶X = [x1 · · · xN] is n × N feature matrix
+▶column xj is feature n-vector for object or example j
+▶Xij is value of feature i for example j
+▶n-vector w is weight vector
+▶s = XTw is vector of scores for each example; sj = xT
+j w
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+6.23
+
+--- PAGE 144 ---
+Input – output matrix
+▶A is m × n matrix
+▶y = Ax
+▶n-vector x is input or action
+▶m-vector y is output or result
+▶Aij is the factor by which yi depends on xj
+▶Aij is the gain from input j to output i
+▶e.g., if A is lower triangular, then yi only depends on x1,. . . ,xi
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+6.24
+
+--- PAGE 145 ---
+Complexity
+▶m × n matrix stored A as m × n array of numbers
+(for sparse A, store only nnz(A) nonzero values)
+▶matrix addition, scalar-matrix multiplication cost mn ﬂops
+▶matrix-vector multiplication costs m(2n −1) ≈2mn ﬂops
+(for sparse A, around 2nnz(A) ﬂops)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+6.25
+
+--- PAGE 146 ---
+7. Matrix examples
+
+--- PAGE 147 ---
+Outline
+Geometric transformations
+Selectors
+Incidence matrix
+Convolution
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+7.1
+
+--- PAGE 148 ---
+Geometric transformations
+▶many geometric transformations and mappings of 2-D and 3-D vectors can
+be represented via matrix multiplication y = Ax
+▶for example, rotation by θ:
+y =
+" cos θ
+−sin θ
+sin θ
+cos θ
+#
+x
+x
+Ax
+θ
+(to get the entries, look at Ae1 and Ae2)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+7.2
+
+--- PAGE 149 ---
+Outline
+Geometric transformations
+Selectors
+Incidence matrix
+Convolution
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+7.3
+
+--- PAGE 150 ---
+Selectors
+▶an m × n selector matrix: each row is a unit vector (transposed)
+A =
+
+eT
+k1...
+eT
+km
+
+▶multiplying by A selects entries of x:
+Ax = (xk1,xk2,. . . ,xkm)
+▶example: the m × 2m matrix
+A =
+
+1
+0
+0
+0
+· · ·
+0
+0
+0
+0
+1
+0
+· · ·
+0
+0
+...
+...
+...
+...
+...
+...
+0
+0
+0
+0
+· · ·
+1
+0
+
+‘down-samples’ by 2: if x is a 2m-vector then y = Ax = (x1,x3,. . . ,x2m−1)
+▶other examples: image cropping, permutation, ...
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+7.4
+
+--- PAGE 151 ---
+Outline
+Geometric transformations
+Selectors
+Incidence matrix
+Convolution
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+7.5
+
+--- PAGE 152 ---
+Incidence matrix
+▶graph with n vertices or nodes, m (directed) edges or links
+▶incidence matrix is n × m matrix
+Aij =
+
+1
+edge j points to node i
+−1
+edge j points from node i
+0
+otherwise
+▶example with n = 4, m = 5:
+1
+2
+3
+4
+1
+5
+4
+2
+3
+A =
+
+−1
+−1
+0
+1
+0
+1
+0
+−1
+0
+0
+0
+0
+1
+−1
+−1
+0
+1
+0
+0
+1
+
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+7.6
+
+--- PAGE 153 ---
+Flow conservation
+▶m-vector x gives ﬂows (of something) along the edges
+▶examples: heat, money, power, mass, people, ...
+▶xj > 0 means ﬂow follows edge direction
+▶Ax is n-vector that gives the total or net ﬂows
+▶(Ax)i is the net ﬂow into node i
+▶Ax = 0 is ﬂow conservation; x is called a circulation
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+7.7
+
+--- PAGE 154 ---
+Potentials and Dirichlet energy
+▶suppose v is an n-vector, called a potential
+▶vi is potential value at node i
+▶u = ATv is an m-vector of potential diﬀerences across the m edges
+▶uj = vl −vk, where edge j goes from k to node l
+▶Dirichlet energy is D(v) = ∥ATv∥2,
+D(v) =
+X
+edges (k,l)
+(vl −vk)2
+(sum of squares of potential diﬀerences across the edges)
+▶D(v) is small when potential values of neighboring nodes are similar
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+7.8
+
+--- PAGE 155 ---
+Outline
+Geometric transformations
+Selectors
+Incidence matrix
+Convolution
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+7.9
+
+--- PAGE 156 ---
+Convolution
+▶for n-vector a, m-vector b, the convolution c = a ∗b is the (n + m −1)-vector
+ck =
+X
+i+j=k+1
+aibj,
+k = 1,. . . ,n + m −1
+▶for example with n = 4, m = 3, we have
+c1
+=
+a1b1
+c2
+=
+a1b2 + a2b1
+c3
+=
+a1b3 + a2b2 + a3b1
+c4
+=
+a2b3 + a3b2 + a4b1
+c5
+=
+a3b3 + a4b2
+c6
+=
+a4b3
+▶example: (1,0,−1) ∗(2,1,−1) = (2,1,−3,−1,1)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+7.10
+
+--- PAGE 157 ---
+Polynomial multiplication
+▶a and b are coeﬃcients of two polynomials:
+p(x) = a1 + a2x + · · · + anxn−1,
+q(x) = b1 + b2x + · · · + bmxm−1
+▶convolution c = a ∗b gives the coeﬃcients of the product p(x)q(x):
+p(x)q(x) = c1 + c2x + · · · + cn+m−1xn+m−2
+▶this gives simple proofs of many properties of convolution; for example,
+a ∗b = b ∗a
+(a ∗b) ∗c = a ∗(b ∗c)
+a ∗b = 0 only if a = 0 or b = 0
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+7.11
+
+--- PAGE 158 ---
+Toeplitz matrices
+▶function f (b) = a ∗b is linear; in fact c = T(b)a with
+T(b) =
+
+b1
+0
+0
+0
+b2
+b1
+0
+0
+b3
+b2
+b1
+0
+0
+b3
+b2
+b1
+0
+0
+b3
+b2
+0
+0
+0
+b3
+
+▶T(b) is a Toeplitz matrix (values on diagonals are equal)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+7.12
+
+--- PAGE 159 ---
+Moving average of time series
+▶n-vector x represents a time series
+▶convolution y = a ∗x with a = (1/3,1/3,1/3) is 3-period moving average:
+yk = 1
+3 (xk + xk−1 + xk−2),
+k = 1,2,. . . ,n + 2
+(with xk interpreted as zero for k < 1 and k > n)
+0
+50
+100
+0
+1
+2
+3
+k
+xk
+0
+50
+100
+0
+1
+2
+3
+k
+(a ∗x)k
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+7.13
+
+--- PAGE 160 ---
+Input-output convolution system
+▶m-vector u represents a time series input
+▶m + n −1 vector y represents a time series output
+▶y = h ∗u is a convolution model
+▶n-vector h is called the system impulse response
+▶we have
+yi =
+n
+X
+j=1
+ui−j+1hj
+(interpreting uk as zero for k < n or k > n)
+▶interpretation: yi, output at time i is a linear combination of ui,. . . ,ui−n+1
+▶h3 is the factor by which current output depends on what the input was 2
+time steps before
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+7.14
+
+--- PAGE 161 ---
+8. Linear equations
+
+--- PAGE 162 ---
+Outline
+Linear functions
+Linear function models
+Linear equations
+Balancing chemical equations
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+8.1
+
+--- PAGE 163 ---
+Superposition
+▶f : Rn →Rm means f is a function that maps n-vectors to m-vectors
+▶we write f (x) = (f1(x),. . . ,fm(x)) to emphasize components of f (x)
+▶we write f (x) = f (x1,. . . ,xn) to emphasize components of x
+▶f satisﬁes superposition if for all x, y, α, β
+f (αx + βy) = αf (x) + βf (y)
+(this innocent looking equation says a lot ...)
+▶such an f is called linear
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+8.2
+
+--- PAGE 164 ---
+Matrix-vector product function
+▶with A an m × n matrix, deﬁne f as f (x) = Ax
+▶f is linear:
+f (αx + βy)
+=
+A(αx + βy)
+=
+A(αx) + A(βy)
+=
+α(Ax) + β(Ay)
+=
+αf (x) + βf (y)
+▶converse is true: if f : Rn →Rm is linear, then
+f (x)
+=
+f (x1e1 + x2e2 + · · · + xnen)
+=
+x1f (e1) + x2f (e2) + · · · + xnf (en)
+=
+Ax
+with A =
+f
+f (e1)
+f (e2)
+· · ·
+f (en)
+g
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+8.3
+
+--- PAGE 165 ---
+Examples
+▶reversal: f (x) = (xn,xn−1,. . . ,x1)
+A =
+
+0
+· · ·
+0
+1
+0
+· · ·
+1
+0
+...
+...
+...
+...
+1
+· · ·
+0
+0
+
+▶running sum: f (x) = (x1, x1 + x2, x1 + x2 + x3, . . . , x1 + x2 + · · · + xn)
+A =
+
+1
+0
+· · ·
+0
+0
+1
+1
+· · ·
+0
+0
+...
+...
+...
+...
+...
+1
+1
+· · ·
+1
+0
+1
+1
+· · ·
+1
+1
+
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+8.4
+
+--- PAGE 166 ---
+Aﬃne functions
+▶function f : Rn →Rm is aﬃne if it is a linear function plus a constant, i.e.,
+f (x) = Ax + b
+▶same as:
+f (αx + βy) = αf (x) + βf (y)
+holds for all x, y, and α, β with α + β = 1
+▶can recover A and b from f using
+A
+=
+f
+f (e1) −f (0)
+f (e2) −f (0)
+· · ·
+f (en) −f (0)
+g
+b
+=
+f (0)
+▶aﬃne functions sometimes (incorrectly) called linear
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+8.5
+
+--- PAGE 167 ---
+Outline
+Linear functions
+Linear function models
+Linear equations
+Balancing chemical equations
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+8.6
+
+--- PAGE 168 ---
+Linear and aﬃne functions models
+▶in many applications, relations between n-vectors and m vectors are
+approximated as linear or aﬃne
+▶sometimes the approximation is excellent, and holds over large ranges of
+the variables (e.g., electromagnetics)
+▶sometimes the approximation is reasonably good over smaller ranges
+(e.g., aircraft dynamics)
+▶in other cases it is quite approximate, but still useful (e.g., econometric
+models)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+8.7
+
+--- PAGE 169 ---
+Price elasticity of demand
+▶n goods or services
+▶prices given by n-vector p, demand given as n-vector d
+▶δprice
+i
+= (pnew
+i
+−pi)/pi is fractional changes in prices
+▶δdem
+i
+= (dnew
+i
+−di)/di is fractional change in demands
+▶price-demand elasticity model: δdem = Eδprice
+▶what do the following mean?
+E11 = −0.3,
+E12 = +0.1,
+E23 = −0.05
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+8.8
+
+--- PAGE 170 ---
+Taylor series approximation
+▶suppose f : Rn →Rm is diﬀerentiable
+▶ﬁrst order Taylor approximation ˆf of f near z:
+ˆfi(x)
+=
+fi(z) + ∂fi
+∂x1
+(z)(x1 −z1) + · · · + ∂fi
+∂xn
+(z)(xn −zn)
+=
+fi(z) + ∇fi(z)T(x −z)
+▶in compact notation: ˆf (x) = f (z) + Df (z)(x −z)
+▶Df (x) is the m × n derivative or Jacobian matrix of f at z
+Df (z)ij = ∂fi
+∂xj
+(z),
+i = 1,. . . ,m,
+j = 1,. . . ,n
+▶ˆf (x) is a very good approximation of f (x) for x near z
+▶ˆf (x) is an aﬃne function of x
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+8.9
+
+--- PAGE 171 ---
+Regression model
+▶regression model: ˆy = xT β + v
+– x is n-vector of features or regressors
+– β is n-vector of model parameters; v is oﬀset parameter
+– (scalar) ˆy is our prediction of y
+▶now suppose we have N examples or samples x(1),. . . ,x(N), and
+associated responses y(1),. . . ,y(N)
+▶associated predictions are ˆy(i) = (x(i))T β + v
+▶write as ˆyd = XT β + v1
+– X is feature matrix with columns x(1),. . . ,x(N)
+– yd is N-vector of responses (y(1),. . . ,y(N))
+– ˆyd is N-vector of predictions (ˆy(1),. . . , ˆy(N))
+▶prediction error (vector) is yd −ˆyd = yd −XT β −v1
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+8.10
+
+--- PAGE 172 ---
+Outline
+Linear functions
+Linear function models
+Linear equations
+Balancing chemical equations
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+8.11
+
+--- PAGE 173 ---
+Systems of linear equations
+▶set (or system) of m linear equations in n variables x1, ..., xn:
+A11x1 + A12x2 + · · · + A1nxn
+=
+b1
+A21x1 + A22x2 + · · · + A2nxn
+=
+b2
+...
+Am1x1 + Am2x2 + · · · + Amnxn
+=
+bm
+▶n-vector x is called the variable or unknowns
+▶Aij are the coeﬃcients; A is the coeﬃcient matrix
+▶b is called the right-hand side
+▶can express very compactly as Ax = b
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+8.12
+
+--- PAGE 174 ---
+Systems of linear equations
+▶systems of linear equations classiﬁed as
+– under-determined if m < n (A wide)
+– square if m = n (A square)
+– over-determined if m > n (A tall)
+▶x is called a solution if Ax = b
+▶depending on A and b, there can be
+– no solution
+– one solution
+– many solutions
+▶we’ll see how to solve linear equations later
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+8.13
+
+--- PAGE 175 ---
+Outline
+Linear functions
+Linear function models
+Linear equations
+Balancing chemical equations
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+8.14
+
+--- PAGE 176 ---
+Chemical equations
+▶a chemical reaction involves p reactants, q products (molecules)
+▶expressed as
+a1R1 + · · · + apRp −→b1P1 + · · · + bqPq
+▶R1,. . . ,Rp are reactants
+▶P1,. . . ,Pq are products
+▶a1,. . . ,ap,b1,. . . ,bq are positive coeﬃcients
+▶coeﬃcients usually integers, but can be scaled
+– e.g., multiplying all coeﬃcients by 1/2 doesn’t change the reaction
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+8.15
+
+--- PAGE 177 ---
+Example: electrolysis of water
+2H2O −→2H2 + O2
+▶one reactant: water (H2O)
+▶two products: hydrogen (H2) and oxygen (O2)
+▶reaction consumes 2 water molecules and produces 2 hydrogen molecules
+and 1 oxygen molecule
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+8.16
+
+--- PAGE 178 ---
+Balancing equations
+▶each molecule (reactant/product) contains speciﬁc numbers of (types of)
+atoms, given in its formula
+– e.g., H2O contains two H and one O
+▶conservation of mass: total number of each type of atom in a chemical
+equation must balance
+▶for each atom, total number on LHS must equal total on RHS
+▶e.g., electrolysis reaction is balanced:
+– 4 units of H on LHS and RHS
+– 2 units of O on LHS and RHS
+▶ﬁnding (nonzero) coeﬃcients to achieve balance is called balancing
+equations
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+8.17
+
+--- PAGE 179 ---
+Reactant and product matrices
+▶consider reaction with m types of atoms, p reactants, q products
+▶m × p reactant matrix R is deﬁned by
+Rij = number of atoms of type i in reactant Rj,
+for i = 1,. . . ,m and j = 1,. . . ,p
+▶with a = (a1,. . . ,ap) (vector of reactant coeﬃcients)
+Ra = (vector of) total numbers of atoms of each type in reactants
+▶deﬁne product m × q matrix P in similar way
+▶m-vector Pb is total numbers of atoms of each type in products
+▶conservation of mass is Ra = Pb
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+8.18
+
+--- PAGE 180 ---
+Balancing equations via linear equations
+▶conservation of mass is
+f
+R
+−P
+g " a
+b
+#
+= 0
+▶simple solution is a = b = 0
+▶to ﬁnd a nonzero solution, set any coeﬃcient (say, a1) to be 1
+▶balancing chemical equations can be expressed as solving a set of m + 1
+linear equations in p + q variables
+" R
+−P
+eT
+1
+0
+# " a
+b
+#
+= em+1
+(we ignore here that ai and bi should be nonnegative integers)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+8.19
+
+--- PAGE 181 ---
+Conservation of charge
+▶can extend to include charge, e.g., Cr2O2−
+7
+has charge −2
+▶conservation of charge: total charge on each side of reaction must balance
+▶we can simply treat charge as another type of atom to balance
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+8.20
+
+--- PAGE 182 ---
+Example
+a1Cr2O2−
+7 + a2Fe2+ + a3H+ −→b1Cr3+ + b2Fe3+ + b3H2O
+▶5 atoms/charge: Cr, O, Fe, H, charge
+▶reactant and product matrix:
+R =
+
+2
+0
+0
+7
+0
+0
+0
+1
+0
+0
+0
+1
+−2
+2
+1
+
+,
+P =
+
+1
+0
+0
+0
+0
+1
+0
+1
+0
+0
+0
+2
+3
+3
+0
+
+▶balancing equations (including a1 = 1 constraint)
+
+2
+0
+0
+−1
+0
+0
+7
+0
+0
+0
+0
+−1
+0
+1
+0
+0
+−1
+0
+0
+0
+1
+0
+0
+−2
+−2
+2
+1
+−3
+−3
+0
+1
+0
+0
+0
+0
+0
+
+
+a1
+a2
+a3
+b1
+b2
+b3
+
+=
+
+0
+0
+0
+0
+0
+1
+
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+8.21
+
+--- PAGE 183 ---
+Balancing equations example
+▶solving the system yields
+
+a1
+a2
+a3
+b1
+b2
+b3
+
+=
+
+1
+6
+14
+2
+6
+7
+
+▶the balanced equation is
+Cr2O2−
+7 + 6Fe2+ + 14H+ −→2Cr3+ + 6Fe3+ + 7H2O
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+8.22
+
+--- PAGE 184 ---
+9. Linear dynamical systems
+
+--- PAGE 185 ---
+Outline
+Linear dynamical systems
+Population dynamics
+Epidemic dynamics
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+9.1
+
+--- PAGE 186 ---
+State sequence
+▶sequence of n-vectors x1,x2,. . .
+▶t denotes time or period
+▶xt is called state at time t; sequence is called state trajectory
+▶assuming t is current time,
+– xt is current state
+– xt−1 is previous state
+– xt+1 is next state
+▶examples: xt represents
+– age distribution in a population
+– economic output in n sectors
+– mechanical variables
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+9.2
+
+--- PAGE 187 ---
+Linear dynamics
+▶linear dynamical system:
+xt+1 = Atxt,
+t = 1,2,. . .
+▶At are n × n dynamics matrices
+▶(At)ij(xt)j is contribution to (xt+1)i from (xt)j
+▶system is called time-invariant if At = A doesn’t depend on time
+▶can simulate evolution of xt using recursion xt+1 = Atxt
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+9.3
+
+--- PAGE 188 ---
+Variations
+▶linear dynamical system with input
+xt+1 = Atxt + Btut + ct,
+t = 1,2,. . .
+– ut is an input m-vector
+– Bt is n × m input matrix
+– ct is oﬀset
+▶K-Markov model:
+xt+1 = A1xt + · · · + AKxt−K+1,
+t = K,K + 1,. . .
+– next state depends on current state and K −1 previous states
+– also known as auto-regresssive model
+– for K = 1, this is the standard linear dynamical system xt+1 = Axt
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+9.4
+
+--- PAGE 189 ---
+Outline
+Linear dynamical systems
+Population dynamics
+Epidemic dynamics
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+9.5
+
+--- PAGE 190 ---
+Population distribution
+▶xt ∈R100 gives population distribution in year t = 1,. . . ,T
+▶(xt)i is the number of people with age i −1 in year t (say, on January 1)
+▶total population in year t is 1Txt
+▶number of people age 70 or older in year t is (070,130)Txt
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+9.6
+
+--- PAGE 191 ---
+Population distribution of the U.S.
+(from 2010 census)
+0
+10 20 30 40 50 60 70 80 90 100
+0
+1
+2
+3
+4
+5
+Age
+Population (millions)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+9.7
+
+--- PAGE 192 ---
+Birth and death rates
+▶birth rate b ∈R100, death (or mortality) rate d ∈R100
+▶bi is the number of births per person with age i −1
+▶di is the portion of those aged i −1 who will die this year
+(we’ll take d100 = 1)
+▶b and d can vary with time, but we’ll assume they are constant
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+9.8
+
+--- PAGE 193 ---
+Birth and death rates in the U.S.
+0
+10 20 30 40 50 60 70 80 90 100
+0
+2
+4
+Age
+Approximate birth rate (%)
+0
+10 20 30 40 50 60 70 80 90 100
+0
+10
+20
+30
+Age
+Death rate (%)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+9.9
+
+--- PAGE 194 ---
+Dynamics
+▶let’s ﬁnd next year’s population distribution xt+1 (ignoring immigration)
+▶number of 0-year-olds next year is total births this year:
+(xt+1)1 = bTxt
+▶number of i-year-olds next year is number of (i −1)-year-olds this year,
+minus those who die:
+(xt+1)i+1 = (1 −di)(xt)i,
+i = 1,. . . ,99
+▶xt+1 = Axt, where
+A =
+
+b1
+b2
+· · ·
+b99
+b100
+1 −d1
+0
+· · ·
+0
+0
+0
+1 −d2
+· · ·
+0
+0
+...
+...
+...
+...
+...
+0
+0
+· · ·
+1 −d99
+0
+
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+9.10
+
+--- PAGE 195 ---
+Predicting future population distributions
+predicting U.S. 2020 distribution from 2010 (ignoring immigration)
+0
+10 20 30 40 50 60 70 80 90 100
+0
+1
+2
+3
+4
+Age
+Population (millions)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+9.11
+
+--- PAGE 196 ---
+Outline
+Linear dynamical systems
+Population dynamics
+Epidemic dynamics
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+9.12
+
+--- PAGE 197 ---
+SIR model
+▶4-vector xt gives proportion of population in 4 infection states
+Susceptible:
+can acquire the disease the next day
+Infected:
+have the disease
+Recovered:
+had the disease, recovered, now immune
+Deceased:
+had the disease, and unfortunately died
+▶sometimes called SIR model
+▶e.g., xt = (0.75,0.10,0.10,0.05)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+9.13
+
+--- PAGE 198 ---
+Epidemic dynamics
+over each day,
+▶among susceptible population,
+– 5% acquires the disease
+– 95% remain susceptible
+▶among infected population,
+– 1% dies
+– 10% recovers with immunity
+– 4% recover without immunity (i.e., become susceptible)
+– 85% remain infected
+▶100% of immune and dead people remain in their state
+▶epidemic dynamics as linear dynamical system
+xt+1 =
+
+0.95
+0.04
+0
+0
+0.05
+0.85
+0
+0
+0
+0.10
+1
+0
+0
+0.01
+0
+1
+
+xt
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+9.14
+
+--- PAGE 199 ---
+Simulation from x1 = (1,0,0,0)
+0
+50
+100
+150
+200
+0
+0.2
+0.4
+0.6
+0.8
+1
+Susceptible
+Infected
+Recovered
+Deceased
+Time t
+xt
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+9.15
+
+--- PAGE 200 ---
+10. Matrix multiplication
+
+--- PAGE 201 ---
+Outline
+Matrix multiplication
+Composition of linear functions
+Matrix powers
+QR factorization
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+10.1
+
+--- PAGE 202 ---
+Matrix multiplication
+▶can multiply m × p matrix A and p × n matrix B to get C = AB:
+Cij =
+p
+X
+k=1
+AikBkj = Ai1B1j + · · · + AipBpj
+for i = 1,. . . ,m, j = 1,. . . ,n
+▶to get Cij: move along ith row of A, jth column of B
+▶example:
+" −1.5
+3
+2
+1
+−1
+0
+# 
+−1
+−1
+0
+−2
+1
+0
+
+=
+" 3.5
+−4.5
+−1
+1
+#
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+10.2
+
+--- PAGE 203 ---
+Special cases of matrix multiplication
+▶scalar-vector product (with scalar on right!) xα
+▶inner product aTb
+▶matrix-vector multiplication Ax
+▶outer product of m-vector a and n-vector b
+abT =
+
+a1b1
+a1b2
+· · ·
+a1bn
+a2b1
+a2b2
+· · ·
+a2bn
+...
+...
+...
+amb1
+amb2
+· · ·
+ambn
+
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+10.3
+
+--- PAGE 204 ---
+Properties
+▶(AB)C = A(BC), so both can be written ABC
+▶A(B + C) = AB + AC
+▶(AB)T = BTAT
+▶AI = A and IA = A
+▶AB = BA does not hold in general
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+10.4
+
+--- PAGE 205 ---
+Block matrices
+block matrices can be multiplied using the same formula, e.g.,
+" A
+B
+C
+D
+# " E
+F
+G
+H
+#
+=
+" AE + BG
+AF + BH
+CE + DG
+CF + DH
+#
+(provided the products all make sense)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+10.5
+
+--- PAGE 206 ---
+Column interpretation
+▶denote columns of B by bi:
+B =
+f
+b1
+b2
+· · ·
+bn
+g
+▶then we have
+AB
+=
+A
+f
+b1
+b2
+· · ·
+bn
+g
+=
+f
+Ab1
+Ab2
+· · ·
+Abn
+g
+▶so AB is ‘batch’ multiply of A times columns of B
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+10.6
+
+--- PAGE 207 ---
+Multiple sets of linear equations
+▶given k systems of linear equations, with same m × n coeﬃcient matrix
+Axi = bi,
+i = 1,. . . ,k
+▶write in compact matrix form as AX = B
+▶X = [x1 · · · xk], B = [b1 · · · bk]
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+10.7
+
+--- PAGE 208 ---
+Inner product interpretation
+▶with aT
+i the rows of A, bj the columns of B, we have
+AB =
+
+aT
+1b1
+aT
+1b2
+· · ·
+aT
+1bn
+aT
+2b1
+aT
+2b2
+· · ·
+aT
+2bn
+...
+...
+...
+aT
+mb1
+aT
+mb2
+· · ·
+aT
+mbn
+
+▶so matrix product is all inner products of rows of A and columns of B,
+arranged in a matrix
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+10.8
+
+--- PAGE 209 ---
+Gram matrix
+▶let A be an m × n matrix with columns a1,. . . ,an
+▶the Gram matrix of A is
+G = ATA =
+
+aT
+1a1
+aT
+1a2
+· · ·
+aT
+1an
+aT
+2a1
+aT
+2a2
+· · ·
+aT
+2an
+...
+...
+...
+...
+aT
+na1
+aT
+na2
+· · ·
+aT
+nan
+
+▶Gram matrix gives all inner products of columns of A
+▶example: G = ATA = I means columns of A are orthonormal
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+10.9
+
+--- PAGE 210 ---
+Complexity
+▶to compute Cij = (AB)ij is inner product of p-vectors
+▶so total required ﬂops is (mn)(2p) = 2mnp ﬂops
+▶multiplying two 1000 × 1000 matrices requires 2 billion ﬂops
+▶...and can be done in well under a second on current computers
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+10.10
+
+--- PAGE 211 ---
+Outline
+Matrix multiplication
+Composition of linear functions
+Matrix powers
+QR factorization
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+10.11
+
+--- PAGE 212 ---
+Composition of linear functions
+▶A is an m × p matrix, B is p × n
+▶deﬁne f : Rp →Rm and g : Rn →Rp as
+f (u) = Au,
+g(v) = Bv
+▶f and g are linear functions
+▶composition of f and g is h : Rn →Rm with h(x) = f (g(x))
+▶we have
+h(x) = f (g(x)) = A(Bx) = (AB)x
+▶composition of linear functions is linear
+▶associated matrix is product of matrices of the functions
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+10.12
+
+--- PAGE 213 ---
+Second diﬀerence matrix
+▶Dn is (n −1) × n diﬀerence matrix:
+Dnx = (x2 −x1,. . . ,xn −xn−1)
+▶Dn−1 is (n −2) × (n −1) diﬀerence matrix:
+Dny = (y2 −y1,. . . ,yn−1 −yn−2)
+▶∆= Dn−1Dn is (n −2) × n second diﬀerence matrix:
+∆x = (x1 −2x2 + x3,x2 −2x3 + x4,. . . ,xn−2 −2xn−1 + xn)
+▶for n = 5, ∆= Dn−1Dn is
+
+1 −2 −1
+0
+0
+0
+1 −2 −1
+0
+0
+0
+1 −2 −1
+
+=
+
+−1
+1
+0 0
+0 −1
+1 0
+0
+0 −1 1
+
+
+−1
+1
+0
+0 0
+0 −1
+1
+0 0
+0
+0 −1
+1 0
+0
+0
+0 −1 1
+
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+10.13
+
+--- PAGE 214 ---
+Outline
+Matrix multiplication
+Composition of linear functions
+Matrix powers
+QR factorization
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+10.14
+
+--- PAGE 215 ---
+Matrix powers
+▶for A square, A2 means AA, and same for higher powers
+▶with convention A0 = I we have AkAl = Ak+l
+▶negative powers later; fractional powers in other courses
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+10.15
+
+--- PAGE 216 ---
+Directed graph
+▶n × n matrix A is adjacency matrix of directed graph:
+Aij =
+( 1
+there is a edge from vertex j to vertex i
+0
+otherwise
+▶example:
+1
+2
+3
+4
+5
+A =
+
+0
+1
+0
+0
+1
+1
+0
+1
+0
+0
+0
+0
+1
+1
+1
+1
+0
+0
+0
+0
+0
+0
+0
+1
+0
+
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+10.16
+
+--- PAGE 217 ---
+Paths in directed graph
+▶square of adjacency matrix:
+(A2)ij =
+n
+X
+k=1
+AikAkj
+▶(A2)ij is number of paths of length 2 from j to i
+▶for the example,
+A2 =
+
+1
+0
+1
+1
+0
+0
+1
+1
+1
+2
+1
+0
+1
+2
+1
+0
+1
+0
+0
+1
+1
+0
+0
+0
+0
+
+e.g., there are two paths from 4 to 3 (via 3 and 5)
+▶more generally, (Aℓ)ij = number of paths of length ℓfrom j
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+10.17
+
+--- PAGE 218 ---
+Outline
+Matrix multiplication
+Composition of linear functions
+Matrix powers
+QR factorization
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+10.18
+
+--- PAGE 219 ---
+Gram–Schmidt in matrix notation
+▶run Gram–Schmidt on columns a1,. . . ,ak of n × k matrix A
+▶if columns are linearly independent, get orthonormal q1,. . . ,qk
+▶deﬁne n × k matrix Q with columns q1,. . . ,qk
+▶QTQ = I
+▶from Gram–Schmidt algorithm
+ai
+=
+(qT
+1ai)q1 + · · · + (qT
+i−1ai)qi−1 + ∥˜qi∥qi
+=
+R1iq1 + · · · + Riiqi
+with Rij = qT
+i aj for i < j and Rii = ∥˜qi∥
+▶deﬁning Rij = 0 for i > j we have A = QR
+▶R is upper triangular, with positive diagonal entries
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+10.19
+
+--- PAGE 220 ---
+QR factorization
+▶A = QR is called QR factorization of A
+▶factors satisfy QTQ = I, R upper triangular with positive diagonal entries
+▶can be computed using Gram–Schmidt algorithm (or some variations)
+▶has a huge number of uses, which we’ll see soon
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+10.20
+
+--- PAGE 221 ---
+11. Matrix inverses
+
+--- PAGE 222 ---
+Outline
+Left and right inverses
+Inverse
+Solving linear equations
+Examples
+Pseudo-inverse
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.1
+
+--- PAGE 223 ---
+Left inverses
+▶a number x that satisﬁes xa = 1 is called the inverse of a
+▶inverse (i.e., 1/a) exists if and only if a , 0, and is unique
+▶a matrix X that satisﬁes XA = I is called a left inverse of A
+▶if a left inverse exists we say that A is left-invertible
+▶example: the matrix
+A =
+
+−3
+−4
+4
+6
+1
+1
+
+has two diﬀerent left inverses:
+B = 1
+9
+" −11
+−10
+16
+7
+8
+−11
+#
+,
+C = 1
+2
+" 0
+−1
+6
+0
+1
+−4
+#
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.2
+
+--- PAGE 224 ---
+Left inverse and column independence
+▶if A has a left inverse C then the columns of A are linaerly independent
+▶to see this: if Ax = 0 and CA = I then
+0 = C0 = C(Ax) = (CA)x = Ix = x
+▶we’ll see later the converse is also true, so
+a matrix is left-invertible if and only if its columns are linearly independent
+▶matrix generalization of
+a number is invertible if and only if it is nonzero
+▶so left-invertible matrices are tall or square
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.3
+
+--- PAGE 225 ---
+Solving linear equations with a left inverse
+▶suppose Ax = b, and A has a left inverse C
+▶then Cb = C(Ax) = (CA)x = Ix = x
+▶so multiplying the right-hand side by a left inverse yields the solution
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.4
+
+--- PAGE 226 ---
+Example
+A =
+
+−3
+−4
+4
+6
+1
+1
+
+,
+b =
+
+1
+−2
+0
+
+▶over-determined equations Ax = b have (unique) solution x = (1,−1)
+▶A has two diﬀerent left inverses,
+B = 1
+9
+" −11
+−10
+16
+7
+8
+−11
+#
+,
+C = 1
+2
+" 0
+−1
+6
+0
+1
+−4
+#
+▶multiplying the right-hand side with the left inverse B we get
+Bb =
+"
+1
+−1
+#
+▶and also
+Cb =
+"
+1
+−1
+#
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.5
+
+--- PAGE 227 ---
+Right inverses
+▶a matrix X that satisﬁes AX = I is a right inverse of A
+▶if a right inverse exists we say that A is right-invertible
+▶A is right-invertible if and only if AT is left-invertible:
+AX = I ⇐⇒(AX)T = I ⇐⇒XTAT = I
+▶so we conclude
+A is right-invertible if and only if its rows are linearly independent
+▶right-invertible matrices are wide or square
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.6
+
+--- PAGE 228 ---
+Solving linear equations with a right inverse
+▶suppose A has a right inverse B
+▶consider the (square or underdetermined) equations Ax = b
+▶x = Bb is a solution:
+Ax = A(Bb) = (AB)b = Ib = b
+▶so Ax = b has a solution for any b
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.7
+
+--- PAGE 229 ---
+Example
+▶same A, B, C in example above
+▶CT and BT are both right inverses of AT
+▶under-determined equations ATx = (1,2) has (diﬀerent) solutions
+BT(1,2) = (1/3,2/3,38/9),
+CT(1,2) = (0,1/2,−1)
+(there are many other solutions as well)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.8
+
+--- PAGE 230 ---
+Outline
+Left and right inverses
+Inverse
+Solving linear equations
+Examples
+Pseudo-inverse
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.9
+
+--- PAGE 231 ---
+Inverse
+▶if A has a left and a right inverse, they are unique and equal
+(and we say that A is invertible)
+▶so A must be square
+▶to see this: if AX = I, YA = I
+X = IX = (YA)X = Y(AX) = YI = Y
+▶we denote them by A−1:
+A−1A = AA−1 = I
+▶inverse of inverse: (A−1)−1 = A
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.10
+
+--- PAGE 232 ---
+Solving square systems of linear equations
+▶suppose A is invertible
+▶for any b, Ax = b has the unique solution
+x = A−1b
+▶matrix generalization of simple scalar equation ax = b having solution
+x = (1/a)b (for a , 0)
+▶simple-looking formula x = A−1b is basis for many applications
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.11
+
+--- PAGE 233 ---
+Invertible matrices
+the following are equivalent for a square matrix A:
+▶A is invertible
+▶columns of A are linearly independent
+▶rows of A are linearly independent
+▶A has a left inverse
+▶A has a right inverse
+if any of these hold, all others do
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.12
+
+--- PAGE 234 ---
+Examples
+▶I−1 = I
+▶if Q is orthogonal, i.e., square with QTQ = I, then Q−1 = QT
+▶2 × 2 matrix A is invertible if and only A11A22 , A12A21
+A−1 =
+1
+A11A22 −A12A21
+"
+A22
+−A12
+−A21
+A11
+#
+– you need to know this formula
+– there are similar but much more complicated formulas for larger matrices
+(and no, you do not need to know them)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.13
+
+--- PAGE 235 ---
+Non-obvious example
+A =
+
+1
+−2
+3
+0
+2
+2
+−3
+−4
+−4
+
+▶A is invertible, with inverse
+A−1 = 1
+30
+
+0
+−20
+−10
+−6
+5
+−2
+6
+10
+2
+
+.
+▶veriﬁed by checking AA−1 = I (or A−1A = I)
+▶we’ll soon see how to compute the inverse
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.14
+
+--- PAGE 236 ---
+Properties
+▶(AB)−1 = B−1A−1 (provided inverses exist)
+▶(AT)−1 = (A−1)T (sometimes denoted A−T)
+▶negative matrix powers: (A−1)k is denoted A−k
+▶with A0 = I, identity AkAl = Ak+l holds for any integers k, l
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.15
+
+--- PAGE 237 ---
+Triangular matrices
+▶lower triangular L with nonzero diagonal entries is invertible
+▶so see this, write Lx = 0 as
+L11x1
+=
+0
+L21x1 + L22x2
+=
+0
+...
+Ln1x1 + Ln2x2 + · · · + Ln,n−1xn−1 + Lnnxn
+=
+0
+– from ﬁrst equation, x1 = 0 (since L11 , 0)
+– second equation reduces to L22x2 = 0, so x2 = 0 (since L22 , 0)
+– and so on
+this shows columns of L are linearly independent, so L is invertible
+▶upper triangular R with nonzero diagonal entries is invertible
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.16
+
+--- PAGE 238 ---
+Inverse via QR factorization
+▶suppose A is square and invertible
+▶so its columns are linearly independent
+▶so Gram–Schmidt gives QR factorization
+– A = QR
+– Q is orthogonal: QTQ = I
+– R is upper triangular with positive diagonal entries, hence invertible
+▶so we have
+A−1 = (QR)−1 = R−1Q−1 = R−1QT
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.17
+
+--- PAGE 239 ---
+Outline
+Left and right inverses
+Inverse
+Solving linear equations
+Examples
+Pseudo-inverse
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.18
+
+--- PAGE 240 ---
+Back substitution
+▶suppose R is upper triangular with nonzero diagonal entries
+▶write out Rx = b as
+R11x1 + R12x2 + · · · + R1,n−1xn−1 + R1nxn
+=
+b1
+...
+Rn−1,n−1xn−1 + Rn−1,nxn
+=
+bn−1
+Rnnxn
+=
+bn
+▶from last equation we get xn = bn/Rnn
+▶from 2nd to last equation we get
+xn−1 = (bn−1 −Rn−1,nxn)/Rn−1,n−1
+▶continue to get xn−2,xn−3,. . . ,x1
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.19
+
+--- PAGE 241 ---
+Back substitution
+▶called back substitution since we ﬁnd the variables in reverse order,
+substituting the already known values of xi
+▶computes x = R−1b
+▶complexity:
+– ﬁrst step requires 1 ﬂop (division)
+– 2nd step needs 3 ﬂops
+– ith step needs 2i −1 ﬂops
+total is 1 + 3 + · · · + (2n −1) = n2 ﬂops
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.20
+
+--- PAGE 242 ---
+Solving linear equations via QR factorization
+▶assuming A is invertible, let’s solve Ax = b, i.e., compute x = A−1b
+▶with QR factorization A = QR, we have
+A−1 = (QR)−1 = R−1QT
+▶compute x = R−1(QTb) by back substitution
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.21
+
+--- PAGE 243 ---
+Solving linear equations via QR factorization
+given an n × n invertible matrix A and an n-vector b
+1. QR factorization: compute the QR factorization A = QR
+2. compute QTb.
+3. Back substitution: Solve the triangular equation Rx = QTb using back
+substitution
+▶complexity 2n3 (step 1), 2n2 (step 2), n2 (step 3)
+▶total is 2n3 + 3n2 ≈2n3
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.22
+
+--- PAGE 244 ---
+Multiple right-hand sides
+▶let’s solve Axi = bi, i = 1,. . . ,k, with A invertible
+▶carry out QR factorization once (2n3 ﬂops)
+▶for i = 1,. . . ,k, solve Rxi = QTbi via back substitution (3kn2 ﬂops)
+▶total is 2n3 + 2kn2 ﬂops
+▶if k is small compared to n, same cost as solving one set of equations
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.23
+
+--- PAGE 245 ---
+Outline
+Left and right inverses
+Inverse
+Solving linear equations
+Examples
+Pseudo-inverse
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.24
+
+--- PAGE 246 ---
+Polynomial interpolation
+▶let’s ﬁnd coeﬃcients of a cubic polynomial
+p(x) = c1 + c2x + c3x2 + c4x3
+that satisﬁes
+p(−1.1) = b1,
+p(−0.4) = b2,
+p(0.1) = b3,
+p(0.8) = b4
+▶write as Ac = b, with
+A =
+
+1
+−1.1
+(−1.1)2
+(−1.1)3
+1
+−0.4
+(−0.4)2
+(−0.4)3
+1
+0.1
+(0.1)2
+(0.1)3
+1
+0.8
+(0.8)2
+(0.8)3
+
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.25
+
+--- PAGE 247 ---
+Polynomial interpolation
+▶(unique) coeﬃcients given by c = A−1b, with
+A−1 =
+
+−0.0201
+0.2095
+0.8381
+−0.0276
+0.1754
+−2.1667
+1.8095
+0.1817
+0.3133
+0.4762
+−1.6667
+0.8772
+−0.6266
+2.381
+−2.381
+0.6266
+
+▶so, e.g., c1 is not very sensitive to b1 or b4
+▶ﬁrst column gives coeﬃcients of polynomial that satisﬁes
+p(−1.1) = 1,
+p(−0.4) = 0,
+p(0.1) = 0,
+p(0.8) = 0
+called (ﬁrst) Lagrange polynomial
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.26
+
+--- PAGE 248 ---
+Example
+−1.5
+−1
+−0.5
+0
+0.5
+1 x
+p(x)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.27
+
+--- PAGE 249 ---
+Lagrange polynomials
+Lagrange polynomials associates with points −1.1, −0.4, 0.2, 0.8
+−1
+0
+1
+0
+1
+−1
+0
+1
+0
+1
+−1
+0
+1
+0
+1
+−1
+0
+1
+0
+1
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.28
+
+--- PAGE 250 ---
+Outline
+Left and right inverses
+Inverse
+Solving linear equations
+Examples
+Pseudo-inverse
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.29
+
+--- PAGE 251 ---
+Invertibility of Gram matrix
+▶A has linearly independent columns if and only if ATA is invertible
+▶to see this, we’ll show that Ax = 0 ⇔ATAx = 0
+▶⇒: if Ax = 0 then (ATA)x = AT(Ax) = AT0 = 0
+▶⇐: if (ATA)x = 0 then
+0 = xT(ATA)x = (Ax)T(Ax) = ∥Ax∥2 = 0
+so Ax = 0
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.30
+
+--- PAGE 252 ---
+Pseudo-inverse of tall matrix
+▶the pseudo-inverse of A with independent columns is
+A† = (ATA)−1AT
+▶it is a left inverse of A:
+A†A = (ATA)−1ATA = (ATA)−1(ATA) = I
+(we’ll soon see that it’s a very important left inverse of A)
+▶reduces to A−1 when A is square:
+A† = (ATA)−1AT = A−1A−TAT = A−1I = A−1
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.31
+
+--- PAGE 253 ---
+Pseudo-inverse of wide matrix
+▶if A is wide, with linearly independent rows, AAT is invertible
+▶pseudo-inverse is deﬁned as
+A† = AT(AAT)−1
+▶A† is a right inverse of A:
+AA† = AAT(AAT)−1 = I
+(we’ll see later it is an important right inverse)
+▶reduces to A−1 when A is square:
+AT(AAT)−1 = ATA−TA−1 = A−1
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.32
+
+--- PAGE 254 ---
+Pseudo-inverse via QR factorization
+▶suppose A has linearly independent columns, A = QR
+▶then ATA = (QR)T(QR) = RTQTQR = RTR
+▶so
+A† = (ATA)−1AT = (RTR)−1(QR)T = R−1R−TRTQT = R−1QT
+▶can compute A† using back substitution on columns of QT
+▶for A with linearly independent rows, A† = QR−T
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+11.33
+
+--- PAGE 255 ---
+12. Least squares
+
+--- PAGE 256 ---
+Outline
+Least squares problem
+Solution of least squares problem
+Examples
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+12.1
+
+--- PAGE 257 ---
+Least squares problem
+▶suppose m × n matrix A is tall, so Ax = b is over-determined
+▶for most choices of b, there is no x that satisﬁes Ax = b
+▶residual is r = Ax −b
+▶least squares problem: choose x to minimize ∥Ax −b∥2
+▶∥Ax −b∥2 is the objective function
+▶ˆx is a solution of least squares problem if
+∥Aˆx −b∥2 ≤∥Ax −b∥2
+for any n-vector x
+▶idea: ˆx makes residual as small as possible, if not 0
+▶also called regression (in data ﬁtting context)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+12.2
+
+--- PAGE 258 ---
+Least squares problem
+▶ˆx called least squares approximate solution of Ax = b
+▶ˆx is sometimes called ‘solution of Ax = b in the least squares sense’
+– this is very confusing
+– never say this
+– do not associate with people who say this
+▶ˆx need not (and usually does not) satisfy Aˆx = b
+▶but if ˆx does satisfy Aˆx = b, then it solves least squares problem
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+12.3
+
+--- PAGE 259 ---
+Column interpretation
+▶suppose a1,. . . ,an are columns of A
+▶then
+∥Ax −b∥2 = ∥(x1a1 + · · · + xnan) −b∥2
+▶so least squares problem is to ﬁnd a linear combination of columns of A
+that is closest to b
+▶if ˆx is a solution of least squares problem, the m-vector
+Aˆx = ˆx1a1 + · · · + ˆxnan
+is closest to b among all linear combinations of columns of A
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+12.4
+
+--- PAGE 260 ---
+Row interpretation
+▶suppose ˜aT
+1,. . . , ˜aT
+m are rows of A
+▶residual components are ri = ˜aT
+i x −bi
+▶least squares objective is
+∥Ax −b∥2 = (˜aT
+1x −b1)2 + · · · + (˜aT
+mx −bm)2
+the sum of squares of the residuals
+▶so least squares minimizes sum of squares of residuals
+– solving Ax = b is making all residuals zero
+– least squares attempts to make them all small
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+12.5
+
+--- PAGE 261 ---
+Example
+A =
+
+2
+0
+−1
+1
+0
+2
+
+,
+b =
+
+1
+0
+−1
+
+−1
+0
+1
+−1
+0
+1
+ˆx
+f (ˆx) + 1
+f (ˆx) + 2
+x1
+x2
+▶Ax = b has no solution
+▶least squares problem is to choose x to minimize
+∥Ax −b∥2 = (2x1 −1)2 + (−x1 + x2)2 + (2x2 + 1)2
+▶least squares approximate solution is ˆx = (1/3,1/3) (say, via calculus)
+▶∥Aˆx −b∥2 = 2/3 is smallest posible value of ∥Ax −b∥2
+▶Aˆx = (2/3,−2/3,−2/3) is linear combination of columns of A closest to b
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+12.6
+
+--- PAGE 262 ---
+Outline
+Least squares problem
+Solution of least squares problem
+Examples
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+12.7
+
+--- PAGE 263 ---
+Solution of least squares problem
+▶we make one assumption: A has linearly independent columns
+▶this implies that Gram matrix ATA is invertible
+▶unique solution of least squares problem is
+ˆx = (ATA)−1ATb = A†b
+▶cf. x = A−1b, solution of square invertible system Ax = b
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+12.8
+
+--- PAGE 264 ---
+Derivation via calculus
+▶deﬁne
+f (x) = ∥Ax −b∥2 =
+m
+X
+i=1
+*.
+,
+n
+X
+j=1
+Aijxj −bi+/
+-
+2
+▶solution ˆx satisﬁes
+∂f
+∂xk
+(ˆx) = ∇f (ˆx)k = 0,
+k = 1,. . . ,n
+▶taking partial derivatives we get ∇f (x)k =
+
+2AT(Ax −b)
+
+k
+▶in matrix-vector notation: ∇f (ˆx) = 2AT(Aˆx −b) = 0
+▶so ˆx satisﬁes normal equations (ATA)ˆx = ATb
+▶and therefore ˆx = (ATA)−1ATb
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+12.9
+
+--- PAGE 265 ---
+Direct veriﬁcation
+▶let ˆx = (ATA)−1ATb, so AT(Aˆx −b) = 0
+▶for any n-vector x we have
+∥Ax −b∥2
+=
+∥(Ax −Aˆx) + (Aˆx −b)∥2
+=
+∥A(x −ˆx)∥2 + ∥Aˆx −b∥2 + 2(A(x −ˆx))T(Aˆx −b)
+=
+∥A(x −ˆx)∥2 + ∥Aˆx −b∥2 + 2(x −ˆx)TAT(Aˆx −b)
+=
+∥A(x −ˆx)∥2 + ∥Aˆx −b∥2
+▶so for any x, ∥Ax −b∥2 ≥∥Aˆx −b∥2
+▶if equality holds, A(x −ˆx) = 0, which implies x = ˆx since columns of A are
+linearly independent
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+12.10
+
+--- PAGE 266 ---
+Computing least squares approximate solutions
+▶compute QR factorization of A: A = QR
+(2mn2 ﬂops)
+▶QR factorization exists since columns of A are linearly independent
+▶to compute ˆx = A†b = R−1QTb
+– form QTb
+(2mn ﬂops)
+– compute ˆx = R−1(QTb) via back substitution
+(n2 ﬂops)
+▶total complexity 2mn2 ﬂops
+▶identical to algorithm for solving Ax = b for square invertible A
+▶but when A is tall, gives least squares approximate solution
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+12.11
+
+--- PAGE 267 ---
+Outline
+Least squares problem
+Solution of least squares problem
+Examples
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+12.12
+
+--- PAGE 268 ---
+Advertising purchases
+▶m demographics groups we want to advertise to
+▶vdes is m-vector of target views or impressions
+▶n-vector s gives spending on n advertising channels
+▶m × n matrix R gives demographic reach of channels
+▶Rij is number of views per dollar spent (in 1000/$)
+▶v = Rs is m-vector of views across demographic groups
+▶∥vdes −Rs∥/ √m is RMS deviation from desired views
+▶we’ll use least squares spending ˆs = R†vdes (need not be ≥0)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+12.13
+
+--- PAGE 269 ---
+Example
+▶m = 10 groups, n = 3 channels
+▶target views vector vdes = 103 × 1
+▶optimal spending is ˆs = (62,100,1443)
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+1
+2
+Group
+Impressions
+Columns of matrix R
+Channel 1
+Channel 2
+Channel 3
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+500
+1,000
+1,500
+Group
+Impressions
+Target νdes and achieved views Rˆs
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+12.14
+
+--- PAGE 270 ---
+Illumination
+▶n lamps illuminate an area divided in m regions
+▶Aij is illumination in region i if lamp j is on with power 1, other lamps are oﬀ
+▶xj is power of lamp j
+▶(Ax)i is illumination level at region i
+▶bi is target illumination level at region i
+0
+25m
+0
+25m
+1 (4.0m)
+2 (3.5m)
+3 (6.0m)
+4 (4.0m)
+5 (4.0m)
+6 (6.0m)
+7 (5.5m)
+8 (5.0m)
+9 (5.0m)
+10 (4.5m)
+ﬁgure shows lamp positions for
+example with
+m = 252,
+n = 10
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+12.15
+
+--- PAGE 271 ---
+Illumination
+▶equal lamp powers (x = 1)
+0
+1
+2
+0
+50
+100
+Intensity
+Number of regions
+▶least squares solution ˆx, with b = 1
+0
+1
+2
+0
+50
+100
+Intensity
+Number of regions
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+12.16
+
+--- PAGE 272 ---
+13. Least squares data ﬁtting
+
+--- PAGE 273 ---
+Outline
+Least squares model ﬁtting
+Validation
+Feature engineering
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.1
+
+--- PAGE 274 ---
+Setup
+▶we believe a scalar y and an n-vector x are related by model
+y ≈f (x)
+▶x is called the independent variable
+▶y is called the outcome or response variable
+▶f : Rn →R gives the relation between x and y
+▶often x is a feature vector, and y is something we want to predict
+▶we don’t know f , which gives the ‘true’ relationship between x and y
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.2
+
+--- PAGE 275 ---
+Data
+▶we are given some data
+x(1),. . . ,x(N),
+y(1),. . . ,y(N)
+also called observations, examples, samples, or measurements
+▶x(i),y(i) is ith data pair
+▶x(i)
+j
+is the jth component of ith data point x(i)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.3
+
+--- PAGE 276 ---
+Model
+▶choose model ˆf : Rn →R, a guess or approximation of f
+▶linear in the parameters model form:
+ˆf (x) = θ1f1(x) + · · · + θpfp(x)
+▶fi : Rn →R are basis functions that we choose
+▶θi are model parameters that we choose
+▶ˆy(i) = ˆf (x(i)) is (the model’s) prediction of y(i)
+▶we’d like ˆy(i) ≈y(i), i.e., model is consistent with observed data
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.4
+
+--- PAGE 277 ---
+Least squares data ﬁtting
+▶prediction error or residual is ri = y(i) −ˆy(i)
+▶least squares data ﬁtting: choose model parameters θi to minimize RMS
+prediction error on data set
+ (r(1))2 + · · · + (r(N))2
+N
+!1/2
+▶this can be formulated (and solved) as a least squares problem
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.5
+
+--- PAGE 278 ---
+Least squares data ﬁtting
+▶express y(i), ˆy(i), and r(i) as N-vectors
+– yd = (y(1),. . . ,y(N)) is vector of outcomes
+– ˆyd = (ˆy(1),. . . , ˆy(N)) is vector of predictions
+– rd = (r(1),. . . ,r(N)) is vector of residuals
+▶rms(rd) is RMS prediction error
+▶deﬁne N × p matrix A with elements Aij = fj(x(i)), so ˆyd = Aθ
+▶least squares data ﬁtting: choose θ to minimize
+∥rd∥2 = ∥yd −ˆyd∥2 = ∥yd −Aθ∥2 = ∥Aθ −yd∥2
+▶ˆθ = (ATA)−1ATy (if columns of A are linearly independent)
+▶∥A ˆθ −y∥2/N is minimum mean-square (ﬁtting) error
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.6
+
+--- PAGE 279 ---
+Fitting a constant model
+▶simplest possible model: p = 1, f1(x) = 1, so model ˆf (x) = θ1 is a constant
+▶A = 1, so
+ˆθ1 = (1T1)−11Tyd = (1/N)1Tyd = avg(yd)
+▶the mean of y(1),. . . ,y(N) is the least squares ﬁt by a constant
+▶MMSE is std(yd)2; RMS error is std(yd)
+▶more sophisticated models are judged against the constant model
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.7
+
+--- PAGE 280 ---
+Fitting univariate functions
+▶when n = 1, we seek to approximate a function f : R →R
+▶we can plot the data (xi,yi) and the model function ˆy = ˆf (x)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.8
+
+--- PAGE 281 ---
+Straight-line ﬁt
+▶p = 2, with f1(x) = 1, f2(x) = x
+▶model has form ˆf (x) = θ1 + θ2x
+▶matrix A has form
+A =
+
+1
+x(1)
+1
+x(2)
+...
+...
+1
+x(N)
+
+▶can work out ˆθ1 and ˆθ2 explicitly:
+ˆf (x) = avg(yd) + ρstd(yd)
+std(xd) (x −avg(xd))
+where xd = (x(1),. . . ,x(N))
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.9
+
+--- PAGE 282 ---
+Example
+x
+ˆf (x)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.10
+
+--- PAGE 283 ---
+Asset α and β
+▶x is return of whole market, y is return of a particular asset
+▶write straight-line model as
+ˆy = (rrf + α) + β(x −µmkt)
+– µmkt is the average market return
+– rrf is the risk-free interest rate
+– several other slightly diﬀerent deﬁnitions are used
+▶called asset ‘α’ and ‘β’, widely used
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.11
+
+--- PAGE 284 ---
+Time series trend
+▶y(i) is value of quantity at time x(i) = i
+▶ˆy(i) = ˆθ1 + ˆθ2i,
+i = 1,. . . ,N, is called trend line
+▶yd −ˆyd is called de-trended time series
+▶ˆθ2 is trend coeﬃcient
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.12
+
+--- PAGE 285 ---
+World petroleum consumption
+1980
+1985
+1990
+1995
+2000
+2005
+2010
+2015
+60
+70
+80
+90
+Year
+Petroleum consumption
+(million barrels per day)
+Consumption
+1980
+1985
+1990
+1995
+2000
+2005
+2010
+2015
+−2
+0
+2
+4
+6
+Year
+De-trended consumption
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.13
+
+--- PAGE 286 ---
+Polynomial ﬁt
+▶fi(x) = xi−1,
+i = 1,. . . ,p
+▶model is a polynomial of degree less than p
+ˆf (x) = θ1 + θ2x + · · · + θpxp−1
+(here xi means scalar x to ith power; x(i) is ith data point)
+▶A is Vandermonde matrix
+A =
+
+1
+x(1)
+· · ·
+(x(1))p−1
+1
+x(2)
+· · ·
+(x(2))p−1
+...
+...
+...
+1
+x(N)
+· · ·
+(x(N))p−1
+
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.14
+
+--- PAGE 287 ---
+Example
+N = 100 data points
+x
+ˆf (x)
+degree 2 (p = 3)
+x
+ˆf (x)
+degree 6
+x
+ˆf (x)
+degree 10
+x
+ˆf (x)
+degree 15
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.15
+
+--- PAGE 288 ---
+Regression as general data ﬁtting
+▶regression model is aﬃne function ˆy = ˆf (x) = xT β + v
+▶ﬁts general ﬁtting form with basis functions
+f1(x) = 1,
+fi(x) = xi−1,
+i = 2,. . . ,n + 1
+so model is
+ˆy = θ1 + θ2x1 + · · · + θn+1xn = xTθ2:n + θ1
+▶β = θ2:n+1, v = θ1
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.16
+
+--- PAGE 289 ---
+General data ﬁtting as regression
+▶general ﬁtting model ˆf (x) = θ1f1(x) + · · · + θpfp(x)
+▶common assumption: f1(x) = 1
+▶same as regression model ˆf (˜x) = ˜xT β + v, with
+– ˜x = (f2(x),. . . ,fp(x)) are ‘transformed features’
+– v = θ1, β = θ2:p
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.17
+
+--- PAGE 290 ---
+Auto-regressive time series model
+▶time zeries z1,z2,. . .
+▶auto-regressive (AR) prediction model:
+ˆzt+1 = θ1zt + · · · + θMzt−M+1,
+t = M,M + 1,. . .
+▶M is memory of model
+▶ˆzt+1 is prediction of next value, based on previous M values
+▶we’ll choose β to minimize sum of squares of prediction errors,
+(ˆzM+1 −zM+1)2 + · · · + (ˆzT −zT)2
+▶put in general form with
+y(i) = zM+i,
+x(i) = (zM+i−1,. . . ,zi),
+i = 1,. . . ,T −M
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.18
+
+--- PAGE 291 ---
+Example
+▶hourly temperature at LAX in May 2016, length 744
+▶average is 61.76◦F, standard deviation 3.05◦F
+▶predictor ˆzt+1 = zt gives RMS error 1.16◦F
+▶predictor ˆzt+1 = zt−23 gives RMS error 1.73◦F
+▶AR model with M = 8 gives RMS error 0.98◦F
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.19
+
+--- PAGE 292 ---
+Example
+solid line shows one-hour ahead predictions from AR model, ﬁrst 5 days
+20
+40
+60
+80
+100
+120
+55
+60
+65
+70
+k
+Temperature (◦F)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.20
+
+--- PAGE 293 ---
+Outline
+Least squares model ﬁtting
+Validation
+Feature engineering
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.21
+
+--- PAGE 294 ---
+Generalization
+basic idea:
+▶goal of model is not to predict outcome for the given data
+▶instead it is to predict the outcome on new, unseen data
+▶a model that makes reasonable predictions on new, unseen data has
+generalization ability, or generalizes
+▶a model that makes poor predictions on new, unseen data is said to suﬀer
+from over-ﬁt
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.22
+
+--- PAGE 295 ---
+Validation
+a simple and eﬀective method to guess if a model will generalize
+▶split original data into a training set and a test set
+▶typical splits: 80%/20%, 90%/10%
+▶build (‘train’) model on training data set
+▶then check the model’s predictions on the test data set
+▶(can also compare RMS prediction error on train and test data)
+▶if they are similar, we can guess the model will generalize
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.23
+
+--- PAGE 296 ---
+Validation
+▶can be used to choose among diﬀerent candidate models, e.g.
+– polynomials of diﬀerent degrees
+– regression models with diﬀerent sets of regressors
+▶we’d use one with low, or lowest, test error
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.24
+
+--- PAGE 297 ---
+Example
+models ﬁt using training set of 100 points; plots show test set of 100 points
+x
+ˆf (x)
+degree 2
+x
+ˆf (x)
+degree 6
+x
+ˆf (x)
+degree 10
+x
+ˆf (x)
+degree 15
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.25
+
+--- PAGE 298 ---
+Example
+▶suggests degree 4, 5, or 6 are reasonable choices
+0
+5
+10
+15
+20
+0.2
+0.4
+0.6
+0.8
+1
+Degree
+Relative RMS error
+Train
+Test
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.26
+
+--- PAGE 299 ---
+Cross validation
+to carry out cross validation:
+▶divide data into 10 folds
+▶for i = 1,. . . ,10, build (train) model using all folds except i
+▶test model on data in fold i
+interpreting cross validation results:
+▶if test RMS errors are much larger than train RMS errors, model is over-ﬁt
+▶if test and train RMS errors are similar and consistent, we can guess the
+model will have a similar RMS error on future data
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.27
+
+--- PAGE 300 ---
+Example
+▶house price, regression ﬁt with x = (area/1000 ft.2, bedrooms)
+▶774 sales, divided into 5 folds of 155 sales each
+▶ﬁt 5 regression models, removing each fold
+Model parameters
+RMS error
+Fold
+v
+β1
+β2
+Train
+Test
+1
+60.65
+143.36
+−18.00
+74.00
+78.44
+2
+54.00
+151.11
+−20.30
+75.11
+73.89
+3
+49.06
+157.75
+−21.10
+76.22
+69.93
+4
+47.96
+142.65
+−14.35
+71.16
+88.35
+5
+60.24
+150.13
+−21.11
+77.28
+64.20
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.28
+
+--- PAGE 301 ---
+Outline
+Least squares model ﬁtting
+Validation
+Feature engineering
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.29
+
+--- PAGE 302 ---
+Feature engineering
+▶start with original or base feature n-vector x
+▶choose basis functions f1,. . . ,fp to create ‘mapped’ feature p-vector
+(f1(x),. . . ,fp(x))
+▶now ﬁt linear in parameters model with mapped features
+ˆy = θ1f1(x) + · · · + θpfp(x)
+▶check the model using validation
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.30
+
+--- PAGE 303 ---
+Transforming features
+▶standardizing features: replace xi with
+(xi −bi)/ai
+– bi ≈mean value of the feature across the data
+– ai ≈standard deviation of the feature across the data
+new features are called z-scores
+▶log transform: if xi is nonnegative and spans a wide range, replace it with
+log(1 + xi)
+▶hi and lo features: create new features given by
+max{x1 −b,0},
+min{x1 −a,0}
+(called hi and lo versions of original feature xi)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.31
+
+--- PAGE 304 ---
+Example
+▶house price prediction
+▶start with base features
+– x1 is area of house (in 1000ft.2)
+– x2 is number of bedrooms
+– x3 is 1 for condo, 0 for house
+– x4 is zip code of address (62 values)
+▶we’ll use p = 8 basis functions:
+– f1(x) = 1, f2(x) = x1, f3(x) = max{x1 −1.5,0}
+– f4(x) = x2, f5(x) = x3
+– f6(x), f7(x), f8(x) are Boolean functions of x4 which encode 4 groups of
+nearby zip codes (i.e., neighborhood)
+▶ﬁve fold model validation
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.32
+
+--- PAGE 305 ---
+Example
+Model parameters
+RMS error
+Fold
+θ1
+θ2
+θ3
+θ4
+θ5
+θ6
+θ7
+θ8
+Train
+Test
+1
+122.35 166.87 −39.27 −16.31 −23.97 −100.42 −106.66 −25.98
+67.29 72.78
+2
+100.95 186.65 −55.80 −18.66 −14.81 −99.10 −109.62 −17.94
+67.83 70.81
+3
+133.61 167.15 −23.62 −18.66 −14.71 −109.32 −114.41 −28.46
+69.70 63.80
+4
+108.43 171.21 −41.25 −15.42 −17.68 −94.17 −103.63 −29.83
+65.58 78.91
+5
+114.45 185.69 −52.71 −20.87 −23.26 −102.84 −110.46 −23.43
+70.69 58.27
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+13.33
+
+--- PAGE 306 ---
+14. Least squares classiﬁcation
+
+--- PAGE 307 ---
+Outline
+Classiﬁcation
+Least squares classiﬁcation
+Multi-class classiﬁers
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+14.1
+
+--- PAGE 308 ---
+Classiﬁcation
+▶data ﬁtting with outcome that takes on (non-numerical) values like
+– true or false
+– spam or not spam
+– dog, horse, or mouse
+▶outcome values are called labels or categories
+▶data ﬁtting is called classiﬁcation
+▶we start with case when there are two possible outcomes
+▶called Boolean or 2-way classiﬁcation
+▶we encode outcomes as +1 (true) and −1 (false)
+▶classiﬁer has form ˆy = ˆf (x), f : Rn →{−1,+1}
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+14.2
+
+--- PAGE 309 ---
+Applications
+▶email spam detection
+– x contains features of an email message (word counts, ...)
+▶ﬁnancial transaction fraud detection
+– x contains features of proposed transaction, initiator
+▶document classiﬁcation (say, politics or not)
+– x is word count histogram of document
+▶disease detection
+– x contains patient features, results of medical tests
+▶digital communications receiver
+– y is transmitted bit; x contain n measurements of received signal
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+14.3
+
+--- PAGE 310 ---
+Prediction errors
+▶data point (x,y), predicted outcome ˆy = ˆf (x)
+▶only four possibilities:
+– True positive. y = +1 and ˆy = +1.
+– True negative. y = −1 and ˆy = −1.
+(in these two cases, the prediction is correct)
+– False positive. y = −1 and ˆy = +1.
+– False negative. y = +1 and ˆy = −1.
+(in these two cases, the prediction is wrong)
+▶the errors have many other names, like Type I and Type II
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+14.4
+
+--- PAGE 311 ---
+Confusion matrix
+▶given data set x(1),. . . ,x(N),
+y(1),. . . ,y(N) and classiﬁer ˆf
+▶count each of the four outcomes
+ˆy = +1
+ˆy = −1
+Total
+y = +1
+Ntp
+Nfn
+Np
+y = −1
+Nfp
+Ntn
+Nn
+All
+Ntp + Nfp
+Nfn + Ntp
+N
+▶oﬀ-diagonal terms are prediction errors
+▶many error rates and accuracy measures are used
+– error rate is (Nfp + Nfn)/N
+– true positive (or recall) rate is Ntp/Np
+– false positive rate (or false alarm rate) is Nfp/Nn
+▶a proposed classiﬁer is judged by its error rate(s) on a test set
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+14.5
+
+--- PAGE 312 ---
+Example
+▶spam ﬁlter performance on a test set (say)
+ˆy = +1 (spam)
+ˆy = −1 (not spam)
+Total
+y = +1 (spam)
+95
+32
+127
+y = −1 (not spam)
+19
+1120
+1139
+All
+114
+1152
+1266
+▶error rate is (19 + 32)/1266 = 4.03%
+▶false positive rate is 19/1139 = 1.67%
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+14.6
+
+--- PAGE 313 ---
+Outline
+Classiﬁcation
+Least squares classiﬁcation
+Multi-class classiﬁers
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+14.7
+
+--- PAGE 314 ---
+Least squares classiﬁcation
+▶ﬁt model ˜f to encoded (±1) y(i) values using standard least squares data
+ﬁtting
+▶˜f (x) should be near +1 when y = +1, and near −1 when y = −1
+▶˜f (x) is a number
+▶use model ˆf (x) = sign(˜f (x))
+▶(size of ˜f (x) is related to the ‘conﬁdence’ in the prediction)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+14.8
+
+--- PAGE 315 ---
+Handwritten digits example
+▶MNIST data set of 70000 28 × 28 images of digits 0, ..., 9
+▶divided into training set (60000) and test set (10000)
+▶x is 494-vector, constant 1 plus the 493 pixel values with nonzero values in
+at least 600 training examples
+▶y = +1 if digit is 0; −1 otherwise
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+14.9
+
+--- PAGE 316 ---
+Least squares classiﬁer results
+▶training set results (error rate 1.6%)
+ˆy = +1
+ˆy = −1
+Total
+y = +1
+5158
+765
+5923
+y = −1
+167
+53910
+54077
+All
+5325
+54675
+60000
+▶test set results (error rate 1.6%)
+ˆy = +1
+ˆy = −1
+Total
+y = +1
+864
+116
+980
+y = −1
+42
+8978
+9020
+All
+906
+9094
+10000
+▶we can likely achieve 1.6% error rate on unseen images
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+14.10
+
+--- PAGE 317 ---
+Distribution of least squares ﬁt
+distribution of values of ˜f (x(i)) over training set
+−2
+−1
+0
+1
+2
+0
+0.02
+0.04
+0.06
+0.08
+0.1
+˜f (x(i))
+Fraction
+Positive
+Negative
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+14.11
+
+--- PAGE 318 ---
+Coeﬃcients in least squares classiﬁer
+≤−0.1
+−0.05
+0
+0.05
+≥0.1
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+14.12
+
+--- PAGE 319 ---
+Skewed decision threshold
+▶use predictor ˆf (x) = sign(˜f (x) −α), i.e.,
+ˆf (x) =
+( +1
+˜f (x) ≥α
+−1
+˜f (x) < α
+▶α is the decision threshold
+▶for positive α, false positive rate is lower but so is true positive rate
+▶for negative α, false positive rate is higher but so is true positive rate
+▶trade oﬀcurve of true positive versus false positive rates is called receiver
+operating characteristic (ROC)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+14.13
+
+--- PAGE 320 ---
+Example
+−2
+−1
+0
+1
+2
+0
+0.02
+0.04
+0.06
+0.08
+0.1
+˜f (x(i))
+Positive
+Negative
+−2
+−1
+0
+1
+2
+0
+0.5
+1
+True positive
+False positive
+Total error
+α
+Error rates
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+14.14
+
+--- PAGE 321 ---
+ROC curve
+0
+0.05
+0.1
+0.15
+0.2
+0.7
+0.8
+0.9
+1
+α = −0.25
+α = 0
+α = 0.25
+False positive rate
+True positive rate
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+14.15
+
+--- PAGE 322 ---
+Outline
+Classiﬁcation
+Least squares classiﬁcation
+Multi-class classiﬁers
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+14.16
+
+--- PAGE 323 ---
+Multi-class classiﬁers
+▶we have K > 2 possible labels, with label set {1,. . . ,K}
+▶predictor is ˆf : Rn →{1,. . . ,K}
+▶for given predictor and data set, confusion matrix is K × K
+▶some oﬀ-diagonal entries may be much worse than others
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+14.17
+
+--- PAGE 324 ---
+Examples
+▶handwritten digit classiﬁcation
+– guess the digit written, from the pixel values
+▶marketing demographic classiﬁcation
+– guess the demographic group, from purchase history
+▶disease diagnosis
+– guess diagnosis from among a set of candidates, from test results, patient
+features
+▶translation word choice
+– choose how to translate a word into several choices, given context features
+▶document topic prediction
+– guess topic from word count histogram
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+14.18
+
+--- PAGE 325 ---
+Least squares multi-class classiﬁer
+▶create a least squares classiﬁer for each label versus the others
+▶take as classiﬁer
+ˆf (x) = argmax
+ℓ∈{1,...,K}
+˜fℓ(x)
+(i.e., choose ℓwith largest value of ˜fℓ(x))
+▶for example, with
+˜f1(x) = −0.7,
+˜f2(x) = +0.2,
+˜f3(x) = +0.8
+we choose ˆf (x) = 3
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+14.19
+
+--- PAGE 326 ---
+Handwritten digit classiﬁcation
+confusion matrix, test set
+Prediction
+Digit
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Total
+0
+944
+0
+1
+2
+2
+8
+13
+2
+7
+1
+980
+1
+0
+1107
+2
+2
+3
+1
+5
+1
+14
+0
+1135
+2
+18
+54
+815
+26
+16
+0
+38
+22
+39
+4
+1032
+3
+4
+18
+22
+884
+5
+16
+10
+22
+20
+9
+1010
+4
+0
+22
+6
+0
+883
+3
+9
+1
+12
+46
+982
+5
+24
+19
+3
+74
+24
+656
+24
+13
+38
+17
+892
+6
+17
+9
+10
+0
+22
+17
+876
+0
+7
+0
+958
+7
+5
+43
+14
+6
+25
+1
+1
+883
+1
+49
+1028
+8
+14
+48
+11
+31
+26
+40
+17
+13
+756
+18
+974
+9
+16
+10
+3
+17
+80
+0
+1
+75
+4
+803
+1009
+All
+1042
+1330
+887
+1042
+1086
+742
+994
+1032
+898
+947
+10000
+error rate is around 14% (same as for training set)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+14.20
+
+--- PAGE 327 ---
+Adding new features
+▶let’s add 5000 random features (!), max{(Rx)j,0}
+– R is 5000 × 494 matrix with entries ±1, chosen randomly
+▶now use least squares classiﬁcation with 5494 feature vector
+▶results: training set error 1.5%, test set error 2.6%
+▶can do better with a little more thought in generating new features
+▶indeed, even better than humans can do (!!)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+14.21
+
+--- PAGE 328 ---
+Results with new features
+confusion matrix, test set
+Prediction
+Digit
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Total
+0
+972
+0
+0
+2
+0
+1
+1
+1
+3
+0
+980
+1
+0
+1126
+3
+1
+1
+0
+3
+0
+1
+0
+1135
+2
+6
+0
+998
+3
+2
+0
+4
+7
+11
+1
+1032
+3
+0
+0
+3
+977
+0
+13
+0
+5
+8
+4
+1010
+4
+2
+1
+3
+0
+953
+0
+6
+3
+1
+13
+982
+5
+2
+0
+1
+5
+0
+875
+5
+0
+3
+1
+892
+6
+8
+3
+0
+0
+4
+6
+933
+0
+4
+0
+958
+7
+0
+8
+12
+0
+2
+0
+1
+992
+3
+10
+1028
+8
+3
+1
+3
+6
+4
+3
+2
+2
+946
+4
+974
+9
+4
+3
+1
+12
+11
+7
+1
+3
+3
+964
+1009
+All
+997
+1142
+1024
+1006
+977
+905
+956
+1013
+983
+997
+10000
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+14.22
+
+--- PAGE 329 ---
+15. Multi-objective least squares
+
+--- PAGE 330 ---
+Outline
+Multi-objective least squares problem
+Control
+Estimation and inversion
+Regularized data ﬁtting
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.1
+
+--- PAGE 331 ---
+Multi-objective least squares
+▶goal: choose n-vector x so that k norm squared objectives
+J1 = ∥A1x −b1∥2, . . . , Jk = ∥Akx −bk∥2
+are all small
+▶Ai is an mi × n matrix, bi is an mi-vector, i = 1,. . . ,k
+▶Ji are the objectives in a multi-objective optimization problem
+(also called a multi-criterion problem)
+▶could choose x to minimize any one Ji, but we want one x that makes them
+all small
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.2
+
+--- PAGE 332 ---
+Weighted sum objective
+▶choose positive weights λ1,. . . ,λk and form weighted sum objective
+J = λ1J1 + · · · + λkJk = λ1∥A1x −b1∥2 + · · · + λk∥Akx −bk∥2
+▶we’ll choose x to minimize J
+▶we can take λ1 = 1, and call J1 the primary objective
+▶interpretation of λi: how much we care about Ji being small, relative to
+primary objective
+▶for a bi-criterion problem, we will minimize
+J1 + λJ2 = ∥A1x −b1∥2 + λ∥A2x −b2∥2
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.3
+
+--- PAGE 333 ---
+Weighted sum minimization via stacking
+▶write weighted-sum objective as
+J =
+
+
+√λ1(A1x −b1)
+...
+√λk(Akx −bk)
+
+
+2
+▶so we have J = ∥˜Ax −˜b∥2, with
+˜A =
+
+√λ1A1
+...
+√λkAk
+
+,
+˜b =
+
+√λ1b1
+...
+√λkbk
+
+▶so we can minimize J using basic (‘single-criterion’) least squares
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.4
+
+--- PAGE 334 ---
+Weighted sum solution
+▶assuming columns of ˜A are independent,
+ˆx
+=
+( ˜AT ˜A)−1 ˜AT ˜b
+=
+(λ1AT
+1A1 + · · · + λkAT
+k Ak)−1(λ1AT
+1b1 + · · · + λkAT
+k bk)
+▶can compute ˆx via QR factorization of ˜A
+▶Ai can be wide, or have dependent columns
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.5
+
+--- PAGE 335 ---
+Optimal trade-oﬀcurve
+▶bi-criterion problem with objectives J1, J2
+▶let ˆx(λ) be minimizer of J1 + λJ2
+▶called Pareto optimal: there is no point z that satisﬁes
+J1(z) < J1(ˆx(λ)),
+J2(z) < J2(ˆx(λ))
+i.e., no other point x beats ˆx on both objectives
+▶optimal trade-oﬀcurve: (J1(ˆx(λ)),J2(ˆx(λ))) for λ > 0
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.6
+
+--- PAGE 336 ---
+Example
+A1 and A2 both 10 × 5
+10−4
+10−2
+100
+102
+104
+−0.2
+0
+0.2
+0.4
+0.6
+λ
+ˆx1(λ)
+ˆx2(λ)
+ˆx3(λ)
+ˆx4(λ)
+ˆx5(λ)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.7
+
+--- PAGE 337 ---
+Objectives versus λ and optimal trade-oﬀcurve
+10−4
+10−2
+100
+102
+104
+5
+10
+15
+J1(λ)
+J2(λ)
+λ
+6
+8
+10
+12
+14
+16
+5
+10
+λ = 0.1
+λ = 1
+λ = 10
+J1(λ)
+J2(λ)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.8
+
+--- PAGE 338 ---
+Using multi-objective least squares
+▶identify the primary objective
+– the basic quantity we want to minimize
+▶choose one or more secondary objectives
+– quantities we’d also like to be small, if possible
+– e.g., size of x, roughness of x, distance from some given point
+▶tweak/tune the weights until we like (or can tolerate) ˆx(λ)
+▶for bi-criterion problem with J = J1 + λJ2:
+– if J2 is too big, increase λ
+– if J1 is too big, decrease λ
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.9
+
+--- PAGE 339 ---
+Outline
+Multi-objective least squares problem
+Control
+Estimation and inversion
+Regularized data ﬁtting
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.10
+
+--- PAGE 340 ---
+Control
+▶n-vector x corresponds to actions or inputs
+▶m-vector y corresponds to results or outputs
+▶inputs and outputs are related by aﬃne input-output model
+y = Ax + b
+▶A and b are known (from analytical models, data ﬁtting ...)
+▶the goal is to choose x (which determines y), to optimize multiple
+objectives on x and y
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.11
+
+--- PAGE 341 ---
+Multi-objective control
+▶typical primary objective: J1 = ∥y −ydes∥2, where ydes is a given desired or
+target output
+▶typical secondary objectives:
+– x is small: J2 = ∥x∥2
+– x is not far from a nominal input: J2 = ∥x −xnom∥2
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.12
+
+--- PAGE 342 ---
+Product demand shaping
+▶we will change prices of n products by n-vector δprice
+▶this induces change in demand δdem = Edδprice
+▶Ed is the n × n price elasticity of demand matrix
+▶we want J1 = ∥δdem −δtar∥2 small
+▶and also, we want J2 = ∥δprice∥2 small
+▶so we minimize J1 + λJ2, and adjust λ > 0
+▶trades oﬀdeviation from target demand and price change magnitude
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.13
+
+--- PAGE 343 ---
+Robust control
+▶we have K diﬀerent input-output models (a.k.a. scenarios)
+y(k) = A(k)x + b(k),
+k = 1,. . . ,K
+▶these represent uncertainty in the system
+▶y(k) is the output with input x, if system model k is correct
+▶average cost across the models:
+1
+K
+K
+X
+k=1
+∥y(k) −ydes∥2
+▶can add terms for x as well, e.g., λ∥x∥2
+▶yields choice of x that does well under all scenarios
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.14
+
+--- PAGE 344 ---
+Outline
+Multi-objective least squares problem
+Control
+Estimation and inversion
+Regularized data ﬁtting
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.15
+
+--- PAGE 345 ---
+Estimation
+▶measurement model: y = Ax + v
+▶n-vector x contains parameters we want to estimate
+▶m-vector y contains the measurements
+▶m-vector v are (unknown) noises or measurement errors
+▶m × n matrix A connects parameters to measurements
+▶basic least squares estimation: assuming v is small (and A has
+independent columns), we guess x by minimizing J1 = ∥Ax −y∥2
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.16
+
+--- PAGE 346 ---
+Regularized inversion
+▶can get far better results by incorporating prior information about x into
+estimation, e.g.,
+– x should be not too large
+– x should be smooth
+▶express these as secondary objectives:
+– J2 = ∥x∥2 (‘Tikhonov regularization’)
+– J2 = ∥Dx∥2
+▶we minimize J1 + λJ2
+▶adjust λ until you like the results
+▶curve of ˆx(λ) versus λ is called regularization path
+▶with Tikhonov regularization, works even when A has dependent columns
+(e.g., when it is wide)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.17
+
+--- PAGE 347 ---
+Image de-blurring
+▶x is an image
+▶A is a blurring operator
+▶y = Ax + v is a blurred, noisy image
+▶least squares de-blurring: choose x to minimize
+∥Ax −y∥2 + λ(∥Dvx∥2 + ∥Dhx∥2)
+Dv, Dh are vertical and horizontal diﬀerencing operations
+▶λ controls smoothing of de-blurred image
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.18
+
+--- PAGE 348 ---
+Example
+blurred, noisy image
+regularized inversion with λ = 0.007
+Image credit: NASA
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.19
+
+--- PAGE 349 ---
+Regularization path
+λ = 10−6
+λ = 10−4
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.20
+
+--- PAGE 350 ---
+Regularization path
+λ = 10−2
+λ = 1
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.21
+
+--- PAGE 351 ---
+Tomography
+▶x represents values in region of interest of n voxels (pixels)
+▶y = Ax + v are measurements of integrals along lines through region
+yi =
+n
+X
+i=1
+Aijxj + vi
+▶Aij is the length of the intersection of the line in measurement i with voxel j
+line in measurement i
+x1
+x2
+x6
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.22
+
+--- PAGE 352 ---
+Least squares tomographic reconstruction
+▶primary objective is ∥Ax −y∥2
+▶regularization terms capture prior information about x
+▶for example, if x varies smoothly over region, use Dirichlet energy for graph
+that connects each voxel to its neighbors
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.23
+
+--- PAGE 353 ---
+Example
+▶left: 4000 lines (100 points, 40 lines per point)
+▶right: object placed in the square region on the left
+▶region of interest is divided in 10000 pixels
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.24
+
+--- PAGE 354 ---
+Regularized least squares reconstruction
+λ = 10−2
+λ = 10−1
+λ = 1
+λ = 5
+λ = 10
+λ = 100
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.25
+
+--- PAGE 355 ---
+Outline
+Multi-objective least squares problem
+Control
+Estimation and inversion
+Regularized data ﬁtting
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.26
+
+--- PAGE 356 ---
+Motivation for regularization
+▶consider data ﬁtting model (of relationship y ≈f (x))
+ˆf (x) = θ1f1(x) + · · · + θpfp(x)
+with f1(x) = 1
+▶θi is the sensitivity of ˆf (x) to fi(x)
+▶so large θi means the model is very sensitive to fi(x)
+▶θ1 is an exception, since f1(x) = 1 never varies
+▶so, we don’t want θ2,. . . ,θp to be too large
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.27
+
+--- PAGE 357 ---
+Regularized data ﬁtting
+▶suppose we have data (x1,y1),. . . ,(xN,yN)
+▶express ﬁtting error as Aθ −y
+▶regularized data ﬁtting: choose θ to minimize
+∥Aθ −y∥2 + λ∥θ2:p∥2
+▶λ > 0 is the regularization parameter
+▶for regression model ˆy = XT β + v1, we minimize
+∥XT β + v1 −y∥2 + λ∥β∥2
+▶choose λ by validation on a test set
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.28
+
+--- PAGE 358 ---
+Example
+0
+0.5
+1
+−1
+0
+1
+2
+3
+x
+Train
+Test
+▶solid line is signal used to generate synthetic (simulated) data
+▶10 blue points are used as training set; 20 red points are used as test set
+▶we ﬁt a model with ﬁve parameters θ1, ..., θ5:
+ˆf (x) = θ1 +
+4
+X
+k=1
+θk+1 cos(ωkx + φk)
+(with given ωk, φk)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.29
+
+--- PAGE 359 ---
+Result of regularized least squares ﬁt
+10−5 10−3 10−1 101 103 105
+0
+0.5
+1
+λ
+RMS error versus λ
+Train
+Test
+10−5 10−3 10−1 101 103 105
+−2
+−1
+0
+1
+2
+λ
+Coeﬃcients versus λ
+θ1
+θ2
+θ3
+θ4
+θ5
+▶minimum test RMS error is for λ around 0.08
+▶increasing λ ‘shrinks’ the coeﬃcients θ2, ..., θ5
+▶dashed lines show coeﬃcients used to generate the data
+▶for λ near 0.08, estimated coeﬃcients are close to these ‘true’ values
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+15.30
+
+--- PAGE 360 ---
+16. Constrained least squares
+
+--- PAGE 361 ---
+Outline
+Linearly constrained least squares
+Least norm problem
+Solving the constrained least squares problem
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+16.1
+
+--- PAGE 362 ---
+Least squares with equality constraints
+▶the (linearly) constrained least squares problem (CLS) is
+minimize
+∥Ax −b∥2
+subject to
+Cx = d
+▶variable (to be chosen/found) is n-vector x
+▶m × n matrix A, m-vector b, p × n matrix C, and p-vector d are problem
+data (i.e., they are given)
+▶∥Ax −b∥2 is the objective function
+▶Cx = d are the equality constraints
+▶x is feasible if Cx = d
+▶ˆx is a solution of CLS if Cˆx = d and ∥Aˆx −b∥2 ≤∥Ax −b∥2 holds for any
+n-vector x that satisﬁes Cx = d
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+16.2
+
+--- PAGE 363 ---
+Least squares with equality constraints
+▶CLS combines solving linear equations with least squares problem
+▶like a bi-objective least squares problem, with inﬁnite weight on second
+objective ∥Cx −d∥2
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+16.3
+
+--- PAGE 364 ---
+Piecewise-polynomial ﬁtting
+▶piecewise-polynomial ˆf has form
+ˆf (x) =
+( p(x) = θ1 + θ2x + θ3x2 + θ4x3
+x ≤a
+q(x) = θ5 + θ6x + θ7x2 + θ8x3
+x > a
+(a is given)
+▶we require p(a) = q(a), p′(a) = q′(a)
+▶ﬁt ˆf to data (xi,yi), i = 1,. . . ,N by minimizing sum square error
+N
+X
+i=1
+(ˆf (xi) −yi)2
+▶can express as a constrained least squares problem
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+16.4
+
+--- PAGE 365 ---
+Example
+a
+p(x)
+q(x)
+x
+ˆf (x)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+16.5
+
+--- PAGE 366 ---
+Piecewise-polynomial ﬁtting
+▶constraints are (linear equations in θ)
+θ1 + θ2a + θ3a2 + θ4a3 −θ5 −θ6a −θ7a2 −θ8a3
+=
+0
+θ2 + 2θ3a + 3θ4a2 −θ6 −2θ7a −3θ8a2
+=
+0
+▶prediction error on (xi,yi) is aT
+i θ −yi, with
+(ai)j =
+( (1,xi,x2
+i ,x3
+i ,0,0,0,0)
+xi ≤a
+(0,0,0,0,1,xi,x2
+i ,x3
+i )
+xi > a
+▶sum square error is ∥Aθ −y∥2, where aT
+i are rows of A
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+16.6
+
+--- PAGE 367 ---
+Outline
+Linearly constrained least squares
+Least norm problem
+Solving the constrained least squares problem
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+16.7
+
+--- PAGE 368 ---
+Least norm problem
+▶special case of constrained least squares problem, with A = I, b = 0
+▶least-norm problem:
+minimize
+∥x∥2
+subject to
+Cx = d
+i.e., ﬁnd the smallest vector that satisﬁes a set of linear equations
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+16.8
+
+--- PAGE 369 ---
+Force sequence
+▶unit mass on frictionless surface, initially at rest
+▶10-vector f gives forces applied for one second each
+▶ﬁnal velocity and position are
+vﬁn
+=
+f1 + f2 + · · · + f10
+pﬁn
+=
+(19/2)f1 + (17/2)f2 + · · · + (1/2)f10
+▶let’s ﬁnd f for which vﬁn = 0, pﬁn = 1
+▶f bb = (1,−1,0,. . . ,0) works (called ‘bang-bang’)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+16.9
+
+--- PAGE 370 ---
+Bang-bang force sequence
+0
+2
+4
+6
+8
+10
+−1
+0
+1
+Time
+Force
+0
+2
+4
+6
+8
+10
+0
+0.5
+1
+Time
+Position
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+16.10
+
+--- PAGE 371 ---
+Least norm force sequence
+▶let’s ﬁnd least-norm f that satisﬁes pﬁn = 1, vﬁn = 0
+▶least-norm problem:
+minimize
+∥f ∥2
+subject to
+"
+1
+1
+· · ·
+1
+1
+19/2
+17/2
+· · ·
+3/2
+1/2
+#
+f =
+" 0
+1
+#
+with variable f
+▶solution f ln satisﬁes ∥f ln∥2 = 0.0121 (compare to ∥f bb∥2 = 2)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+16.11
+
+--- PAGE 372 ---
+Least norm force sequence
+0
+2
+4
+6
+8
+10
+−0.05
+0
+0.05
+Time
+Force
+0
+2
+4
+6
+8
+10
+0
+0.5
+1
+Time
+Position
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+16.12
+
+--- PAGE 373 ---
+Outline
+Linearly constrained least squares
+Least norm problem
+Solving the constrained least squares problem
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+16.13
+
+--- PAGE 374 ---
+Optimality conditions via calculus
+to solve constrained optimization problem
+minimize
+f (x) = ∥Ax −b∥2
+subject to
+cT
+i x = di,
+i = 1,. . . ,p
+1. form Lagrangian function, with Lagrange multipliers z1,. . . ,zp
+L(x,z) = f (x) + z1(cT
+1x −d1) + · · · + zp(cT
+px −dp)
+2. optimality conditions are
+∂L
+∂xi
+(ˆx,z) = 0,
+i = 1,. . . ,n,
+∂L
+∂zi
+(ˆx,z) = 0,
+i = 1,. . . ,p
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+16.14
+
+--- PAGE 375 ---
+Optimality conditions via calculus
+▶∂L
+∂zi
+(ˆx,z) = cT
+i ˆx −di = 0, which we already knew
+▶ﬁrst n equations are more interesting:
+∂L
+∂xi
+(ˆx,z) = 2
+n
+X
+j=1
+(ATA)ijˆxj −2(ATb)i +
+p
+X
+j=1
+zjci = 0
+▶in matrix-vector form: 2(ATA)ˆx −2ATb + CTz = 0
+▶put together with Cˆx = d to get Karush–Kuhn–Tucker (KKT) conditions
+" 2ATA
+CT
+C
+0
+# " ˆx
+z
+#
+=
+" 2ATb
+d
+#
+a square set of n + p linear equations in variables ˆx, z
+▶KKT equations are extension of normal equations to CLS
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+16.15
+
+--- PAGE 376 ---
+Solution of constrained least squares problem
+▶assuming the KKT matrix is invertible, we have
+" ˆx
+z
+#
+=
+" 2ATA
+CT
+C
+0
+#−1 " 2ATb
+d
+#
+▶KKT matrix is invertible if and only if
+C has linearly independent rows,
+" A
+C
+#
+has linearly independent columns
+▶implies m + p ≥n, p ≤n
+▶can compute ˆx in 2mn2 + 2(n + p)3 ﬂops; order is n3 ﬂops
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+16.16
+
+--- PAGE 377 ---
+Direct veriﬁcation of solution
+▶to show that ˆx is solution, suppose x satisﬁes Cx = d
+▶then
+∥Ax −b∥2
+=
+∥(Ax −Aˆx) + (Aˆx −b)∥2
+=
+∥A(x −ˆx)∥2 + ∥Aˆx −b∥2 + 2(Ax −Aˆx)T(Aˆx −b)
+▶expand last term, using 2AT(Aˆx −b) = −CTz, Cx = Cˆx = d:
+2(Ax −Aˆx)T(Aˆx −b)
+=
+2(x −ˆx)TAT(Aˆx −b)
+=
+−(x −ˆx)TCTz
+=
+−(C(x −ˆx))Tz
+=
+0
+▶so ∥Ax −b∥2 = ∥A(x −ˆx)∥2 + ∥Aˆx −b∥2 ≥∥Aˆx −b∥2
+▶and we conclude ˆx is solution
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+16.17
+
+--- PAGE 378 ---
+Solution of least-norm problem
+▶least-norm problem: minimize ∥x∥2 subject to Cx = d
+▶matrix
+" I
+C
+#
+always has independent columns
+▶we assume that C has independent rows
+▶optimality condition reduces to
+" 2I
+CT
+C
+0
+# " ˆx
+z
+#
+=
+" 0
+d
+#
+▶so ˆx = −(1/2)CTz; second equation is then −(1/2)CCTz = d
+▶plug z = −2(CCT)−1d into ﬁrst equation to get
+ˆx = CT(CCT)−1d = C†d
+where C† is (our old friend) the pseudo-inverse
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+16.18
+
+--- PAGE 379 ---
+so when C has linearly independent rows:
+▶C† is a right inverse of C
+▶so for any d, ˆx = C†d satisﬁes Cˆx = d
+▶and we now know: ˆx is the smallest solution of Cx = d
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+16.19
+
+--- PAGE 380 ---
+17. Constrained least squares applications
+
+--- PAGE 381 ---
+Outline
+Portfolio optimization
+Linear quadratic control
+Linear quadratic state estimation
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.1
+
+--- PAGE 382 ---
+Portfolio allocation weights
+▶we invest a total of V dollars in n diﬀerent assets (stocks, bonds, ...) over
+some period (one day, week, month, ...)
+▶can include short positions, assets you borrow and sell at the beginning,
+but must return to the borrower at the end of the period
+▶portfolio allocation weight vector w gives the fraction of our total portfolio
+value held in each asset
+▶Vwj is the dollar value of asset j you hold
+▶1Tw = 1, with negative wi meaning a short position
+▶w = (−0.2,0.0,1.2) means we take a short position of 0.2V in asset 1,
+don’t hold any of asset 2, and hold 1.2V in asset 3
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.2
+
+--- PAGE 383 ---
+Leverage, long-only portfolios, and cash
+▶leverage is L = |w1| + · · · + |wn|
+((L −1)/2 is also sometimes used)
+▶L = 1 when all weights are nonnegative (‘long only portfolio’)
+▶w = 1/n is called the uniform portfolio
+▶we often assume asset n is ‘risk-free’ (or cash or T-bills)
+▶so w = en means the portfolio is all cash
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.3
+
+--- PAGE 384 ---
+Return over a period
+▶˜rj is the return of asset j over the period
+▶˜rj is the fractional increase in price or value (decrease if negative)
+▶often expressed as a percentage, like +1.1% or −2.3%
+▶full portfolio return is
+V+ −V
+V
+= ˜rTw
+where V+ is the portfolio value at the end of the period
+▶if you hold portfolio for t periods with returns r1,. . . ,rt value is
+Vt+1 = V1(1 + r1)(1 + r2) · · · (1 + rt)
+▶portfolio value versus time traditionally plotted using V1 = $10000
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.4
+
+--- PAGE 385 ---
+Return matrix
+▶hold portfolio with weights w over T periods
+▶deﬁne T × n (asset) return matrix, with Rtj the return of asset j in period t
+▶row t of R is ˜rT
+t , where ˜rt is the asset return vector over period t
+▶column j of R is time series of asset j returns
+▶portfolio returns vector (time series) is T-vector r = Rw
+▶if last asset is risk-free, the last column of R is µrf1, where µrf is the
+risk-free per-period interest rate
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.5
+
+--- PAGE 386 ---
+Portfolio return and risk
+▶r is time series (vector) of portfolio returns
+▶average return or just return is avg(r)
+▶risk is std(r)
+▶these are the per-period return and risk
+▶for small per-period returns we have
+VT+1
+=
+V1(1 + r1) · · · (1 + rT)
+≈
+V1 + V1(r1 + · · · + rT)
+=
+V1 + T avg(r)V1
+▶so return approximates the average per-period increase in portfolio value
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.6
+
+--- PAGE 387 ---
+Annualized return and risk
+▶mean return and risk are often expressed in annualized form (i.e., per year)
+▶if there are P trading periods per year
+annualized return = P avg(r),
+annualized risk =
+√
+P std(r)
+(the squareroot in risk annualization comes from the assumption that the
+ﬂuctuations in return around the mean are independent)
+▶if returns are daily, with 250 trading days in a year
+annualized return = 250 avg(r),
+annualized risk =
+√
+250 std(r)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.7
+
+--- PAGE 388 ---
+Portfolio optimization
+▶how should we choose the portfolio weight vector w?
+▶we want high (mean) portfolio return, low portfolio risk
+▶we know past realized asset returns but not future ones
+▶we will choose w that would have worked well on past returns
+▶... and hope it will work well going forward (just like data ﬁtting)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.8
+
+--- PAGE 389 ---
+Portfolio optimization
+minimize
+std(Rw)2 = (1/T)∥Rw −ρ1∥2
+subject to
+1Tw = 1
+avg(Rw) = ρ
+▶w is the weight vector we seek
+▶R is the returns matrix for past returns
+▶Rw is the (past) portfolio return time series
+▶require mean (past) return ρ
+▶we minimize risk for speciﬁed value of return
+▶solutions w are Pareto optimal
+▶we are really asking what would have been the best constant allocation,
+had we known future returns
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.9
+
+--- PAGE 390 ---
+Portfolio optimization via constrained least squares
+minimize
+∥Rw −ρ1∥2
+subject to
+" 1T
+µT
+#
+w =
+" 1
+ρ
+#
+▶µ = RT1/T is n-vector of (past) asset returns
+▶ρ is required (past) portfolio return
+▶an equality constrained least squares problem, with solution
+
+w
+z1
+z2
+
+=
+
+2RTR
+1
+µ
+1T
+0
+0
+µT
+0
+0
+
+−1 
+2ρT µ
+1
+ρ
+
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.10
+
+--- PAGE 391 ---
+Optimal portfolios
+▶perform signiﬁcantly better than individual assets
+▶risk-return curve forms a straight line
+▶one end of the line is the risk-free asset
+▶two-fund theorem: optimal portfolio w is an aﬃne function of ρ
+
+w
+z1
+z2
+
+=
+
+2RTR
+1
+µ
+1T
+0
+0
+µT
+0
+0
+
+−1 
+RT1
+1
+ρT
+
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.11
+
+--- PAGE 392 ---
+The big assumption
+▶now we make the big assumption (BA):
+future returns will look something like past ones
+– you are warned this is false, every time you invest
+– it is often reasonably true
+– in periods of ‘market shift’ it’s much less true
+▶if BA holds (even approximately), then a good weight vector for past
+(realized) returns should be good for future (unknown) returns
+▶for example:
+– choose w based on last 2 years of returns
+– then use w for next 6 months
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.12
+
+--- PAGE 393 ---
+Example
+20 assets over 2000 days
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0
+0.1
+0.2
+0.3
+0.4
+risk-free asset
+Annualized risk
+Annualized return
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.13
+
+--- PAGE 394 ---
+Pareto optimal portfolios
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0
+0.1
+0.2
+0.3
+0.4
+1/n
+Annualized risk
+Annualized return
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.14
+
+--- PAGE 395 ---
+Five portfolios
+Return
+Risk
+Portfolio
+Train
+Test
+Train
+Test
+Leverage
+risk-free
+0.01
+0.01
+0.00
+0.00
+1.00
+ρ = 10%
+0.10
+0.08
+0.09
+0.07
+1.96
+ρ = 20%
+0.20
+0.15
+0.18
+0.15
+3.03
+ρ = 40%
+0.40
+0.30
+0.38
+0.31
+5.48
+1/n (uniform weights)
+0.10
+0.21
+0.23
+0.13
+1.00
+▶train period of 2000 days used to compute optimal portfolio
+▶test period is diﬀerent 500-day period
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.15
+
+--- PAGE 396 ---
+Total portfolio value
+0
+400
+800
+1200
+1600
+2000
+10
+50
+100
+150
+Day
+Value (thousand dollars)
+Train
+Risk-free
+1/n
+10%
+20%
+40%
+0
+100
+200
+300
+400
+500
+10
+12
+14
+16
+18
+Day
+Test
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.16
+
+--- PAGE 397 ---
+Outline
+Portfolio optimization
+Linear quadratic control
+Linear quadratic state estimation
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.17
+
+--- PAGE 398 ---
+Linear dynamical system
+xt+1 = Atxt + Btut,
+yt = Ctxt,
+t = 1,2,. . .
+▶n-vector xt is state at time t
+▶m-vector ut is input at time t
+▶p-vector yt is output at time t
+▶n × n matrix At is dynamics matrix
+▶n × m matrix Bt is input matrix
+▶p × n matrix Ct is output matrix
+▶xt, ut, yt often represent deviations from a standard operating condition
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.18
+
+--- PAGE 399 ---
+Linear quadratic control
+minimize
+Joutput + ρJinput
+subject to
+xt+1 = Atxt + Btut,
+t = 1,. . . ,T −1
+x1 = xinit,
+xT = xdes
+▶variables are state sequence x1,. . . ,xT and input sequence u1,. . . ,uT−1
+▶two objectives are quadratic functions of state and input sequences:
+Joutput
+=
+∥y1∥2 + · · · + ∥yT ∥2 = ∥C1x1∥2 + · · · + ∥CTxT ∥2
+Jinput
+=
+∥u1∥2 + · · · + ∥uT−1∥2
+▶ﬁrst constraint imposes the linear dynamics equations
+▶second set of constraints speciﬁes the initial and ﬁnal state
+▶ρ is positive parameter used to trade oﬀthe two objectives
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.19
+
+--- PAGE 400 ---
+Constrained least squares formulation
+minimize
+∥C1x1∥2 + · · · + ∥CTxT ∥2 + ρ∥u1∥2 + · · · + ∥uT−1∥2
+subject to
+xt+1 = Atxt + Btut,
+t = 1,. . . ,T −1
+x1 = xinit,
+xT = xdes
+▶can be written as
+minimize
+∥˜Az −˜b∥2
+subject to
+˜Cz = ˜d
+▶vector z contains the Tn + (T −1)m variables:
+z = (x1,. . . ,xT,u1,. . . ,uT−1)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.20
+
+--- PAGE 401 ---
+Constrained least squares formulation
+˜A =
+
+C1
+· · ·
+0
+0
+· · ·
+0
+...
+...
+...
+...
+...
+...
+0
+· · ·
+CT
+0
+· · ·
+0
+0
+· · ·
+0
+√ρI
+· · ·
+0
+...
+...
+...
+...
+...
+...
+0
+· · ·
+0
+0
+· · ·
+√ρI
+
+,
+˜b = 0
+˜C =
+
+A1 −I 0 · · ·
+0
+0
+B1 0 · · ·
+0
+0 A2 −I · · ·
+0
+0
+0 B2 · · ·
+0
+...
+...
+...
+...
+...
+...
+...
+...
+...
+0
+0
+0 · · · AT−1 −I
+0
+0 · · · BT−1
+I
+0
+0 · · ·
+0
+0
+0
+0 · · ·
+0
+0
+0
+0 · · ·
+0
+I
+0
+0 · · ·
+0
+
+,
+˜d =
+
+0
+0
+...
+0
+xinit
+xdes
+
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.21
+
+--- PAGE 402 ---
+Example
+▶time-invariant system: system matrices are constant
+A =
+
+0.855
+1.161
+0.667
+0.015
+1.073
+0.053
+−0.084
+0.059
+1.022
+
+,
+B =
+
+−0.076
+−0.139
+0.342
+
+,
+C =
+f
+0.218
+−3.597
+−1.683
+g
+▶initial condition xinit = (0.496,−0.745,1.394)
+▶target or desired ﬁnal state xdes = 0
+▶T = 100
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.22
+
+--- PAGE 403 ---
+Optimal trade-oﬀcurve
+0
+1
+2
+3
+4
+3.6
+3.8
+4
+4.2
+4.4
+ρ = 0.05
+ρ = 0.2
+ρ = 1
+Jinput
+Joutput
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.23
+
+--- PAGE 404 ---
+Three points on the trade-oﬀcurve
+0
+20
+40
+60
+80
+100
+−0.5
+0
+0.5
+ρ = 0.05
+ut
+0
+20
+40
+60
+80
+100
+0
+0.2
+0.4
+yt
+0
+20
+40
+60
+80
+100
+−0.5
+0
+0.5
+ρ = 0.2
+ut
+0
+20
+40
+60
+80
+100
+0
+0.2
+0.4
+yt
+0
+20
+40
+60
+80
+100
+−0.5
+0
+0.5
+ρ = 1
+t
+ut
+0
+20
+40
+60
+80
+100
+0
+0.2
+0.4
+t
+yt
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.24
+
+--- PAGE 405 ---
+Linear state feedback control
+▶linear state feedback control uses the input
+ut = Kxt,
+t = 1,2,. . .
+▶K is state feedback gain matrix
+▶widely used, especially when xt should converge to zero, T is not speciﬁed
+▶one choice for K: solve linear quadratic control problem with xdes = 0
+▶solution ut is a linear function of xinit, hence u1 can be written as
+u1 = Kxinit
+▶columns of K can be found by computing u1 for xinit = e1,. . . ,en
+▶use this K as state feedback gain matrix
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.25
+
+--- PAGE 406 ---
+Example
+0
+50
+100
+150
+−0.1
+0
+0.1
+State feedback
+Optimal
+t
+ut
+0
+50
+100
+150
+0
+0.2
+0.4
+State feedback
+Optimal
+t
+yt
+▶system matrices of previous example
+▶blue curve uses optimal linear quadratic control for T = 100
+▶red curve uses simple linear state feedback ut = Kxt
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.26
+
+--- PAGE 407 ---
+Outline
+Portfolio optimization
+Linear quadratic control
+Linear quadratic state estimation
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.27
+
+--- PAGE 408 ---
+State estimation
+▶linear dynamical system model:
+xt+1 = Atxt + Btwt,
+yt = Ctxt + vt,
+t = 1,2,. . .
+▶xt is state (n-vector)
+▶yt is measurement (p-vector)
+▶wt is input or process noise (m-vector)
+▶vt is measurement noise or measurement residual (p-vector)
+▶we know At, Bt, Ct, and measurements y1,. . . ,yT
+▶wt,vt are unknown, but assumed small
+▶state estimation: estimate/guess x1,. . . ,xT
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.28
+
+--- PAGE 409 ---
+Least squares state estimation
+minimize
+Jmeas + λJproc
+subject to
+xt+1 = Atxt + Btwt,
+t = 1,. . . ,T −1
+▶variables: states x1,. . . ,xT and input noise w1,. . . ,wT−1
+▶primary objective Jmeas is sum of squares of measurement residuals:
+Jmeas = ∥C1x1 −y1∥2 + · · · + ∥CTxT −yT ∥2
+▶secondary objective Jproc is sum of squares of process noise
+Jproc = ∥w1∥2 + · · · + ∥wT−1∥2
+▶λ > 0 is a parameter, trades oﬀmeasurement and process errors
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.29
+
+--- PAGE 410 ---
+Constrained least squares formulation
+minimize
+∥C1x1 −y1∥2 + · · · + ∥CTxT −yT ∥2 + λ(∥w1∥2 + · · · + ∥wT−1∥2)
+subject to
+xt+1 = Atxt + Btwt,
+t = 1,. . . ,T −1
+▶can be written as
+minimize
+∥˜Az −˜b∥2
+subject to
+˜Cz = ˜d
+▶vector z contains the Tn + (T −1)m variables:
+z = (x1,. . . ,xT,w1,. . . ,wT−1)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.30
+
+--- PAGE 411 ---
+Constrained least squares formulation
+˜A =
+
+C1
+0
+· · ·
+0
+0
+· · ·
+0
+0
+C2
+· · ·
+0
+0
+· · ·
+0
+...
+...
+...
+...
+...
+...
+0
+0
+· · ·
+CT
+0
+· · ·
+0
+0
+0
+· · ·
+0
+√
+λI
+· · ·
+0
+...
+...
+...
+...
+...
+...
+0
+0
+· · ·
+0
+0
+· · ·
+√
+λI
+
+,
+˜b =
+
+y1
+y2
+...
+yT
+0
+...
+0
+
+˜C =
+
+A1
+−I
+0
+· · ·
+0
+0
+B1
+0
+· · ·
+0
+0
+A2
+−I
+· · ·
+0
+0
+0
+B2
+· · ·
+0
+...
+...
+...
+...
+...
+...
+...
+...
+...
+0
+0
+0
+· · ·
+AT−1
+−I
+0
+0
+· · ·
+BT−1
+
+,
+˜d = 0
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.31
+
+--- PAGE 412 ---
+Missing measurements
+▶suppose we have measurements yt for t ∈T , a subset of {1,. . . ,T}
+▶measurements for t ∈T are missing
+▶to estimate states, use same formulation but with
+Jmeas =
+X
+t∈T
+∥Ctxt −yt∥2
+▶from estimated states ˆxt, can estimate missing measurements
+ˆyt = Ctˆxt,
+t < T
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.32
+
+--- PAGE 413 ---
+Example
+At =
+
+1
+0
+1
+0
+0
+1
+0
+1
+0
+0
+1
+0
+0
+0
+0
+1
+
+,
+Bt =
+
+0
+0
+0
+0
+1
+0
+0
+1
+
+,
+Ct =
+" 1
+0
+0
+0
+0
+1
+0
+0
+#
+▶simple model of mass moving in a 2-D plane
+▶xt = (pt,zt): 2-vector pt is position, 2-vector zt is the velocity
+▶yt = Ctxt + wt is noisy measurement of position
+▶T = 100
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.33
+
+--- PAGE 414 ---
+Measurements and true positions
+0
+100
+200
+300
+−1500
+−1000
+−500
+0
+t = 1
+t = 100
+(xt)1
+(xt)2
+▶solid line is exact position Ctxt
+▶100 noisy measurements yt shown as circles
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.34
+
+--- PAGE 415 ---
+Position estimates
+λ = 1
+λ = 103
+λ = 105
+blue lines show position estimates for three values of λ
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.35
+
+--- PAGE 416 ---
+Cross-validation
+▶randomly remove 20% (say) of the measurements and use as test set
+▶for many values of λ, estimate states using other (training) measurements
+▶for each λ, evaluate RMS measurement residuals on test set
+▶choose λ to (approximately) minimize the RMS test residuals
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.36
+
+--- PAGE 417 ---
+Example
+10−3
+10−1
+101
+103
+105
+0
+20
+40
+60
+80
+Train
+Test
+λ
+RMS error
+▶cross-validation method applied to previous example
+▶remove 20 of the 100 measurements
+▶suggests using λ ≈103
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+17.37
+
+--- PAGE 418 ---
+18. Nonlinear least squares
+
+--- PAGE 419 ---
+Outline
+Nonlinear equations and least squares
+Examples
+Levenberg–Marquardt algorithm
+Nonlinear model ﬁtting
+Nonlinear least squares classiﬁcation
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+18.1
+
+--- PAGE 420 ---
+Nonlinear equations
+▶set of m nonlinear equations in n unknowns x1,. . . ,xn:
+fi(x1,. . . ,xn) = 0,
+i = 1,. . . ,m
+▶fi(x) = 0 is the ith equation; fi(x) is the ith residual
+▶n-vector of unknowns x = (x1,. . . ,xn)
+▶write as vector equation f (x) = 0 where f : Rn →Rm,
+f (x) = (f1(x),. . . ,fm(x))
+▶when f is aﬃne, reduces to set of m linear equations
+▶over-determined if m > n, under-determined if m < n, square if m = n
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+18.2
+
+--- PAGE 421 ---
+Nonlinear least squares
+▶ﬁnd ˆx that minimizes
+∥f (x)∥2 = f1(x)2 + · · · + fm(x)2
+▶includes problem of solving equations f (x) = 0 as special case
+▶like (linear) least squares, super useful on its own
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+18.3
+
+--- PAGE 422 ---
+Optimality condition
+▶optimality condition: ∇∥f (ˆx)∥2 = 0
+▶any optimal point satisﬁes this
+▶points can satisfy this and not be optimal
+▶can be expressed as 2Df (ˆx)Tf (ˆx) = 0
+▶Df (ˆx) is the m × n derivative or Jacobian matrix,
+Df (ˆx)ij = ∂fi
+∂xj
+(ˆx),
+i = 1,. . . ,m,
+j = 1,. . . ,n
+▶optimality condition reduces to normal equations when f is aﬃne
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+18.4
+
+--- PAGE 423 ---
+Diﬃculty of solving nonlinear least squares problem
+▶solving nonlinear equations or nonlinear least squares problem is (in
+general) much harder than solving linear equations
+▶even determining if a solution exists is hard
+▶so we will use heuristic algorithms:
+– not guaranteed to always work
+– but often work well in practice
+(like k-means)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+18.5
+
+--- PAGE 424 ---
+Outline
+Nonlinear equations and least squares
+Examples
+Levenberg–Marquardt algorithm
+Nonlinear model ﬁtting
+Nonlinear least squares classiﬁcation
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+18.6
+
+--- PAGE 425 ---
+Computing equilibrium points
+▶equilibrium prices: ﬁnd n-vector of prices p for which S(p) = D(p)
+– S(p) is supply of n goods as function of prices
+– D(p) is demand for n goods as function of prices
+– take f (p) = S(p) −D(p)
+▶chemical equilibrium: ﬁnd n-vector of concentrations c so C(c) = G(c)
+– C(c) is consumption of species as function of c
+– G(c) is generation of species as function of c
+– take f (c) = C(c) −G(c)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+18.7
+
+--- PAGE 426 ---
+Location from range measurements
+▶3-vector x is position in 3-D, which we will estimate
+▶range measurements give (noisy) distance to known locations
+ρi = ∥x −ai∥+ vi,
+i = 1,. . . ,m
+ai are known locations, vi are noises
+▶least squares location estimation: choose ˆx that minimizes
+m
+X
+i=1
+(∥x −ai∥−ρi)2
+▶GPS works like this
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+18.8
+
+--- PAGE 427 ---
+Outline
+Nonlinear equations and least squares
+Examples
+Levenberg–Marquardt algorithm
+Nonlinear model ﬁtting
+Nonlinear least squares classiﬁcation
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+18.9
+
+--- PAGE 428 ---
+The basic idea
+▶at any point z we can form the aﬃne approximation
+ˆf (x; z) = f (z) + Df (z)(x −z)
+▶ˆf (x; z) ≈f (x) provided x is near z
+▶we can minimize ∥ˆf (x; z)∥2 using linear least squares
+▶we’ll iterate, with z the current iterate
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+18.10
+
+--- PAGE 429 ---
+Levenberg–Marquardt algorithm
+▶iterates x(1),x(2),. . .
+▶at iteration k, form aﬃne approximation of f at x(k):
+ˆf (x; x(k)) = f (x(k)) + Df (x(k))(x −x(k))
+▶choose x(k+1) as minimizer of
+∥ˆf (x; x(k))∥2 + λ(k)∥x −x(k)∥2
+(where λ(k) > 0)
+▶we want ∥ˆf (x; x(k))∥2 small, but we don’t want to move too far from x(k),
+where ˆf (x; x(k)) ≈f (x) no longer holds
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+18.11
+
+--- PAGE 430 ---
+Levenberg–Marquardt iteration
+▶x(k+1) is solution of least squares problem
+minimize
+∥f (x(k)) + Df (x(k))(x −x(k))∥2 + λ(k)∥x −x(k)∥2
+▶solution is
+x(k+1) = x(k) −
+
+Df (x(k))TDf (x(k)) + λ(k)I
+−1 Df (x(k))Tf (x(k))
+▶inverse always exists (since λ(k) > 0)
+▶x(k+1) = x(k) only if Df (x(k))Tf (x(k)) = 0, i.e., optimality condition holds
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+18.12
+
+--- PAGE 431 ---
+Adjusting λ(k)
+idea:
+▶if λ(k) is too big, x(k+1) is too close to x(k), and progress is slow
+▶if too small, x(k+1) may be far from x(k) and aﬃne approximation is poor
+update mechanism:
+▶if ∥f (x(k+1))∥2 < ∥f (x(k))∥2, accept new x and reduce λ
+λ(k+1) = 0.8λ(k)
+▶otherwise, increase λ and do not update x:
+λ(k+1) = 2λ(k),
+x(k+1) = x(k)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+18.13
+
+--- PAGE 432 ---
+Example: Location from range measurements
+▶range to 5 points (blue circles)
+▶red square shows ˆx
+0
+1
+2
+3
+4
+0
+1
+2
+3
+4
+x1
+x2
+contour lines of ∥f (x)∥2
+0
+1
+2
+3
+4 0
+2
+4
+0
+2
+4
+x1
+x2
+graph of ∥f (x)∥
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+18.14
+
+--- PAGE 433 ---
+Levenberg–Marquardt from three initial points
+0
+1
+2
+3
+4
+0
+1
+2
+3
+4
+x1
+x2
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+18.15
+
+--- PAGE 434 ---
+Levenberg–Marquardt from three initial points
+1
+2
+3
+4
+5
+6
+7
+8
+9 10
+0
+2
+4
+k
+∥f (x(k))∥2
+1
+2
+3
+4
+5
+6
+7
+8
+9 10
+0
+0.1
+0.2
+0.3
+k
+λ(k)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+18.16
+
+--- PAGE 435 ---
+Outline
+Nonlinear equations and least squares
+Examples
+Levenberg–Marquardt algorithm
+Nonlinear model ﬁtting
+Nonlinear least squares classiﬁcation
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+18.17
+
+--- PAGE 436 ---
+Nonlinear model ﬁtting
+minimize
+N
+X
+i=1
+( ˆf (x(i); θ) −y(i))2
+▶x(1),. . . ,x(N) are feature vectors
+▶y(1), ..., y(N) are associated outcomes
+▶model ˆf (x; θ) is parameterized by parameters θ1, ..., θp
+▶this generalizes the linear in parameters model
+ˆf (x; θ) = θ1f1(x) + · · · + θpfp(x)
+▶here we allow ˆf (x,θ) to be a nonlinear function of θ
+▶the minimization is over the model parameters θ
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+18.18
+
+--- PAGE 437 ---
+Example
+ˆf (x; θ)
+ˆf (x; θ) = θ1 exp(θ2x) cos(θ3x + θ4)
+x
+a nonlinear least squares problem with four variables θ1, θ2, θ3, θ4:
+minimize
+N
+X
+i=1
+
+θ1eθ2x(i) cos(θ3x(i) + θ4) −y(i))
+2
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+18.19
+
+--- PAGE 438 ---
+Orthogonal distance regression
+▶to ﬁt model, minimize sum square distance of data points to graph
+▶example: orthogonal distance regression to cubic polynomial
+x
+ˆf (x; θ)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+18.20
+
+--- PAGE 439 ---
+Nonlinear least squares formulation
+minimize
+N
+X
+i=1
+
+(ˆf (u(i); θ) −y(i))2 + ∥u(i) −x(i)∥2
+▶optimization variables are model parameters θ and N points u(i)
+▶ith term is squared distance of data point (x(i),y(i)) to point (u(i), ˆf (u(i),θ))
+di
+(x(i),y(i))
+(u(i); ˆf (u(i),θ))
+d2
+i = (ˆf (u(i); θ) −y(i))2 + ∥u(i) −x(i)∥2
+▶minimizing over u(i) gives squared distance of (x(i),y(i)) to graph
+▶minimizing over u(1), ..., u(N) and θ minimizes the sum square distance
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+18.21
+
+--- PAGE 440 ---
+Outline
+Nonlinear equations and least squares
+Examples
+Levenberg–Marquardt algorithm
+Nonlinear model ﬁtting
+Nonlinear least squares classiﬁcation
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+18.22
+
+--- PAGE 441 ---
+Nonlinear least squares classiﬁcation
+linear least squares classiﬁer:
+▶classiﬁer is ˆf (x) = sign (˜f (x)) where ˜f (x) = θ1f1(x) + · · · + θpfp(x)
+▶θ is chosen by minimizing PN
+i=1(˜f (xi) −yi)2 (plus optionally regularization)
+nonlinear least squares classiﬁer:
+▶choose θ to minimize
+N
+X
+i=1
+(sign(˜f (xi)) −yi)2 = 4 × number of errors
+▶replace sign function with smooth approximation φ, e.g., sigmoid function
+▶use Levenberg–Marquardt to minimize PN
+i=1(φ(˜f (xi)) −yi)2
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+18.23
+
+--- PAGE 442 ---
+Sigmoid function
+−4
+−2
+2
+4
+−1
+1
+φ(u) = eu −e−u
+eu + e−u
+u
+φ(u)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+18.24
+
+--- PAGE 443 ---
+Example
+▶MNIST data set; feature vector x is 493-vector of pixel intensities
+▶nonlinear least squares 10-way multi-class classiﬁer: 7.5% test error
+▶Boolean classiﬁers computed by solving nonlinear least squares problems
+minimize
+N
+X
+i=1
+(φ((x(i))T β + v) −y(i))2 + λ∥β∥2
+10−5 10−3 10−1
+101
+103
+6
+7
+8
+9
+10
+λ
+Classiﬁcation error (%)
+Train
+Test
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+18.25
+
+--- PAGE 444 ---
+Feature engineering
+▶add 5000 random features as before
+▶test set error drops to 2%
+▶this matches human performance
+▶with more feature engineering, can substantially beat human performance
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+18.26
+
+--- PAGE 445 ---
+19. Constrained nonlinear least squares
+
+--- PAGE 446 ---
+Outline
+Constrained nonlinear least squares
+Penalty method
+Augmented Lagrangian method
+Nonlinear control example
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+19.1
+
+--- PAGE 447 ---
+Constrained nonlinear least squares
+▶add equality constraints to nonlinear least squares problem:
+minimize
+f1(x)2 + · · · + fm(x)2
+subject to
+g1(x) = 0, . . . , gp(x) = 0
+▶fi(x) is ith (scalar) residual; gi(x) = 0 is ith (scalar) equality constraint
+▶with vector notation f (x) = (f1(x),. . . ,fm(x)), g(x) = (g1(x),. . . ,gp(x))
+minimize
+∥f (x)∥2
+subject to
+g(x) = 0
+▶x is feasible if it satisﬁes the constraints g(x) = 0
+▶ˆx is a solution if it is feasible and ∥f (x)∥2 ≥∥f (ˆx)∥2 for all feasible x
+▶problem is diﬃcult to solve in general, but useful heuristics exist
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+19.2
+
+--- PAGE 448 ---
+Lagrange multipliers
+▶the Lagrangian of the problem is the function
+L(x,z)
+=
+∥f (x)∥2 + z1g1(x) + · · · + zmgm(x)
+=
+∥f (x)∥2 + g(x)Tz
+▶p-vector z = (z1,. . . ,zp) is vector of Lagrange multipliers
+▶method of Lagrange multipliers: if ˆx is a solution, then there exists ˆz with
+∂L
+∂xi
+(ˆx,ˆz) = 0,
+i = 1,. . . ,n.
+∂L
+∂zi
+(ˆx,ˆz) = 0,
+i = 1,. . . ,p
+(provided the gradients ∇g1(ˆx), ..., ∇gp(ˆx) are linearly independent)
+▶ˆz is called an optimal Lagrange multiplier
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+19.3
+
+--- PAGE 449 ---
+Optimality condition
+▶gradient of Lagrangian with respect to x is
+∇xL(ˆx,ˆz) = 2Df (ˆx)Tf (ˆx) + Dg(ˆx)Tˆz
+▶gradient with respect to z is
+∇zL(ˆx,ˆz) = g(ˆx)
+▶optimality condition: if ˆx is optimal, then there exists ˆz such that
+2Df (ˆx)Tf (ˆx) + Dg(ˆx)Tˆz = 0,
+g(ˆx) = 0
+(provided the rows of Dg(ˆx) are linearly independent)
+▶this condition is necessary for optimality but not suﬃcient
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+19.4
+
+--- PAGE 450 ---
+Constrained (linear) least squares
+▶recall constrained least squares problem
+minimize
+∥Ax −b∥2
+subject to
+Cx = d
+▶a special case of the nonlinear problem with f (x) = Ax −b, g(x) = Cx −d
+▶apply general optimality condition:
+2Df (ˆx)Tf (ˆx) + Dg(ˆx)Tˆz = 2AT(Aˆx −b) + CTˆz = 0,
+g(ˆx) = Cˆx −d = 0
+▶these are the KKT equations
+" 2ATA
+CT
+C
+0
+# " ˆx
+ˆz
+#
+=
+" 2ATb
+d
+#
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+19.5
+
+--- PAGE 451 ---
+Outline
+Constrained nonlinear least squares
+Penalty method
+Augmented Lagrangian method
+Nonlinear control example
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+19.6
+
+--- PAGE 452 ---
+Penalty method
+▶solve sequence of (unconstrained) nonlinear least squares problems
+minimize
+∥f (x)∥2 + µ∥g(x)∥2 =
+
+"
+f (x)
+√µg(x)
+#
+2
+▶µ is a positive penalty parameter
+▶instead of insisting on g(x) = 0 we assign a penalty to deviations from zero
+▶for increasing sequence µ(1), µ(2), ..., compute x(k+1) by minimizing
+∥f (x)∥2 + µ(k)∥g(x)∥2
+▶x(k+1) is computed by Levenberg–Marquardt algorithm started at x(k)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+19.7
+
+--- PAGE 453 ---
+Termination
+▶recall optimality condition
+2Df (ˆx)Tf (ˆx) + Dg(ˆx)Tˆz = 0,
+g(ˆx) = 0
+▶x(k) satisﬁes normal equations for linear least squares problem:
+2Df (x(k))Tf (x(k)) + 2µ(k−1)Dg(x(k))Tg(x(k)) = 0
+▶if we deﬁne z(k) = 2µ(k−1)g(x(k)), this can be written as
+2Df (x(k))Tf (x(k)) + Dg(x(k))Tz(k) = 0
+▶we see that x(k), z(k) satisfy ﬁrst equation in optimality condition
+▶feasibility g(x(k)) = 0 is only satisﬁed approximately for µ(k−1) large enough
+▶penalty method is terminated when ∥g(x(k))∥becomes suﬃciently small
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+19.8
+
+--- PAGE 454 ---
+Example
+f (x1,x2) =
+" x1 + exp(−x2)
+x2
+1 + 2x2 + 1
+#
+,
+g(x1,x2) = x1 + x3
+1 + x2 + x2
+2
+−1
+0
+1
+−1
+0
+1
+g(x) = 0
+g(x) = −1
+g(x) = 1
+ˆx
+x1
+x2
+▶solid: contour lines of ∥f (x)∥2
+▶dashed: contour lines of g(x)
+▶ˆx is solution
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+19.9
+
+--- PAGE 455 ---
+First six iterations
+−0.5
+0
+0.5
+x(2)
+µ(1) = 1
+x(3)
+µ(2) = 2
+x(4)
+µ(3) = 4
+−0.5
+0
+0.5
+−0.5
+0
+0.5
+x(5)
+µ(4) = 8
+−0.5
+0
+0.5
+x(6)
+µ(5) = 16
+−0.5
+0
+0.5
+x(7)
+µ(6) = 32
+solid lines are contour lines of ∥f (x)∥2 + µ(k)∥g(x)∥2
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+19.10
+
+--- PAGE 456 ---
+Convergence
+0
+50
+100
+10−6
+10−2
+102
+Cumulative L–M iterations
+Residual
+Feas.
+Opt.
+0
+50
+100
+100
+102
+104
+Cumulative L–M iterations
+Penalty parameter µ
+▶ﬁgure on the left shows residuals in optimality condition
+▶blue curve is norm of g(x(k))
+▶red curve is norm of 2Df (x(k))Tf (x(k)) + Dg(x(k))Tz(k)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+19.11
+
+--- PAGE 457 ---
+Outline
+Constrained nonlinear least squares
+Penalty method
+Augmented Lagrangian method
+Nonlinear control example
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+19.12
+
+--- PAGE 458 ---
+Drawback of penalty method
+▶µ(k) increases rapidly and must become large to drive g(x) to (near) zero
+▶for large µ(k), nonlinear least squares subproblem becomes harder
+▶for large µ(k), Levenberg–Marquardt method can take a large number of
+iterations, or fail
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+19.13
+
+--- PAGE 459 ---
+Augmented Lagrangian
+▶the augmented Lagrangian for the constrained NLLS problem is
+Lµ(x,z)
+=
+L(x,z) + µ∥g(x)∥2
+=
+∥f (x)∥2 + g(x)Tz + µ∥g(x)∥2
+▶this is the Lagrangian L(x,z) augmented with a quadratic penalty
+▶µ is a positive penalty parameter
+▶augmented Lagrangian is the Lagrangian of the equivalent problem
+minimize
+∥f (x)∥2 + µ∥g(x)∥2
+subject to
+g(x) = 0
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+19.14
+
+--- PAGE 460 ---
+Minimizing augmented Lagrangian
+▶equivalent expressions for augmented Lagrangian
+Lµ(x,z)
+=
+∥f (x)∥2 + g(x)Tz + µ∥g(x)∥2
+=
+∥f (x)∥2 + µ∥g(x) + 1
+2µz∥2 −1
+2µ ∥z∥2
+=
+
+"
+f (x)
+√µg(x) + z/(2 √µ)
+#
+2
+−1
+2µ ∥z∥2
+▶can be minimized over x (for ﬁxed µ, z) by Levenberg–Marquardt method:
+minimize
+
+"
+f (x)
+√µg(x) + z/(2 √µ)
+#
+2
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+19.15
+
+--- PAGE 461 ---
+Lagrange multiplier update
+▶minimizer ˜x of augmented Lagrangian Lµ(x,z) satisﬁes
+2Df (˜x)Tf (˜x) + Dg(˜x)T(2µg(˜x) + z) = 0
+▶if we deﬁne ˜z = z + 2µg(˜x) this can be written as
+2Df (˜x)Tf (˜x) + Dg(˜x)T˜z = 0
+▶this is the ﬁrst equation in the optimality conditions
+2Df (ˆx)Tf (ˆx) + Dg(ˆx)Tˆz = 0,
+g(ˆx) = 0
+▶shows that if g(˜x) = 0, then ˜x is optimal
+▶if g(˜x) is not small, suggests ˜z is a good update for z
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+19.16
+
+--- PAGE 462 ---
+Augmented Lagrangian algorithm
+1. set x(k+1) to be the (approximate) minimizer of
+∥f (x)∥2 + µ(k)∥g(x) + z(k)/(2µ(k))∥2
+using Levenberg–Marquardt algorithm, starting from initial point x(k)
+2. multiplier update:
+z(k+1) = z(k) + 2µ(k)g(x(k+1)).
+3. penalty parameter update:
+µ(k+1) = µ(k)
+if ∥g(x(k+1))∥< 0.25∥g(x(k))∥,
+µ(k+1) = 2µ(k)
+otherwise
+▶iteration starts at z(1) = 0, µ(1) = 1, some initial x(1)
+▶µ is increased only when needed, more slowly than in penalty method
+▶continues until g(x(k)) is suﬃciently small (or iteration limit is reached)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+19.17
+
+--- PAGE 463 ---
+Example of slide 19.9
+−0.5
+0
+0.5
+x(2)
+µ(1) = 1, z(1) = 0
+x(3)
+µ(2) = 2, z(2) = −0.893
+x(4)
+µ(3) = 4, z(3) = −1.569
+−0.5
+0
+0.5
+−0.5
+0
+0.5
+x(5)
+µ(4) = 4, z(4) = −1.898
+−0.5
+0
+0.5
+x(6)
+µ(5) = 4, z(5) = −1.976
+−0.5
+0
+0.5
+x(7)
+µ(6) = 4, z(6) = −1.994
+solid lines are contour lines of Lµ(k) (x,z(k))
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+19.18
+
+--- PAGE 464 ---
+Convergence
+0
+50
+100
+10−6
+10−2
+102
+Cumulative L–M iterations
+Residual
+Feas.
+Opt.
+0
+50
+100
+1
+2
+4
+10
+Cumulative L–M iterations
+Penalty parameter µ
+▶ﬁgure on the left shows residuals in optimality condition
+▶blue curve is norm of g(x(k))
+▶red curve is norm of 2Df (x(k))Tf (x(k)) + Dg(x(k))Tz(k)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+19.19
+
+--- PAGE 465 ---
+Outline
+Constrained nonlinear least squares
+Penalty method
+Augmented Lagrangian method
+Nonlinear control example
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+19.20
+
+--- PAGE 466 ---
+Simple model of a car
+L
+θ
+φ
+(p1,p2)
+dp1
+dt
+=
+s(t) cos θ(t)
+dp2
+dt
+=
+s(t) sin θ(t)
+dθ
+dt
+=
+s(t)
+L tan φ(t)
+▶s(t) is speed of vehicle, φ(t) is steering angle
+▶p(t) is position, θ(t) is orientation
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+19.21
+
+--- PAGE 467 ---
+Discretized model
+▶discretized model (for small time interval h):
+p1(t + h)
+≈
+p1(t) + hs(t) cos(θ(t))
+p2(t + h)
+≈
+p2(t) + hs(t) sin(θ(t))
+θ(t + h)
+≈
+θ(t) + hs(t)
+L tan(φ(t))
+▶deﬁne input vector uk = (s(kh),φ(kh))
+▶deﬁne state vector xk = (p1(kh),p2(kh),θ(kh))
+▶discretized model is xk+1 = f (xk,uk) with
+f (xk,uk) =
+
+(xk)1 + h(uk)1 cos((xk)3)
+(xk)2 + h(uk)1 sin((xk)3)
+(xk)3 + h(uk)1 tan((uk)2)/L
+
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+19.22
+
+--- PAGE 468 ---
+Control problem
+▶move car from given initial to desired ﬁnal position and orientation
+▶using a small and slowly varying input sequence
+▶this is a constrained nonlinear least squares problem:
+minimize
+NP
+k=1
+∥uk∥2 + γ
+N−1
+P
+k=1
+∥uk+1 −uk∥2
+subject to
+x2 = f (0,u1)
+xk+1 = f (xk,uk),
+k = 2,. . . ,N −1
+xﬁnal = f (xN,uN)
+▶variables are u1,. . . ,uN, x2,. . . ,xN
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+19.23
+
+--- PAGE 469 ---
+Four solution trajectories
+−0.5
+0
+0.5
+0
+0.5
+1
+xﬁnal = (0,1,0)
+−0.5
+0
+0.5
+0
+0.5
+1
+xﬁnal = (0,1,π/2)
+−0.6
+−0.4
+−0.2
+0
+0.2
+0
+0.2
+0.4
+0.6
+xﬁnal = (0,0.5,0)
+0
+0.5
+−0.2
+0
+0.2
+0.4
+xﬁnal = (0.5,0.5,−π/2)
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+19.24
+
+--- PAGE 470 ---
+Inputs for four trajectories
+0
+20
+40
+−0.5
+0
+0.5
+Speed
+Steering angle
+k
+uk
+0
+20
+40
+−0.5
+0
+0.5
+Speed
+Steering angle
+k
+uk
+0
+20
+40
+−0.5
+0
+0.5
+Speed
+Steering angle
+k
+uk
+0
+20
+40
+−0.5
+0
+0.5
+Speed
+Steering angle
+k
+uk
+Introduction to Applied Linear Algebra
+Boyd & Vandenberghe
+19.25
+

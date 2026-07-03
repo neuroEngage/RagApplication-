@@ -1,0 +1,2195 @@
+[
+    {
+        "file": "Algorithms/Algorithms.pdf",
+        "output_file": "data\\extracted\\Algorithms_Algorithms_extracted.txt",
+        "page_count": 257,
+        "warnings": [
+            "Page 60 has low text density (characters: 140, images: 2)",
+            "Page 69 has low text density (characters: 140, images: 2)",
+            "Page 83 has low text density (characters: 69, images: 0)",
+            "Page 117 has low text density (characters: 71, images: 0)",
+            "Page 133 has low text density (characters: 79, images: 0)",
+            "Page 153 has low text density (characters: 142, images: 0)",
+            "Page 166 has low text density (characters: 132, images: 0)",
+            "Page 168 has low text density (characters: 138, images: 0)",
+            "Page 208 has low text density (characters: 55, images: 2)",
+            "Page 209 has low text density (characters: 55, images: 2)",
+            "Page 235 has low text density (characters: 95, images: 0)",
+            "Page 257 has low text density (characters: 17, images: 9)"
+        ]
+    },
+    {
+        "file": "Artificial Intelligence/ai4all.pdf",
+        "output_file": "data\\extracted\\Artificial_Intelligence_ai4all_extracted.txt",
+        "page_count": 13,
+        "warnings": []
+    },
+    {
+        "file": "Artificial Intelligence/Cheat Sheets for AI.pdf",
+        "output_file": "data\\extracted\\Artificial_Intelligence_Cheat_Sheets_for_AI_extracted.txt",
+        "page_count": 25,
+        "warnings": [
+            "Page 1 has low text density (characters: 143, images: 1)",
+            "Page 3 has low text density (characters: 22, images: 2)",
+            "Page 6 has low text density (characters: 23, images: 1)",
+            "Page 11 has low text density (characters: 38, images: 1)"
+        ]
+    },
+    {
+        "file": "Artificial Intelligence/super-cheatsheet-artificial-intelligence.pdf",
+        "output_file": "data\\extracted\\Artificial_Intelligence_super-cheatsheet-artificial-intelligence_extracted.txt",
+        "page_count": 18,
+        "warnings": []
+    },
+    {
+        "file": "Big Data/AP.pdf",
+        "output_file": "data\\extracted\\Big_Data_AP_extracted.txt",
+        "page_count": 9,
+        "warnings": [
+            "Page 1 has low text density (characters: 0, images: 0)",
+            "Page 2 has low text density (characters: 0, images: 0)",
+            "Page 3 has low text density (characters: 0, images: 0)",
+            "Page 4 has low text density (characters: 0, images: 0)",
+            "Page 5 has low text density (characters: 0, images: 0)",
+            "Page 6 has low text density (characters: 0, images: 0)",
+            "Page 7 has low text density (characters: 0, images: 0)",
+            "Page 8 has low text density (characters: 0, images: 0)"
+        ]
+    },
+    {
+        "file": "Big Data/BIG Data Analytics.pdf",
+        "output_file": "data\\extracted\\Big_Data_BIG_Data_Analytics_extracted.txt",
+        "page_count": 61,
+        "warnings": []
+    },
+    {
+        "file": "Big Data/big-data-analytics-emerging-architecture.pdf",
+        "output_file": "data\\extracted\\Big_Data_big-data-analytics-emerging-architecture_extracted.txt",
+        "page_count": 31,
+        "warnings": [
+            "Page 1 has low text density (characters: 0, images: 1)",
+            "Page 3 has low text density (characters: 63, images: 1)",
+            "Page 6 has low text density (characters: 0, images: 0)",
+            "Page 10 has low text density (characters: 0, images: 0)",
+            "Page 18 has low text density (characters: 0, images: 0)",
+            "Page 22 has low text density (characters: 0, images: 0)",
+            "Page 26 has low text density (characters: 0, images: 0)",
+            "Page 28 has low text density (characters: 0, images: 0)"
+        ]
+    },
+    {
+        "file": "Big Data/Big-Data-Cheat-Sheet.pdf",
+        "output_file": "data\\extracted\\Big_Data_Big-Data-Cheat-Sheet_extracted.txt",
+        "page_count": 1,
+        "warnings": []
+    },
+    {
+        "file": "Big Data/bigdata-case-studybook_final.pdf",
+        "output_file": "data\\extracted\\Big_Data_bigdata-case-studybook_final_extracted.txt",
+        "page_count": 32,
+        "warnings": [
+            "Page 1 has low text density (characters: 119, images: 0)"
+        ]
+    },
+    {
+        "file": "Big Data/Hadoop-and-mapreduce-cheat-sheet.pdf",
+        "output_file": "data\\extracted\\Big_Data_Hadoop-and-mapreduce-cheat-sheet_extracted.txt",
+        "page_count": 1,
+        "warnings": []
+    },
+    {
+        "file": "Big Data/hadoop-and-spark-performance-for-the-enterprise.pdf",
+        "output_file": "data\\extracted\\Big_Data_hadoop-and-spark-performance-for-the-enterprise_extracted.txt",
+        "page_count": 20,
+        "warnings": [
+            "Page 1 has low text density (characters: 117, images: 1)",
+            "Page 2 has low text density (characters: 0, images: 1)",
+            "Page 6 has low text density (characters: 0, images: 0)"
+        ]
+    },
+    {
+        "file": "Big Data/hadoop-hdfs-commands-cheatsheet.pdf",
+        "output_file": "data\\extracted\\Big_Data_hadoop-hdfs-commands-cheatsheet_extracted.txt",
+        "page_count": 2,
+        "warnings": []
+    },
+    {
+        "file": "Big Data/Hortonworks.CheatSheet.SQLtoHive.pdf",
+        "output_file": "data\\extracted\\Big_Data_Hortonworks_CheatSheet_SQLtoHive_extracted.txt",
+        "page_count": 3,
+        "warnings": []
+    },
+    {
+        "file": "Big Data/migrating-big-data-analytics.pdf",
+        "output_file": "data\\extracted\\Big_Data_migrating-big-data-analytics_extracted.txt",
+        "page_count": 16,
+        "warnings": [
+            "Page 1 has low text density (characters: 57, images: 1)",
+            "Page 3 has low text density (characters: 55, images: 0)",
+            "Page 6 has low text density (characters: 0, images: 0)"
+        ]
+    },
+    {
+        "file": "Big Data/planning-for-big-data.pdf",
+        "output_file": "data\\extracted\\Big_Data_planning-for-big-data_extracted.txt",
+        "page_count": 88,
+        "warnings": [
+            "Page 1 has low text density (characters: 0, images: 1)",
+            "Page 3 has low text density (characters: 41, images: 0)",
+            "Page 46 has low text density (characters: 0, images: 0)",
+            "Page 52 has low text density (characters: 0, images: 0)",
+            "Page 60 has low text density (characters: 0, images: 0)",
+            "Page 80 has low text density (characters: 0, images: 0)"
+        ]
+    },
+    {
+        "file": "CBAP.pdf",
+        "output_file": "data\\extracted\\CBAP_extracted.txt",
+        "page_count": 106,
+        "warnings": [
+            "Page 36 has low text density (characters: 61, images: 1)",
+            "Page 37 has low text density (characters: 61, images: 1)",
+            "Page 50 has low text density (characters: 61, images: 1)",
+            "Page 66 has low text density (characters: 61, images: 1)",
+            "Page 82 has low text density (characters: 61, images: 1)"
+        ]
+    },
+    {
+        "file": "Data Engineering/Data Engineering CookBook.pdf",
+        "output_file": "data\\extracted\\Data_Engineering_Data_Engineering_CookBook_extracted.txt",
+        "page_count": 91,
+        "warnings": [
+            "Page 1 has low text density (characters: 100, images: 0)",
+            "Page 9 has low text density (characters: 21, images: 0)",
+            "Page 14 has low text density (characters: 40, images: 0)",
+            "Page 35 has low text density (characters: 33, images: 0)",
+            "Page 50 has low text density (characters: 68, images: 1)",
+            "Page 68 has low text density (characters: 44, images: 0)",
+            "Page 76 has low text density (characters: 115, images: 0)",
+            "Page 78 has low text density (characters: 23, images: 0)",
+            "Page 91 has low text density (characters: 17, images: 0)"
+        ]
+    },
+    {
+        "file": "Data Engineering/GDE.pdf",
+        "output_file": "data\\extracted\\Data_Engineering_GDE_extracted.txt",
+        "page_count": 9,
+        "warnings": []
+    },
+    {
+        "file": "Data Mining/Data Mining Process, Techniques, Tools.pdf",
+        "output_file": "data\\extracted\\Data_Mining_Data_Mining_Process__Techniques__Tools_extracted.txt",
+        "page_count": 11,
+        "warnings": []
+    },
+    {
+        "file": "Data Mining/OLTP vs OLAP.pdf",
+        "output_file": "data\\extracted\\Data_Mining_OLTP_vs_OLAP_extracted.txt",
+        "page_count": 7,
+        "warnings": []
+    },
+    {
+        "file": "Data Mining/What Is Data Warehousing.pdf",
+        "output_file": "data\\extracted\\Data_Mining_What_Is_Data_Warehousing_extracted.txt",
+        "page_count": 12,
+        "warnings": []
+    },
+    {
+        "file": "Data Mining/What is Dimensional Model.pdf",
+        "output_file": "data\\extracted\\Data_Mining_What_is_Dimensional_Model_extracted.txt",
+        "page_count": 7,
+        "warnings": []
+    },
+    {
+        "file": "Data Mining/What is OLAP.pdf",
+        "output_file": "data\\extracted\\Data_Mining_What_is_OLAP_extracted.txt",
+        "page_count": 12,
+        "warnings": [
+            "Page 4 has low text density (characters: 32, images: 1)",
+            "Page 8 has low text density (characters: 86, images: 1)"
+        ]
+    },
+    {
+        "file": "Data Science/50YearsDataScience-1533532686598.pdf",
+        "output_file": "data\\extracted\\Data_Science_50YearsDataScience-1533532686598_extracted.txt",
+        "page_count": 41,
+        "warnings": []
+    },
+    {
+        "file": "Data Science/beginners_guide_to_data_science-_a_twics_guide__1_.pdf",
+        "output_file": "data\\extracted\\Data_Science_beginners_guide_to_data_science-_a_twics_guide__1__extracted.txt",
+        "page_count": 41,
+        "warnings": [
+            "Page 23 has low text density (characters: 63, images: 42)"
+        ]
+    },
+    {
+        "file": "Data Science/Building Data Science Teams.pdf",
+        "output_file": "data\\extracted\\Data_Science_Building_Data_Science_Teams_extracted.txt",
+        "page_count": 26,
+        "warnings": [
+            "Page 1 has low text density (characters: 107, images: 1)",
+            "Page 4 has low text density (characters: 94, images: 0)",
+            "Page 7 has low text density (characters: 0, images: 0)"
+        ]
+    },
+    {
+        "file": "Data Science/building-data-science-teams.pdf",
+        "output_file": "data\\extracted\\Data_Science_building-data-science-teams_extracted.txt",
+        "page_count": 26,
+        "warnings": [
+            "Page 1 has low text density (characters: 107, images: 1)",
+            "Page 4 has low text density (characters: 94, images: 0)",
+            "Page 7 has low text density (characters: 0, images: 0)"
+        ]
+    },
+    {
+        "file": "Data Science/Cheat Sheets for AI, Neural Networks, Machine Learning, Deep Learning, Big Data.pdf",
+        "output_file": "data\\extracted\\Data_Science_Cheat_Sheets_for_AI__Neural_Networks__Machine_Learning__Deep_Learning__Big_Data_extracted.txt",
+        "page_count": 21,
+        "warnings": [
+            "Page 1 has low text density (characters: 80, images: 1)",
+            "Page 2 has low text density (characters: 1, images: 1)",
+            "Page 3 has low text density (characters: 1, images: 1)",
+            "Page 4 has low text density (characters: 1, images: 1)",
+            "Page 5 has low text density (characters: 1, images: 1)",
+            "Page 6 has low text density (characters: 1, images: 2)",
+            "Page 7 has low text density (characters: 1, images: 2)",
+            "Page 8 has low text density (characters: 1, images: 1)",
+            "Page 9 has low text density (characters: 1, images: 1)",
+            "Page 10 has low text density (characters: 2, images: 2)",
+            "Page 11 has low text density (characters: 2, images: 1)",
+            "Page 12 has low text density (characters: 2, images: 1)",
+            "Page 13 has low text density (characters: 2, images: 1)",
+            "Page 14 has low text density (characters: 2, images: 1)",
+            "Page 15 has low text density (characters: 2, images: 1)",
+            "Page 16 has low text density (characters: 2, images: 2)",
+            "Page 17 has low text density (characters: 2, images: 1)",
+            "Page 18 has low text density (characters: 2, images: 1)",
+            "Page 19 has low text density (characters: 2, images: 2)",
+            "Page 20 has low text density (characters: 2, images: 2)",
+            "Page 21 has low text density (characters: 2, images: 1)"
+        ]
+    },
+    {
+        "file": "Data Science/Data Driven Creating a Data Culture .pdf",
+        "output_file": "data\\extracted\\Data_Science_Data_Driven_Creating_a_Data_Culture__extracted.txt",
+        "page_count": 28,
+        "warnings": [
+            "Page 1 has low text density (characters: 0, images: 1)",
+            "Page 3 has low text density (characters: 61, images: 0)",
+            "Page 6 has low text density (characters: 0, images: 0)"
+        ]
+    },
+    {
+        "file": "Data Science/Data Science Cheat Sheet(Python_R).pdf",
+        "output_file": "data\\extracted\\Data_Science_Data_Science_Cheat_Sheet_Python_R__extracted.txt",
+        "page_count": 6,
+        "warnings": [
+            "Page 1 has low text density (characters: 0, images: 11)",
+            "Page 2 has low text density (characters: 0, images: 11)",
+            "Page 3 has low text density (characters: 0, images: 11)",
+            "Page 4 has low text density (characters: 0, images: 11)",
+            "Page 5 has low text density (characters: 0, images: 11)",
+            "Page 6 has low text density (characters: 0, images: 11)"
+        ]
+    },
+    {
+        "file": "Data Science/Data Science Cheat Sheet.pdf",
+        "output_file": "data\\extracted\\Data_Science_Data_Science_Cheat_Sheet_extracted.txt",
+        "page_count": 10,
+        "warnings": []
+    },
+    {
+        "file": "Data Science/Feature Engineering.pdf",
+        "output_file": "data\\extracted\\Data_Science_Feature_Engineering_extracted.txt",
+        "page_count": 76,
+        "warnings": [
+            "Page 1 has low text density (characters: 62, images: 5)",
+            "Page 2 has low text density (characters: 84, images: 1)",
+            "Page 4 has low text density (characters: 134, images: 1)",
+            "Page 14 has low text density (characters: 129, images: 1)",
+            "Page 28 has low text density (characters: 134, images: 1)",
+            "Page 33 has low text density (characters: 7, images: 2)",
+            "Page 34 has low text density (characters: 133, images: 1)",
+            "Page 51 has low text density (characters: 84, images: 1)"
+        ]
+    },
+    {
+        "file": "Data Science/Getting Analytics Right .pdf",
+        "output_file": "data\\extracted\\Data_Science_Getting_Analytics_Right__extracted.txt",
+        "page_count": 43,
+        "warnings": [
+            "Page 1 has low text density (characters: 0, images: 1)",
+            "Page 2 has low text density (characters: 0, images: 1)",
+            "Page 36 has low text density (characters: 0, images: 0)"
+        ]
+    },
+    {
+        "file": "Data Science/Going Pro in Data Science .pdf",
+        "output_file": "data\\extracted\\Data_Science_Going_Pro_in_Data_Science__extracted.txt",
+        "page_count": 59,
+        "warnings": [
+            "Page 1 has low text density (characters: 99, images: 1)",
+            "Page 2 has low text density (characters: 0, images: 1)",
+            "Page 10 has low text density (characters: 0, images: 0)",
+            "Page 16 has low text density (characters: 0, images: 0)",
+            "Page 36 has low text density (characters: 0, images: 0)",
+            "Page 46 has low text density (characters: 0, images: 0)",
+            "Page 52 has low text density (characters: 0, images: 0)"
+        ]
+    },
+    {
+        "file": "Data Science/Handbook_Pt1.pdf",
+        "output_file": "data\\extracted\\Data_Science_Handbook_Pt1_extracted.txt",
+        "page_count": 32,
+        "warnings": [
+            "Page 1 has low text density (characters: 59, images: 0)"
+        ]
+    },
+    {
+        "file": "Data Science/Handbook_Pt2.pdf",
+        "output_file": "data\\extracted\\Data_Science_Handbook_Pt2_extracted.txt",
+        "page_count": 43,
+        "warnings": [
+            "Page 1 has low text density (characters: 44, images: 0)"
+        ]
+    },
+    {
+        "file": "Data Science/Handbook_Pt3.pdf",
+        "output_file": "data\\extracted\\Data_Science_Handbook_Pt3_extracted.txt",
+        "page_count": 36,
+        "warnings": [
+            "Page 1 has low text density (characters: 51, images: 0)"
+        ]
+    },
+    {
+        "file": "Data Science/Handbook_Pt4.pdf",
+        "output_file": "data\\extracted\\Data_Science_Handbook_Pt4_extracted.txt",
+        "page_count": 30,
+        "warnings": [
+            "Page 1 has low text density (characters: 44, images: 0)",
+            "Page 30 has low text density (characters: 47, images: 0)"
+        ]
+    },
+    {
+        "file": "Data Science/how-data-science-is-transforming-health-care.pdf",
+        "output_file": "data\\extracted\\Data_Science_how-data-science-is-transforming-health-care_extracted.txt",
+        "page_count": 29,
+        "warnings": [
+            "Page 1 has low text density (characters: 0, images: 1)",
+            "Page 3 has low text density (characters: 104, images: 1)",
+            "Page 6 has low text density (characters: 0, images: 0)",
+            "Page 10 has low text density (characters: 0, images: 0)",
+            "Page 20 has low text density (characters: 0, images: 0)"
+        ]
+    },
+    {
+        "file": "Data Science/INTRODUCTION TO DATA SCIENCE.pdf",
+        "output_file": "data\\extracted\\Data_Science_INTRODUCTION_TO_DATA_SCIENCE_extracted.txt",
+        "page_count": 196,
+        "warnings": [
+            "Page 1 has low text density (characters: 123, images: 1)",
+            "Page 60 has low text density (characters: 78, images: 0)",
+            "Page 172 has low text density (characters: 57, images: 0)"
+        ]
+    },
+    {
+        "file": "Data Science/PythonForDataScience.pdf",
+        "output_file": "data\\extracted\\Data_Science_PythonForDataScience_extracted.txt",
+        "page_count": 4,
+        "warnings": []
+    },
+    {
+        "file": "Data Science/The 5 Feature Selection Algorithms every Data Scientist should know.pdf",
+        "output_file": "data\\extracted\\Data_Science_The_5_Feature_Selection_Algorithms_every_Data_Scientist_should_know_extracted.txt",
+        "page_count": 14,
+        "warnings": []
+    },
+    {
+        "file": "Data Science/The-365-Data-Science-Booklet.pdf",
+        "output_file": "data\\extracted\\Data_Science_The-365-Data-Science-Booklet_extracted.txt",
+        "page_count": 67,
+        "warnings": [
+            "Page 1 has low text density (characters: 24, images: 5)",
+            "Page 6 has low text density (characters: 4, images: 3)",
+            "Page 9 has low text density (characters: 22, images: 4)",
+            "Page 17 has low text density (characters: 25, images: 4)",
+            "Page 20 has low text density (characters: 20, images: 4)",
+            "Page 23 has low text density (characters: 32, images: 3)",
+            "Page 26 has low text density (characters: 25, images: 4)",
+            "Page 29 has low text density (characters: 16, images: 5)",
+            "Page 32 has low text density (characters: 30, images: 4)",
+            "Page 35 has low text density (characters: 34, images: 3)",
+            "Page 43 has low text density (characters: 54, images: 4)",
+            "Page 46 has low text density (characters: 32, images: 4)",
+            "Page 53 has low text density (characters: 39, images: 4)",
+            "Page 56 has low text density (characters: 25, images: 4)",
+            "Page 58 has low text density (characters: 32, images: 8)",
+            "Page 64 has low text density (characters: 13, images: 3)",
+            "Page 67 has low text density (characters: 10, images: 3)"
+        ]
+    },
+    {
+        "file": "Data Science/The-365-Data-Science-Guide.pdf",
+        "output_file": "data\\extracted\\Data_Science_The-365-Data-Science-Guide_extracted.txt",
+        "page_count": 92,
+        "warnings": [
+            "Page 1 has low text density (characters: 29, images: 3)",
+            "Page 4 has low text density (characters: 56, images: 2)",
+            "Page 5 has low text density (characters: 94, images: 3)",
+            "Page 6 has low text density (characters: 118, images: 3)",
+            "Page 7 has low text density (characters: 45, images: 4)",
+            "Page 8 has low text density (characters: 49, images: 2)",
+            "Page 11 has low text density (characters: 33, images: 2)",
+            "Page 14 has low text density (characters: 68, images: 2)",
+            "Page 18 has low text density (characters: 68, images: 2)",
+            "Page 35 has low text density (characters: 16, images: 2)",
+            "Page 38 has low text density (characters: 51, images: 2)",
+            "Page 41 has low text density (characters: 51, images: 2)",
+            "Page 59 has low text density (characters: 18, images: 2)",
+            "Page 62 has low text density (characters: 54, images: 2)",
+            "Page 66 has low text density (characters: 49, images: 2)",
+            "Page 92 has low text density (characters: 65, images: 4)"
+        ]
+    },
+    {
+        "file": "Data Science/The-Ultimate-Guide-to-Effective-Data-Collection.pdf",
+        "output_file": "data\\extracted\\Data_Science_The-Ultimate-Guide-to-Effective-Data-Collection_extracted.txt",
+        "page_count": 43,
+        "warnings": [
+            "Page 1 has low text density (characters: 52, images: 0)",
+            "Page 43 has low text density (characters: 122, images: 0)"
+        ]
+    },
+    {
+        "file": "Data Science/Top Data Science Libraries.pdf",
+        "output_file": "data\\extracted\\Data_Science_Top_Data_Science_Libraries_extracted.txt",
+        "page_count": 1,
+        "warnings": [
+            "Page 1 has low text density (characters: 0, images: 1)"
+        ]
+    },
+    {
+        "file": "Data Science/Ultimate Guide to Data Cleaning.pdf",
+        "output_file": "data\\extracted\\Data_Science_Ultimate_Guide_to_Data_Cleaning_extracted.txt",
+        "page_count": 18,
+        "warnings": []
+    },
+    {
+        "file": "Data Science/VIP Cheat Sheet (ML , DL , AI).pdf",
+        "output_file": "data\\extracted\\Data_Science_VIP_Cheat_Sheet__ML___DL___AI__extracted.txt",
+        "page_count": 47,
+        "warnings": []
+    },
+    {
+        "file": "Data Science/What is Exploratory Data Analysis_ - Towards Data Science.pdf",
+        "output_file": "data\\extracted\\Data_Science_What_is_Exploratory_Data_Analysis__-_Towards_Data_Science_extracted.txt",
+        "page_count": 8,
+        "warnings": []
+    },
+    {
+        "file": "Data Visualization/Advanced_Plotting.pdf",
+        "output_file": "data\\extracted\\Data_Visualization_Advanced_Plotting_extracted.txt",
+        "page_count": 49,
+        "warnings": [
+            "Page 1 has low text density (characters: 48, images: 19)",
+            "Page 4 has low text density (characters: 84, images: 19)",
+            "Page 5 has low text density (characters: 14, images: 19)",
+            "Page 6 has low text density (characters: 23, images: 19)",
+            "Page 7 has low text density (characters: 91, images: 19)",
+            "Page 8 has low text density (characters: 88, images: 19)",
+            "Page 9 has low text density (characters: 0, images: 19)",
+            "Page 11 has low text density (characters: 83, images: 19)",
+            "Page 12 has low text density (characters: 0, images: 19)",
+            "Page 13 has low text density (characters: 80, images: 19)",
+            "Page 14 has low text density (characters: 0, images: 19)",
+            "Page 15 has low text density (characters: 80, images: 19)",
+            "Page 16 has low text density (characters: 0, images: 19)",
+            "Page 17 has low text density (characters: 144, images: 19)",
+            "Page 18 has low text density (characters: 0, images: 19)",
+            "Page 19 has low text density (characters: 129, images: 19)",
+            "Page 20 has low text density (characters: 0, images: 19)",
+            "Page 21 has low text density (characters: 122, images: 19)",
+            "Page 22 has low text density (characters: 0, images: 19)",
+            "Page 23 has low text density (characters: 13, images: 19)",
+            "Page 24 has low text density (characters: 0, images: 19)",
+            "Page 25 has low text density (characters: 0, images: 19)",
+            "Page 26 has low text density (characters: 0, images: 19)",
+            "Page 27 has low text density (characters: 0, images: 19)",
+            "Page 28 has low text density (characters: 0, images: 19)",
+            "Page 29 has low text density (characters: 0, images: 19)",
+            "Page 30 has low text density (characters: 21, images: 19)",
+            "Page 32 has low text density (characters: 0, images: 19)",
+            "Page 33 has low text density (characters: 0, images: 19)",
+            "Page 34 has low text density (characters: 125, images: 19)",
+            "Page 36 has low text density (characters: 0, images: 19)",
+            "Page 37 has low text density (characters: 21, images: 19)",
+            "Page 41 has low text density (characters: 141, images: 19)",
+            "Page 42 has low text density (characters: 97, images: 19)",
+            "Page 49 has low text density (characters: 49, images: 19)"
+        ]
+    },
+    {
+        "file": "Data Visualization/Awesome Visualization Techniques for every dataset.pdf",
+        "output_file": "data\\extracted\\Data_Visualization_Awesome_Visualization_Techniques_for_every_dataset_extracted.txt",
+        "page_count": 13,
+        "warnings": []
+    },
+    {
+        "file": "Data Visualization/Data Visualization in R.pdf",
+        "output_file": "data\\extracted\\Data_Visualization_Data_Visualization_in_R_extracted.txt",
+        "page_count": 62,
+        "warnings": [
+            "Page 1 has low text density (characters: 125, images: 6)",
+            "Page 2 has low text density (characters: 108, images: 1)",
+            "Page 13 has low text density (characters: 79, images: 4)",
+            "Page 14 has low text density (characters: 112, images: 2)",
+            "Page 56 has low text density (characters: 140, images: 2)",
+            "Page 58 has low text density (characters: 98, images: 2)",
+            "Page 60 has low text density (characters: 140, images: 1)"
+        ]
+    },
+    {
+        "file": "Data Visualization/Data Visualization \u0393\u00c7\u00f4 How to Pick the Right Chart Type.pdf",
+        "output_file": "data\\extracted\\Data_Visualization_Data_Visualization_____How_to_Pick_the_Right_Chart_Type_extracted.txt",
+        "page_count": 16,
+        "warnings": []
+    },
+    {
+        "file": "Data Visualization/data-visualization-storytelling.pdf",
+        "output_file": "data\\extracted\\Data_Visualization_data-visualization-storytelling_extracted.txt",
+        "page_count": 25,
+        "warnings": [
+            "Page 1 has low text density (characters: 0, images: 1)",
+            "Page 3 has low text density (characters: 62, images: 0)",
+            "Page 6 has low text density (characters: 0, images: 0)"
+        ]
+    },
+    {
+        "file": "Data Visualization/Data_Visualization_101_How_to_Design_Charts_and_Graphs.pdf",
+        "output_file": "data\\extracted\\Data_Visualization_Data_Visualization_101_How_to_Design_Charts_and_Graphs_extracted.txt",
+        "page_count": 25,
+        "warnings": [
+            "Page 1 has low text density (characters: 58, images: 2)",
+            "Page 21 has low text density (characters: 131, images: 0)",
+            "Page 24 has low text density (characters: 44, images: 2)"
+        ]
+    },
+    {
+        "file": "Data Visualization/Data_Visualization_Grossberg_lecture1.pdf",
+        "output_file": "data\\extracted\\Data_Visualization_Data_Visualization_Grossberg_lecture1_extracted.txt",
+        "page_count": 172,
+        "warnings": [
+            "Page 1 has low text density (characters: 75, images: 1)",
+            "Page 2 has low text density (characters: 40, images: 3)",
+            "Page 3 has low text density (characters: 25, images: 3)",
+            "Page 5 has low text density (characters: 59, images: 2)",
+            "Page 6 has low text density (characters: 62, images: 4)",
+            "Page 7 has low text density (characters: 15, images: 2)",
+            "Page 8 has low text density (characters: 58, images: 2)",
+            "Page 9 has low text density (characters: 73, images: 2)",
+            "Page 10 has low text density (characters: 88, images: 2)",
+            "Page 11 has low text density (characters: 93, images: 2)",
+            "Page 12 has low text density (characters: 69, images: 2)",
+            "Page 13 has low text density (characters: 56, images: 2)",
+            "Page 14 has low text density (characters: 37, images: 2)",
+            "Page 15 has low text density (characters: 31, images: 1)",
+            "Page 16 has low text density (characters: 59, images: 2)",
+            "Page 17 has low text density (characters: 25, images: 2)",
+            "Page 18 has low text density (characters: 90, images: 3)",
+            "Page 19 has low text density (characters: 36, images: 1)",
+            "Page 20 has low text density (characters: 30, images: 2)",
+            "Page 21 has low text density (characters: 0, images: 2)",
+            "Page 22 has low text density (characters: 0, images: 2)",
+            "Page 23 has low text density (characters: 106, images: 1)",
+            "Page 24 has low text density (characters: 38, images: 2)",
+            "Page 25 has low text density (characters: 74, images: 3)",
+            "Page 26 has low text density (characters: 92, images: 3)",
+            "Page 27 has low text density (characters: 27, images: 2)",
+            "Page 28 has low text density (characters: 35, images: 2)",
+            "Page 29 has low text density (characters: 108, images: 2)",
+            "Page 31 has low text density (characters: 8, images: 1)",
+            "Page 33 has low text density (characters: 73, images: 1)",
+            "Page 34 has low text density (characters: 79, images: 1)",
+            "Page 35 has low text density (characters: 20, images: 1)",
+            "Page 36 has low text density (characters: 95, images: 2)",
+            "Page 38 has low text density (characters: 54, images: 2)",
+            "Page 39 has low text density (characters: 55, images: 2)",
+            "Page 40 has low text density (characters: 140, images: 1)",
+            "Page 41 has low text density (characters: 135, images: 1)",
+            "Page 42 has low text density (characters: 27, images: 2)",
+            "Page 43 has low text density (characters: 131, images: 2)",
+            "Page 44 has low text density (characters: 48, images: 2)",
+            "Page 45 has low text density (characters: 70, images: 1)",
+            "Page 46 has low text density (characters: 17, images: 2)",
+            "Page 47 has low text density (characters: 121, images: 2)",
+            "Page 48 has low text density (characters: 18, images: 2)",
+            "Page 49 has low text density (characters: 26, images: 4)",
+            "Page 50 has low text density (characters: 25, images: 2)",
+            "Page 51 has low text density (characters: 40, images: 1)",
+            "Page 52 has low text density (characters: 25, images: 2)",
+            "Page 53 has low text density (characters: 26, images: 2)",
+            "Page 54 has low text density (characters: 15, images: 2)",
+            "Page 55 has low text density (characters: 12, images: 2)",
+            "Page 56 has low text density (characters: 20, images: 2)",
+            "Page 57 has low text density (characters: 35, images: 2)",
+            "Page 58 has low text density (characters: 77, images: 5)",
+            "Page 59 has low text density (characters: 11, images: 8)",
+            "Page 60 has low text density (characters: 7, images: 4)",
+            "Page 61 has low text density (characters: 56, images: 6)",
+            "Page 63 has low text density (characters: 55, images: 2)",
+            "Page 64 has low text density (characters: 98, images: 1)",
+            "Page 65 has low text density (characters: 72, images: 2)",
+            "Page 66 has low text density (characters: 71, images: 2)",
+            "Page 67 has low text density (characters: 12, images: 2)",
+            "Page 68 has low text density (characters: 16, images: 2)",
+            "Page 70 has low text density (characters: 111, images: 1)",
+            "Page 71 has low text density (characters: 125, images: 2)",
+            "Page 73 has low text density (characters: 73, images: 1)",
+            "Page 74 has low text density (characters: 17, images: 2)",
+            "Page 75 has low text density (characters: 29, images: 4)",
+            "Page 76 has low text density (characters: 56, images: 3)",
+            "Page 77 has low text density (characters: 18, images: 2)",
+            "Page 79 has low text density (characters: 28, images: 2)",
+            "Page 80 has low text density (characters: 147, images: 1)",
+            "Page 81 has low text density (characters: 20, images: 2)",
+            "Page 82 has low text density (characters: 31, images: 2)",
+            "Page 83 has low text density (characters: 17, images: 2)",
+            "Page 84 has low text density (characters: 27, images: 2)",
+            "Page 85 has low text density (characters: 10, images: 2)",
+            "Page 86 has low text density (characters: 25, images: 2)",
+            "Page 87 has low text density (characters: 33, images: 3)",
+            "Page 88 has low text density (characters: 51, images: 5)",
+            "Page 89 has low text density (characters: 12, images: 2)",
+            "Page 90 has low text density (characters: 34, images: 2)",
+            "Page 93 has low text density (characters: 23, images: 1)",
+            "Page 95 has low text density (characters: 93, images: 2)",
+            "Page 96 has low text density (characters: 101, images: 2)",
+            "Page 97 has low text density (characters: 36, images: 1)",
+            "Page 98 has low text density (characters: 10, images: 1)",
+            "Page 99 has low text density (characters: 0, images: 3)",
+            "Page 100 has low text density (characters: 0, images: 2)",
+            "Page 101 has low text density (characters: 0, images: 2)",
+            "Page 102 has low text density (characters: 0, images: 2)",
+            "Page 103 has low text density (characters: 0, images: 2)",
+            "Page 104 has low text density (characters: 29, images: 1)",
+            "Page 105 has low text density (characters: 0, images: 2)",
+            "Page 106 has low text density (characters: 0, images: 2)",
+            "Page 107 has low text density (characters: 0, images: 2)",
+            "Page 108 has low text density (characters: 0, images: 2)",
+            "Page 109 has low text density (characters: 27, images: 2)",
+            "Page 110 has low text density (characters: 0, images: 2)",
+            "Page 111 has low text density (characters: 22, images: 1)",
+            "Page 112 has low text density (characters: 13, images: 2)",
+            "Page 113 has low text density (characters: 21, images: 2)",
+            "Page 114 has low text density (characters: 72, images: 2)",
+            "Page 115 has low text density (characters: 106, images: 2)",
+            "Page 116 has low text density (characters: 33, images: 5)",
+            "Page 117 has low text density (characters: 18, images: 2)",
+            "Page 118 has low text density (characters: 27, images: 1)",
+            "Page 119 has low text density (characters: 0, images: 3)",
+            "Page 120 has low text density (characters: 0, images: 3)",
+            "Page 121 has low text density (characters: 10, images: 1)",
+            "Page 123 has low text density (characters: 0, images: 2)",
+            "Page 124 has low text density (characters: 8, images: 2)",
+            "Page 125 has low text density (characters: 0, images: 2)",
+            "Page 126 has low text density (characters: 0, images: 2)",
+            "Page 127 has low text density (characters: 0, images: 2)",
+            "Page 128 has low text density (characters: 0, images: 2)",
+            "Page 129 has low text density (characters: 0, images: 2)",
+            "Page 130 has low text density (characters: 0, images: 2)",
+            "Page 131 has low text density (characters: 0, images: 2)",
+            "Page 132 has low text density (characters: 32, images: 1)",
+            "Page 133 has low text density (characters: 95, images: 3)",
+            "Page 134 has low text density (characters: 47, images: 2)",
+            "Page 135 has low text density (characters: 101, images: 1)",
+            "Page 136 has low text density (characters: 88, images: 1)",
+            "Page 137 has low text density (characters: 118, images: 2)",
+            "Page 138 has low text density (characters: 59, images: 2)",
+            "Page 139 has low text density (characters: 26, images: 2)",
+            "Page 140 has low text density (characters: 45, images: 3)",
+            "Page 141 has low text density (characters: 24, images: 3)",
+            "Page 142 has low text density (characters: 15, images: 2)",
+            "Page 143 has low text density (characters: 0, images: 2)",
+            "Page 144 has low text density (characters: 24, images: 2)",
+            "Page 147 has low text density (characters: 0, images: 2)",
+            "Page 148 has low text density (characters: 0, images: 2)",
+            "Page 149 has low text density (characters: 0, images: 2)",
+            "Page 150 has low text density (characters: 0, images: 2)",
+            "Page 151 has low text density (characters: 0, images: 2)",
+            "Page 153 has low text density (characters: 74, images: 3)",
+            "Page 154 has low text density (characters: 90, images: 1)",
+            "Page 155 has low text density (characters: 133, images: 1)",
+            "Page 156 has low text density (characters: 16, images: 1)",
+            "Page 157 has low text density (characters: 126, images: 3)",
+            "Page 158 has low text density (characters: 116, images: 3)",
+            "Page 159 has low text density (characters: 116, images: 2)",
+            "Page 160 has low text density (characters: 25, images: 2)",
+            "Page 162 has low text density (characters: 64, images: 2)",
+            "Page 165 has low text density (characters: 107, images: 2)",
+            "Page 166 has low text density (characters: 60, images: 2)",
+            "Page 167 has low text density (characters: 12, images: 2)",
+            "Page 168 has low text density (characters: 20, images: 2)",
+            "Page 169 has low text density (characters: 67, images: 2)",
+            "Page 170 has low text density (characters: 14, images: 2)",
+            "Page 171 has low text density (characters: 14, images: 2)",
+            "Page 172 has low text density (characters: 15, images: 2)"
+        ]
+    },
+    {
+        "file": "Data Visualization/ggplot2.pdf",
+        "output_file": "data\\extracted\\Data_Visualization_ggplot2_extracted.txt",
+        "page_count": 19,
+        "warnings": []
+    },
+    {
+        "file": "Data Visualization/ggplot2_cheatsheet.pdf",
+        "output_file": "data\\extracted\\Data_Visualization_ggplot2_cheatsheet_extracted.txt",
+        "page_count": 66,
+        "warnings": []
+    },
+    {
+        "file": "Data Visualization/Graphics.pdf",
+        "output_file": "data\\extracted\\Data_Visualization_Graphics_extracted.txt",
+        "page_count": 2,
+        "warnings": []
+    },
+    {
+        "file": "Data Visualization/Introducing Plotly Express - Plotly - Medium.pdf",
+        "output_file": "data\\extracted\\Data_Visualization_Introducing_Plotly_Express_-_Plotly_-_Medium_extracted.txt",
+        "page_count": 17,
+        "warnings": [
+            "Page 17 has low text density (characters: 130, images: 0)"
+        ]
+    },
+    {
+        "file": "Data Visualization/plotly.pdf",
+        "output_file": "data\\extracted\\Data_Visualization_plotly_extracted.txt",
+        "page_count": 2,
+        "warnings": []
+    },
+    {
+        "file": "Data Visualization/Practical Statistics _ Visualization With Python _ Plotly.pdf",
+        "output_file": "data\\extracted\\Data_Visualization_Practical_Statistics___Visualization_With_Python___Plotly_extracted.txt",
+        "page_count": 29,
+        "warnings": []
+    },
+    {
+        "file": "Data Visualization/The Art of Effective Visualization of Multi-dimensional Data.pdf",
+        "output_file": "data\\extracted\\Data_Visualization_The_Art_of_Effective_Visualization_of_Multi-dimensional_Data_extracted.txt",
+        "page_count": 33,
+        "warnings": []
+    },
+    {
+        "file": "Data Visualization/The Next Level of Data Visualization in Python - Towards Data Science.pdf",
+        "output_file": "data\\extracted\\Data_Visualization_The_Next_Level_of_Data_Visualization_in_Python_-_Towards_Data_Science_extracted.txt",
+        "page_count": 17,
+        "warnings": []
+    },
+    {
+        "file": "Data Warehouse/Data Warehouse Concepts.pdf",
+        "output_file": "data\\extracted\\Data_Warehouse_Data_Warehouse_Concepts_extracted.txt",
+        "page_count": 11,
+        "warnings": []
+    },
+    {
+        "file": "Deep Learning/A Selective Overview of Deep Learning.pdf",
+        "output_file": "data\\extracted\\Deep_Learning_A_Selective_Overview_of_Deep_Learning_extracted.txt",
+        "page_count": 37,
+        "warnings": []
+    },
+    {
+        "file": "Deep Learning/Coursera Deep Learning course Notes.pdf",
+        "output_file": "data\\extracted\\Deep_Learning_Coursera_Deep_Learning_course_Notes_extracted.txt",
+        "page_count": 28,
+        "warnings": [
+            "Page 1 has low text density (characters: 0, images: 1)",
+            "Page 2 has low text density (characters: 0, images: 1)",
+            "Page 3 has low text density (characters: 0, images: 1)",
+            "Page 4 has low text density (characters: 0, images: 1)",
+            "Page 5 has low text density (characters: 0, images: 1)",
+            "Page 6 has low text density (characters: 0, images: 1)",
+            "Page 7 has low text density (characters: 0, images: 1)",
+            "Page 8 has low text density (characters: 0, images: 1)",
+            "Page 9 has low text density (characters: 0, images: 1)",
+            "Page 10 has low text density (characters: 0, images: 1)",
+            "Page 11 has low text density (characters: 0, images: 1)",
+            "Page 12 has low text density (characters: 0, images: 1)",
+            "Page 13 has low text density (characters: 0, images: 1)",
+            "Page 14 has low text density (characters: 0, images: 1)",
+            "Page 15 has low text density (characters: 0, images: 1)",
+            "Page 16 has low text density (characters: 0, images: 1)",
+            "Page 17 has low text density (characters: 0, images: 1)",
+            "Page 18 has low text density (characters: 0, images: 1)",
+            "Page 19 has low text density (characters: 0, images: 1)",
+            "Page 20 has low text density (characters: 0, images: 1)",
+            "Page 21 has low text density (characters: 0, images: 1)",
+            "Page 22 has low text density (characters: 0, images: 1)",
+            "Page 23 has low text density (characters: 0, images: 1)",
+            "Page 24 has low text density (characters: 0, images: 1)",
+            "Page 25 has low text density (characters: 0, images: 1)",
+            "Page 26 has low text density (characters: 0, images: 1)",
+            "Page 27 has low text density (characters: 0, images: 1)",
+            "Page 28 has low text density (characters: 0, images: 1)"
+        ]
+    },
+    {
+        "file": "Deep Learning/Interview Questions.pdf",
+        "output_file": "data\\extracted\\Deep_Learning_Interview_Questions_extracted.txt",
+        "page_count": 8,
+        "warnings": []
+    },
+    {
+        "file": "Deep Learning/Math of Deep Learning Neural Networks.pdf",
+        "output_file": "data\\extracted\\Deep_Learning_Math_of_Deep_Learning_Neural_Networks_extracted.txt",
+        "page_count": 9,
+        "warnings": []
+    },
+    {
+        "file": "Deep Learning/nli_tutorial.pdf",
+        "output_file": "data\\extracted\\Deep_Learning_nli_tutorial_extracted.txt",
+        "page_count": 181,
+        "warnings": [
+            "Page 2 has low text density (characters: 74, images: 128)",
+            "Page 4 has low text density (characters: 53, images: 128)",
+            "Page 5 has low text density (characters: 10, images: 128)",
+            "Page 6 has low text density (characters: 72, images: 128)",
+            "Page 7 has low text density (characters: 125, images: 128)",
+            "Page 11 has low text density (characters: 71, images: 128)",
+            "Page 12 has low text density (characters: 71, images: 128)",
+            "Page 13 has low text density (characters: 80, images: 128)",
+            "Page 14 has low text density (characters: 71, images: 128)",
+            "Page 15 has low text density (characters: 148, images: 128)",
+            "Page 26 has low text density (characters: 99, images: 128)",
+            "Page 27 has low text density (characters: 59, images: 128)",
+            "Page 37 has low text density (characters: 27, images: 128)",
+            "Page 38 has low text density (characters: 47, images: 128)",
+            "Page 39 has low text density (characters: 109, images: 128)",
+            "Page 40 has low text density (characters: 136, images: 128)",
+            "Page 41 has low text density (characters: 134, images: 128)",
+            "Page 44 has low text density (characters: 144, images: 128)",
+            "Page 47 has low text density (characters: 49, images: 128)",
+            "Page 48 has low text density (characters: 52, images: 128)",
+            "Page 49 has low text density (characters: 63, images: 128)",
+            "Page 50 has low text density (characters: 82, images: 128)",
+            "Page 51 has low text density (characters: 96, images: 128)",
+            "Page 52 has low text density (characters: 14, images: 128)",
+            "Page 53 has low text density (characters: 147, images: 128)",
+            "Page 55 has low text density (characters: 7, images: 128)",
+            "Page 57 has low text density (characters: 14, images: 128)",
+            "Page 60 has low text density (characters: 14, images: 128)",
+            "Page 61 has low text density (characters: 23, images: 128)",
+            "Page 65 has low text density (characters: 23, images: 128)",
+            "Page 72 has low text density (characters: 92, images: 128)",
+            "Page 76 has low text density (characters: 26, images: 128)",
+            "Page 77 has low text density (characters: 59, images: 128)",
+            "Page 78 has low text density (characters: 42, images: 128)",
+            "Page 79 has low text density (characters: 42, images: 128)",
+            "Page 80 has low text density (characters: 42, images: 128)",
+            "Page 82 has low text density (characters: 66, images: 128)",
+            "Page 83 has low text density (characters: 62, images: 128)",
+            "Page 84 has low text density (characters: 103, images: 128)",
+            "Page 87 has low text density (characters: 64, images: 128)",
+            "Page 98 has low text density (characters: 111, images: 128)",
+            "Page 99 has low text density (characters: 147, images: 128)",
+            "Page 100 has low text density (characters: 148, images: 128)",
+            "Page 106 has low text density (characters: 31, images: 128)",
+            "Page 107 has low text density (characters: 48, images: 128)",
+            "Page 109 has low text density (characters: 89, images: 128)",
+            "Page 110 has low text density (characters: 58, images: 128)",
+            "Page 111 has low text density (characters: 85, images: 128)",
+            "Page 114 has low text density (characters: 11, images: 128)",
+            "Page 115 has low text density (characters: 69, images: 128)",
+            "Page 122 has low text density (characters: 9, images: 128)",
+            "Page 123 has low text density (characters: 55, images: 128)",
+            "Page 124 has low text density (characters: 43, images: 128)",
+            "Page 127 has low text density (characters: 74, images: 128)",
+            "Page 129 has low text density (characters: 65, images: 128)",
+            "Page 130 has low text density (characters: 68, images: 128)",
+            "Page 132 has low text density (characters: 19, images: 128)",
+            "Page 133 has low text density (characters: 12, images: 128)",
+            "Page 135 has low text density (characters: 80, images: 128)",
+            "Page 137 has low text density (characters: 54, images: 128)",
+            "Page 142 has low text density (characters: 70, images: 128)",
+            "Page 151 has low text density (characters: 33, images: 128)",
+            "Page 158 has low text density (characters: 32, images: 128)",
+            "Page 161 has low text density (characters: 55, images: 128)",
+            "Page 170 has low text density (characters: 112, images: 128)",
+            "Page 173 has low text density (characters: 39, images: 128)",
+            "Page 176 has low text density (characters: 76, images: 128)",
+            "Page 177 has low text density (characters: 28, images: 128)"
+        ]
+    },
+    {
+        "file": "Deep Learning/super-cheatsheet-deep-learning.pdf",
+        "output_file": "data\\extracted\\Deep_Learning_super-cheatsheet-deep-learning_extracted.txt",
+        "page_count": 13,
+        "warnings": []
+    },
+    {
+        "file": "DevOps/DevOps.pdf",
+        "output_file": "data\\extracted\\DevOps_DevOps_extracted.txt",
+        "page_count": 20,
+        "warnings": []
+    },
+    {
+        "file": "DevOps/Docker Cheat Sheet.pdf",
+        "output_file": "data\\extracted\\DevOps_Docker_Cheat_Sheet_extracted.txt",
+        "page_count": 1,
+        "warnings": []
+    },
+    {
+        "file": "DevOps/docker CLI _ Dockerfile Cheat Sheet.pdf",
+        "output_file": "data\\extracted\\DevOps_docker_CLI___Dockerfile_Cheat_Sheet_extracted.txt",
+        "page_count": 8,
+        "warnings": []
+    },
+    {
+        "file": "DevOps/docker_cheat sheet.pdf",
+        "output_file": "data\\extracted\\DevOps_docker_cheat_sheet_extracted.txt",
+        "page_count": 8,
+        "warnings": []
+    },
+    {
+        "file": "DevOps/kubernetes.pdf",
+        "output_file": "data\\extracted\\DevOps_kubernetes_extracted.txt",
+        "page_count": 2,
+        "warnings": []
+    },
+    {
+        "file": "DevOps/periodic-table-of-devops-tools-v3.pdf",
+        "output_file": "data\\extracted\\DevOps_periodic-table-of-devops-tools-v3_extracted.txt",
+        "page_count": 1,
+        "warnings": []
+    },
+    {
+        "file": "Excel/DAX.pdf",
+        "output_file": "data\\extracted\\Excel_DAX_extracted.txt",
+        "page_count": 64,
+        "warnings": []
+    },
+    {
+        "file": "Excel/Excel Cheat Sheet.pdf",
+        "output_file": "data\\extracted\\Excel_Excel_Cheat_Sheet_extracted.txt",
+        "page_count": 5,
+        "warnings": []
+    },
+    {
+        "file": "Excel/Excel Formulas Cheat Sheet.pdf",
+        "output_file": "data\\extracted\\Excel_Excel_Formulas_Cheat_Sheet_extracted.txt",
+        "page_count": 12,
+        "warnings": []
+    },
+    {
+        "file": "Excel/Pivot Table.pdf",
+        "output_file": "data\\extracted\\Excel_Pivot_Table_extracted.txt",
+        "page_count": 39,
+        "warnings": [
+            "Page 1 has low text density (characters: 15, images: 1)",
+            "Page 8 has low text density (characters: 61, images: 6)",
+            "Page 12 has low text density (characters: 16, images: 1)",
+            "Page 14 has low text density (characters: 98, images: 8)",
+            "Page 18 has low text density (characters: 29, images: 1)",
+            "Page 23 has low text density (characters: 26, images: 1)",
+            "Page 33 has low text density (characters: 12, images: 1)",
+            "Page 35 has low text density (characters: 74, images: 8)"
+        ]
+    },
+    {
+        "file": "Excel/powerpivot.pdf",
+        "output_file": "data\\extracted\\Excel_powerpivot_extracted.txt",
+        "page_count": 115,
+        "warnings": [
+            "Page 2 has low text density (characters: 15, images: 2)",
+            "Page 9 has low text density (characters: 14, images: 2)",
+            "Page 10 has low text density (characters: 22, images: 2)",
+            "Page 18 has low text density (characters: 11, images: 2)",
+            "Page 20 has low text density (characters: 99, images: 14)",
+            "Page 28 has low text density (characters: 147, images: 7)",
+            "Page 38 has low text density (characters: 17, images: 2)",
+            "Page 41 has low text density (characters: 102, images: 5)",
+            "Page 59 has low text density (characters: 21, images: 2)",
+            "Page 61 has low text density (characters: 112, images: 10)",
+            "Page 63 has low text density (characters: 72, images: 6)",
+            "Page 78 has low text density (characters: 20, images: 2)",
+            "Page 110 has low text density (characters: 11, images: 2)",
+            "Page 115 has low text density (characters: 10, images: 2)"
+        ]
+    },
+    {
+        "file": "Git/atlassian-git-cheatsheet.pdf",
+        "output_file": "data\\extracted\\Git_atlassian-git-cheatsheet_extracted.txt",
+        "page_count": 2,
+        "warnings": []
+    },
+    {
+        "file": "Git/git-cheat-sheet.pdf",
+        "output_file": "data\\extracted\\Git_git-cheat-sheet_extracted.txt",
+        "page_count": 1,
+        "warnings": []
+    },
+    {
+        "file": "Git/git_cheat_sheet.pdf",
+        "output_file": "data\\extracted\\Git_git_cheat_sheet_extracted.txt",
+        "page_count": 1,
+        "warnings": [
+            "Page 1 has low text density (characters: 0, images: 1)"
+        ]
+    },
+    {
+        "file": "Git/GitNotesForProfessionals.pdf",
+        "output_file": "data\\extracted\\Git_GitNotesForProfessionals_extracted.txt",
+        "page_count": 195,
+        "warnings": [
+            "Page 82 has low text density (characters: 87, images: 0)",
+            "Page 98 has low text density (characters: 113, images: 0)",
+            "Page 103 has low text density (characters: 48, images: 1)",
+            "Page 172 has low text density (characters: 92, images: 2)",
+            "Page 185 has low text density (characters: 123, images: 0)",
+            "Page 195 has low text density (characters: 17, images: 9)"
+        ]
+    },
+    {
+        "file": "Interview Questions/A Beginner\u0393\u00c7\u00d6s Guide to\u252c\u00e1 Getting Your First Data\u252c\u00e1 Science Job 2019 Edition.pdf",
+        "output_file": "data\\extracted\\Interview_Questions_A_Beginner___s_Guide_to___Getting_Your_First_Data___Science_Job_2019_Edition_extracted.txt",
+        "page_count": 63,
+        "warnings": [
+            "Page 1 has low text density (characters: 73, images: 5)"
+        ]
+    },
+    {
+        "file": "Interview Questions/AI Questions.pdf",
+        "output_file": "data\\extracted\\Interview_Questions_AI_Questions_extracted.txt",
+        "page_count": 27,
+        "warnings": []
+    },
+    {
+        "file": "Interview Questions/Data Science Interview Questions.pdf",
+        "output_file": "data\\extracted\\Interview_Questions_Data_Science_Interview_Questions_extracted.txt",
+        "page_count": 48,
+        "warnings": [
+            "Page 1 has low text density (characters: 32, images: 2)",
+            "Page 9 has low text density (characters: 11, images: 2)",
+            "Page 16 has low text density (characters: 10, images: 2)",
+            "Page 22 has low text density (characters: 6, images: 2)",
+            "Page 27 has low text density (characters: 17, images: 3)",
+            "Page 31 has low text density (characters: 31, images: 3)",
+            "Page 36 has low text density (characters: 21, images: 2)",
+            "Page 40 has low text density (characters: 21, images: 2)",
+            "Page 48 has low text density (characters: 10, images: 2)"
+        ]
+    },
+    {
+        "file": "Interview Questions/Getting Your First Job in DS.pdf",
+        "output_file": "data\\extracted\\Interview_Questions_Getting_Your_First_Job_in_DS_extracted.txt",
+        "page_count": 76,
+        "warnings": [
+            "Page 1 has low text density (characters: 116, images: 3)",
+            "Page 76 has low text density (characters: 147, images: 1)"
+        ]
+    },
+    {
+        "file": "Interview Questions/Machine Learning Interview Questions.pdf",
+        "output_file": "data\\extracted\\Interview_Questions_Machine_Learning_Interview_Questions_extracted.txt",
+        "page_count": 21,
+        "warnings": [
+            "Page 1 has low text density (characters: 84, images: 1)"
+        ]
+    },
+    {
+        "file": "Interview Questions/ML Questions.pdf",
+        "output_file": "data\\extracted\\Interview_Questions_ML_Questions_extracted.txt",
+        "page_count": 8,
+        "warnings": []
+    },
+    {
+        "file": "Interview Questions/Top 100 Python questions.pdf",
+        "output_file": "data\\extracted\\Interview_Questions_Top_100_Python_questions_extracted.txt",
+        "page_count": 11,
+        "warnings": [
+            "Page 1 has low text density (characters: 0, images: 5)",
+            "Page 2 has low text density (characters: 0, images: 0)",
+            "Page 3 has low text density (characters: 0, images: 0)",
+            "Page 4 has low text density (characters: 0, images: 0)",
+            "Page 5 has low text density (characters: 0, images: 0)",
+            "Page 6 has low text density (characters: 0, images: 0)",
+            "Page 7 has low text density (characters: 0, images: 0)",
+            "Page 8 has low text density (characters: 0, images: 0)",
+            "Page 9 has low text density (characters: 0, images: 3)",
+            "Page 10 has low text density (characters: 0, images: 0)",
+            "Page 11 has low text density (characters: 0, images: 0)"
+        ]
+    },
+    {
+        "file": "Interview Questions/Top Deep Learning Interview Questions You Must Know.pdf",
+        "output_file": "data\\extracted\\Interview_Questions_Top_Deep_Learning_Interview_Questions_You_Must_Know_extracted.txt",
+        "page_count": 8,
+        "warnings": []
+    },
+    {
+        "file": "Linux/Linux Cheat Sheet.pdf",
+        "output_file": "data\\extracted\\Linux_Linux_Cheat_Sheet_extracted.txt",
+        "page_count": 1,
+        "warnings": [
+            "Page 1 has low text density (characters: 0, images: 1)"
+        ]
+    },
+    {
+        "file": "Linux/Linux Command Line Cheat Sheet.pdf",
+        "output_file": "data\\extracted\\Linux_Linux_Command_Line_Cheat_Sheet_extracted.txt",
+        "page_count": 1,
+        "warnings": []
+    },
+    {
+        "file": "Machine Learning/Cheat Sheet Algorithms for Supervised and Unsupervised Learning.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_Cheat_Sheet_Algorithms_for_Supervised_and_Unsupervised_Learning_extracted.txt",
+        "page_count": 1,
+        "warnings": []
+    },
+    {
+        "file": "Machine Learning/Core of ML.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_Core_of_ML_extracted.txt",
+        "page_count": 12,
+        "warnings": []
+    },
+    {
+        "file": "Machine Learning/evaluating-machine-learning-models.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_evaluating-machine-learning-models_extracted.txt",
+        "page_count": 59,
+        "warnings": [
+            "Page 1 has low text density (characters: 96, images: 1)",
+            "Page 3 has low text density (characters: 94, images: 1)",
+            "Page 10 has low text density (characters: 0, images: 0)",
+            "Page 16 has low text density (characters: 0, images: 0)",
+            "Page 36 has low text density (characters: 0, images: 0)"
+        ]
+    },
+    {
+        "file": "Machine Learning/Handling imbalanced datasets.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_Handling_imbalanced_datasets_extracted.txt",
+        "page_count": 21,
+        "warnings": []
+    },
+    {
+        "file": "Machine Learning/Linear Discriminant Analysis.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_Linear_Discriminant_Analysis_extracted.txt",
+        "page_count": 12,
+        "warnings": [
+            "Page 1 has low text density (characters: 5, images: 1)",
+            "Page 10 has low text density (characters: 74, images: 1)"
+        ]
+    },
+    {
+        "file": "Machine Learning/Linear Regression in Python \u0393\u00c7\u00f4 Real Python.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_Linear_Regression_in_Python_____Real_Python_extracted.txt",
+        "page_count": 21,
+        "warnings": []
+    },
+    {
+        "file": "Machine Learning/Machine Learning Cheatsheet.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_Machine_Learning_Cheatsheet_extracted.txt",
+        "page_count": 5,
+        "warnings": []
+    },
+    {
+        "file": "Machine Learning/Machine Learning Cheatsheet_NEW.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_Machine_Learning_Cheatsheet_NEW_extracted.txt",
+        "page_count": 5,
+        "warnings": []
+    },
+    {
+        "file": "Machine Learning/Machine Learning is Fun.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_Machine_Learning_is_Fun_extracted.txt",
+        "page_count": 142,
+        "warnings": []
+    },
+    {
+        "file": "Machine Learning/Machine Learning Modelling in R.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_Machine_Learning_Modelling_in_R_extracted.txt",
+        "page_count": 1,
+        "warnings": []
+    },
+    {
+        "file": "Machine Learning/Mathematics for Machine Learning.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_Mathematics_for_Machine_Learning_extracted.txt",
+        "page_count": 47,
+        "warnings": []
+    },
+    {
+        "file": "Machine Learning/Mathemitcs of Neural Networks.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_Mathemitcs_of_Neural_Networks_extracted.txt",
+        "page_count": 61,
+        "warnings": []
+    },
+    {
+        "file": "Machine Learning/ML Formulas.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_ML_Formulas_extracted.txt",
+        "page_count": 19,
+        "warnings": [
+            "Page 1 has low text density (characters: 60, images: 4)"
+        ]
+    },
+    {
+        "file": "Machine Learning/ML God.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_ML_God_extracted.txt",
+        "page_count": 104,
+        "warnings": [
+            "Page 1 has low text density (characters: 0, images: 1)",
+            "Page 2 has low text density (characters: 43, images: 0)",
+            "Page 4 has low text density (characters: 41, images: 0)",
+            "Page 10 has low text density (characters: 87, images: 0)",
+            "Page 11 has low text density (characters: 40, images: 0)",
+            "Page 38 has low text density (characters: 47, images: 0)",
+            "Page 67 has low text density (characters: 42, images: 0)",
+            "Page 68 has low text density (characters: 35, images: 0)",
+            "Page 104 has low text density (characters: 40, images: 0)"
+        ]
+    },
+    {
+        "file": "Machine Learning/ML interview questions.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_ML_interview_questions_extracted.txt",
+        "page_count": 21,
+        "warnings": [
+            "Page 1 has low text density (characters: 84, images: 1)"
+        ]
+    },
+    {
+        "file": "Machine Learning/ML PROS N CONS.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_ML_PROS_N_CONS_extracted.txt",
+        "page_count": 3,
+        "warnings": []
+    },
+    {
+        "file": "Machine Learning/ML VIP Cheat Sheat.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_ML_VIP_Cheat_Sheat_extracted.txt",
+        "page_count": 16,
+        "warnings": []
+    },
+    {
+        "file": "Machine Learning/ML-02-linear-regression.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_ML-02-linear-regression_extracted.txt",
+        "page_count": 51,
+        "warnings": [
+            "Page 1 has low text density (characters: 99, images: 0)",
+            "Page 5 has low text density (characters: 147, images: 1)",
+            "Page 7 has low text density (characters: 43, images: 2)",
+            "Page 12 has low text density (characters: 47, images: 4)",
+            "Page 14 has low text density (characters: 30, images: 1)",
+            "Page 17 has low text density (characters: 14, images: 1)",
+            "Page 18 has low text density (characters: 111, images: 1)",
+            "Page 19 has low text density (characters: 71, images: 2)",
+            "Page 20 has low text density (characters: 68, images: 4)",
+            "Page 21 has low text density (characters: 70, images: 3)",
+            "Page 23 has low text density (characters: 103, images: 3)",
+            "Page 24 has low text density (characters: 79, images: 3)",
+            "Page 27 has low text density (characters: 20, images: 1)",
+            "Page 28 has low text density (characters: 26, images: 0)",
+            "Page 29 has low text density (characters: 89, images: 6)",
+            "Page 30 has low text density (characters: 89, images: 6)",
+            "Page 31 has low text density (characters: 89, images: 6)",
+            "Page 32 has low text density (characters: 89, images: 6)",
+            "Page 33 has low text density (characters: 89, images: 6)",
+            "Page 34 has low text density (characters: 89, images: 6)",
+            "Page 35 has low text density (characters: 89, images: 6)",
+            "Page 36 has low text density (characters: 89, images: 6)",
+            "Page 37 has low text density (characters: 89, images: 6)",
+            "Page 38 has low text density (characters: 41, images: 0)",
+            "Page 41 has low text density (characters: 118, images: 3)",
+            "Page 42 has low text density (characters: 126, images: 7)",
+            "Page 45 has low text density (characters: 47, images: 0)",
+            "Page 50 has low text density (characters: 45, images: 0)",
+            "Page 51 has low text density (characters: 40, images: 5)"
+        ]
+    },
+    {
+        "file": "Machine Learning/ML_AndrewNG.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_ML_AndrewNG_extracted.txt",
+        "page_count": 39,
+        "warnings": [
+            "Page 1 has low text density (characters: 37, images: 1)",
+            "Page 2 has low text density (characters: 9, images: 0)",
+            "Page 3 has low text density (characters: 9, images: 1)",
+            "Page 4 has low text density (characters: 14, images: 0)",
+            "Page 10 has low text density (characters: 9, images: 0)",
+            "Page 11 has low text density (characters: 65, images: 1)",
+            "Page 12 has low text density (characters: 41, images: 0)",
+            "Page 20 has low text density (characters: 9, images: 0)",
+            "Page 21 has low text density (characters: 60, images: 1)",
+            "Page 23 has low text density (characters: 134, images: 0)",
+            "Page 24 has low text density (characters: 97, images: 0)",
+            "Page 26 has low text density (characters: 9, images: 0)",
+            "Page 27 has low text density (characters: 62, images: 1)",
+            "Page 28 has low text density (characters: 35, images: 0)",
+            "Page 29 has low text density (characters: 37, images: 0)",
+            "Page 30 has low text density (characters: 9, images: 3)",
+            "Page 31 has low text density (characters: 9, images: 4)",
+            "Page 32 has low text density (characters: 51, images: 4)",
+            "Page 33 has low text density (characters: 51, images: 4)",
+            "Page 35 has low text density (characters: 82, images: 3)",
+            "Page 37 has low text density (characters: 149, images: 0)",
+            "Page 39 has low text density (characters: 9, images: 0)"
+        ]
+    },
+    {
+        "file": "Machine Learning/mlr.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_mlr_extracted.txt",
+        "page_count": 2,
+        "warnings": []
+    },
+    {
+        "file": "Machine Learning/Mutivariate Regression Analysis.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_Mutivariate_Regression_Analysis_extracted.txt",
+        "page_count": 29,
+        "warnings": [
+            "Page 24 has low text density (characters: 52, images: 0)"
+        ]
+    },
+    {
+        "file": "Machine Learning/Ng-MLY01-13.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_Ng-MLY01-13_extracted.txt",
+        "page_count": 118,
+        "warnings": [
+            "Page 1 has low text density (characters: 0, images: 2)",
+            "Page 13 has low text density (characters: 91, images: 0)",
+            "Page 28 has low text density (characters: 78, images: 0)",
+            "Page 41 has low text density (characters: 82, images: 0)",
+            "Page 55 has low text density (characters: 72, images: 0)",
+            "Page 65 has low text density (characters: 97, images: 0)",
+            "Page 70 has low text density (characters: 120, images: 0)",
+            "Page 84 has low text density (characters: 93, images: 0)",
+            "Page 90 has low text density (characters: 88, images: 0)",
+            "Page 105 has low text density (characters: 100, images: 0)",
+            "Page 117 has low text density (characters: 74, images: 0)"
+        ]
+    },
+    {
+        "file": "Machine Learning/Outlier Detection.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_Outlier_Detection_extracted.txt",
+        "page_count": 23,
+        "warnings": [
+            "Page 18 has low text density (characters: 47, images: 1)",
+            "Page 19 has low text density (characters: 71, images: 1)",
+            "Page 20 has low text density (characters: 48, images: 1)",
+            "Page 21 has low text density (characters: 57, images: 1)",
+            "Page 22 has low text density (characters: 43, images: 1)"
+        ]
+    },
+    {
+        "file": "Machine Learning/Pytorch.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_Pytorch_extracted.txt",
+        "page_count": 84,
+        "warnings": [
+            "Page 1 has low text density (characters: 28, images: 83)",
+            "Page 2 has low text density (characters: 65, images: 83)",
+            "Page 3 has low text density (characters: 82, images: 83)",
+            "Page 5 has low text density (characters: 82, images: 83)",
+            "Page 6 has low text density (characters: 90, images: 83)",
+            "Page 7 has low text density (characters: 25, images: 83)",
+            "Page 8 has low text density (characters: 25, images: 83)",
+            "Page 9 has low text density (characters: 25, images: 83)",
+            "Page 10 has low text density (characters: 16, images: 83)",
+            "Page 11 has low text density (characters: 25, images: 83)",
+            "Page 12 has low text density (characters: 25, images: 83)",
+            "Page 13 has low text density (characters: 44, images: 83)",
+            "Page 14 has low text density (characters: 16, images: 83)",
+            "Page 15 has low text density (characters: 16, images: 83)",
+            "Page 16 has low text density (characters: 7, images: 83)",
+            "Page 17 has low text density (characters: 16, images: 83)",
+            "Page 18 has low text density (characters: 16, images: 83)",
+            "Page 19 has low text density (characters: 84, images: 83)",
+            "Page 20 has low text density (characters: 16, images: 83)",
+            "Page 21 has low text density (characters: 16, images: 83)",
+            "Page 22 has low text density (characters: 16, images: 83)",
+            "Page 23 has low text density (characters: 16, images: 83)",
+            "Page 24 has low text density (characters: 16, images: 83)",
+            "Page 25 has low text density (characters: 16, images: 83)",
+            "Page 26 has low text density (characters: 16, images: 83)",
+            "Page 28 has low text density (characters: 16, images: 83)",
+            "Page 29 has low text density (characters: 16, images: 83)",
+            "Page 30 has low text density (characters: 16, images: 83)",
+            "Page 31 has low text density (characters: 16, images: 83)",
+            "Page 32 has low text density (characters: 16, images: 83)",
+            "Page 33 has low text density (characters: 16, images: 83)",
+            "Page 34 has low text density (characters: 74, images: 83)",
+            "Page 35 has low text density (characters: 45, images: 83)",
+            "Page 36 has low text density (characters: 75, images: 83)",
+            "Page 37 has low text density (characters: 77, images: 83)",
+            "Page 38 has low text density (characters: 6, images: 83)",
+            "Page 39 has low text density (characters: 16, images: 83)",
+            "Page 41 has low text density (characters: 39, images: 83)",
+            "Page 43 has low text density (characters: 39, images: 83)",
+            "Page 44 has low text density (characters: 39, images: 83)",
+            "Page 45 has low text density (characters: 39, images: 83)",
+            "Page 46 has low text density (characters: 39, images: 83)",
+            "Page 47 has low text density (characters: 39, images: 83)",
+            "Page 48 has low text density (characters: 39, images: 83)",
+            "Page 49 has low text density (characters: 13, images: 83)",
+            "Page 50 has low text density (characters: 13, images: 83)",
+            "Page 51 has low text density (characters: 35, images: 83)",
+            "Page 52 has low text density (characters: 49, images: 83)",
+            "Page 53 has low text density (characters: 50, images: 83)",
+            "Page 54 has low text density (characters: 44, images: 83)",
+            "Page 55 has low text density (characters: 91, images: 83)",
+            "Page 57 has low text density (characters: 12, images: 83)",
+            "Page 58 has low text density (characters: 40, images: 83)",
+            "Page 59 has low text density (characters: 40, images: 83)",
+            "Page 60 has low text density (characters: 34, images: 83)",
+            "Page 61 has low text density (characters: 40, images: 83)",
+            "Page 62 has low text density (characters: 40, images: 83)",
+            "Page 63 has low text density (characters: 30, images: 83)",
+            "Page 64 has low text density (characters: 40, images: 83)",
+            "Page 65 has low text density (characters: 37, images: 83)",
+            "Page 66 has low text density (characters: 84, images: 83)",
+            "Page 68 has low text density (characters: 41, images: 83)",
+            "Page 70 has low text density (characters: 16, images: 83)",
+            "Page 72 has low text density (characters: 76, images: 83)",
+            "Page 73 has low text density (characters: 44, images: 83)",
+            "Page 74 has low text density (characters: 101, images: 83)",
+            "Page 75 has low text density (characters: 89, images: 83)",
+            "Page 76 has low text density (characters: 90, images: 83)",
+            "Page 77 has low text density (characters: 42, images: 83)",
+            "Page 78 has low text density (characters: 74, images: 83)",
+            "Page 79 has low text density (characters: 92, images: 83)",
+            "Page 80 has low text density (characters: 58, images: 83)",
+            "Page 81 has low text density (characters: 58, images: 83)",
+            "Page 82 has low text density (characters: 68, images: 83)",
+            "Page 83 has low text density (characters: 71, images: 83)",
+            "Page 84 has low text density (characters: 9, images: 83)"
+        ]
+    },
+    {
+        "file": "Machine Learning/Quick Reference Sheet - ML , DL , AI.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_Quick_Reference_Sheet_-_ML___DL___AI_extracted.txt",
+        "page_count": 47,
+        "warnings": []
+    },
+    {
+        "file": "Machine Learning/Self-Supervised Learning.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_Self-Supervised_Learning_extracted.txt",
+        "page_count": 122,
+        "warnings": [
+            "Page 1 has low text density (characters: 125, images: 2)",
+            "Page 2 has low text density (characters: 114, images: 2)",
+            "Page 3 has low text density (characters: 49, images: 1)",
+            "Page 11 has low text density (characters: 101, images: 112)",
+            "Page 12 has low text density (characters: 104, images: 0)",
+            "Page 13 has low text density (characters: 43, images: 0)",
+            "Page 17 has low text density (characters: 121, images: 3)",
+            "Page 18 has low text density (characters: 69, images: 5)",
+            "Page 19 has low text density (characters: 45, images: 7)",
+            "Page 20 has low text density (characters: 20, images: 3)",
+            "Page 21 has low text density (characters: 91, images: 7)",
+            "Page 23 has low text density (characters: 146, images: 1)",
+            "Page 33 has low text density (characters: 44, images: 0)",
+            "Page 35 has low text density (characters: 86, images: 0)",
+            "Page 38 has low text density (characters: 40, images: 5)",
+            "Page 39 has low text density (characters: 90, images: 5)",
+            "Page 40 has low text density (characters: 117, images: 5)",
+            "Page 42 has low text density (characters: 64, images: 1)",
+            "Page 43 has low text density (characters: 114, images: 24)",
+            "Page 44 has low text density (characters: 130, images: 5)",
+            "Page 45 has low text density (characters: 113, images: 3)",
+            "Page 46 has low text density (characters: 111, images: 8)",
+            "Page 50 has low text density (characters: 98, images: 1)",
+            "Page 55 has low text density (characters: 108, images: 0)",
+            "Page 57 has low text density (characters: 120, images: 7)",
+            "Page 58 has low text density (characters: 139, images: 8)",
+            "Page 59 has low text density (characters: 130, images: 4)",
+            "Page 64 has low text density (characters: 147, images: 3)",
+            "Page 66 has low text density (characters: 66, images: 7)",
+            "Page 68 has low text density (characters: 97, images: 0)",
+            "Page 69 has low text density (characters: 35, images: 1)",
+            "Page 70 has low text density (characters: 62, images: 4)",
+            "Page 72 has low text density (characters: 19, images: 1)",
+            "Page 73 has low text density (characters: 26, images: 2)",
+            "Page 74 has low text density (characters: 24, images: 2)",
+            "Page 75 has low text density (characters: 72, images: 1)",
+            "Page 76 has low text density (characters: 140, images: 4)",
+            "Page 77 has low text density (characters: 119, images: 7)",
+            "Page 78 has low text density (characters: 119, images: 8)",
+            "Page 79 has low text density (characters: 119, images: 10)",
+            "Page 80 has low text density (characters: 119, images: 10)",
+            "Page 83 has low text density (characters: 136, images: 4)",
+            "Page 85 has low text density (characters: 129, images: 6)",
+            "Page 86 has low text density (characters: 57, images: 0)",
+            "Page 87 has low text density (characters: 90, images: 6)",
+            "Page 90 has low text density (characters: 39, images: 14)",
+            "Page 91 has low text density (characters: 48, images: 14)",
+            "Page 92 has low text density (characters: 48, images: 14)",
+            "Page 93 has low text density (characters: 48, images: 14)",
+            "Page 106 has low text density (characters: 139, images: 2)",
+            "Page 109 has low text density (characters: 22, images: 1)",
+            "Page 113 has low text density (characters: 32, images: 1)",
+            "Page 114 has low text density (characters: 68, images: 1)",
+            "Page 116 has low text density (characters: 28, images: 1)",
+            "Page 117 has low text density (characters: 131, images: 1)",
+            "Page 118 has low text density (characters: 143, images: 3)",
+            "Page 120 has low text density (characters: 0, images: 2)"
+        ]
+    },
+    {
+        "file": "Machine Learning/Statistics Machine Learning Python.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_Statistics_Machine_Learning_Python_extracted.txt",
+        "page_count": 219,
+        "warnings": [
+            "Page 1 has low text density (characters: 100, images: 0)",
+            "Page 2 has low text density (characters: 0, images: 0)",
+            "Page 4 has low text density (characters: 2, images: 0)",
+            "Page 12 has low text density (characters: 80, images: 0)",
+            "Page 43 has low text density (characters: 135, images: 1)",
+            "Page 70 has low text density (characters: 85, images: 1)",
+            "Page 146 has low text density (characters: 80, images: 0)",
+            "Page 187 has low text density (characters: 132, images: 1)",
+            "Page 219 has low text density (characters: 65, images: 0)"
+        ]
+    },
+    {
+        "file": "Machine Learning/StatisticsMachineLearningPython.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_StatisticsMachineLearningPython_extracted.txt",
+        "page_count": 219,
+        "warnings": [
+            "Page 1 has low text density (characters: 100, images: 0)",
+            "Page 2 has low text density (characters: 0, images: 0)",
+            "Page 4 has low text density (characters: 2, images: 0)",
+            "Page 12 has low text density (characters: 80, images: 0)",
+            "Page 43 has low text density (characters: 135, images: 1)",
+            "Page 70 has low text density (characters: 85, images: 1)",
+            "Page 146 has low text density (characters: 80, images: 0)",
+            "Page 187 has low text density (characters: 132, images: 1)",
+            "Page 219 has low text density (characters: 65, images: 0)"
+        ]
+    },
+    {
+        "file": "Machine Learning/Supervised Machine Learning.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_Supervised_Machine_Learning_extracted.txt",
+        "page_count": 112,
+        "warnings": [
+            "Page 6 has low text density (characters: 0, images: 0)",
+            "Page 10 has low text density (characters: 0, images: 0)",
+            "Page 24 has low text density (characters: 0, images: 0)",
+            "Page 100 has low text density (characters: 0, images: 0)",
+            "Page 104 has low text density (characters: 0, images: 0)",
+            "Page 110 has low text density (characters: 0, images: 0)"
+        ]
+    },
+    {
+        "file": "Machine Learning/The 5 Feature Selection Algorithms every Data Scientist should know.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_The_5_Feature_Selection_Algorithms_every_Data_Scientist_should_know_extracted.txt",
+        "page_count": 14,
+        "warnings": []
+    },
+    {
+        "file": "Machine Learning/Time series analysis in Python.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_Time_series_analysis_in_Python_extracted.txt",
+        "page_count": 56,
+        "warnings": []
+    },
+    {
+        "file": "Machine Learning/Top 10 Machine Learning Algorithms.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_Top_10_Machine_Learning_Algorithms_extracted.txt",
+        "page_count": 23,
+        "warnings": [
+            "Page 8 has low text density (characters: 0, images: 2)",
+            "Page 13 has low text density (characters: 0, images: 2)",
+            "Page 18 has low text density (characters: 37, images: 7)"
+        ]
+    },
+    {
+        "file": "Machine Learning/Train_Test Split and Cross Validation.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_Train_Test_Split_and_Cross_Validation_extracted.txt",
+        "page_count": 11,
+        "warnings": []
+    },
+    {
+        "file": "Machine Learning/Understanding and Creating Neural Networks.pdf",
+        "output_file": "data\\extracted\\Machine_Learning_Understanding_and_Creating_Neural_Networks_extracted.txt",
+        "page_count": 69,
+        "warnings": [
+            "Page 14 has low text density (characters: 71, images: 2)",
+            "Page 29 has low text density (characters: 45, images: 2)",
+            "Page 30 has low text density (characters: 45, images: 2)",
+            "Page 52 has low text density (characters: 94, images: 2)",
+            "Page 53 has low text density (characters: 67, images: 2)",
+            "Page 55 has low text density (characters: 63, images: 3)",
+            "Page 56 has low text density (characters: 63, images: 2)",
+            "Page 57 has low text density (characters: 63, images: 1)",
+            "Page 58 has low text density (characters: 63, images: 3)",
+            "Page 69 has low text density (characters: 0, images: 0)"
+        ]
+    },
+    {
+        "file": "Mathematics/Algebra_Cheat_Sheet.pdf",
+        "output_file": "data\\extracted\\Mathematics_Algebra_Cheat_Sheet_extracted.txt",
+        "page_count": 4,
+        "warnings": []
+    },
+    {
+        "file": "Mathematics/all_in_one_cheat_sheet_v2.6_web.pdf",
+        "output_file": "data\\extracted\\Mathematics_all_in_one_cheat_sheet_v2_6_web_extracted.txt",
+        "page_count": 191,
+        "warnings": [
+            "Page 35 has low text density (characters: 68, images: 0)",
+            "Page 63 has low text density (characters: 14, images: 0)",
+            "Page 77 has low text density (characters: 141, images: 1)",
+            "Page 79 has low text density (characters: 110, images: 0)",
+            "Page 89 has low text density (characters: 76, images: 0)",
+            "Page 91 has low text density (characters: 98, images: 1)",
+            "Page 93 has low text density (characters: 29, images: 0)",
+            "Page 95 has low text density (characters: 141, images: 13)",
+            "Page 97 has low text density (characters: 51, images: 3)",
+            "Page 98 has low text density (characters: 64, images: 3)",
+            "Page 100 has low text density (characters: 87, images: 14)",
+            "Page 101 has low text density (characters: 83, images: 19)",
+            "Page 102 has low text density (characters: 140, images: 18)",
+            "Page 103 has low text density (characters: 136, images: 17)",
+            "Page 104 has low text density (characters: 68, images: 19)",
+            "Page 108 has low text density (characters: 108, images: 14)",
+            "Page 110 has low text density (characters: 15, images: 20)",
+            "Page 111 has low text density (characters: 49, images: 19)",
+            "Page 112 has low text density (characters: 91, images: 20)",
+            "Page 113 has low text density (characters: 99, images: 12)",
+            "Page 114 has low text density (characters: 46, images: 1)",
+            "Page 125 has low text density (characters: 15, images: 3)",
+            "Page 139 has low text density (characters: 15, images: 0)",
+            "Page 147 has low text density (characters: 50, images: 0)",
+            "Page 149 has low text density (characters: 47, images: 0)",
+            "Page 150 has low text density (characters: 15, images: 0)",
+            "Page 151 has low text density (characters: 88, images: 0)",
+            "Page 162 has low text density (characters: 134, images: 1)",
+            "Page 163 has low text density (characters: 30, images: 2)"
+        ]
+    },
+    {
+        "file": "Mathematics/CS229_Linear_Algebra.pdf",
+        "output_file": "data\\extracted\\Mathematics_CS229_Linear_Algebra_extracted.txt",
+        "page_count": 26,
+        "warnings": []
+    },
+    {
+        "file": "Mathematics/LinearAlgebra.pdf",
+        "output_file": "data\\extracted\\Mathematics_LinearAlgebra_extracted.txt",
+        "page_count": 62,
+        "warnings": [
+            "Page 9 has low text density (characters: 141, images: 1)"
+        ]
+    },
+    {
+        "file": "Mathematics/vmls-slides.pdf",
+        "output_file": "data\\extracted\\Mathematics_vmls-slides_extracted.txt",
+        "page_count": 470,
+        "warnings": [
+            "Page 1 has low text density (characters: 128, images: 0)",
+            "Page 2 has low text density (characters: 10, images: 0)",
+            "Page 3 has low text density (characters: 148, images: 0)",
+            "Page 9 has low text density (characters: 148, images: 0)",
+            "Page 13 has low text density (characters: 149, images: 0)",
+            "Page 23 has low text density (characters: 149, images: 0)",
+            "Page 28 has low text density (characters: 149, images: 0)",
+            "Page 31 has low text density (characters: 19, images: 0)",
+            "Page 32 has low text density (characters: 134, images: 0)",
+            "Page 37 has low text density (characters: 140, images: 0)",
+            "Page 38 has low text density (characters: 134, images: 0)",
+            "Page 40 has low text density (characters: 85, images: 0)",
+            "Page 41 has low text density (characters: 135, images: 0)",
+            "Page 46 has low text density (characters: 20, images: 0)",
+            "Page 47 has low text density (characters: 109, images: 0)",
+            "Page 53 has low text density (characters: 109, images: 0)",
+            "Page 58 has low text density (characters: 110, images: 0)",
+            "Page 63 has low text density (characters: 110, images: 0)",
+            "Page 71 has low text density (characters: 146, images: 0)",
+            "Page 73 has low text density (characters: 13, images: 0)",
+            "Page 74 has low text density (characters: 113, images: 0)",
+            "Page 78 has low text density (characters: 113, images: 0)",
+            "Page 83 has low text density (characters: 114, images: 0)",
+            "Page 84 has low text density (characters: 68, images: 0)",
+            "Page 85 has low text density (characters: 75, images: 0)",
+            "Page 86 has low text density (characters: 75, images: 0)",
+            "Page 87 has low text density (characters: 75, images: 0)",
+            "Page 88 has low text density (characters: 76, images: 0)",
+            "Page 89 has low text density (characters: 80, images: 0)",
+            "Page 90 has low text density (characters: 121, images: 0)",
+            "Page 91 has low text density (characters: 114, images: 0)",
+            "Page 94 has low text density (characters: 102, images: 1)",
+            "Page 99 has low text density (characters: 22, images: 0)",
+            "Page 100 has low text density (characters: 139, images: 0)",
+            "Page 105 has low text density (characters: 139, images: 0)",
+            "Page 108 has low text density (characters: 139, images: 0)",
+            "Page 112 has low text density (characters: 140, images: 0)",
+            "Page 115 has low text density (characters: 118, images: 0)",
+            "Page 120 has low text density (characters: 11, images: 0)",
+            "Page 121 has low text density (characters: 117, images: 0)",
+            "Page 123 has low text density (characters: 144, images: 0)",
+            "Page 135 has low text density (characters: 118, images: 0)",
+            "Page 139 has low text density (characters: 118, images: 0)",
+            "Page 146 has low text density (characters: 18, images: 0)",
+            "Page 147 has low text density (characters: 135, images: 0)",
+            "Page 149 has low text density (characters: 135, images: 0)",
+            "Page 151 has low text density (characters: 135, images: 0)",
+            "Page 155 has low text density (characters: 135, images: 0)",
+            "Page 161 has low text density (characters: 19, images: 0)",
+            "Page 184 has low text density (characters: 27, images: 0)",
+            "Page 185 has low text density (characters: 133, images: 0)",
+            "Page 189 has low text density (characters: 133, images: 0)",
+            "Page 196 has low text density (characters: 134, images: 0)",
+            "Page 200 has low text density (characters: 25, images: 0)",
+            "Page 221 has low text density (characters: 19, images: 0)",
+            "Page 248 has low text density (characters: 100, images: 0)",
+            "Page 255 has low text density (characters: 17, images: 0)",
+            "Page 256 has low text density (characters: 136, images: 0)",
+            "Page 262 has low text density (characters: 136, images: 0)",
+            "Page 267 has low text density (characters: 137, images: 0)",
+            "Page 272 has low text density (characters: 29, images: 0)",
+            "Page 273 has low text density (characters: 129, images: 0)",
+            "Page 282 has low text density (characters: 81, images: 0)",
+            "Page 293 has low text density (characters: 130, images: 0)",
+            "Page 301 has low text density (characters: 130, images: 0)",
+            "Page 306 has low text density (characters: 31, images: 0)",
+            "Page 307 has low text density (characters: 136, images: 0)",
+            "Page 313 has low text density (characters: 136, images: 0)",
+            "Page 318 has low text density (characters: 126, images: 0)",
+            "Page 322 has low text density (characters: 137, images: 0)",
+            "Page 329 has low text density (characters: 33, images: 0)",
+            "Page 348 has low text density (characters: 149, images: 2)",
+            "Page 349 has low text density (characters: 102, images: 2)",
+            "Page 350 has low text density (characters: 99, images: 2)",
+            "Page 360 has low text density (characters: 29, images: 0)",
+            "Page 365 has low text density (characters: 92, images: 0)",
+            "Page 380 has low text density (characters: 42, images: 0)",
+            "Page 418 has low text density (characters: 27, images: 0)",
+            "Page 433 has low text density (characters: 136, images: 0)",
+            "Page 442 has low text density (characters: 127, images: 0)",
+            "Page 445 has low text density (characters: 39, images: 0)"
+        ]
+    },
+    {
+        "file": "Matlab/matlab_guide.pdf",
+        "output_file": "data\\extracted\\Matlab_matlab_guide_extracted.txt",
+        "page_count": 42,
+        "warnings": []
+    },
+    {
+        "file": "NLP/A Practitioner's Guide to Natural Language Processing (Part I) \u0393\u00c7\u00f6 Processing Understanding Text.pdf",
+        "output_file": "data\\extracted\\NLP_A_Practitioner_s_Guide_to_Natural_Language_Processing__Part_I______Processing_Understanding_Text_extracted.txt",
+        "page_count": 46,
+        "warnings": []
+    },
+    {
+        "file": "NLP/Gentle Start to Natural Language Processing using Python.pdf",
+        "output_file": "data\\extracted\\NLP_Gentle_Start_to_Natural_Language_Processing_using_Python_extracted.txt",
+        "page_count": 6,
+        "warnings": []
+    },
+    {
+        "file": "NLP/Machine Learning, NLP_ Text Classification using scikit-learn, python and NLTK_.pdf",
+        "output_file": "data\\extracted\\NLP_Machine_Learning__NLP__Text_Classification_using_scikit-learn__python_and_NLTK__extracted.txt",
+        "page_count": 9,
+        "warnings": []
+    },
+    {
+        "file": "NLP/Natural Language Processing is Fun! - Adam Geitgey - Medium.pdf",
+        "output_file": "data\\extracted\\NLP_Natural_Language_Processing_is_Fun__-_Adam_Geitgey_-_Medium_extracted.txt",
+        "page_count": 19,
+        "warnings": []
+    },
+    {
+        "file": "Numpy/100_numpy_exercises.pdf",
+        "output_file": "data\\extracted\\Numpy_100_numpy_exercises_extracted.txt",
+        "page_count": 13,
+        "warnings": []
+    },
+    {
+        "file": "Numpy/numpy_cheat_sheet.pdf",
+        "output_file": "data\\extracted\\Numpy_numpy_cheat_sheet_extracted.txt",
+        "page_count": 1,
+        "warnings": []
+    },
+    {
+        "file": "Ordinary Differential Equations/calculus.pdf",
+        "output_file": "data\\extracted\\Ordinary_Differential_Equations_calculus_extracted.txt",
+        "page_count": 2,
+        "warnings": []
+    },
+    {
+        "file": "Ordinary Differential Equations/cheatsheet-applications.pdf",
+        "output_file": "data\\extracted\\Ordinary_Differential_Equations_cheatsheet-applications_extracted.txt",
+        "page_count": 2,
+        "warnings": []
+    },
+    {
+        "file": "Ordinary Differential Equations/cheatsheet-first-ode.pdf",
+        "output_file": "data\\extracted\\Ordinary_Differential_Equations_cheatsheet-first-ode_extracted.txt",
+        "page_count": 2,
+        "warnings": []
+    },
+    {
+        "file": "Ordinary Differential Equations/cheatsheet-second-ode.pdf",
+        "output_file": "data\\extracted\\Ordinary_Differential_Equations_cheatsheet-second-ode_extracted.txt",
+        "page_count": 2,
+        "warnings": []
+    },
+    {
+        "file": "Ordinary Differential Equations/Linear Algebra and Calculus.pdf",
+        "output_file": "data\\extracted\\Ordinary_Differential_Equations_Linear_Algebra_and_Calculus_extracted.txt",
+        "page_count": 2,
+        "warnings": []
+    },
+    {
+        "file": "Ordinary Differential Equations/linear-algebra.pdf",
+        "output_file": "data\\extracted\\Ordinary_Differential_Equations_linear-algebra_extracted.txt",
+        "page_count": 1,
+        "warnings": []
+    },
+    {
+        "file": "Ordinary Differential Equations/trigonometry.pdf",
+        "output_file": "data\\extracted\\Ordinary_Differential_Equations_trigonometry_extracted.txt",
+        "page_count": 2,
+        "warnings": []
+    },
+    {
+        "file": "Pandas/10 Python Pandas tricks that make your work more efficient.pdf",
+        "output_file": "data\\extracted\\Pandas_10_Python_Pandas_tricks_that_make_your_work_more_efficient_extracted.txt",
+        "page_count": 8,
+        "warnings": []
+    },
+    {
+        "file": "Pandas/MANIPULATING DATAFRAMES WITH PANDAS.pdf",
+        "output_file": "data\\extracted\\Pandas_MANIPULATING_DATAFRAMES_WITH_PANDAS_extracted.txt",
+        "page_count": 47,
+        "warnings": [
+            "Page 1 has low text density (characters: 73, images: 1)",
+            "Page 3 has low text density (characters: 59, images: 1)",
+            "Page 4 has low text density (characters: 57, images: 1)",
+            "Page 11 has low text density (characters: 51, images: 1)",
+            "Page 12 has low text density (characters: 54, images: 1)",
+            "Page 23 has low text density (characters: 51, images: 1)",
+            "Page 24 has low text density (characters: 58, images: 1)",
+            "Page 36 has low text density (characters: 51, images: 1)",
+            "Page 37 has low text density (characters: 60, images: 1)",
+            "Page 47 has low text density (characters: 51, images: 1)"
+        ]
+    },
+    {
+        "file": "Pandas/Pandas Exercises for Data Analysis \u0393\u00c7\u00f4 Machine Learning Plus.pdf",
+        "output_file": "data\\extracted\\Pandas_Pandas_Exercises_for_Data_Analysis_____Machine_Learning_Plus_extracted.txt",
+        "page_count": 83,
+        "warnings": []
+    },
+    {
+        "file": "Pandas/pandas-10min.pdf",
+        "output_file": "data\\extracted\\Pandas_pandas-10min_extracted.txt",
+        "page_count": 26,
+        "warnings": []
+    },
+    {
+        "file": "Pandas/pandas_cheat_sheet.pdf",
+        "output_file": "data\\extracted\\Pandas_pandas_cheat_sheet_extracted.txt",
+        "page_count": 4,
+        "warnings": []
+    },
+    {
+        "file": "Pandas/Reading and Writing data with PANDAS.pdf",
+        "output_file": "data\\extracted\\Pandas_Reading_and_Writing_data_with_PANDAS_extracted.txt",
+        "page_count": 8,
+        "warnings": []
+    },
+    {
+        "file": "Pandas/Step by Step Guide to Data Cleaning with Python.pdf",
+        "output_file": "data\\extracted\\Pandas_Step_by_Step_Guide_to_Data_Cleaning_with_Python_extracted.txt",
+        "page_count": 15,
+        "warnings": []
+    },
+    {
+        "file": "Probability/Beginner_Probability_Cheatsheet_Based_On_Khan_Academy_Vids/Probability_Cheatsheet.pdf",
+        "output_file": "data\\extracted\\Probability_Beginner_Probability_Cheatsheet_Based_On_Khan_Academy_Vids_Probability_Cheatsheet_extracted.txt",
+        "page_count": 4,
+        "warnings": [
+            "Page 1 has low text density (characters: 70, images: 0)"
+        ]
+    },
+    {
+        "file": "Probability/cheatsheet-probability.pdf",
+        "output_file": "data\\extracted\\Probability_cheatsheet-probability_extracted.txt",
+        "page_count": 2,
+        "warnings": []
+    },
+    {
+        "file": "Probability/probability_cheatsheet.pdf",
+        "output_file": "data\\extracted\\Probability_probability_cheatsheet_extracted.txt",
+        "page_count": 10,
+        "warnings": []
+    },
+    {
+        "file": "Python/A guide to Face Detection in Python - Towards Data Science.pdf",
+        "output_file": "data\\extracted\\Python_A_guide_to_Face_Detection_in_Python_-_Towards_Data_Science_extracted.txt",
+        "page_count": 26,
+        "warnings": []
+    },
+    {
+        "file": "Python/DataWrangling.pdf",
+        "output_file": "data\\extracted\\Python_DataWrangling_extracted.txt",
+        "page_count": 7,
+        "warnings": []
+    },
+    {
+        "file": "Python/Face Detection with Python.pdf",
+        "output_file": "data\\extracted\\Python_Face_Detection_with_Python_extracted.txt",
+        "page_count": 20,
+        "warnings": [
+            "Page 15 has low text density (characters: 61, images: 6)",
+            "Page 18 has low text density (characters: 130, images: 5)"
+        ]
+    },
+    {
+        "file": "Python/How to scrape websites with Python and BeautifulSoup.pdf",
+        "output_file": "data\\extracted\\Python_How_to_scrape_websites_with_Python_and_BeautifulSoup_extracted.txt",
+        "page_count": 10,
+        "warnings": []
+    },
+    {
+        "file": "Python/How to Use Python lambda Functions \u0393\u00c7\u00f4 Real Python.pdf",
+        "output_file": "data\\extracted\\Python_How_to_Use_Python_lambda_Functions_____Real_Python_extracted.txt",
+        "page_count": 25,
+        "warnings": []
+    },
+    {
+        "file": "Python/Identify Top Topics using Word Cloud - Towards Data Science.pdf",
+        "output_file": "data\\extracted\\Python_Identify_Top_Topics_using_Word_Cloud_-_Towards_Data_Science_extracted.txt",
+        "page_count": 6,
+        "warnings": []
+    },
+    {
+        "file": "Python/Interview Questions.pdf",
+        "output_file": "data\\extracted\\Python_Interview_Questions_extracted.txt",
+        "page_count": 11,
+        "warnings": [
+            "Page 1 has low text density (characters: 0, images: 5)",
+            "Page 2 has low text density (characters: 0, images: 0)",
+            "Page 3 has low text density (characters: 0, images: 0)",
+            "Page 4 has low text density (characters: 0, images: 0)",
+            "Page 5 has low text density (characters: 0, images: 0)",
+            "Page 6 has low text density (characters: 0, images: 0)",
+            "Page 7 has low text density (characters: 0, images: 0)",
+            "Page 8 has low text density (characters: 0, images: 0)",
+            "Page 9 has low text density (characters: 0, images: 3)",
+            "Page 10 has low text density (characters: 0, images: 0)",
+            "Page 11 has low text density (characters: 0, images: 0)"
+        ]
+    },
+    {
+        "file": "Python/Learning Python_ From Zero to Hero - freeCodeCamp.org - Medium.pdf",
+        "output_file": "data\\extracted\\Python_Learning_Python__From_Zero_to_Hero_-_freeCodeCamp_org_-_Medium_extracted.txt",
+        "page_count": 21,
+        "warnings": []
+    },
+    {
+        "file": "Python/numpy.pdf",
+        "output_file": "data\\extracted\\Python_numpy_extracted.txt",
+        "page_count": 1,
+        "warnings": []
+    },
+    {
+        "file": "Python/NumpyForDataScieceDataCamp.pdf",
+        "output_file": "data\\extracted\\Python_NumpyForDataScieceDataCamp_extracted.txt",
+        "page_count": 1,
+        "warnings": []
+    },
+    {
+        "file": "Python/OCR.pdf",
+        "output_file": "data\\extracted\\Python_OCR_extracted.txt",
+        "page_count": 8,
+        "warnings": []
+    },
+    {
+        "file": "Python/pandas.pdf",
+        "output_file": "data\\extracted\\Python_pandas_extracted.txt",
+        "page_count": 4,
+        "warnings": []
+    },
+    {
+        "file": "Python/Python for Data Analysis.pdf",
+        "output_file": "data\\extracted\\Python_Python_for_Data_Analysis_extracted.txt",
+        "page_count": 47,
+        "warnings": [
+            "Page 1 has low text density (characters: 84, images: 1)",
+            "Page 13 has low text density (characters: 86, images: 1)",
+            "Page 16 has low text density (characters: 72, images: 1)",
+            "Page 17 has low text density (characters: 132, images: 1)"
+        ]
+    },
+    {
+        "file": "Python/Python Interview Questions.pdf",
+        "output_file": "data\\extracted\\Python_Python_Interview_Questions_extracted.txt",
+        "page_count": 7,
+        "warnings": []
+    },
+    {
+        "file": "Python/Python Print function.pdf",
+        "output_file": "data\\extracted\\Python_Python_Print_function_extracted.txt",
+        "page_count": 44,
+        "warnings": []
+    },
+    {
+        "file": "Python/python-cheatsheets-ds.pdf",
+        "output_file": "data\\extracted\\Python_python-cheatsheets-ds_extracted.txt",
+        "page_count": 9,
+        "warnings": []
+    },
+    {
+        "file": "Python/python_basics.pdf",
+        "output_file": "data\\extracted\\Python_python_basics_extracted.txt",
+        "page_count": 2,
+        "warnings": []
+    },
+    {
+        "file": "Python/Python_cheatsheet.pdf",
+        "output_file": "data\\extracted\\Python_Python_cheatsheet_extracted.txt",
+        "page_count": 26,
+        "warnings": []
+    },
+    {
+        "file": "Python/PythonForDataScience.pdf",
+        "output_file": "data\\extracted\\Python_PythonForDataScience_extracted.txt",
+        "page_count": 15,
+        "warnings": []
+    },
+    {
+        "file": "Python/PythonNotesForProfessionals.pdf",
+        "output_file": "data\\extracted\\Python_PythonNotesForProfessionals_extracted.txt",
+        "page_count": 816,
+        "warnings": [
+            "Page 112 has low text density (characters: 121, images: 0)",
+            "Page 123 has low text density (characters: 105, images: 0)",
+            "Page 173 has low text density (characters: 62, images: 0)",
+            "Page 179 has low text density (characters: 141, images: 0)",
+            "Page 189 has low text density (characters: 134, images: 0)",
+            "Page 305 has low text density (characters: 140, images: 0)",
+            "Page 407 has low text density (characters: 98, images: 0)",
+            "Page 484 has low text density (characters: 80, images: 0)",
+            "Page 619 has low text density (characters: 91, images: 0)",
+            "Page 657 has low text density (characters: 139, images: 0)",
+            "Page 684 has low text density (characters: 52, images: 1)",
+            "Page 720 has low text density (characters: 52, images: 1)",
+            "Page 735 has low text density (characters: 58, images: 0)",
+            "Page 800 has low text density (characters: 108, images: 0)",
+            "Page 816 has low text density (characters: 17, images: 9)"
+        ]
+    },
+    {
+        "file": "Python/spaCy.pdf",
+        "output_file": "data\\extracted\\Python_spaCy_extracted.txt",
+        "page_count": 2,
+        "warnings": []
+    },
+    {
+        "file": "Python/Ultimate Guide To Speech Recognition With Python.pdf",
+        "output_file": "data\\extracted\\Python_Ultimate_Guide_To_Speech_Recognition_With_Python_extracted.txt",
+        "page_count": 23,
+        "warnings": [
+            "Page 19 has low text density (characters: 93, images: 6)"
+        ]
+    },
+    {
+        "file": "Python/web scrapping.pdf",
+        "output_file": "data\\extracted\\Python_web_scrapping_extracted.txt",
+        "page_count": 14,
+        "warnings": [
+            "Page 12 has low text density (characters: 107, images: 5)"
+        ]
+    },
+    {
+        "file": "R Cheat Sheet/basicR.pdf",
+        "output_file": "data\\extracted\\R_Cheat_Sheet_basicR_extracted.txt",
+        "page_count": 2,
+        "warnings": []
+    },
+    {
+        "file": "R Cheat Sheet/R Cheat Sheets.pdf",
+        "output_file": "data\\extracted\\R_Cheat_Sheet_R_Cheat_Sheets_extracted.txt",
+        "page_count": 38,
+        "warnings": [
+            "Page 22 has low text density (characters: 0, images: 1)"
+        ]
+    },
+    {
+        "file": "R Cheat Sheet/R Programming Cheat Sheet.pdf",
+        "output_file": "data\\extracted\\R_Cheat_Sheet_R_Programming_Cheat_Sheet_extracted.txt",
+        "page_count": 6,
+        "warnings": []
+    },
+    {
+        "file": "R Cheat Sheet/R-reference-card.pdf",
+        "output_file": "data\\extracted\\R_Cheat_Sheet_R-reference-card_extracted.txt",
+        "page_count": 6,
+        "warnings": []
+    },
+    {
+        "file": "R Cheat Sheet/shiny-cheatsheet.pdf",
+        "output_file": "data\\extracted\\R_Cheat_Sheet_shiny-cheatsheet_extracted.txt",
+        "page_count": 2,
+        "warnings": []
+    },
+    {
+        "file": "Scala/scala-quick-reference.pdf",
+        "output_file": "data\\extracted\\Scala_scala-quick-reference_extracted.txt",
+        "page_count": 6,
+        "warnings": []
+    },
+    {
+        "file": "Scala/ScalaByExample.pdf",
+        "output_file": "data\\extracted\\Scala_ScalaByExample_extracted.txt",
+        "page_count": 145,
+        "warnings": [
+            "Page 1 has low text density (characters: 93, images: 0)",
+            "Page 2 has low text density (characters: 0, images: 0)",
+            "Page 6 has low text density (characters: 0, images: 0)",
+            "Page 8 has low text density (characters: 0, images: 0)",
+            "Page 26 has low text density (characters: 0, images: 0)",
+            "Page 47 has low text density (characters: 27, images: 0)",
+            "Page 48 has low text density (characters: 0, images: 0)",
+            "Page 84 has low text density (characters: 0, images: 0)",
+            "Page 92 has low text density (characters: 0, images: 0)",
+            "Page 104 has low text density (characters: 0, images: 0)",
+            "Page 108 has low text density (characters: 0, images: 0)",
+            "Page 114 has low text density (characters: 0, images: 0)",
+            "Page 118 has low text density (characters: 0, images: 0)",
+            "Page 130 has low text density (characters: 0, images: 0)",
+            "Page 144 has low text density (characters: 0, images: 0)"
+        ]
+    },
+    {
+        "file": "SQL/SQL for DS.pdf",
+        "output_file": "data\\extracted\\SQL_SQL_for_DS_extracted.txt",
+        "page_count": 12,
+        "warnings": [
+            "Page 1 has low text density (characters: 42, images: 1)"
+        ]
+    },
+    {
+        "file": "SQL/SQL-cheat-sheet.pdf",
+        "output_file": "data\\extracted\\SQL_SQL-cheat-sheet_extracted.txt",
+        "page_count": 3,
+        "warnings": []
+    },
+    {
+        "file": "SQL/SQL.pdf",
+        "output_file": "data\\extracted\\SQL_SQL_extracted.txt",
+        "page_count": 1,
+        "warnings": []
+    },
+    {
+        "file": "Statistics/cheatsheet-statistics.pdf",
+        "output_file": "data\\extracted\\Statistics_cheatsheet-statistics_extracted.txt",
+        "page_count": 2,
+        "warnings": []
+    },
+    {
+        "file": "Statistics/Statistics Cheat Sheet.pdf",
+        "output_file": "data\\extracted\\Statistics_Statistics_Cheat_Sheet_extracted.txt",
+        "page_count": 8,
+        "warnings": [
+            "Page 7 has low text density (characters: 1, images: 1)",
+            "Page 8 has low text density (characters: 0, images: 1)"
+        ]
+    }
+]

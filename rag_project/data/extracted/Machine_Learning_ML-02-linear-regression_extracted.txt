@@ -1,0 +1,417 @@
+--- PAGE 1 ---
+CS 60050 
+Machine Learning 
+Linear Regression 
+Some slides taken from course materials of Andrew Ng 
+
+--- PAGE 2 ---
+Dataset of living area and price 
+of houses in a city 
+This is a training set. 
+ 
+How can we learn to predict the prices of houses of 
+other sizes in the city, as a function of their living area? 
+
+--- PAGE 3 ---
+Dataset of living area and price 
+of houses in a city 
+Example of supervised learning problem.  
+ 
+When the target variable we are trying to predict is 
+continuous, regression problem. 
+
+--- PAGE 4 ---
+Dataset of living area and price 
+of houses in a city 
+m = number of training examples 
+x's = input variables / features 
+y's = output variables / "target" variables 
+(x,y) - single training example 
+(xi, yj) - specific example (ith training example) 
+i is an index to training set 
+
+--- PAGE 5 ---
+How to use the training set? 
+Learn a function h(x), so 
+that h(x) is a good 
+predictor for the 
+corresponding value of y 
+ 
+h: hypothesis function 
+
+--- PAGE 6 ---
+How to represent hypothesis h? 
+θi are parameters 
+- θ0 is zero condition 
+- θ1 is gradient 
+ 
+θ: vector of all the parameters 
+ 
+We assume y is a linear function of x 
+Univariate linear regression 
+
+--- PAGE 7 ---
+Digression: 
+Multivariate linear regression 
+
+--- PAGE 8 ---
+How to represent hypothesis h? 
+θi are parameters 
+- θ0 is zero condition 
+- θ1 is gradient 
+We assume y is a linear function of x 
+Univariate linear regression 
+How to learn the values of the parameters θi?  
+
+--- PAGE 9 ---
+Intuition of hypothesis function 
+•  We are attempting to fit a straight line to the 
+data in the training set 
+•  Values of the parameters decide the equation 
+of the straight line 
+•  Which is the best straight line to fit the data? 
+
+--- PAGE 10 ---
+Intuition of hypothesis function 
+•  Which is the best straight line to fit the data? 
+•  How to learn the values of the parameters θi?  
+•  Choose the parameters such that the 
+prediction is close to the actual y-value for 
+the training examples 
+
+--- PAGE 11 ---
+Cost function 
+•  Measure of how close the predictions are to 
+the actual y-values 
+•  Average over all the m training instances 
+•  Squared error cost function J(θ) 
+•  Choose parameters θ so that J(θ) is minimized 
+
+--- PAGE 12 ---
+Hypothesis: 
+Parameters: 
+Cost Function: 
+Goal: 
+
+--- PAGE 13 ---
+(for fixed           , this is a function of x) 
+(function of the parameters            ) 
+0 
+100 
+200 
+300 
+400 
+500 
+0 
+1000 
+2000 
+3000 
+Price ($)  
+in 1000’s 
+Size in feet2 (x) 
+
+--- PAGE 14 ---
+Contour plot or Contour figure 
+
+--- PAGE 15 ---
+Minimizing a function 
+•  For now, let us consider some arbitrary 
+function (not necessarily an error function) 
+•  Algorithm called gradient descent 
+•  Used in many applications of minimizing 
+functions 
+
+--- PAGE 16 ---
+Have some function 
+Want  
+Outline: 
+•  Start with some 
+•  Keep changing              to reduce                     
+until we hopefully end up at a minimum 
+
+--- PAGE 17 ---
+θ1
+θ0
+J(θ0,θ1)
+
+--- PAGE 18 ---
+θ0
+θ1
+J(θ0,θ1)
+If the function has multiple local minima, where one starts 
+can decide which minimum is reached 
+
+--- PAGE 19 ---
+Gradient descent algorithm 
+α is the learning rate – more on this later 
+
+--- PAGE 20 ---
+Gradient descent algorithm 
+Correct: Simultaneous update 
+Incorrect: 
+
+--- PAGE 21 ---
+For simplicity, let us first consider a function of 
+a single variable 
+
+--- PAGE 22 ---
+The learning rate 
+•  Gradient descent can converge to a local 
+minimum, even with the learning rate α fixed 
+•  But, value needs to be chosen judiciously 
+•  If α is too small, gradient descent can be slow 
+to converge 
+•  If α is too large, gradient descent can 
+overshoot the minimum. It may fail to 
+converge, or even diverge. 
+ 
+
+--- PAGE 23 ---
+Gradient descent algorithm 
+Linear Regression Model 
+Gradient descent for 
+univariate linear regression 
+
+--- PAGE 24 ---
+Gradient descent for univariate linear regression 
+update  
+and 
+simultaneously 
+ 
+
+--- PAGE 25 ---
+“Batch”: Each step of gradient descent uses 
+all the training examples. 
+ 
+There are other variations like “stochastic 
+gradient descent” (used in learning over 
+huge datasets) 
+“Batch” Gradient Descent 
+
+--- PAGE 26 ---
+What about multiple local minima? 
+•  The cost function in linear regression is always a 
+convex function – always has a single global 
+minimum 
+•  So, gradient descent will always converge 
+
+--- PAGE 27 ---
+Convex cost function 
+
+--- PAGE 28 ---
+Gradient descent in action 
+ 
+
+--- PAGE 29 ---
+(for fixed           , this is a function of x) 
+(function of the parameters            ) 
+
+--- PAGE 30 ---
+(for fixed           , this is a function of x) 
+(function of the parameters            ) 
+
+--- PAGE 31 ---
+(for fixed           , this is a function of x) 
+(function of the parameters            ) 
+
+--- PAGE 32 ---
+(for fixed           , this is a function of x) 
+(function of the parameters            ) 
+
+--- PAGE 33 ---
+(for fixed           , this is a function of x) 
+(function of the parameters            ) 
+
+--- PAGE 34 ---
+(for fixed           , this is a function of x) 
+(function of the parameters            ) 
+
+--- PAGE 35 ---
+(for fixed           , this is a function of x) 
+(function of the parameters            ) 
+
+--- PAGE 36 ---
+(for fixed           , this is a function of x) 
+(function of the parameters            ) 
+
+--- PAGE 37 ---
+(for fixed           , this is a function of x) 
+(function of the parameters            ) 
+
+--- PAGE 38 ---
+Linear Regression for 
+multiple variables 
+
+--- PAGE 39 ---
+Size (feet2) 
+ 
+ 
+Number of 
+bedrooms 
+ 
+Number of 
+floors 
+ 
+Age of home 
+(years) 
+ 
+Price ($1000) 
+ 
+ 
+2104 
+5 
+1 
+45 
+460 
+1416 
+3 
+2 
+40 
+232 
+1534 
+3 
+2 
+30 
+315 
+852 
+2 
+1 
+36 
+178 
+… 
+… 
+… 
+… 
+… 
+Multiple features (variables). 
+
+--- PAGE 40 ---
+Size (feet2) 
+ 
+ 
+Number of 
+bedrooms 
+ 
+Number of 
+floors 
+ 
+Age of home 
+(years) 
+ 
+Price ($1000) 
+ 
+ 
+2104 
+5 
+1 
+45 
+460 
+1416 
+3 
+2 
+40 
+232 
+1534 
+3 
+2 
+30 
+315 
+852 
+2 
+1 
+36 
+178 
+… 
+… 
+… 
+… 
+… 
+Multiple features (variables). 
+Notation: 
+= number of features 
+= input (features) of        training example. 
+= value of feature    in        training example. 
+
+--- PAGE 41 ---
+Hypothesis: 
+ Previously: 
+ For multi-variate linear regression: 
+For convenience of notation, define                . 
+
+--- PAGE 42 ---
+Hypothesis: 
+Cost function: 
+Parameters: 
+(simultaneously update for every                        ) 
+Repeat 
+Gradient descent: 
+
+--- PAGE 43 ---
+(simultaneously update             ) 
+Gradient Descent 
+Repeat 
+Previously (n=1): 
+New algorithm               : 
+Repeat 
+simultaneously update        for       
+                         
+
+--- PAGE 44 ---
+(simultaneously update             ) 
+Gradient Descent 
+Repeat 
+Previously (n=1): 
+New algorithm               : 
+Repeat 
+simultaneously update        for       
+                         
+
+--- PAGE 45 ---
+Practical aspects of applying 
+gradient descent 
+
+--- PAGE 46 ---
+E.g.       = size (0-2000 feet2) 
+              = number of bedrooms (1-5) 
+Feature Scaling 
+Idea: Make sure features are on a similar scale. 
+size (feet2) 
+number of bedrooms 
+
+--- PAGE 47 ---
+E.g.       = size (0-2000 feet2) 
+              = number of bedrooms (1-5) 
+Feature Scaling 
+Idea: Make sure features are on a similar scale. 
+Replace      with                to make features have approximately zero 
+mean (Do not apply to              ). 
+Mean normalization: 
+Other types of normalization: 
+
+--- PAGE 48 ---
+Is gradient descent working properly? 
+•  Plot how J(θ) changes with every iteration of 
+gradient descent 
+•  For sufficiently small learning rate, J(θ) should 
+decrease with every iteration 
+•  If not, learning rate needs to be reduced 
+•  However, too small learning rate means slow 
+convergence 
+
+--- PAGE 49 ---
+When to end gradient descent? 
+•  Example convergence test: 
+•  Declare convergence if J(θ) decreases by less 
+than 0.001 in an iteration (assuming J(θ) is 
+decreasing in every iteration) 
+
+--- PAGE 50 ---
+Polynomial Regression for 
+multiple variables 
+
+--- PAGE 51 ---
+Choice of features 
+Price 
+(y) 
+Size (x) 
+

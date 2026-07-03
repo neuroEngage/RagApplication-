@@ -1,0 +1,217 @@
+--- PAGE 1 ---
+CME 102 – Ordinary Differential Equations for Engineers
+https://stanford.edu/~shervine
+VIP Refresher: Calculus
+Shervine Amidi
+May 30, 2018
+Integral calculus
+Ì Primitive function – The primitive function of a function f, noted F and also known as an
+antiderivative, is a diﬀerentiable function such that:
+F ′ = f
+Ì Integral – Given a function f and an interval [a,b], the integral of f over [a,b], noted
+´ b
+a f(x)dx,
+is the signed area of the region in the xy-plane that is bounded by the graph of f, the x-axis
+and the vertical lines x = a and x = b, and can be computed with the primitive of f as follows:
+ˆ b
+a
+f(x)dx = F(b) −F(a)
+Ì Integration by parts – Given two functions f, g on the interval [a,b], we can integrate by
+parts the quantity
+´ b
+a f(x)g′(x)dx as follows:
+ˆ b
+a
+f(x)g′(x)dx = 
+f(x)g(x)b
+a −
+ˆ b
+a
+f′(x)g(x)dx
+Ì Rational primitive functions – The table below sums up the main rational functions
+associated to their primitives.
+We will omit the additive constant C associated to all those
+primitives.
+Function f
+Primitive F
+a
+ax
+xa
+xa+1
+a + 1
+1
+x
+ln |x|
+1
+1 + x2
+arctan(x)
+1
+1 −x2
+1
+2 ln
+
+x + 1
+x −1
+
+Ì Irrational primitive functions – The table below sums up the main rational functions
+associated to their primitives.
+We will omit the additive constant C associated to all those
+primitives:
+Function f
+Primitive F
+1
+√
+1 −x2
+arcsin(x)
+−
+1
+√
+1 −x2
+arccos(x)
+x
+√
+x2 −1
+p
+x2 −1
+Ì Exponential primitive functions – The table below sums up the main exponential functions
+associated to their primitives.
+We will omit the additive constant C associated to all those
+primitives.
+Function f
+Primitive F
+ln(x)
+x ln(x) −x
+exp(x)
+exp(x)
+Ì Trigonometric primitive functions – The table below sums up the main trigonometric
+functions associated to their primitives. We will omit the additive constant C associated to all
+those primitives.
+Function f
+Primitive F
+cos(x)
+sin(x)
+sin(x)
+−cos(x)
+tan(x)
+−ln | cos(x)|
+1
+cos(x)
+ln
+tan
+ x
+2 + π
+4
+
+1
+sin(x)
+ln
+tan
+ x
+2
+
+1
+tan(x)
+ln | sin(x)|
+Laplace transforms
+Ì Deﬁnition – The Laplace transform of a given function f deﬁned for all t ⩾0 is noted L (f),
+and is deﬁned as:
+L (f) = F(s) =
+ˆ +∞
+0
+e−stf(t)dt
+Remark: we note that f(t) = L −1(F) where L −1 is the inverse Laplace transform.
+Ì Main properties – The table below sums up the main properties of the Laplace transform:
+Stanford University
+1
+Spring 2018
+
+--- PAGE 2 ---
+CME 102 – Ordinary Differential Equations for Engineers
+https://stanford.edu/~shervine
+Property
+t-domain
+s-domain
+Linearity
+αf(t) + βg(t)
+αF(s) + βG(s)
+t-domain
+Integral
+ˆ t
+0
+f(τ)dτ
+F(s)
+s
+First derivative
+f′(t)
+sF(s) −f(0)
+Second derivative
+f′′(t)
+s2F(s) −sf(0) −f′(0)
+nth derivative
+f(n)(t)
+snF(s) −sn−1f(0) −... −sf(n−2)(0) −f(n−1)(0)
+s-domain
+Integral
+f(t)
+t
+ˆ +∞
+s
+F(σ)dσ
+First derivative
+tf(t)
+−F ′(s)
+Second derivative
+t2f(t)
+F ′′(s)
+nth derivative
+tnf(t)
+(−1)nF (n)(s)
+Ì Common transform pairs – The table below sums up the most common Laplace transform
+pairs:
+t-domain
+s-domain
+a
+a
+s
+t
+1
+s2
+tn
+n!
+sn+1
+eat
+1
+s −a
+cos(ωt)
+s
+s2 + ω2
+sin(ωt)
+ω
+s2 + ω2
+cosh(at)
+s
+s2 −a2
+sinh(at)
+a
+s2 −a2
+Ì Main operations – The table below sums up the main operations of the Laplace transform:
+Operation
+t-domain
+s-domain
+Unit step function
+u(t −a)
+e−as
+s
+Dirac delta function
+δ(t −a)
+e−as
+s-shift
+eatf(t)
+F(s −a)
+t-shift
+u(t −a)f(t −a)
+e−asF(s)
+Stanford University
+2
+Spring 2018
+

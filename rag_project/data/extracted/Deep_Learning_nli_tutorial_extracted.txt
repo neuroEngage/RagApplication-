@@ -1,0 +1,2122 @@
+--- PAGE 1 ---
+Deep Learning for
+Natural Language Inference
+NAACL-HLT 2019 Tutorial
+Sam Bowman
+NYU (New York)
+Xiaodan Zhu
+Queen’s University, Canada
+Follow the slides:
+nlitutorial.github.io
+
+--- PAGE 2 ---
+Introduction
+Motivations of the Tutorial
+Overview
+Starting Questions ...
+2
+
+--- PAGE 3 ---
+Outline
+NLI: What and Why (SB)
+Data for NLI (SB)
+Some Methods (SB)
+Deep Learning Models (XZ)
+       Full Models
+       ---(Break, roughly at 10:30)---
+       Sentence Vector Models
+       Selected Topics
+Applications (SB)
+3
+
+--- PAGE 4 ---
+Natural Language Inference:
+What and Why
+4
+Sam Bowman
+
+--- PAGE 5 ---
+Why NLI?
+5
+
+--- PAGE 6 ---
+My take, as 
+someone interested 
+in natural language 
+understanding...
+6
+
+--- PAGE 7 ---
+The Motivating 
+Questions
+Can current neural network 
+methods learn to do anything that 
+resembles compositional semantics?
+7
+
+--- PAGE 8 ---
+The Motivating 
+Questions
+Can current neural network 
+methods learn to do anything that 
+resembles compositional semantics?
+If we take this as a goal to work 
+toward, what’s our metric?
+8
+
+--- PAGE 9 ---
+One possible answer:
+Natural Language 
+Inference (NLI)
+also known as 
+recognizing textual entailment (RTE)
+i'm not sure what the overnight low was
+{entails, contradicts, neither}
+I don't know how cold it got last night.
+Dagan et al. ‘05, MacCartney ‘09
+Example from MNLI
+9
+“Premise” or “Text” or “Sentence A”
+“Hypothesis” or “Sentence B”
+
+--- PAGE 10 ---
+A Deﬁnition
+We say that T entails H if, typically, a 
+human reading T would infer that H is 
+most likely true.
+- Ido Dagan ‘05
+   (See Manning ‘06 for discussion.)
+10
+
+--- PAGE 11 ---
+The Big Question
+What kind of a thing is the meaning 
+of a sentence?
+11
+
+--- PAGE 12 ---
+What kind of a thing is the meaning 
+of a sentence?
+12
+The Big Question
+
+--- PAGE 13 ---
+The Big Question
+What kind of a thing is the meaning 
+of a sentence?
+Why not?
+13
+
+--- PAGE 14 ---
+What kind of a thing is the meaning 
+of a sentence?
+14
+The Big Question
+
+--- PAGE 15 ---
+What kind of a thing is the meaning 
+of a sentence?
+What concrete phenomena do you 
+have to deal with to understand a 
+sentence?
+15
+The Big Question
+
+--- PAGE 16 ---
+Judging Understanding with NLI
+To reliably perform well at NLI, your method for sentence 
+understanding  must be able to interpret and use the full 
+range of phenomena we talk about in compositional 
+semantics:*
+●
+Lexical entailment (cat vs. animal, cat vs. dog)
+●
+Quantiﬁcation (all, most, fewer than eight)
+●
+Lexical ambiguity and scope ambiguity (bank, ...)
+●
+Modality (might, should, ...)
+●
+Common sense background knowledge
+…
+* without grounding to the outside world.
+16
+
+--- PAGE 17 ---
+Why not Other Tasks?
+Many tasks that have been used to evaluate sentence 
+representation models don’t require models to deal with the 
+full complexity of compositional semantics:
+●
+Sentiment analysis
+●
+Sentence similarity
+…
+17
+
+--- PAGE 18 ---
+Why not Other Tasks?
+NLI is one of many NLP tasks that require robust 
+compositional sentence understanding:
+●
+Machine translation
+●
+Question answering
+●
+Goal-driven dialog
+●
+Semantic parsing
+●
+Syntactic parsing
+●
+Image–caption matching
+ 
+…
+But it’s the simplest of these.
+18
+
+--- PAGE 19 ---
+Detour:
+Entailments and 
+Truth Conditions
+Most formal semantics research 
+(and some semantic parsing 
+research) deals with truth 
+conditions.
+19
+?
+See Katz ‘72
+
+--- PAGE 20 ---
+Detour:
+Entailments and 
+Truth Conditions
+Most formal semantics research 
+(and some semantic parsing 
+research) deals with truth 
+conditions. 
+In this view understanding a 
+sentence means (roughly) 
+characterizing the set of situations 
+in which that sentence is true.
+20
+?
+See Katz ‘72
+
+--- PAGE 21 ---
+Detour:
+Entailments and 
+Truth Conditions
+Most formal semantics research 
+(and some semantic parsing 
+research) deals with truth 
+conditions. 
+In this view understanding a 
+sentence means (roughly) 
+characterizing the set of situations 
+in which that sentence is true.
+This requires some form of 
+grounding:
+Truth-conditional semantics is strictly 
+harder than NLI.
+21
+?
+See Katz ‘72
+
+--- PAGE 22 ---
+Detour:
+Entailments and 
+Truth Conditions
+If you know the truth conditions of 
+two sentences, can you work out 
+whether one entails the other?
+22
+?
+See Katz ‘72
+
+--- PAGE 23 ---
+Detour:
+Entailments and 
+Truth Conditions
+If you know the truth conditions of 
+two sentences, can you work out 
+whether one entails the other?
+23
+S2
+S1
+?
+See Katz ‘72
+
+--- PAGE 24 ---
+Detour:
+Entailments and 
+Truth Conditions
+Can you work out whether one 
+sentence entails another without 
+knowing their truth conditions?
+24
+See Katz ‘72
+?
+
+--- PAGE 25 ---
+Detour:
+Entailments and 
+Truth Conditions
+Can you work out whether one 
+sentence entails another without 
+knowing their truth conditions?
+25
+Isobutylphenylpropionic acid is a medicine 
+for headaches.
+{entails, contradicts, neither}?
+Isobutylphenylpropionic acid is a medicine.
+See Katz ‘72
+
+--- PAGE 26 ---
+Another set of motivations...
+-Bill MacCartney, Stanford CS224U Slides
+We’ll revisit this later!
+26
+
+--- PAGE 27 ---
+Natural Language Inference:
+Data
+27
+...an incomplete survey
+
+--- PAGE 28 ---
+FraCaS 
+Test Suite
+●
+346 examples
+●
+Manually constructed by 
+experts
+●
+Target strict logical entailment
+28
+P: No delegate ﬁnished the report.
+H: Some delegate ﬁnished the 
+report on time.
+Label: no entailment
+Cooper et al. ‘96, MacCartney ‘09
+
+--- PAGE 29 ---
+Recognizing 
+Textual Entailment 
+(RTE) 1–7
+●
+Seven annual competitions
+(First PASCAL, then NIST)
+●
+Some variation in format, but 
+about 5000 NLI-format 
+examples total
+●
+Premises (texts) drawn from 
+naturally occurring text, often 
+long/complex
+●
+Expert-constructed hypotheses
+29
+P: Cavern Club sessions paid the 
+Beatles £15 evenings and £5 
+lunchtime. 
+H: The Beatles perform at Cavern 
+Club at lunchtime. 
+Label: entailment
+Dagan et al. ‘06 et seq.
+
+--- PAGE 30 ---
+Sentences Involving 
+Compositional 
+Knowledge (SICK)
+●
+Corpus for a 2014 SemEval 
+shared task competition
+●
+Deliberately restricted task:
+No named entities, idioms, etc.
+●
+Pairs created by semi-automatic 
+manipulation rules on image 
+and video captions 
+●
+About 10,000 examples, labeled 
+for entailment and semantic 
+similarity (1–5 scale)
+30
+P: The brown horse is near a red 
+barrel at the rodeo
+H: The brown horse is far from a red 
+barrel at the rodeo
+Label: contradiction
+Marelli et al. ‘14
+
+--- PAGE 31 ---
+The Stanford NLI 
+Corpus (SNLI)
+●
+Premises derived from image 
+captions (Flickr 30k), 
+hypotheses created by 
+crowdworkers
+●
+About 550,000 examples; ﬁrst 
+NLI corpus to see encouraging 
+results with neural networks
+31
+P: A black race car starts up in front 
+of a crowd of people.
+H: A man is driving down a lonely 
+road.
+Label: contradiction
+Bowman et al. ‘15
+
+--- PAGE 32 ---
+Multi-Genre NLI 
+(MNLI)
+●
+Multi-genre follow-up to SNLI: 
+Premises come from ten 
+different sources of written and 
+spoken language (mostly via 
+OpenANC), hypotheses written 
+by crowdworkers
+●
+About 400,000 examples
+32
+P: yes now you know if if everybody 
+like in August when everybody's on 
+vacation or something we can dress 
+a little more casual 
+H: August is a black out month for 
+vacations in the company.
+Label: contradiction
+Williams et al. ‘18
+
+--- PAGE 33 ---
+Multi-Premise 
+Entailment (MPE)
+●
+Multi-premise entailment from a 
+set of sentences describing a 
+scene
+●
+Derived from Flickr30k image 
+captions
+●
+About 10,000 examples
+33
+Lai et al. ‘17
+
+--- PAGE 34 ---
+Crosslingual NLI 
+(XNLI)
+P: 让我告诉你，美国人最终如何
+看待你作为独立顾问的表现。 
+H: 美国人完全不知道您是独立律
+师。
+Label: contradiction
+●
+A new development and test set 
+for MNLI, translated into 15 
+languages
+●
+About 7,500 examples per 
+language
+●
+Meant to evaluate cross-lingual 
+transfer: Train on English MNLI, 
+evaluate on another target 
+language(s)
+●
+Sentences translated 
+one-by-one, so some 
+inconsistencies
+34
+Conneau et al. ‘18
+
+--- PAGE 35 ---
+P: 让我告诉你，美国人最终如何
+看待你作为独立顾问的表现。 
+H: 美国人完全不知道您是独立律
+师。
+Label: contradiction
+●
+A new development and test set 
+for MNLI, translated into 15 
+languages
+●
+About 7,500 examples per 
+language
+●
+Meant to evaluate cross-lingual 
+transfer: Train on English MNLI, 
+evaluate on another target 
+language(s)
+●
+Sentences translated 
+one-by-one, so some 
+inconsistencies
+35
+Conneau et al. ‘18
+Crosslingual NLI 
+(XNLI)
+
+--- PAGE 36 ---
+SciTail
+P: Cut plant stems and insert stem 
+into tubing while stem is submerged 
+in a pan of water.
+H: Stems transport water to 
+other parts of the plant through a 
+system of tubes.
+Label: neutral
+●
+Created by pairing statements 
+from science tests with 
+information from the web
+●
+First NLI set built entirely on 
+existing text
+●
+About 27,000 pairs
+36
+Khot et al. ‘18
+
+--- PAGE 37 ---
+In Depth: 
+SNLI and MNLI
+37
+
+--- PAGE 38 ---
+First: 
+Entity and Event 
+Coreference in NLI
+38
+
+--- PAGE 39 ---
+One event or two?
+39
+Premise: A boat sank in the Paciﬁc Ocean.
+Hypothesis: A boat sank in the Atlantic Ocean. 
+
+--- PAGE 40 ---
+One event or two? One.
+Premise: A boat sank in the Paciﬁc Ocean.
+Hypothesis: A boat sank in the Atlantic Ocean. 
+Label: contradiction
+40
+
+--- PAGE 41 ---
+Premise: Ruth Bader Ginsburg was appointed to the US 
+Supreme Court.
+Hypothesis: I had a sandwich for lunch today
+One event or two?
+41
+
+--- PAGE 42 ---
+Premise: Ruth Bader Ginsburg was appointed to the US 
+Supreme Court.
+Hypothesis: I had a sandwich for lunch today
+Label: neutral
+One event or two? Two.
+42
+
+--- PAGE 43 ---
+Premise: A boat sank in the Paciﬁc Ocean.
+Hypothesis: A boat sank in the Atlantic Ocean. 
+Label: neutral
+One event or two? Two.
+43
+But if we allow for this, then can we ever get a contradiction between two natural sentences?
+
+--- PAGE 44 ---
+One event or two? One, always.
+Premise: A boat sank in the Paciﬁc Ocean.
+Hypothesis: A boat sank in the Atlantic Ocean. 
+Label: contradiction
+44
+
+--- PAGE 45 ---
+Premise: Ruth Bader Ginsburg was appointed to the US 
+Supreme Court.
+Hypothesis: I had a sandwich for lunch today
+Label: contradiction
+One event or two? One, always.
+45
+How do we turn tricky constraint this into something annotators can learn quickly?
+
+--- PAGE 46 ---
+Premise: Ruth Bader Ginsburg being appointed to the 
+US Supreme Court.
+Hypothesis: A man eating a sandwich for lunch.
+Label: can’t be the same photo (so: contradiction)
+One photo or two? One, always.
+×
+46
+
+--- PAGE 47 ---
+Our Solution:
+The SNLI Data 
+Collection Prompt
+47
+
+--- PAGE 48 ---
+Source captions from Flickr30k: Young, et al. ‘14
+48
+
+--- PAGE 49 ---
+Entailment
+Source captions from Flickr30k: Young, et al. ‘14
+49
+
+--- PAGE 50 ---
+Entailment
+           Neutral
+Source captions from Flickr30k: Young, et al. ‘14
+50
+
+--- PAGE 51 ---
+Entailment
+           Neutral
+Contradiction
+Source captions from Flickr30k: Young, et al. ‘14
+51
+
+--- PAGE 52 ---
+What we got
+52
+
+--- PAGE 53 ---
+Some sample results
+Premise: Two women are embracing while holding to go packages.
+Hypothesis: Two woman are holding packages.
+Label: Entailment
+53
+
+--- PAGE 54 ---
+Some sample results
+Premise: A man in a blue shirt standing in front of a garage-like 
+structure painted with geometric designs.
+Hypothesis: A man is repainting a garage
+Label: Neutral
+54
+
+--- PAGE 55 ---
+MNLI
+55
+
+--- PAGE 56 ---
+MNLI
+●
+Same intended deﬁnitions for labels: Assume 
+coreference.
+●
+More genres—not just concrete visual scenes.
+●
+Needed more complex annotator guidelines and more 
+careful quality control, but reached same level of 
+annotator agreement.
+56
+
+--- PAGE 57 ---
+What we got
+57
+
+--- PAGE 58 ---
+Typical Dev Set Examples
+Premise: In contrast, suppliers that have continued to innovate 
+and expand their use of the four practices, as well as other 
+activities described in previous chapters, keep outperforming the 
+industry as a whole.
+Hypothesis: The suppliers that continued to innovate in their use 
+of the four practices consistently underperformed in the industry.
+Label: Contradiction
+Genre: Oxford University Press (Nonﬁction books)
+58
+
+--- PAGE 59 ---
+Typical Dev Set Examples
+Premise: someone else noticed it and i said well i guess that’s true 
+and it was somewhat melodious in other words it wasn’t just you 
+know it was really funny
+Hypothesis: No one noticed and it wasn’t funny at all.
+Label: Contradiction
+Genre: Switchboard (Telephone Speech)
+59
+
+--- PAGE 60 ---
+Key Figures
+60
+
+--- PAGE 61 ---
+The Train-Test Split
+61
+
+--- PAGE 62 ---
+Genre
+Train
+Dev
+Test
+Captions (SNLI Corpus)
+(550,152)
+(10,000)
+(10,000)
+Fiction
+77,348
+2,000
+2,000
+Government
+77,350
+2,000
+2,000
+Slate
+77,306
+2,000
+2,000
+Switchboard (Telephone Speech)
+83,348
+2,000
+2,000
+Travel Guides
+77,350
+2,000
+2,000
+The MNLI Corpus
+
+--- PAGE 63 ---
+Genre
+Train
+Dev
+Test
+Captions (SNLI Corpus)
+(550,152)
+(10,000)
+(10,000)
+Fiction
+77,348
+2,000
+2,000
+Government
+77,350
+2,000
+2,000
+Slate
+77,306
+2,000
+2,000
+Switchboard (Telephone Speech)
+83,348
+2,000
+2,000
+Travel Guides
+77,350
+2,000
+2,000
+9/11 Report
+0
+2,000
+2,000
+Face-to-Face Speech
+0
+2,000
+2,000
+Letters
+0
+2,000
+2,000
+OUP (Nonﬁction Books)
+0
+2,000
+2,000
+Verbatim (Magazine)
+0
+2,000
+2,000
+Total
+392,702
+20,000
+20,000
+The MNLI Corpus
+
+--- PAGE 64 ---
+Genre
+Train
+Dev
+Test
+Captions (SNLI Corpus)
+(550,152)
+(10,000)
+(10,000)
+Fiction
+77,348
+2,000
+2,000
+Government
+77,350
+2,000
+2,000
+Slate
+77,306
+2,000
+2,000
+Switchboard (Telephone Speech)
+83,348
+2,000
+2,000
+Travel Guides
+77,350
+2,000
+2,000
+9/11 Report
+0
+2,000
+2,000
+Face-to-Face Speech
+0
+2,000
+2,000
+Letters
+0
+2,000
+2,000
+OUP (Nonﬁction Books)
+0
+2,000
+2,000
+Verbatim (Magazine)
+0
+2,000
+2,000
+Total
+392,702
+20,000
+20,000
+The MNLI Corpus
+genre-matched
+evaluation
+genre-mismatched
+evaluation
+Good news: 
+Most models perform similarly on both sets!
+
+--- PAGE 65 ---
+Annotation Artifacts
+65
+
+--- PAGE 66 ---
+Annotation Artifacts
+66
+For SNLI:
+P: ???
+H: Someone is not crossing the road.
+Label: entailment, contradiction, neutral?
+Poliak et al. ‘18, Tsuchiya ‘18, Gururangan et al. ‘18
+
+--- PAGE 67 ---
+Annotation Artifacts
+67
+For SNLI:
+P: ???
+H: Someone is not crossing the road.
+Label: entailment, contradiction, neutral?
+Poliak et al. ‘18, Tsuchiya ‘18, Gururangan et al. ‘18
+
+--- PAGE 68 ---
+Annotation Artifacts
+68
+For SNLI:
+P: ???
+H: Someone is not crossing the road.
+Label: entailment, contradiction, neutral?
+P: ???
+H: Someone is outside.
+Label: entailment, contradiction, neutral?
+Poliak et al. ‘18, Tsuchiya ‘18, Gururangan et al. ‘18
+
+--- PAGE 69 ---
+Annotation Artifacts
+69
+For SNLI:
+P: ???
+H: Someone is not crossing the road.
+Label: entailment, contradiction, neutral?
+P: ???
+H: Someone is outside.
+Label: entailment, contradiction, neutral?
+Poliak et al. ‘18, Tsuchiya ‘18, Gururangan et al. ‘18
+
+--- PAGE 70 ---
+Models can do moderately well on NLI datasets without looking at the hypothesis!
+Single-genre SNLI especially vulnerable. SciTail not immune.
+Annotation Artifacts
+70
+Poliak et al. ‘18 (source of numbers), Tsuchiya ‘18, Gururangan et al. ‘18
+
+--- PAGE 71 ---
+Models can do moderately well on NLI datasets without looking at the hypothesis!
+...but hypothesis-only models are still far below ceiling. 
+These datasets are easier than they look, but not trivial.
+Annotation Artifacts
+71
+Poliak et al. ‘18 (source of numbers), Tsuchiya ‘18, Gururangan et al. ‘18
+
+--- PAGE 72 ---
+Natural Language Inference:
+Some Methods
+(This is not the deep learning part.)
+72
+Sam Bowman
+
+--- PAGE 73 ---
+Feature-Based 
+Models 
+Some earlier NLI work involved 
+learning with shallow features: 
+●
+Bag of words features on 
+hypothesis
+●
+Bag of word-pairs features to 
+capture alignment
+●
+Tree kernels
+●
+Overlap measures like BLEU
+These methods work surprisingly 
+well, but not competitive on current 
+benchmarks.
+73
+\MacCartney ‘09, Stern and Dagan ‘12, Bowman et al. 
+‘15
+
+--- PAGE 74 ---
+Natural Logic
+Much non-ML work on NLI involves 
+natural logic:
+●
+A formal logic for deriving 
+entailments between sentences.
+●
+Operates directly on parsed 
+sentences (natural language), no 
+explicit logical forms.
+●
+Generally sound but far from 
+complete—only supports 
+inferences between sentences 
+with clear structural parallels.
+●
+Most NLI datasets aren’t strict 
+logical entailment, and require 
+some unstated premises—this is 
+hard.
+74
+Lakoﬀ ‘70, Sánchez Valencia ‘91, MacCartney ‘09, 
+Icard III & Moss ‘14, Hu et al. ‘19
+
+--- PAGE 75 ---
+Theorem Proving 
+Another thread of work has 
+attempted to translate sentences 
+into logical forms (semantic parsing) 
+and use theorem proving methods to 
+ﬁnd valid inferences.
+●
+Open-domain semantic parsing 
+is still hard!
+●
+Unstated premises and common 
+sense can still be a problem.
+75
+Bos and Markert ‘05, Beltagy et al. ‘13, 
+Abzianidze ‘17
+
+--- PAGE 76 ---
+In Depth:
+Natural Logic
+76
+
+--- PAGE 77 ---
+Monotonicity
+...
+77
+Bill MacCartney, Stanford CS224U Slides
+
+--- PAGE 78 ---
+78
+Bill MacCartney, Stanford CS224U Slides
+
+--- PAGE 79 ---
+79
+Bill MacCartney, Stanford CS224U Slides
+
+--- PAGE 80 ---
+80
+Bill MacCartney, Stanford CS224U Slides
+
+--- PAGE 81 ---
+Poll: 
+Monotonicity
+Which of these contexts are upward monotone?
+Example:  Some dogs are cute 
+This is upward monotone, since you can replace 
+dogs with a more general term like animals, and the 
+sentence must still be true.
+1. Most cats meow.
+2. Some parrots talk.
+3. More than six students wear purple hats.
+81
+
+--- PAGE 82 ---
+MacCartney’s Natural Logic Label Set
+MacCartney and Manning ‘09
+82
+
+--- PAGE 83 ---
+Beyond Up and Down: Projectivity
+MacCartney and Manning ‘09
+83
+
+--- PAGE 84 ---
+Chains of Relations
+If we know A | B and B ^ C, what do we know?
+So A ⊏ C
+MacCartney and Manning ‘09
+84
+
+--- PAGE 85 ---
+Putting it all together
+MacCartney and Manning ‘09
+What’s the relation between 
+the things we substituted?
+Look this up.
+What’s the relation between 
+this sentence and the 
+previous sentence?
+Use projectivity/monotonicity.
+What’s the relation between 
+this sentence and the original 
+sentence?
+Use join.
+85
+
+--- PAGE 86 ---
+Natural Logic: Limitations
+●
+Efﬁcient, sound inference procedure, but…
+○
+...not complete.
+●
+De Morgan’s laws for quantiﬁers:
+○
+All dogs bark.
+○
+No dogs don’t bark.
+●
+(Plus common sense and unstated premises.)
+86
+
+--- PAGE 87 ---
+Natural Language Inference:
+Deep Learning Methods
+87
+Xiaodan Zhu
+
+--- PAGE 88 ---
+Deep-Learning 
+Models for NLI
+88
+Before we delve into DL models ...
+Right, there are many really  good 
+reasons we should be excited in 
+DL-based models.
+
+--- PAGE 89 ---
+Deep-Learning 
+Models for NLI
+89
+Before we delve into DL models ...
+Right, there are many really  good 
+reasons we should be excited in 
+DL-based models.
+But, there are also many  good 
+reasons we may want to  know nice 
+non-DL research performed before.
+
+--- PAGE 90 ---
+Deep-Learning 
+Models for NLI
+90
+Before we delve into DL models ...
+Right, there are many really  good 
+reasons we should be excited in 
+DL-based models.
+But, there are also many  good 
+reasons we may want to  know nice 
+non-DL research performed before.
+Also, it is alway intriguing to think 
+how the ﬁnal NLI models would look 
+like.
+
+--- PAGE 91 ---
+●We roughly organize our discussion on deep learning models 
+for NLI by two typical categories:
+○Category I: NLI models that explore both sentence 
+representation and  cross-sentence statistics (e.g., 
+attention) to detect NLI relations. (Full models)
+○Category II: NLI models that do not use cross-sentence 
+attention. (Sentence-vector-based models)
+■This category of modelling is of interest because NLI is a 
+good test bed for learning representation for sentences, 
+as discussed earlier in the tutorial.
+91
+Two Categories of Deep Learning 
+Models for NLI 
+
+--- PAGE 92 ---
+●“Full” deep-learning models for NLI
+○
+Baseline models and typical components
+○
+NLI models enhanced with syntactic structures
+○
+NLI models considering semantic roles
+○
+Incorporating external knowledge
+■
+Incorporating human-curated structured knowledge
+■
+Leveraging unstructured data with self-supervision 
+(aka. unsupervised pretraining)
+●Sentence-vector-based NLI models
+○A top-ranked model in RepEval-2017
+○Current top models based on dynamic self-attention
+●Several additional topics
+Outline
+92
+
+--- PAGE 93 ---
+●“Full” deep-learning models for NLI
+○
+Baseline models and typical components
+○
+NLI models enhanced with syntactic structures
+○
+NLI models considering semantic roles
+○
+Incorporating external knowledge
+■
+Incorporating human-curated structured knowledge
+■
+Leveraging unstructured data with self-supervision 
+(aka. unsupervised pretraining)
+●Sentence-vector-based NLI models
+○A top-ranked model in RepEval-2017
+○Current top models based on dynamic self-attention
+●Several additional topics
+Outline
+93
+
+--- PAGE 94 ---
+Layer 3: Inference Composition/Aggregation
+Layer 2: Local Inference Modelling
+Layer 1: Input Encoding
+ESIM uses BiLSTM, but different 
+architectures can be used here, e.g.,  
+transformer-based, ELMo, densely 
+connected  CNN,  tree-based models, etc. 
+Collect information to perform “local” 
+inference between words or phrases. 
+ (Some heuristics works well in this layer.)
+Perform composition/aggregation 
+over local inference output to make 
+the global judgement.
+Enhanced Sequential Inference Models (ESIM)
+94
+Chen et al. ‘17
+
+--- PAGE 95 ---
+Layer 3: Inference Composition/Aggregation
+Layer 2: Local Inference Modelling
+Layer 1: Input Encoding
+ESIM uses BiLSTM, but different 
+architectures can be used here, e.g.,  
+transformer-based, ELMo, densely 
+connected  CNN,  tree-based models, etc. 
+Collect information to perform “local” 
+inference between words or phrases. 
+ (Some heuristics works well in this layer.)
+Perform composition/aggregation 
+over local inference output to make 
+the global judgement.
+Enhanced Sequential Inference Models (ESIM)
+95
+Chen et al. ‘17
+
+--- PAGE 96 ---
+Encoding Premise and Hypothesis
+●For a premise sentence, a, and a hypothesis sentence b:
+We can use diﬀerent encoder (here BiLSTM):
+where     is the output layer of BiLSTM at timestep i of 
+the premise, encoding word ai and its context.      is for the 
+hypothesis.
+96
+
+--- PAGE 97 ---
+Enhanced Sequential Inference Models (ESIM)
+97
+Layer 3: Inference Composition/Aggregation
+Layer 2: Local Inference Modelling
+Layer 1: Input Encoding
+ESIM uses BiLSTM, but different 
+architectures can be used here, e.g.,  
+transformer-based, densely connected  
+CNN,  tree-based models, etc. 
+Collect information to perform “local” 
+inference between words or phrases. 
+ (Some heuristics works well in this layer.)
+Perform composition/aggregation 
+over local inference output to make 
+the global judgement.
+
+--- PAGE 98 ---
+There are animals outdoors
+Local Inference Modelling
+Two dogs are running through a ﬁeld
+Premise
+Hypothesis 
+98
+
+--- PAGE 99 ---
+There are animals outdoors
+Local Inference Modelling
+Two dogs are running through a ﬁeld
+Premise
+Hypothesis 
+Attention Weights
+99
+Attention content
+
+--- PAGE 100 ---
+There are animals outdoors
+Local Inference Modelling
+Two dogs are running through a ﬁeld
+Premise
+Hypothesis 
+Attention Weights
+100
+Attention content
+
+--- PAGE 101 ---
+●The (cross-sentence) attention content is computed along 
+both the premise->hypothesis and hypothesis->premise 
+direction. 
+Local Inference Modelling
+where,
+     (more complicated function                               
+seemed not further helpful.)
+101
+
+--- PAGE 102 ---
+Local Inference Modelling
+●
+With soft alignment ready, we can collect local inference 
+information.
+●
+Note that in various NLI models, the following heuristics have 
+shown to work very well.
+○
+Concatenating the two vectors,     and      , together with 
+their:
+■element-wise product,
+■element-wise diﬀerence.
+102
+
+--- PAGE 103 ---
+●Some questions: 
+○Instead of using chain RNN, how about other NN 
+architectures like tree-structured?
+○How if one has access to more knowledge than that 
+presents in training data?
+- E.g., lexical entailment information like Minneapolis 
+is part of Minnesota.
+We will come back to these questions later.
+Local Inference Modelling
+103
+
+--- PAGE 104 ---
+Enhanced Sequential Inference Models (ESIM)
+104
+Layer 3: Inference Composition/Aggregation
+Layer 2: Local Inference Modelling
+Layer 1: Input Encoding
+ESIM uses BiLSTM, but different 
+architectures can be used here, e.g.,  
+transformer-based, densely connected  
+CNN,  tree-based models, etc. 
+Collect information to perform “local” 
+inference between words or phrases. 
+ (Some heuristics works well in this layer.)
+Perform composition/aggregation 
+over local inference output to make 
+the global judgement.
+
+--- PAGE 105 ---
+●The next component is to perform composition/aggregation 
+over local inference knowledge collected above. 
+●BiLSTM can be used here to perform “composition” over 
+local inference:
+where,
+●Pool with a concatenation of average and max-pooling, and 
+then feed the output to a MLP classiﬁer.
+Inference Composition/Aggregation 
+105
+
+--- PAGE 106 ---
+Performance of ESIM on SNLI
+106
+
+--- PAGE 107 ---
+Models Enhanced  
+with Syntactic 
+Structures
+107
+
+--- PAGE 108 ---
+●Syntactic structures have been used in many non-neural 
+NLI/RTE systems (MacCartney, et al., 2013; Dagan et al. 
+2013).
+●How to incorporate linguistic structures into NN based NLI 
+systems? Some typical models:
+○Hierarchical Inference Models (HIM) (Chen et al., 2017)
+○Stack-augmented Parser-Interpreter Neural Network 
+(SPINN) (Bowman et al., 2016) and follow-up work.
+(sentence-vector-based models)
+○Tree-Based CNN (TBCNN) (Mou et al., 2016)
+Models Enhanced with Syntactic Structures
+108
+
+--- PAGE 109 ---
+Parse information  
+can be considered  
+in different phases 
+of NLI. 
+109
+Chen et al. ‘17
+
+--- PAGE 110 ---
+Tree LSTM
+110
+Tai et al. ‘15,Le et al. ‘15,Zhu et al. ‘15,
+
+--- PAGE 111 ---
+Parse information  
+can be ﬁrst used to 
+encode input 
+sentences.
+111
+Chen et al. ‘17
+
+--- PAGE 112 ---
+●Attention weights showed that the tree 
+models aligned “sitting down” with 
+“standing” and the classiﬁer relies on 
+that to make the right judgement
+●The sequential model, however, 
+aligned “sitting” with “reading” and 
+“standing” equally and confused  the 
+classiﬁer.
+112
+
+--- PAGE 113 ---
+where, ma,t   and mb,t  are 
+passed through a feed-forward 
+layer to reduce the parameter 
+number and alleviate overﬁtting.
+113
+Perform “composition” over 
+local inference information on 
+trees:
+
+--- PAGE 114 ---
+Performance
+
+--- PAGE 115 ---
+Eﬀects of Diﬀerent Components:
+Alation Analysis
+115
+Ablation Analysis  
+
+--- PAGE 116 ---
+●Evans et al (2018) constructed  a dataset and studied deep 
+learning models to detect entailment in formal logic, such as:
+●
+The aim is to help understand two questions:
+○
+“Can neural networks understand logical formulae well 
+  enough to detect entailment?
+○
+“Which architectures are the best?
+●
+When annotating the data, efforts were made to avoid 
+annotation artifacts.
+○
+E.g. formulas in positive and negative examples must have 
+the same distribution over length.
+Tree Models for Entailment in Formal Logic
+116
+Evans et al. ‘18
+
+--- PAGE 117 ---
+Tree Models for Entailment in Formal Logic
+●
+The results suggest that, if the structure of input is given, is 
+unambiguous, and is a central feature of the task, models that 
+explicitly exploit structures outperform models which must 
+implicitly model the structure of sequences.
+117
+
+--- PAGE 118 ---
+SPINN: Doing Away with Test-Time Tree
+●
+Shift-Reduce Parsers: 
+○
+Shift unattached leaves from a buffer onto a processing stack.
+○
+Reduce the top two child nodes on the stack to a single parent node.
+SPINN: Jointly train a TreeRNN and a vector-based shift-reduce parser.
+Training time trees offer supervision for shift-reduce parser.  
+No need for test time trees!
+118
+Bowman et al  ‘16
+
+--- PAGE 119 ---
+SPINN: Doing Away with Test-Time Tree
+●
+Word vectors start on buffer b (top: ﬁrst word in sentence). 
+●
+Shift moves word vectors from buffer to stack s. 
+●
+Reduce pops top two vectors off the stack, applies 
+f R :  R d × R d → R d, and pushes the result back to the stack 
+(i.e. TreeRNN composition). 
+●
+Tracker LSTM tracks parser/composer state across operations, decides 
+shift-reduce operations and is supervised by both observed shift-reduce 
+operations and end-task.
+119
+
+--- PAGE 120 ---
+SPINN + RL: Doing Away with Training-Time Tree
+●
+Identical to SPINN at test time, but uses the reinforce algorithm at 
+training time to compute gradients for the transition classiﬁcation 
+function.
+●
+Better than LSTM baselines: model captures and exploits structure.
+●
+Model is not biased by what linguists think trees should be like.
+120
+Yogatama et al.  ‘17
+
+--- PAGE 121 ---
+●
+Williams et al. (2018) conducted a comprehensive comparison on 
+existing models that use explicit linguistic tree and latent trees.
+○
+The models include those  proposed by Yogatama et al., (2016), 
+Choi et al. (2018), and variants of SPINN models.
+●
+Their main ﬁndings are:
+○
+The learned latent trees are helpful in the construction of 
+semantic representations for sentences.
+○
+The best available models for latent tree learning learn 
+grammars that do not correspond to the structures of formal 
+syntax and semantics.
+Do Latent Tree Learning Identify 
+Meaningful Structures?
+121
+Williams et al. ‘18
+
+--- PAGE 122 ---
+Q & A
+122
+
+--- PAGE 123 ---
+Intermission
+Slides: nlitutorial.github.io
+NLI Tutorial
+
+--- PAGE 124 ---
+Models  Enhanced  
+with Semantic Roles 
+124
+
+--- PAGE 125 ---
+●
+Recent research (Zhang et al., 2019) incorporated SRL into NLI 
+and found it improved various baselines.
+●
+The proposed model simply concatenates SRL embedding into 
+word embedding.
+Models Enhanced with Semantic Roles
+125
+Zhang et al. ‘19
+
+--- PAGE 126 ---
+●
+The proposed  method is reported to be very effective when 
+used with pretrained models, e.g.,  ELMo (Peters et al., ‘17), 
+GPT (Radford et al., 2018), and BERT (Devlin et al., 2018).
+○
+ELMo: pretrained model is used to initialize an existing NLI 
+model’s input-encoding layers. It does not change or 
+replace the NLI model itself.
+○
+GPT and BERT:  pretrained model architectures and 
+parameters are used to perform NLI: parameters will be 
+ﬁnetuned in NLI and task-speciﬁc networks are no longer 
+used.
+126
+Peters et al. ‘17, Radford et al. ‘18, Devlin et al. ‘18
+Models Enhanced with Semantic Roles
+
+--- PAGE 127 ---
+Models Enhanced with Semantic Roles
+127
+Accuracy  on SNLI
+Zhang et al. ‘19
+
+--- PAGE 128 ---
+Modeling External 
+Knowledge
+128
+There are two typical ways to add 
+into NLI “external” knowledge that 
+does not present in NLI training 
+data:  
+●
+leveraging structured (often 
+human-curated) knowledge,
+●
+using pretrained 
+(self-supervised) models. 
+
+--- PAGE 129 ---
+Leveraging Structured 
+Knowledge
+Modeling External 
+Knowledge
+129
+
+--- PAGE 130 ---
+NLI Models Enhanced with External Knowledge 
+130
+    Chen et al. ‘18
+
+--- PAGE 131 ---
+NLI Models Enhanced with External Knowledge 
+●Knowledge-enhanced co-attention:
+●Local inference with external knowledge:
+●Enhancing inference composition/aggregation:
+131
+
+--- PAGE 132 ---
+Results on SNLI
+132
+
+--- PAGE 133 ---
+Analysis
+133
+
+--- PAGE 134 ---
+●
+For a premise in SNLI, Glockner et al. (2018) generated a 
+hypothesis by replacing a single word in premise, in order to test 
+if NLI systems learn simple lexical and word knowledge.
+A South Korean woman gives a manicure. 
+A North North Korean woman gives a manicure.
+●
+KIM performs much better than other models on this dataset.
+Results on the Glockner Dataset
+134
+    Glockner et al. ‘18
+
+--- PAGE 135 ---
+Self-supervised Learning from 
+Unannotated Text
+Modeling External 
+Knowledge
+135
+
+--- PAGE 136 ---
+●
+The pretrained models can leverage 
+larger unannotated data, which have 
+brought forward the SOTA of NLI, 
+like in many other tasks.
+●
+Bringing other types of external 
+knowledge may further help:
+○
+We have discussed that Zhang et 
+al. (2019) showed SRL further 
+improve both BERTBASE and 
+BERTLARGE. 
+○
+We can see more analyses 
+between BERT and KIM.
+Pretrained Models Leverage Unstructured Data
+136
+
+--- PAGE 137 ---
+External Knowledge: BERT vs. KIM
+137
+    Li et al. ‘19
+
+--- PAGE 138 ---
+●
+Oracle accuracy of pairs of systems  (if one of the  two systems 
+under concern  makes the correct prediction  on a test case, we 
+count it as correct), on a subset of the  stress test proposed by 
+Naik et al. (2018).
+●
+The pair, BERT and KIM, complement each other more than 
+other system pairs, e.g., BERT and GPT.
+More Analysis on Pairs of Systems
+138
+    Li et al. ‘19, Naik et al. ‘18
+
+--- PAGE 139 ---
+●“Full” deep-learning models for NLI
+○
+Baseline models and typical components
+○
+NLI models enhanced with syntactic structures
+○
+NLI models considering semantic roles and discourse 
+information
+○
+Incorporating external knowledge
+■
+Incorporating human-curated structured knowledge
+■
+Leveraging unstructured data with self-supervision 
+(aka. unsupervised pretraining)
+●Sentence-vector-based NLI models
+○A top-ranked model in RepEval-2017
+○Current top models based on dynamic self-attention
+●Several additional topics
+Outline
+139
+
+--- PAGE 140 ---
+●As discussed above, NLI is an important test bed for 
+representation learning for sentences
+“Indeed, a capacity for reliable, robust, open-domain natural 
+language inference is arguably a necessary condition for full natural 
+language understanding (NLU).” (MacCartney, ‘09)
+●Sentence-vector-based models encode sentences and test the 
+modeling quality on NLI 
+○No cross-sentence attention is allowed, since the goal is to 
+test individual sentence representation.
+Sentence-vector-based Models
+140
+
+--- PAGE 141 ---
+●
+The RepEval-2017 shared task (Nangia et al. 2017) adopted the MNLI 
+dataset to evaluate sentence representation.
+●
+We will discuss one of the top-ranked models (Chen et al. ‘17). Other 
+top models can be found in  (Nie and Bansal, ‘17; Balazs et al., ‘17).
+RepEval-2017 Shared Task
+141
+    Nangia et al. ‘17, Nie and Bansal. ‘17, Conneau et al., ‘17, Balazs et al., ‘17, Chen et al. ‘17
+
+--- PAGE 142 ---
+142
+RNN-Based Inference Model with Gated Attention
+    Chen et al. ‘17
+
+--- PAGE 143 ---
+143
+•
+In addition to averaged and 
+max-pooling, weighted 
+average over output is 
+used:
+Gated Attention on Output
+The weights are taken from 
+the input, forget, and output 
+gates of the top-layer 
+BiLSTM. 
+
+--- PAGE 144 ---
+144
+Results
+Accuracy of models on the MNLI test sets. 
+Sentence-vector-based models seem to be sensitive to operations performed  at 
+the top layer of the networks, e.g., pooling or element-wise diff/product. See 
+(Chen et al, ‘18) for more work on generalized pooling.
+
+--- PAGE 145 ---
+145
+CNN with Dynamic Self-Attention
+Input Sentence
+Sentence Embedding
+●
+So far, this model achieves the best performance on SNLI among 
+sentence-vector-based models.
+●
+Key idea: stack a dynamic self-attention over CNN (with dense connection)
+●
+The proposed dynamic self-attention borrows the ideas from the Capsule 
+Network (Sabour et al. 2017; Hinton et al., 2018).
+   Yoon et al. ‘18, Sabour et al. ‘17, Hinton et al . ‘18 
+
+--- PAGE 146 ---
+146
+●
+One important motivation for the Capsule Network is to better model 
+part-whole relationship in images. 
+○
+To recognize the left ﬁgure is a face but not the right one, the parts 
+(here, nose, eyes and mouth) need to agree on how a face should look 
+like (e.g., its position and orientation).
+○
+Each part and the whole (here, a face) is represented as a vector.
+○
+Agreement is computed through dynamic routing.
+Capsule Networks
+Sabour et al. ‘17,Hinton et al . ‘18 
+
+--- PAGE 147 ---
+147
+●
+Key differences: 
+○
+Input of a capsule cell is a number of  vectors (u1 is a vector)  but not a 
+scalar (x1 is a scalar).
+○
+Voting parameters c1, c2, c3 are not part of model parameters but 
+learned through dynamic routing and are not kept after training.
+Capsule Networks
+Sabour et al. ‘17,Hinton et al . ‘18 
+
+--- PAGE 148 ---
+148
+●
+Key ideas: 
+○
+A capsule at a lower layer needs to decide how to send its message to 
+higher level capsules.
+○
+The essence of the above algorithm is to ensure a lower level capsule 
+will send more message  to the higher level capsule that “agrees” with it 
+(indicated by a high similarity between them). 
+Dynamic Routing
+Sabour et al. ‘17,Hinton et al . ‘18 
+
+--- PAGE 149 ---
+149
+CNN with Dynamic Self-Attention for NLI
+●
+The proposed model borrows the idea of weight adaptation method in 
+dynamic routing to adapt attention weight (aij).
+●
+In addition, instead of performing multihead attention, the work performs 
+multiple dynamic self-attention (DSA).
+    Yoon et al. ‘18
+
+--- PAGE 150 ---
+150
+CNN with Dynamic Self-Attention for NLI
+Current leaderboard of sentence-vector-based 
+models on SNLI (as of June 1st, 2019). 
+Publications                                       Model Description                                                            Accuracy
+
+--- PAGE 151 ---
+Revisiting Artifacts 
+of Data
+151
+
+--- PAGE 152 ---
+Breaking NLI Systems with Sentences that 
+Require Simple Lexical Inferences
+●As discussed above, Glockner et al. (2018) create a new test set that 
+shows the deﬁciency of NLI systems in modelling  lexical and world 
+knowledge. 
+●The set is developed upon the SNLI’s test set: for a premise 
+sentence, a hypothesis is constructed by replacing one word in 
+premise.
+152
+     Glockner et al. ‘18
+
+--- PAGE 153 ---
+Breaking NLI Systems with Sentences that 
+Require Simple Lexical Inferences
+● The performance on the new test set is substantially worse across 
+systems, suggesting some drawback of the existing NLI datasets.
+153
+Accuracy of models on SNLI and the Glockner dataset. 
+
+--- PAGE 154 ---
+●
+Naik et al. (2018) propose an evaluation methodology consisting 
+of automatically constructed test examples.
+●
+The “stress tests” constructed are organized into three classes: 
+○
+Competence test: numerical reasoning and antonymy 
+understanding.
+○
+Distraction test: robustness on lexical similarity, negation, 
+word overlap.
+○
+Noise test: robustness on “spelling error”.
+“Stress Tests” for NLI
+154
+     Naik et al. ‘18
+
+--- PAGE 155 ---
+“Stress Tests” for NLI
+155
+     Nie and Bansal. ‘17, Conneau et al., ‘17, Balazs et al., ‘17, Chen et al. ‘17 
+Classiﬁcation accuracy (%) of state-of-the-art models on the stress tests. Three of the 
+models, NB (Nie and Bansal,  ‘17), CH (Chen et al., ‘17), and RC (Balazs et al., ‘17) are 
+models submitted to RepEvel-2017. IS (Conneau et al., 2017) a model proposed to learn 
+general sentence embedding trained on NLI.
+
+--- PAGE 156 ---
+●
+Wang et al. (2018) proposed the following idea: swapping the 
+premise and hypothesis in the test set to create the diagnostic 
+test.
+●
+For entailment, a better model is supposed to report a larger 
+difference of performance on the original test set and swapped 
+test set.
+●
+It should report comparable accuracy between the original test 
+set and swapped test set for contradiction and neural.
+Swapping Premise and Hypothesis 
+156
+  Wang et al. ‘18
+
+--- PAGE 157 ---
+Performance (accuracy)  of different models  on the original and swapped SNLI test set. 
+Bigger differences  (Diff-Test) for entailment (label E) suggests better models for 
+entailment. Models that consider external semantic knowledge, e.g., KIM, seem to 
+perform better in this swapping test.
+Swapping Premise and Hypothesis 
+157
+More work on analyzing the properties of NLI data: Poliak et. al, ‘18, Talman and 
+Chatzikyriakidis.
+
+--- PAGE 158 ---
+Bringing 
+Explanation to NLI
+158
+
+--- PAGE 159 ---
+e-SNLI: Bringing Explanation to NLI
+●Extend the SNLI dataset with an additional layer of human-annotated 
+natural language explanation of the entailment relations.
+●More research problems can be further explored:
+○
+Not just predict a label but also  generate explanation
+○
+Obtain full sentence justiﬁcations of a model’s decision
+○
+Help transfer to out-of-domain NLI task
+159
+   Camburu et al. ‘18
+
+--- PAGE 160 ---
+e-SNLI: Bringing Explanation to NLI
+●
+PREMISEAGNOSTIC: Generate 
+an explanation given only the 
+hypothesis
+●
+PREDICTANDEXPLAIN: Jointly 
+predict a label and generate an 
+explanation for the predicted label 
+●
+EXPLAINTHENPREDICT: 
+Generate an explanation then 
+predict a label
+●
+REPRESENT: Universal sentence 
+representations
+●
+TRANSFER: Transfer without 
+ﬁne-tuning to out-of-domain NLI
+160
+
+--- PAGE 161 ---
+Natural Language Inference:
+Applications
+161
+Sam Bowman
+
+--- PAGE 162 ---
+Three major application types for 
+NLI:
+●
+Direct application of trained 
+NLI models.
+●
+NLI as a research and 
+evaluation task for new 
+methods.
+●
+NLI as a pretraining task in 
+transfer learning.
+162
+Applications
+
+--- PAGE 163 ---
+2018 Fact Extraction and 
+Veriﬁcation shared task (FEVER):
+Inspired by issues surrounding fake 
+news and automatic fact checking:
+“The task challenged participants to classify 
+whether human-written factoid claims could 
+be SUPPORTED or REFUTED using evidence 
+retrieved from Wikipedia”
+163
+Thorne et al. ‘18, Nie et al. ‘18
+Direct 
+Applications
+
+--- PAGE 164 ---
+2018 Fact Extraction and 
+Veriﬁcation shared task (FEVER):
+Inspired by issues surrounding fake 
+news and automatic fact checking.
+SNLI/MNLI models used in many 
+systems, including winner, to 
+decide whether a piece of evidence 
+supports a claim.
+164
+Direct 
+Applications
+Thorne et al. ‘18, Nie et al. ‘18
+
+--- PAGE 165 ---
+Multi-hop reading comprehension 
+tasks like MultiRC or OpenBook 
+require models to answer a 
+question by combining multiple 
+pieces of evidence from some long 
+text.
+Integrating an SNLI/MNLI-trained 
+ESIM model into a larger model in 
+two places helps to select and 
+combine relevant evidence for a 
+question.
+165
+Direct 
+Applications
+Trivedi et al. ‘19 (NAACL)
+
+--- PAGE 166 ---
+Direct 
+Applications
+When generating video captions, 
+using an SNLI/MNLI-trained 
+entailment model as part of the 
+objective function can lead to more 
+effective training.
+166
+Pasunuru and Bansal ‘17
+
+--- PAGE 167 ---
+Direct 
+Applications
+When generating long-form text, 
+using an SNLI/MNLI-trained 
+entailment model as a cooperative 
+discriminator can prevent a language 
+model from contradicting itself.
+167
+Holtzman et al. ‘18
+
+--- PAGE 168 ---
+Evaluation
+Several entailment corpora have 
+become established benchmark 
+datasets for studying new ML 
+methods in NLP. 
+Used as a major evaluation when 
+developing self-attention networks, 
+language model pretraining, and 
+much more.
+168
+Rocktäschel et al. 16, Parikh et al. ‘17, 
+Peters et al. ‘18, Devlin et al. ‘19 (NAACL)
+
+--- PAGE 169 ---
+Evaluation
+Several entailment corpora have 
+become established benchmark 
+datasets for studying new ML 
+methods in NLP. 
+Used as a major evaluation when 
+developing self-attention networks, 
+language model pretraining, and 
+much more.
+Also included in the SentEval, GLUE, 
+DecaNLP, and SuperGLUE 
+benchmarks and associated 
+software toolkits.
+169
+Rocktäschel et al. 16, Parikh et al. ‘17, 
+Peters et al. ‘18, Devlin et al. ‘19 (NAACL)
+
+--- PAGE 170 ---
+Evaluation (a Caveat)
+State of the art models are very close to human performance 
+on major evaluation sets:
+170
+
+--- PAGE 171 ---
+Transfer Learning
+Training neural network models on 
+large NLI datasets (especially MNLI) 
+and then ﬁne-tuning them on target 
+tasks often yields substantial 
+improvements in target task 
+performance.
+171
+Conneau et al. ‘17, Subramanian et al. ‘18, 
+Phang et al. ‘18, Liu et al. ‘19
+
+--- PAGE 172 ---
+Transfer Learning
+Training neural network models on 
+large NLI datasets (especially MNLI) 
+and then ﬁne-tuning them on target 
+tasks often yields substantial 
+improvements in target task 
+performance.
+This works well even in conjunction 
+with strong baselines for pretraining 
+like SkipThought, ELMo, or BERT.
+Responsible for the current state of 
+the art on the GLUE benchmark.
+172
+Conneau et al. ‘17, Subramanian et al. ‘18, 
+Phang et al. ‘18, Liu et al. ‘19
+
+--- PAGE 173 ---
+Summary and Conclusions
+173
+Xiaodan Zhu
+
+--- PAGE 174 ---
+Summary
+174
+●
+The tutorial covers the recent advance 
+on NLI (aka. RTE) research, which is 
+powered by: 
+○
+Large annotated datasets
+○
+Deep learning models over 
+distributed representation
+●
+We view and discuss NLI as an 
+important test bed for representation 
+learning for natural language.
+●
+We discuss the existing and potential 
+applications of NLI.
+
+--- PAGE 175 ---
+●
+Better supervised models (of course)
+●
+Harder naturalistic benchmark 
+datasets
+●
+Explainability
+●
+Better Unsupervised DL approaches
+●
+Application of NLI on more NLP tasks
+●
+Multimodal NLI
+●
+NLI in domains: adaptation
+●
+...
+Future Work
+175
+
+--- PAGE 176 ---
+Thanks!
+Questions?
+Slides and contact information:
+nlitutorial.github.io
+176
+
+--- PAGE 177 ---
+Extra Slides
+177
+Xiaodan Zhu
+
+--- PAGE 178 ---
+XNLI: Evaluating Cross-lingual Sentence 
+Representations
+●As NLI is a good test bed for NLU, cross-lingual NLI can be a good 
+test bed for cross-lingual NLU.
+●XNL: cross-lingual NLI dataset for 15 languages, each having 7,500 
+NLI sentence pairs and in total 112,500 pairs.
+○
+Following the the construction processing used to construct the 
+MNLI corpora. 
+●Can be used to evaluate both cross-lingual NLI  model and 
+multilingual text embedding model.
+178
+    Conneau et al. ‘18
+
+--- PAGE 179 ---
+XNLI: Evaluating Cross-lingual Sentence 
+Representations
+Test accuracy of baseline models.  
+See more recent advance in (Lample and Conneau, 2019)
+179
+ Conneau et al. ‘18, Lample and Conneau et al. ‘19
+
+--- PAGE 180 ---
+●
+The Discourse Marker Augmented Network (DMAN, Pan et al., 2018) 
+uses discourse marker information to guide NLI decision.
+○
+Inductive bias is built in for discourse-related words like but, although, 
+so, because, etc.
+○
+The Discourse Marker Prediction (Nie et al., 2017) is incorporated 
+into DMAN through a reinforcement learning component.
+Models Enhanced with Discourse Markers
+180
+    Pan et al. ‘18
+
+--- PAGE 181 ---
+181
+Encoding Syntax
+●As discussed before, in (Chen et al ‘17), tree-LSTM is used to 
+leverage constituency parse for both sentence encoding and 
+inference composition.
+●Here for time efﬁciency, a sequentialized parse tree is used 
+(through pre-order traversal of the tree).
+

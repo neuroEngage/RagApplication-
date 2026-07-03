@@ -1,0 +1,164 @@
+--- PAGE 1 ---
+CME 102 – Ordinary Differential Equations for Engineers
+https://stanford.edu/~shervine
+VIP Cheatsheet: Applications
+Shervine Amidi
+June 2, 2018
+Physics Laws
+Ì Gravitational force – A mass m is subject to the gravitational force⃗Fg, which is expressed
+with respect to⃗g of magnitude 9.81 m · s−2 and directed towards the center of the Earth, as
+follows:⃗
+Fg = m⃗g
+Ì Spring force – A spring of constant k and of relaxed position⃗x0 attached a mass m of
+position⃗x has a force⃗Fs expressed as follows:⃗
+Fs = −k(⃗x −⃗x0)
+Ì Friction force – The friction force Ff of constant coeﬃcient β applied on a mass of velocity⃗
+v is written as:⃗
+Ff = −β⃗v
+Ì Mass moment of inertia – The mass moment of inertia of a system of mass mi located at
+distance ri from point O, expressed in point O is written as:
+J0 =
+X
+i
+mir2
+i
+Ì Torque – The torque⃗T of a force⃗F located at⃗r from the reference point O is written as:⃗
+T =⃗r ×⃗F
+Ì Newton’s second law – A mass m of acceleration⃗a to which forces⃗Fi are applied veriﬁes
+the following equation:
+m⃗a =
+X
+i⃗
+Fi
+– In the 1-D case along the x axis, we can write it as mx′′ = P
+i Fi.
+– In the rotationary case, around point O, we can write it as J0θ′′ = P
+i Ti.
+Spring-mass system
+Ì Free undamped motion – A free undamped spring-mass system of mass m and spring
+coeﬃcient k follows the ODE x′′ + k
+mx = 0, which can be written as a function of the natural
+frequency ω as:
+x′′ + ω2x = 0
+with
+ω =
+r
+k
+m
+Ì Free damped motion – A free damped spring-mass system of mass m, of spring coeﬃcient
+k and subject to a friction force of coeﬃcient β follows the ODE x′′ + β
+mx′ + k
+mx = 0, which can
+be written as a function of the damping parameter λ and the natural frequency ω as:
+x′′ + 2λx′ + ω2x = 0
+with
+λ =
+β
+2m
+and
+ω =
+r
+k
+m
+which has the following cases summed up in the table below:
+Condition
+Type of motion
+λ > ω
+Over damped
+λ = ω
+Critically damped
+λ < ω
+Under damped
+Ì Forcing frequency – A forcing function F(t) is often modeled with a periodic function of
+the form F(t) = F0 sin(γt), where γ is called the forcing frequency.
+Ì Forced undamped motion – A forced undamped spring-mass system of mass m and spring
+coeﬃcient k follows the ODE x′′ + k
+mx = F0 sin(γt), which can be written as a function of the
+natural frequency ω as:
+x′′ + ω2x = F0 sin(γt)
+with
+ω =
+r
+k
+m
+which has the following cases summed up in the table below:
+Condition
+Type of motion
+γ̸ = ω
+General response
+γ ≈ω
+Beats
+γ = ω
+Resonance
+Ì Forced damped motion – A forced damped spring-mass system of mass m, of spring
+coeﬃcient k and subject to a friction force of coeﬃcient β follows the ODE x′′ + β
+mx′ + k
+mx =
+F0 sin(γt), which can be written as a function of the damping parameter λ and the natural
+frequency ω as:
+x′′ + 2λx′ + ω2x = F0 sin(γt)
+with
+λ =
+β
+2m
+and
+ω =
+r
+k
+m
+Stanford University
+1
+Spring 2018
+
+--- PAGE 2 ---
+CME 102 – Ordinary Differential Equations for Engineers
+https://stanford.edu/~shervine
+Boundary Value Problems
+Ì Types of boundary conditions – Given a numerical problem between 0 and L, we distin-
+guish the following types of boundary conditions:
+Name
+Boundary values
+Dirichlet
+y(0) and y(L)
+Neumann
+y(0) and y′(L)
+Robin
+y(0) and αy(L) + βy′(L)
+Ì Numerical diﬀerentiation – The table below sums up the approximation of the derivatives
+of y at point xj, knowing the values of y at each point of a uniformly spaced set of grid points.
+Order of derivative
+Name
+Formula
+Order of error
+Forward diﬀerence
+y′
+j = yj+1 −yj
+h
+O(h)
+First derivative
+Backward diﬀerence
+y′
+j = yj −yj−1
+h
+O(h)
+Central diﬀerence
+y′
+j = yj+1 −yj−1
+2h
+O(h2)
+Second derivative
+Central diﬀerence
+y′′
+j = yj+1 −2yj + yj−1
+h2
+O(h2)
+Ì Direct method – The direct method can solve linear ODEs by reducing the problem to the
+resolution of a linear system Ay = f, where A is a tridiagonal matrix.
+Ì Shooting method – The shooting method is an algorithm that can solve ODEs through an
+iterative process. It uses a numerical scheme, such as Runge-Kutta, and converges to the right
+solution by iteratively searching for the missing initial condition y′(0).
+Remark: in the linear case, the shooting method converges after the ﬁrst two initial guesses.
+Stanford University
+2
+Spring 2018
+

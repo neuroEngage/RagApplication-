@@ -1,0 +1,2516 @@
+--- PAGE 1 ---
+Mathematics for Machine Learning
+Garrett Thomas
+Department of Electrical Engineering and Computer Sciences
+University of California, Berkeley
+January 11, 2018
+1
+About
+Machine learning uses tools from a variety of mathematical ﬁelds. This document is an attempt to
+provide a summary of the mathematical background needed for an introductory class in machine
+learning, which at UC Berkeley is known as CS 189/289A.
+Our assumption is that the reader is already familiar with the basic concepts of multivariable calculus
+and linear algebra (at the level of UCB Math 53/54). We emphasize that this document is not a
+replacement for the prerequisite classes. Most subjects presented here are covered rather minimally;
+we intend to give an overview and point the interested reader to more comprehensive treatments for
+further details.
+Note that this document concerns math background for machine learning, not machine learning
+itself. We will not discuss speciﬁc machine learning models or algorithms except possibly in passing
+to highlight the relevance of a mathematical concept.
+Earlier versions of this document did not include proofs. We have begun adding in proofs where
+they are reasonably short and aid in understanding. These proofs are not necessary background for
+CS 189 but can be used to deepen the reader’s understanding.
+You are free to distribute this document as you wish. The latest version can be found at http://
+gwthomas.github.io/docs/math4ml.pdf. Please report any mistakes to gwthomas@berkeley.edu.
+1
+
+--- PAGE 2 ---
+Contents
+1
+About
+1
+2
+Notation
+5
+3
+Linear Algebra
+6
+3.1
+Vector spaces . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+6
+3.1.1
+Euclidean space . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+6
+3.1.2
+Subspaces . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+7
+3.2
+Linear maps . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+7
+3.2.1
+The matrix of a linear map . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+8
+3.2.2
+Nullspace, range
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+9
+3.3
+Metric spaces . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+9
+3.4
+Normed spaces . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+9
+3.5
+Inner product spaces . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+10
+3.5.1
+Pythagorean Theorem . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+11
+3.5.2
+Cauchy-Schwarz inequality
+. . . . . . . . . . . . . . . . . . . . . . . . . . . .
+11
+3.5.3
+Orthogonal complements and projections
+. . . . . . . . . . . . . . . . . . . .
+12
+3.6
+Eigenthings . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+15
+3.7
+Trace . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+15
+3.8
+Determinant . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+16
+3.9
+Orthogonal matrices . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+16
+3.10 Symmetric matrices
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+17
+3.10.1 Rayleigh quotients . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+17
+3.11 Positive (semi-)deﬁnite matrices . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+18
+3.11.1 The geometry of positive deﬁnite quadratic forms . . . . . . . . . . . . . . . .
+19
+3.12 Singular value decomposition . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+20
+3.13 Fundamental Theorem of Linear Algebra . . . . . . . . . . . . . . . . . . . . . . . . .
+21
+3.14 Operator and matrix norms . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+22
+3.15 Low-rank approximation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+24
+3.16 Pseudoinverses
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+25
+3.17 Some useful matrix identities . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+26
+3.17.1 Matrix-vector product as linear combination of matrix columns . . . . . . . .
+26
+3.17.2 Sum of outer products as matrix-matrix product . . . . . . . . . . . . . . . .
+26
+3.17.3 Quadratic forms
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+26
+4
+Calculus and Optimization
+27
+2
+
+--- PAGE 3 ---
+4.1
+Extrema . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+27
+4.2
+Gradients . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+27
+4.3
+The Jacobian . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+27
+4.4
+The Hessian . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+28
+4.5
+Matrix calculus . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+28
+4.5.1
+The chain rule
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+28
+4.6
+Taylor’s theorem . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+29
+4.7
+Conditions for local minima . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+29
+4.8
+Convexity . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+31
+4.8.1
+Convex sets . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+31
+4.8.2
+Basics of convex functions . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+31
+4.8.3
+Consequences of convexity . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+32
+4.8.4
+Showing that a function is convex
+. . . . . . . . . . . . . . . . . . . . . . . .
+33
+4.8.5
+Examples . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+36
+5
+Probability
+37
+5.1
+Basics . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+37
+5.1.1
+Conditional probability
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+38
+5.1.2
+Chain rule . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+38
+5.1.3
+Bayes’ rule
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+38
+5.2
+Random variables . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+39
+5.2.1
+The cumulative distribution function . . . . . . . . . . . . . . . . . . . . . . .
+39
+5.2.2
+Discrete random variables . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+40
+5.2.3
+Continuous random variables . . . . . . . . . . . . . . . . . . . . . . . . . . .
+40
+5.2.4
+Other kinds of random variables
+. . . . . . . . . . . . . . . . . . . . . . . . .
+40
+5.3
+Joint distributions
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+41
+5.3.1
+Independence of random variables
+. . . . . . . . . . . . . . . . . . . . . . . .
+41
+5.3.2
+Marginal distributions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+41
+5.4
+Great Expectations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+41
+5.4.1
+Properties of expected value . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+42
+5.5
+Variance . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+42
+5.5.1
+Properties of variance
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+42
+5.5.2
+Standard deviation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+42
+5.6
+Covariance
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+43
+5.6.1
+Correlation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+43
+5.7
+Random vectors . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+43
+3
+
+--- PAGE 4 ---
+5.8
+Estimation of Parameters . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+44
+5.8.1
+Maximum likelihood estimation . . . . . . . . . . . . . . . . . . . . . . . . . .
+44
+5.8.2
+Maximum a posteriori estimation . . . . . . . . . . . . . . . . . . . . . . . . .
+45
+5.9
+The Gaussian distribution . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+45
+5.9.1
+The geometry of multivariate Gaussians . . . . . . . . . . . . . . . . . . . . .
+45
+References
+47
+4
+
+--- PAGE 5 ---
+2
+Notation
+Notation
+Meaning
+R
+set of real numbers
+Rn
+set (vector space) of n-tuples of real numbers, endowed with the usual inner product
+Rm×n
+set (vector space) of m-by-n matrices
+δij
+Kronecker delta, i.e. δij = 1 if i = j, 0 otherwise
+∇f(x)
+gradient of the function f at x
+∇2f(x)
+Hessian of the function f at x
+A⊤
+transpose of the matrix A
+Ω
+sample space
+P(A)
+probability of event A
+p(X)
+distribution of random variable X
+p(x)
+probability density/mass function evaluated at x
+Ac
+complement of event A
+A ˙∪B
+union of A and B, with the extra requirement that A ∩B = ∅
+E[X]
+expected value of random variable X
+Var(X)
+variance of random variable X
+Cov(X, Y )
+covariance of random variables X and Y
+Other notes:
+• Vectors and matrices are in bold (e.g. x, A). This is true for vectors in Rn as well as for
+vectors in general vector spaces. We generally use Greek letters for scalars and capital Roman
+letters for matrices and random variables.
+• To stay focused at an appropriate level of abstraction, we restrict ourselves to real values. In
+many places in this document, it is entirely possible to generalize to the complex case, but we
+will simply state the version that applies to the reals.
+• We assume that vectors are column vectors, i.e. that a vector in Rn can be interpreted as an
+n-by-1 matrix. As such, taking the transpose of a vector is well-deﬁned (and produces a row
+vector, which is a 1-by-n matrix).
+5
+
+--- PAGE 6 ---
+3
+Linear Algebra
+In this section we present important classes of spaces in which our data will live and our operations
+will take place: vector spaces, metric spaces, normed spaces, and inner product spaces. Generally
+speaking, these are deﬁned in such a way as to capture one or more important properties of Euclidean
+space but in a more general way.
+3.1
+Vector spaces
+Vector spaces are the basic setting in which linear algebra happens. A vector space V is a set (the
+elements of which are called vectors) on which two operations are deﬁned: vectors can be added
+together, and vectors can be multiplied by real numbers1 called scalars. V must satisfy
+(i) There exists an additive identity (written 0) in V such that x + 0 = x for all x ∈V
+(ii) For each x ∈V , there exists an additive inverse (written −x) such that x + (−x) = 0
+(iii) There exists a multiplicative identity (written 1) in R such that 1x = x for all x ∈V
+(iv) Commutativity: x + y = y + x for all x, y ∈V
+(v) Associativity: (x + y) + z = x + (y + z) and α(βx) = (αβ)x for all x, y, z ∈V and α, β ∈R
+(vi) Distributivity: α(x + y) = αx + αy and (α + β)x = αx + βx for all x, y ∈V and α, β ∈R
+A set of vectors v1, . . . , vn ∈V is said to be linearly independent if
+α1v1 + · · · + αnvn = 0
+implies
+α1 = · · · = αn = 0.
+The span of v1, . . . , vn ∈V is the set of all vectors that can be expressed of a linear combination
+of them:
+span{v1, . . . , vn} = {v ∈V : ∃α1, . . . , αn such that α1v1 + · · · + αnvn = v}
+If a set of vectors is linearly independent and its span is the whole of V , those vectors are said to
+be a basis for V . In fact, every linearly independent set of vectors forms a basis for its span.
+If a vector space is spanned by a ﬁnite number of vectors, it is said to be ﬁnite-dimensional.
+Otherwise it is inﬁnite-dimensional. The number of vectors in a basis for a ﬁnite-dimensional
+vector space V is called the dimension of V and denoted dim V .
+3.1.1
+Euclidean space
+The quintessential vector space is Euclidean space, which we denote Rn. The vectors in this space
+consist of n-tuples of real numbers:
+x = (x1, x2, . . . , xn)
+For our purposes, it will be useful to think of them as n × 1 matrices, or column vectors:
+x =
+
+
+x1
+x2
+...
+xn
+
+
+1 More generally, vector spaces can be deﬁned over any ﬁeld F. We take F = R in this document to avoid an
+unnecessary diversion into abstract algebra.
+6
+
+--- PAGE 7 ---
+Addition and scalar multiplication are deﬁned component-wise on vectors in Rn:
+x + y =
+
+
+x1 + y1
+...
+xn + yn
+
+,
+αx =
+
+
+αx1
+...
+αxn
+
+
+Euclidean space is used to mathematically represent physical space, with notions such as distance,
+length, and angles. Although it becomes hard to visualize for n > 3, these concepts generalize
+mathematically in obvious ways. Even when you’re working in more general settings than Rn, it is
+often useful to visualize vector addition and scalar multiplication in terms of 2D vectors in the plane
+or 3D vectors in space.
+3.1.2
+Subspaces
+Vector spaces can contain other vector spaces. If V is a vector space, then S ⊆V is said to be a
+subspace of V if
+(i) 0 ∈S
+(ii) S is closed under addition: x, y ∈S implies x + y ∈S
+(iii) S is closed under scalar multiplication: x ∈S, α ∈R implies αx ∈S
+Note that V is always a subspace of V , as is the trivial vector space which contains only 0.
+As a concrete example, a line passing through the origin is a subspace of Euclidean space.
+If U and W are subspaces of V , then their sum is deﬁned as
+U + W = {u + w | u ∈U, w ∈W}
+It is straightforward to verify that this set is also a subspace of V . If U ∩W = {0}, the sum is said
+to be a direct sum and written U ⊕W. Every vector in U ⊕W can be written uniquely as u + w
+for some u ∈U and w ∈W. (This is both a necessary and suﬃcient condition for a direct sum.)
+The dimensions of sums of subspaces obey a friendly relationship (see [4] for proof):
+dim(U + W) = dim U + dim W −dim(U ∩W)
+It follows that
+dim(U ⊕W) = dim U + dim W
+since dim(U ∩W) = dim({0}) = 0 if the sum is direct.
+3.2
+Linear maps
+A linear map is a function T : V →W, where V and W are vector spaces, that satisﬁes
+(i) T(x + y) = Tx + Ty for all x, y ∈V
+(ii) T(αx) = αTx for all x ∈V, α ∈R
+7
+
+--- PAGE 8 ---
+The standard notational convention for linear maps (which we follow here) is to drop unnecessary
+parentheses, writing Tx rather than T(x) if there is no risk of ambiguity, and denote composition
+of linear maps by ST rather than the usual S ◦T.
+A linear map from V to itself is called a linear operator.
+Observe that the deﬁnition of a linear map is suited to reﬂect the structure of vector spaces, since it
+preserves vector spaces’ two main operations, addition and scalar multiplication. In algebraic terms,
+a linear map is called a homomorphism of vector spaces. An invertible homomorphism (where the
+inverse is also a homomorphism) is called an isomorphism. If there exists an isomorphism from V
+to W, then V and W are said to be isomorphic, and we write V ∼= W. Isomorphic vector spaces
+are essentially “the same” in terms of their algebraic structure. It is an interesting fact that ﬁnite-
+dimensional vector spaces2 of the same dimension are always isomorphic; if V, W are real vector
+spaces with dim V = dim W = n, then we have the natural isomorphism
+ϕ : V →W
+α1v1 + · · · + αnvn 7→α1w1 + · · · + αnwn
+where v1, . . . , vn and w1, . . . , wn are any bases for V and W. This map is well-deﬁned because every
+vector in V can be expressed uniquely as a linear combination of v1, . . . , vn. It is straightforward
+to verify that ϕ is an isomorphism, so in fact V ∼= W. In particular, every real n-dimensional vector
+space is isomorphic to Rn.
+3.2.1
+The matrix of a linear map
+Vector spaces are fairly abstract. To represent and manipulate vectors and linear maps on a com-
+puter, we use rectangular arrays of numbers known as matrices.
+Suppose V and W are ﬁnite-dimensional vector spaces with bases v1, . . . , vn and w1, . . . , wm, respec-
+tively, and T : V →W is a linear map. Then the matrix of T, with entries Aij where i = 1, . . . , m,
+j = 1, . . . , n, is deﬁned by
+Tvj = A1jw1 + · · · + Amjwm
+That is, the jth column of A consists of the coordinates of Tvj in the chosen basis for W.
+Conversely, every matrix A ∈Rm×n induces a linear map T : Rn →Rm given by
+Tx = Ax
+and the matrix of this map with respect to the standard bases of Rn and Rm is of course simply A.
+If A ∈Rm×n, its transpose A⊤∈Rn×m is given by (A⊤)ij = Aji for each (i, j). In other words,
+the columns of A become the rows of A⊤, and the rows of A become the columns of A⊤.
+The transpose has several nice algebraic properties that can be easily veriﬁed from the deﬁnition:
+(i) (A⊤)⊤= A
+(ii) (A + B)⊤= A⊤+ B⊤
+(iii) (αA)⊤= αA⊤
+(iv) (AB)⊤= B⊤A⊤
+2 over the same ﬁeld
+8
+
+--- PAGE 9 ---
+3.2.2
+Nullspace, range
+Some of the most important subspaces are those induced by linear maps. If T : V →W is a linear
+map, we deﬁne the nullspace3 of T as
+null(T) = {v ∈V | Tv = 0}
+and the range of T as
+range(T) = {w ∈W | ∃v ∈V such that Tv = w}
+It is a good exercise to verify that the nullspace and range of a linear map are always subspaces of
+its domain and codomain, respectively.
+The columnspace of a matrix A ∈Rm×n is the span of its columns (considered as vectors in Rm),
+and similarly the rowspace of A is the span of its rows (considered as vectors in Rn). It is not
+hard to see that the columnspace of A is exactly the range of the linear map from Rn to Rm which
+is induced by A, so we denote it by range(A) in a slight abuse of notation. Similarly, the rowspace
+is denoted range(A⊤).
+It is a remarkable fact that the dimension of the columnspace of A is the same as the dimension of
+the rowspace of A. This quantity is called the rank of A, and deﬁned as
+rank(A) = dim range(A)
+3.3
+Metric spaces
+Metrics generalize the notion of distance from Euclidean space (although metric spaces need not be
+vector spaces).
+A metric on a set S is a function d : S × S →R that satisﬁes
+(i) d(x, y) ≥0, with equality if and only if x = y
+(ii) d(x, y) = d(y, x)
+(iii) d(x, z) ≤d(x, y) + d(y, z) (the so-called triangle inequality)
+for all x, y, z ∈S.
+A key motivation for metrics is that they allow limits to be deﬁned for mathematical objects other
+than real numbers. We say that a sequence {xn} ⊆S converges to the limit x if for any ϵ > 0, there
+exists N ∈N such that d(xn, x) < ϵ for all n ≥N. Note that the deﬁnition for limits of sequences of
+real numbers, which you have likely seen in a calculus class, is a special case of this deﬁnition when
+using the metric d(x, y) = |x −y|.
+3.4
+Normed spaces
+Norms generalize the notion of length from Euclidean space.
+A norm on a real vector space V is a function ∥· ∥: V →R that satisﬁes
+3 It is sometimes called the kernel by algebraists, but we eschew this terminology because the word “kernel” has
+another meaning in machine learning.
+9
+
+--- PAGE 10 ---
+(i) ∥x∥≥0, with equality if and only if x = 0
+(ii) ∥αx∥= |α|∥x∥
+(iii) ∥x + y∥≤∥x∥+ ∥y∥(the triangle inequality again)
+for all x, y ∈V and all α ∈R. A vector space endowed with a norm is called a normed vector
+space, or simply a normed space.
+Note that any norm on V induces a distance metric on V :
+d(x, y) = ∥x −y∥
+One can verify that the axioms for metrics are satisﬁed under this deﬁnition and follow directly from
+the axioms for norms. Therefore any normed space is also a metric space.4
+We will typically only be concerned with a few speciﬁc norms on Rn:
+∥x∥1 =
+n
+X
+i=1
+|xi|
+∥x∥2 =
+v
+u
+u
+t
+n
+X
+i=1
+x2
+i
+∥x∥p =
+
+
+n
+X
+i=1
+|xi|p
+
+
+1
+p
+(p ≥1)
+∥x∥∞= max
+1≤i≤n |xi|
+Note that the 1- and 2-norms are special cases of the p-norm, and the ∞-norm is the limit of the
+p-norm as p tends to inﬁnity. We require p ≥1 for the general deﬁnition of the p-norm because the
+triangle inequality fails to hold if p < 1. (Try to ﬁnd a counterexample!)
+Here’s a fun fact: for any given ﬁnite-dimensional vector space V , all norms on V are equivalent in
+the sense that for two norms ∥· ∥A, ∥· ∥B, there exist constants α, β > 0 such that
+α∥x∥A ≤∥x∥B ≤β∥x∥A
+for all x ∈V . Therefore convergence in one norm implies convergence in any other norm. This rule
+may not apply in inﬁnite-dimensional vector spaces such as function spaces, though.
+3.5
+Inner product spaces
+An inner product on a real vector space V is a function ⟨·, ·⟩: V × V →R satisfying
+(i) ⟨x, x⟩≥0, with equality if and only if x = 0
+(ii) Linearity in the ﬁrst slot: ⟨x + y, z⟩= ⟨x, z⟩+ ⟨y, z⟩and ⟨αx, y⟩= α⟨x, y⟩
+(iii) ⟨x, y⟩= ⟨y, x⟩
+4 If a normed space is complete with respect to the distance metric induced by its norm, we say that it is a Banach
+space.
+10
+
+--- PAGE 11 ---
+for all x, y, z ∈V and all α ∈R. A vector space endowed with an inner product is called an inner
+product space.
+Note that any inner product on V induces a norm on V :
+∥x∥=
+p
+⟨x, x⟩
+One can verify that the axioms for norms are satisﬁed under this deﬁnition and follow (almost)
+directly from the axioms for inner products. Therefore any inner product space is also a normed
+space (and hence also a metric space).5
+Two vectors x and y are said to be orthogonal if ⟨x, y⟩= 0; we write x ⊥y for shorthand.
+Orthogonality generalizes the notion of perpendicularity from Euclidean space. If two orthogonal
+vectors x and y additionally have unit length (i.e. ∥x∥= ∥y∥= 1), then they are described as
+orthonormal.
+The standard inner product on Rn is given by
+⟨x, y⟩=
+n
+X
+i=1
+xiyi = x⊤y
+The matrix notation on the righthand side arises because this inner product is a special case of
+matrix multiplication where we regard the resulting 1 × 1 matrix as a scalar. The inner product on
+Rn is also often written x · y (hence the alternate name dot product). The reader can verify that
+the two-norm ∥· ∥2 on Rn is induced by this inner product.
+3.5.1
+Pythagorean Theorem
+The well-known Pythagorean theorem generalizes naturally to arbitrary inner product spaces.
+Theorem 1. If x ⊥y, then
+∥x + y∥2 = ∥x∥2 + ∥y∥2
+Proof. Suppose x ⊥y, i.e. ⟨x, y⟩= 0. Then
+∥x + y∥2 = ⟨x + y, x + y⟩= ⟨x, x⟩+ ⟨y, x⟩+ ⟨x, y⟩+ ⟨y, y⟩= ∥x∥2 + ∥y∥2
+as claimed.
+3.5.2
+Cauchy-Schwarz inequality
+This inequality is sometimes useful in proving bounds:
+|⟨x, y⟩| ≤∥x∥∥y∥
+for all x, y ∈V .
+Equality holds exactly when x and y are scalar multiples of each other (or
+equivalently, when they are linearly dependent).
+5 If an inner product space is complete with respect to the distance metric induced by its inner product, we say
+that it is a Hilbert space.
+11
+
+--- PAGE 12 ---
+3.5.3
+Orthogonal complements and projections
+If S ⊆V where V is an inner product space, then the orthogonal complement of S, denoted S⊥,
+is the set of all vectors in V that are orthogonal to every element of S:
+S⊥= {v ∈V | v ⊥s for all s ∈S}
+It is easy to verify that S⊥is a subspace of V for any S ⊆V . Note that there is no requirement
+that S itself be a subspace of V . However, if S is a (ﬁnite-dimensional) subspace of V , we have the
+following important decomposition.
+Proposition 1. Let V be an inner product space and S be a ﬁnite-dimensional subspace of V . Then
+every v ∈V can be written uniquely in the form
+v = vS + v⊥
+where vS ∈S and v⊥∈S⊥.
+Proof. Let u1, . . . , um be an orthonormal basis for S, and suppose v ∈V . Deﬁne
+vS = ⟨v, u1⟩u1 + · · · + ⟨v, um⟩um
+and
+v⊥= v −vS
+It is clear that vS ∈S since it is in the span of the chosen basis. We also have, for all i = 1, . . . , m,
+⟨v⊥, ui⟩=
+
+v −(⟨v, u1⟩u1 + · · · + ⟨v, um⟩um), ui
+
+= ⟨v, ui⟩−⟨v, u1⟩⟨u1, ui⟩−· · · −⟨v, um⟩⟨um, ui⟩
+= ⟨v, ui⟩−⟨v, ui⟩
+= 0
+which implies v⊥∈S⊥.
+It remains to show that this decomposition is unique, i.e. doesn’t depend on the choice of basis. To
+this end, let u′
+1, . . . , u′
+m be another orthonormal basis for S, and deﬁne v′
+S and v′
+⊥analogously. We
+claim that v′
+S = vS and v′
+⊥= v⊥.
+By deﬁnition,
+vS + v⊥= v = v′
+S + v′
+⊥
+so
+vS −v′
+S
+|
+{z
+}
+∈S
+= v′
+⊥−v⊥
+|
+{z
+}
+∈S⊥
+From the orthogonality of these subspaces, we have
+0 = ⟨vS −v′
+S, v′
+⊥−v⊥⟩= ⟨vS −v′
+S, vS −v′
+S⟩= ∥vS −v′
+S∥2
+It follows that vS −v′
+S = 0, i.e. vS = v′
+S. Then v′
+⊥= v −v′
+S = v −vS = v⊥as well.
+The existence and uniqueness of the decomposition above mean that
+V = S ⊕S⊥
+whenever S is a subspace.
+12
+
+--- PAGE 13 ---
+Since the mapping from v to vS in the decomposition above always exists and is unique, we have a
+well-deﬁned function
+PS : V →S
+v 7→vS
+which is called the orthogonal projection onto S. We give the most important properties of this
+function below.
+Proposition 2. Let S be a ﬁnite-dimensional subspace of V . Then
+(i) For any v ∈V and orthonormal basis u1, . . . , um of S,
+PSv = ⟨v, u1⟩u1 + · · · + ⟨v, um⟩um
+(ii) For any v ∈V , v −PSv ⊥S.
+(iii) PS is a linear map.
+(iv) PS is the identity when restricted to S (i.e. PSs = s for all s ∈S).
+(v) range(PS) = S and null(PS) = S⊥.
+(vi) P 2
+S = PS.
+(vii) For any v ∈V , ∥PSv∥≤∥v∥.
+(viii) For any v ∈V and s ∈S,
+∥v −PSv∥≤∥v −s∥
+with equality if and only if s = PSv. That is,
+PSv = arg min
+s∈S
+∥v −s∥
+Proof. The ﬁrst two statements are immediate from the deﬁnition of PS and the work done in the
+proof of the previous proposition.
+In this proof, we abbreviate P = PS for brevity.
+(iii) Suppose x, y ∈V and α ∈R. Write x = xS + x⊥and y = yS + y⊥, where xS, yS ∈S and
+x⊥, y⊥∈S⊥. Then
+x + y = xS + yS
+|
+{z
+}
+∈S
++ x⊥+ y⊥
+|
+{z
+}
+∈S⊥
+so P(x + y) = xS + yS = Px + Py, and
+αx = αxS
+|{z}
+∈S
++ αx⊥
+|{z}
+∈S⊥
+so P(αx) = αxS = αPx. Thus P is linear.
+(iv) If s ∈S, then we can write s = s + 0 where s ∈S and 0 ∈S⊥, so Ps = s.
+13
+
+--- PAGE 14 ---
+(v) range(P) ⊆S: By deﬁnition.
+range(P) ⊇S: Using the previous result, any s ∈S satisﬁes s = Pv for some v ∈V (speciﬁ-
+cally, v = s).
+null(P) ⊆S⊥: Suppose v ∈null(P). Write v = vS + v⊥where vS ∈S and v⊥∈S⊥. Then
+0 = Pv = vS, so v = v⊥∈S⊥.
+null(P) ⊇S⊥: If v ∈S⊥, then v = 0 + v where 0 ∈S and v ∈S⊥, so Pv = 0.
+(vi) For any v ∈V ,
+P 2v = P(Pv) = Pv
+since Pv ∈S and P is the identity on S. Hence P 2 = P.
+(vii) Suppose v ∈V . Then by the Pythagorean theorem,
+∥v∥2 = ∥Pv + (v −Pv)∥2 = ∥Pv∥2 + ∥v −Pv∥2 ≥∥Pv∥2
+The result follows by taking square roots.
+(viii) Suppose v ∈V and s ∈S. Then by the Pythagorean theorem,-
+∥v −s∥2 = ∥(v −Pv) + (Pv −s)∥2 = ∥v −Pv∥2 + ∥Pv −s∥2 ≥∥v −Pv∥2
+We obtain ∥v −s∥≥∥v −Pv∥by taking square roots. Equality holds iﬀ∥Pv −s∥2 = 0, which
+is true iﬀPv = s.
+Any linear map P that satisﬁes P 2 = P is called a projection, so we have shown that PS is a
+projection (hence the name).
+The last part of the previous result shows that orthogonal projection solves the optimization problem
+of ﬁnding the closest point in S to a given v ∈V . This makes intuitive sense from a pictorial
+representation of the orthogonal projection:
+Let us now consider the speciﬁc case where S is a subspace of Rn with orthonormal basis u1, . . . , um.
+Then
+PSx =
+m
+X
+i=1
+⟨x, ui⟩ui =
+m
+X
+i=1
+x⊤uiui =
+m
+X
+i=1
+uiu⊤
+ix =
+
+
+m
+X
+i=1
+uiu⊤
+i
+
+x
+14
+
+--- PAGE 15 ---
+so the operator PS can be expressed as a matrix
+PS =
+m
+X
+i=1
+uiu⊤
+i = UU⊤
+where U has u1, . . . , um as its columns. Here we have used the sum-of-outer-products identity.
+3.6
+Eigenthings
+For a square matrix A ∈Rn×n, there may be vectors which, when A is applied to them, are simply
+scaled by some constant. We say that a nonzero vector x ∈Rn is an eigenvector of A corresponding
+to eigenvalue λ if
+Ax = λx
+The zero vector is excluded from this deﬁnition because A0 = 0 = λ0 for every λ.
+We now give some useful results about how eigenvalues change after various manipulations.
+Proposition 3. Let x be an eigenvector of A with corresponding eigenvalue λ. Then
+(i) For any γ ∈R, x is an eigenvector of A + γI with eigenvalue λ + γ.
+(ii) If A is invertible, then x is an eigenvector of A−1 with eigenvalue λ−1.
+(iii) Akx = λkx for any k ∈Z (where A0 = I by deﬁnition).
+Proof. (i) follows readily:
+(A + γI)x = Ax + γIx = λx + γx = (λ + γ)x
+(ii) Suppose A is invertible. Then
+x = A−1Ax = A−1(λx) = λA−1x
+Dividing by λ, which is valid because the invertibility of A implies λ̸ = 0, gives λ−1x = A−1x.
+(iii) The case k ≥0 follows immediately by induction on k. Then the general case k ∈Z follows by
+combining the k ≥0 case with (ii).
+3.7
+Trace
+The trace of a square matrix is the sum of its diagonal entries:
+tr(A) =
+n
+X
+i=1
+Aii
+The trace has several nice algebraic properties:
+(i) tr(A + B) = tr(A) + tr(B)
+(ii) tr(αA) = α tr(A)
+(iii) tr(A⊤) = tr(A)
+15
+
+--- PAGE 16 ---
+(iv) tr(ABCD) = tr(BCDA) = tr(CDAB) = tr(DABC)
+The ﬁrst three properties follow readily from the deﬁnition.
+The last is known as invariance
+under cyclic permutations. Note that the matrices cannot be reordered arbitrarily, for example
+tr(ABCD)̸ = tr(BACD) in general.
+Also, there is nothing special about the product of four
+matrices – analogous rules hold for more or fewer matrices.
+Interestingly, the trace of a matrix is equal to the sum of its eigenvalues (repeated according to
+multiplicity):
+tr(A) =
+X
+i
+λi(A)
+3.8
+Determinant
+The determinant of a square matrix can be deﬁned in several diﬀerent confusing ways, none of
+which are particularly important for our purposes; go look at an introductory linear algebra text (or
+Wikipedia) if you need a deﬁnition. But it’s good to know the properties:
+(i) det(I) = 1
+(ii) det
+ A⊤
+= det(A)
+(iii) det(AB) = det(A) det(B)
+(iv) det
+ A−1
+= det(A)−1
+(v) det(αA) = αn det(A)
+Interestingly, the determinant of a matrix is equal to the product of its eigenvalues (repeated ac-
+cording to multiplicity):
+det(A) =
+Y
+i
+λi(A)
+3.9
+Orthogonal matrices
+A matrix Q ∈Rn×n is said to be orthogonal if its columns are pairwise orthonormal. This deﬁnition
+implies that
+Q⊤Q = QQ⊤= I
+or equivalently, Q⊤= Q−1. A nice thing about orthogonal matrices is that they preserve inner
+products:
+(Qx)⊤(Qy) = x⊤Q⊤Qy = x⊤Iy = x⊤y
+A direct result of this fact is that they also preserve 2-norms:
+∥Qx∥2 =
+q
+(Qx)⊤(Qx) =
+√
+x⊤x = ∥x∥2
+Therefore multiplication by an orthogonal matrix can be considered as a transformation that pre-
+serves length, but may rotate or reﬂect the vector about the origin.
+16
+
+--- PAGE 17 ---
+3.10
+Symmetric matrices
+A matrix A ∈Rn×n is said to be symmetric if it is equal to its own transpose (A = A⊤), meaning
+that Aij = Aji for all (i, j). This deﬁnition seems harmless enough but turns out to have some
+strong implications. We summarize the most important of these as
+Theorem 2. (Spectral Theorem) If A ∈Rn×n is symmetric, then there exists an orthonormal basis
+for Rn consisting of eigenvectors of A.
+The practical application of this theorem is a particular factorization of symmetric matrices, re-
+ferred to as the eigendecomposition or spectral decomposition. Denote the orthonormal basis
+of eigenvectors q1, . . . , qn and their eigenvalues λ1, . . . , λn. Let Q be an orthogonal matrix with
+q1, . . . , qn as its columns, and Λ = diag(λ1, . . . , λn). Since by deﬁnition Aqi = λiqi for every i, the
+following relationship holds:
+AQ = QΛ
+Right-multiplying by Q⊤, we arrive at the decomposition
+A = QΛQ⊤
+3.10.1
+Rayleigh quotients
+Let A ∈Rn×n be a symmetric matrix. The expression x⊤Ax is called a quadratic form.
+There turns out to be an interesting connection between the quadratic form of a symmetric matrix
+and its eigenvalues. This connection is provided by the Rayleigh quotient
+RA(x) = x⊤Ax
+x⊤x
+The Rayleigh quotient has a couple of important properties which the reader can (and should!)
+easily verify from the deﬁnition:
+(i) Scale invariance: for any vector x̸ = 0 and any scalar α̸ = 0, RA(x) = RA(αx).
+(ii) If x is an eigenvector of A with eigenvalue λ, then RA(x) = λ.
+We can further show that the Rayleigh quotient is bounded by the largest and smallest eigenvalues
+of A. But ﬁrst we will show a useful special case of the ﬁnal result.
+Proposition 4. For any x such that ∥x∥2 = 1,
+λmin(A) ≤x⊤Ax ≤λmax(A)
+with equality if and only if x is a corresponding eigenvector.
+Proof. We show only the max case because the argument for the min case is entirely analogous.
+Since A is symmetric, we can decompose it as A = QΛQ⊤. Then use the change of variable y = Q⊤x,
+noting that the relationship between x and y is one-to-one and that ∥y∥2 = 1 since Q is orthogonal.
+Hence
+max
+∥x∥2=1 x⊤Ax = max
+∥y∥2=1 y⊤Λy =
+max
+y2
+1+···+y2
+n=1
+n
+X
+i=1
+λiy2
+i
+Written this way, it is clear that y maximizes this expression exactly if and only if it satisﬁes
+P
+i∈I y2
+i = 1 where I = {i : λi = maxj=1,...,n λj = λmax(A)} and yj = 0 for j̸ ∈I.
+That is,
+17
+
+--- PAGE 18 ---
+I contains the index or indices of the largest eigenvalue. In this case, the maximal value of the
+expression is
+n
+X
+i=1
+λiy2
+i =
+X
+i∈I
+λiy2
+i = λmax(A)
+X
+i∈I
+y2
+i = λmax(A)
+Then writing q1, . . . , qn for the columns of Q, we have
+x = QQ⊤x = Qy =
+n
+X
+i=1
+yiqi =
+X
+i∈I
+yiqi
+where we have used the matrix-vector product identity.
+Recall that q1, . . . , qn are eigenvectors of A and form an orthonormal basis for Rn. Therefore by
+construction, the set {qi : i ∈I} forms an orthonormal basis for the eigenspace of λmax(A). Hence
+x, which is a linear combination of these, lies in that eigenspace and thus is an eigenvector of A
+corresponding to λmax(A).
+We have shown that max∥x∥2=1 x⊤Ax = λmax(A), from which we have the general inequality x⊤Ax ≤
+λmax(A) for all unit-length x.
+By the scale invariance of the Rayleigh quotient, we immediately have as a corollary (since x⊤Ax =
+RA(x) for unit x)
+Theorem 3. (Min-max theorem) For all x̸ = 0,
+λmin(A) ≤RA(x) ≤λmax(A)
+with equality if and only if x is a corresponding eigenvector.
+This is sometimes referred to as a variational characterization of eigenvalues because it ex-
+presses the smallest/largest eigenvalue of A in terms of a minimization/maximization problem:
+λmin / max(A) = min
+x̸=0 / max
+x̸=0 RA(x)
+3.11
+Positive (semi-)deﬁnite matrices
+A symmetric matrix A is positive semi-deﬁnite if for all x ∈Rn, x⊤Ax ≥0. Sometimes people
+write A ⪰0 to indicate that A is positive semi-deﬁnite.
+A symmetric matrix A is positive deﬁnite if for all nonzero x ∈Rn, x⊤Ax > 0. Sometimes people
+write A ≻0 to indicate that A is positive deﬁnite. Note that positive deﬁniteness is a strictly
+stronger property than positive semi-deﬁniteness, in the sense that every positive deﬁnite matrix is
+positive semi-deﬁnite but not vice-versa.
+These properties are related to eigenvalues in the following way.
+Proposition 5. A symmetric matrix is positive semi-deﬁnite if and only if all of its eigenvalues are
+nonnegative, and positive deﬁnite if and only if all of its eigenvalues are positive.
+Proof. Suppose A is positive semi-deﬁnite, and let x be an eigenvector of A with eigenvalue λ. Then
+0 ≤x⊤Ax = x⊤(λx) = λx⊤x = λ∥x∥2
+2
+18
+
+--- PAGE 19 ---
+Since x̸ = 0 (by the assumption that it is an eigenvector), we have ∥x∥2
+2 > 0, so we can divide both
+sides by ∥x∥2
+2 to arrive at λ ≥0. If A is positive deﬁnite, the inequality above holds strictly, so
+λ > 0. This proves one direction.
+To simplify the proof of the other direction, we will use the machinery of Rayleigh quotients. Suppose
+that A is symmetric and all its eigenvalues are nonnegative. Then for all x̸ = 0,
+0 ≤λmin(A) ≤RA(x)
+Since x⊤Ax matches RA(x) in sign, we conclude that A is positive semi-deﬁnite. If the eigenvalues
+of A are all strictly positive, then 0 < λmin(A), whence it follows that A is positive deﬁnite.
+As an example of how these matrices arise, consider
+Proposition 6. Suppose A ∈Rm×n. Then A⊤A is positive semi-deﬁnite. If null(A) = {0}, then
+A⊤A is positive deﬁnite.
+Proof. For any x ∈Rn,
+x⊤(A⊤A)x = (Ax)⊤(Ax) = ∥Ax∥2
+2 ≥0
+so A⊤A is positive semi-deﬁnite. If null(A) = {0}, then Ax̸ = 0 whenever x̸ = 0, so ∥Ax∥2
+2 > 0,
+and thus A⊤A is positive deﬁnite.
+Positive deﬁnite matrices are invertible (since their eigenvalues are nonzero), whereas positive semi-
+deﬁnite matrices might not be. However, if you already have a positive semi-deﬁnite matrix, it is
+possible to perturb its diagonal slightly to produce a positive deﬁnite matrix.
+Proposition 7. If A is positive semi-deﬁnite and ϵ > 0, then A + ϵI is positive deﬁnite.
+Proof. Assuming A is positive semi-deﬁnite and ϵ > 0, we have for any x̸ = 0 that
+x⊤(A + ϵI)x = x⊤Ax + ϵx⊤Ix = x⊤Ax
+| {z }
+≥0
++ ϵ∥x∥2
+2
+| {z }
+>0
+> 0
+as claimed.
+An obvious but frequently useful consequence of the two propositions we have just shown is that
+A⊤A + ϵI is positive deﬁnite (and in particular, invertible) for any matrix A and any ϵ > 0.
+3.11.1
+The geometry of positive deﬁnite quadratic forms
+A useful way to understand quadratic forms is by the geometry of their level sets. A level set or
+isocontour of a function is the set of all inputs such that the function applied to those inputs yields
+a given output. Mathematically, the c-isocontour of f is {x ∈dom f : f(x) = c}.
+Let us consider the special case f(x) = x⊤Ax where A is a positive deﬁnite matrix. Since A is
+positive deﬁnite, it has a unique matrix square root A
+1
+2 = QΛ
+1
+2 Q⊤, where QΛQ⊤is the eigende-
+composition of A and Λ
+1
+2 = diag(√λ1, . . . √λn). It is easy to see that this matrix A
+1
+2 is positive
+deﬁnite (consider its eigenvalues) and satisﬁes A
+1
+2 A
+1
+2 = A. Fixing a value c ≥0, the c-isocontour
+of f is the set of x ∈Rn such that
+c = x⊤Ax = x⊤A
+1
+2 A
+1
+2 x = ∥A
+1
+2 x∥2
+2
+19
+
+--- PAGE 20 ---
+where we have used the symmetry of A
+1
+2 . Making the change of variable z = A
+1
+2 x, we have the
+condition ∥z∥2 = √c. That is, the values z lie on a sphere of radius √c. These can be parameterized
+as z = √cˆz where ˆz has ∥ˆz∥2 = 1. Then since A−1
+2 = QΛ−1
+2 Q⊤, we have
+x = A−1
+2 z = QΛ−1
+2 Q⊤√cˆz = √cQΛ−1
+2 ˜z
+where ˜z = Q⊤ˆz also satisﬁes ∥˜z∥2 = 1 since Q is orthogonal. Using this parameterization, we see
+that the solution set {x ∈Rn : f(x) = c} is the image of the unit sphere {˜z ∈Rn : ∥˜z∥2 = 1} under
+the invertible linear map x = √cQΛ−1
+2 ˜z.
+What we have gained with all these manipulations is a clear algebraic understanding of the c-
+isocontour of f in terms of a sequence of linear transformations applied to a well-understood set.
+We begin with the unit sphere, then scale every axis i by λ
+−1
+2
+i
+, resulting in an axis-aligned ellipsoid.
+Observe that the axis lengths of the ellipsoid are proportional to the inverse square roots of the
+eigenvalues of A. Hence larger eigenvalues correspond to shorter axis lengths, and vice-versa.
+Then this axis-aligned ellipsoid undergoes a rigid transformation (i.e. one that preserves length and
+angles, such as a rotation/reﬂection) given by Q. The result of this transformation is that the axes
+of the ellipse are no longer along the coordinate axes in general, but rather along the directions
+given by the corresponding eigenvectors. To see this, consider the unit vector ei ∈Rn that has
+[ei]j = δij. In the pre-transformed space, this vector points along the axis with length proportional
+to λ
+−1
+2
+i
+. But after applying the rigid transformation Q, the resulting vector points in the direction
+of the corresponding eigenvector qi, since
+Qei =
+n
+X
+j=1
+[ei]jqj = qi
+where we have used the matrix-vector product identity from earlier.
+In summary: the isocontours of f(x) = x⊤Ax are ellipsoids such that the axes point in the directions
+of the eigenvectors of A, and the radii of these axes are proportional to the inverse square roots of
+the corresponding eigenvalues.
+3.12
+Singular value decomposition
+Singular value decomposition (SVD) is a widely applicable tool in linear algebra. Its strength stems
+partially from the fact that every matrix A ∈Rm×n has an SVD (even non-square matrices)! The
+decomposition goes as follows:
+A = UΣV⊤
+where U ∈Rm×m and V ∈Rn×n are orthogonal matrices and Σ ∈Rm×n is a diagonal matrix with
+the singular values of A (denoted σi) on its diagonal.
+Only the ﬁrst r = rank(A) singular values are nonzero, and by convention, they are in non-increasing
+order, i.e.
+σ1 ≥σ2 ≥· · · ≥σr > σr+1 = · · · = σmin(m,n) = 0
+Another way to write the SVD (cf. the sum-of-outer-products identity) is
+A =
+r
+X
+i=1
+σiuiv⊤
+i
+where ui and vi are the ith columns of U and V, respectively.
+20
+
+--- PAGE 21 ---
+Observe that the SVD factors provide eigendecompositions for A⊤A and AA⊤:
+A⊤A = (UΣV⊤)⊤UΣV⊤= VΣ⊤U⊤UΣV⊤= VΣ⊤ΣV⊤
+AA⊤= UΣV⊤(UΣV⊤)⊤= UΣV⊤VΣ⊤U⊤= UΣΣ⊤U⊤
+It follows immediately that the columns of V (the right-singular vectors of A) are eigenvectors
+of A⊤A, and the columns of U (the left-singular vectors of A) are eigenvectors of AA⊤.
+The matrices Σ⊤Σ and ΣΣ⊤are not necessarily the same size, but both are diagonal with the squared
+singular values σ2
+i on the diagonal (plus possibly some zeros). Thus the singular values of A are the
+square roots of the eigenvalues of A⊤A (or equivalently, of AA⊤)6.
+3.13
+Fundamental Theorem of Linear Algebra
+Despite its fancy name, the “Fundamental Theorem of Linear Algebra” is not a universally-agreed-
+upon theorem; there is some ambiguity as to exactly what statements it includes. The version we
+present here is suﬃcient for our purposes.
+Theorem 4. If A ∈Rm×n, then
+(i) null(A) = range(A⊤)⊥
+(ii) null(A) ⊕range(A⊤) = Rn
+(iii) dim range(A)
+|
+{z
+}
+rank(A)
++ dim null(A) = n.7
+(iv) If A = UΣV⊤is the singular value decomposition of A, then the columns of U and V form
+orthonormal bases for the four “fundamental subspaces” of A:
+Subspace
+Columns
+range(A)
+The ﬁrst r columns of U
+range(A⊤)
+The ﬁrst r columns of V
+null(A⊤)
+The last m −r columns of U
+null(A)
+The last n −r columns of V
+where r = rank(A).
+Proof.
+(i) Let a1, . . . , am denote the rows of A. Then
+x ∈null(A) ⇐⇒Ax = 0
+⇐⇒a⊤
+ix = 0 for all i = 1, . . . , m
+⇐⇒(α1a1 + · · · + αmam)⊤x = 0 for all α1, . . . , αm
+⇐⇒v⊤x = 0 for all v ∈range(A⊤)
+⇐⇒x ∈range(A⊤)⊥
+which proves the result.
+6 Recall that A⊤A and AA⊤are positive semi-deﬁnite, so their eigenvalues are nonnegative, and thus taking square
+roots is always well-deﬁned.
+7 This result is sometimes referred to by itself as the rank-nullity theorem.
+21
+
+--- PAGE 22 ---
+(ii) Recall our previous result on orthogonal complements: if S is a ﬁnite-dimensional subspace
+of V , then V = S ⊕S⊥. Thus the claim follows from the previous part (take V = Rn and
+S = range(A⊤)).
+(iii) Recall that if U and W are subspaces of a ﬁnite-dimensional vector space V , then dim(U ⊕
+W) = dim U + dim W. Thus the claim follows from the previous part, using the fact that
+dim range(A) = dim range(A⊤).
+A direct result of (ii) is that every x ∈Rn can be written (uniquely) in the form
+x = A⊤v + w
+for some v ∈Rm, w ∈Rn, where Aw = 0.
+Note that there is some asymmetry in the theorem, but analogous statements can be obtained by
+applying the theorem to A⊤.
+3.14
+Operator and matrix norms
+If V and W are vector spaces, then the set of linear maps from V to W forms another vector space,
+and the norms deﬁned on V and W induce a norm on this space of linear maps. If T : V →W is a
+linear map between normed spaces V and W, then the operator norm is deﬁned as
+∥T∥op = max
+x∈V
+x̸=0
+∥Tx∥W
+∥x∥V
+An important class of this general deﬁnition is when the domain and codomain are Rn and Rm, and
+the p-norm is used in both cases. Then for a matrix A ∈Rm×n, we can deﬁne the matrix p-norm
+∥A∥p = max
+x̸=0
+∥Ax∥p
+∥x∥p
+In the special cases p = 1, 2, ∞we have
+∥A∥1 = max
+1≤j≤n
+m
+X
+i=1
+|Aij|
+∥A∥∞= max
+1≤i≤m
+n
+X
+j=1
+|Aij|
+∥A∥2 = σ1(A)
+where σ1 denotes the largest singular value. Note that the induced 1- and ∞-norms are simply
+the maximum absolute column and row sums, respectively. The induced 2-norm (often called the
+spectral norm) simpliﬁes to σ1 by the properties of Rayleigh quotients proved earlier; clearly
+arg max
+x̸=0
+∥Ax∥2
+∥x∥2
+= arg max
+x̸=0
+∥Ax∥2
+2
+∥x∥2
+2
+= arg max
+x̸=0
+x⊤A⊤Ax
+x⊤x
+and we have seen that the rightmost expression is maximized by an eigenvector of A⊤A corresponding
+to its largest eigenvalue, λmax(A⊤A) = σ2
+1(A).
+22
+
+--- PAGE 23 ---
+By deﬁnition, these induced matrix norms have the important property that
+∥Ax∥p ≤∥A∥p∥x∥p
+for any x. They are also submultiplicative in the following sense.
+Proposition 8. ∥AB∥p ≤∥A∥p∥B∥p
+Proof. For any x,
+∥ABx∥p ≤∥A∥p∥Bx∥p ≤∥A∥p∥B∥p∥x∥p
+so
+∥AB∥p = max
+x̸=0
+∥ABx∥
+∥x∥p
+≤max
+x̸=0
+∥A∥p∥B∥p∥x∥p
+∥x∥p
+= ∥A∥p∥B∥p
+These are not the only matrix norms, however. Another frequently used is the Frobenius norm
+∥A∥f =
+v
+u
+u
+t
+m
+X
+i=1
+n
+X
+j=1
+A2
+ij =
+q
+tr(A⊤A) =
+v
+u
+u
+t
+min(m,n)
+X
+i=1
+σ2
+i (A)
+The ﬁrst equivalence follows straightforwardly by expanding the deﬁnitions of matrix multiplication
+and trace. For the second, observe that (writing A = UΣV⊤as before)
+tr(A⊤A) = tr(VΣ⊤ΣV⊤) = tr(V⊤VΣ⊤Σ) = tr(Σ⊤Σ) =
+min(m,n)
+X
+i=1
+σ2
+i (A)
+using the cyclic property of trace and orthogonality of V.
+A matrix norm ∥· ∥is said to be unitary invariant if
+∥UAV∥= ∥A∥
+for all orthogonal U and V of appropriate size. Unitary invariant norms essentially depend only on
+the singular values of a matrix, since for such norms,
+∥A∥= ∥UΣV⊤∥= ∥Σ∥
+Two particular norms we have seen, the spectral norm and the Frobenius norm, can be expressed
+solely in terms of a matrix’s singular values.
+Proposition 9. The spectral norm and the Frobenius norm are unitary invariant.
+Proof. For the Frobenius norm, the claim follows from
+tr((UAV)⊤UAV) = tr(V⊤A⊤U⊤UAV) = tr(VV⊤A⊤A) = tr(A⊤A)
+For the spectral norm, recall that ∥Ux∥2 = ∥x∥2 for any orthogonal U. Thus
+∥UAV∥2 = max
+x̸=0
+∥UAVx∥2
+∥x∥2
+= max
+x̸=0
+∥AVx∥2
+∥x∥2
+= max
+y̸=0
+∥Ay∥2
+∥y∥2
+= ∥A∥2
+where we have used the change of variable y = V⊤x, which satisﬁes ∥y∥2 = ∥x∥2. Since V⊤is
+invertible, x and y are in one-to-one correspondence, and in particular y = 0 if and only if x = 0.
+Hence maximizing over y̸ = 0 is equivalent to maximizing over x̸ = 0.
+23
+
+--- PAGE 24 ---
+3.15
+Low-rank approximation
+An important practical application of the SVD is to compute low-rank approximations to matri-
+ces. That is, given some matrix, we want to ﬁnd another matrix of the same dimensions but lower
+rank such that the two matrices are close as measured by some norm. Such an approximation can be
+used to reduce the amount of data needed to store a matrix, while retaining most of its information.
+A remarkable result known as the Eckart-Young-Mirsky theorem tells us that the optimal matrix
+can be computed easily from the SVD, as long as the norm in question is unitary invariant (e.g., the
+spectral norm or Frobenius norm).
+Theorem 5. (Eckart-Young-Mirsky) Let ∥· ∥be a unitary invariant matrix norm. Suppose A ∈
+Rm×n, where m ≥n, has singular value decomposition A = Pn
+i=1 σiuiv⊤
+i. Then the best rank-k
+approximation to A, where k ≤rank(A), is given by
+Ak =
+k
+X
+i=1
+σiuiv⊤
+i
+in the sense that
+∥A −Ak∥≤∥A −˜A∥
+for any ˜A ∈Rm×n with rank( ˜A) ≤k.
+The proof of the general case requires a fair amount of work, so we prove only the special case where
+∥· ∥is the spectral norm.
+Proof. First we compute
+∥A −Ak∥2 =
+
+n
+X
+i=1
+σiuiv⊤
+i −
+k
+X
+i=1
+σiuiv⊤
+i
+
+2
+=
+
+n
+X
+i=k+1
+σiuiv⊤
+i
+
+2
+= σk+1
+Let ˜A ∈Rm×n have rank( ˜A) ≤k. Then by the Fundamental Theorem of Linear Algebra,
+dim null( ˜A) = n −rank( ˜A) ≥n −k
+It follows that
+null( ˜A) ∩span{v1, . . . , vk+1}
+is non-trivial (has a nonzero element), because otherwise there would be at least (n −k) + (k + 1) =
+n + 1 linearly independent vectors in Rn, which is impossible. Therefore let z be some element of
+the intersection, and assume without loss of generality that it has unit norm: ∥z∥2 = 1. Expand
+z = α1v1 + · · · + αk+1vk+1, noting that
+1 = ∥z∥2
+2 = ∥α1v1 + · · · + αk+1vk+1∥2
+2 = α2
+1 + · · · + α2
+k+1
+24
+
+--- PAGE 25 ---
+by the Pythagorean theorem. Thus
+∥A −˜A∥2 ≥∥(A −˜A)z∥2
+by def., and ∥z∥2 = 1
+= ∥Az∥2
+z ∈null( ˜A)
+=
+
+n
+X
+i=1
+σiuiv⊤
+iz
+
+2
+=
+
+k+1
+X
+i=1
+σiαiui
+
+2
+=
+p
+(σ1α1)2 + · · · + (σk+1αk+1)2
+Pythagorean theorem again
+≥σk+1
+q
+α2
+1 + · · · + α2
+k+1
+σk+1 ≤σi for i ≤k
+= ∥A −Ak∥2
+using our earlier results
+as was to be shown.
+A measure of the quality of the approximation is given by
+∥Ak∥2
+f
+∥A∥2f
+= σ2
+1 + · · · + σ2
+k
+σ2
+1 + · · · + σ2r
+Ideally, this ratio will be close to 1, indicating that most of the information was retained.
+3.16
+Pseudoinverses
+Let A ∈Rm×n. If m̸ = n, then A cannot possibly be invertible. However, there is a generalization
+of the inverse known as the Moore-Penrose pseudoinverse, denoted A† ∈Rn×m, which always
+exists and is deﬁned uniquely by the following properties:
+(i) AA†A = A
+(ii) A†AA† = A†
+(iii) AA† is symmetric
+(iv) A†A is symmetric
+If A is invertible, then A† = A−1. More generally, we can compute the pseudoinverse of a matrix
+from its singular value decomposition: if A = UΣV⊤, then
+A† = VΣ†U⊤
+where Σ† can be computed from Σ by taking the transpose and inverting the nonzero singular
+values on the diagonal. Verifying that this matrix satisﬁes the properties of the pseudoinverse is
+straightforward and left as an exercise to the reader.
+25
+
+--- PAGE 26 ---
+3.17
+Some useful matrix identities
+3.17.1
+Matrix-vector product as linear combination of matrix columns
+Proposition 10. Let x ∈Rn be a vector and A ∈Rm×n a matrix with columns a1, . . . , an. Then
+Ax =
+n
+X
+i=1
+xiai
+This identity is extremely useful in understanding linear operators in terms of their matrices’
+columns. The proof is very simple (consider each element of Ax individually and expand by deﬁni-
+tions) but it is a good exercise to convince yourself.
+3.17.2
+Sum of outer products as matrix-matrix product
+An outer product is an expression of the form ab⊤, where a ∈Rm and b ∈Rn. By inspection it
+is not hard to see that such an expression yields an m × n matrix such that
+[ab⊤]ij = aibj
+It is not immediately obvious, but the sum of outer products is actually equivalent to an appropriate
+matrix-matrix product! We formalize this statement as
+Proposition 11. Let a1, . . . , ak ∈Rm and b1, . . . , bk ∈Rn. Then
+k
+X
+ℓ=1
+aℓb⊤
+ℓ= AB⊤
+where
+A =
+a1
+· · ·
+ak
+
+,
+B =
+b1
+· · ·
+bk
+
+Proof. For each (i, j), we have
+
+
+k
+X
+ℓ=1
+aℓb⊤
+ℓ
+
+
+ij
+=
+k
+X
+ℓ=1
+[aℓb⊤
+ℓ]ij =
+k
+X
+ℓ=1
+[aℓ]i[bℓ]j =
+k
+X
+ℓ=1
+AiℓBjℓ
+This last expression should be recognized as an inner product between the ith row of A and the jth
+row of B, or equivalently the jth column of B⊤. Hence by the deﬁnition of matrix multiplication, it
+is equal to [AB⊤]ij.
+3.17.3
+Quadratic forms
+Let A ∈Rn×n be a symmetric matrix, and recall that the expression x⊤Ax is called a quadratic form
+of A. It is in some cases helpful to rewrite the quadratic form in terms of the individual elements
+that make up A and x:
+x⊤Ax =
+n
+X
+i=1
+n
+X
+j=1
+Aijxixj
+This identity is valid for any square matrix (need not be symmetric), although quadratic forms are
+usually only discussed in the context of symmetric matrices.
+26
+
+--- PAGE 27 ---
+4
+Calculus and Optimization
+Much of machine learning is about minimizing a cost function (also called an objective function
+in the optimization community), which is a scalar function of several variables that typically measures
+how poorly our model ﬁts the data we have.
+4.1
+Extrema
+Optimization is about ﬁnding extrema, which depending on the application could be minima or
+maxima. When deﬁning extrema, it is necessary to consider the set of inputs over which we’re
+optimizing. This set X ⊆Rd is called the feasible set. If X is the entire domain of the function
+being optimized (as it often will be for our purposes), we say that the problem is unconstrained.
+Otherwise the problem is constrained and may be much harder to solve, depending on the nature
+of the feasible set.
+Suppose f : Rd →R. A point x is said to be a local minimum (resp. local maximum) of f in X
+if f(x) ≤f(y) (resp. f(x) ≥f(y)) for all y in some neighborhood N ⊆X about x.8 Furthermore, if
+f(x) ≤f(y) for all y ∈X, then x is a global minimum of f in X (similarly for global maximum).
+If the phrase “in X” is unclear from context, assume we are optimizing over the whole domain of
+the function.
+The qualiﬁer strict (as in e.g. a strict local minimum) means that the inequality sign in the deﬁnition
+is actually a > or <, with equality not allowed. This indicates that the extremum is unique within
+some neighborhood.
+Observe that maximizing a function f is equivalent to minimizing −f, so optimization problems are
+typically phrased in terms of minimization without loss of generality. This convention (which we
+follow here) eliminates the need to discuss minimization and maximization separately.
+4.2
+Gradients
+The single most important concept from calculus in the context of machine learning is the gradient.
+Gradients generalize derivatives to scalar functions of several variables. The gradient of f : Rd →R,
+denoted ∇f, is given by
+∇f =
+
+
+∂f
+∂x1...
+∂f
+∂xn
+
+
+i.e.
+[∇f]i = ∂f
+∂xi
+Gradients have the following very important property: ∇f(x) points in the direction of steepest
+ascent from x. Similarly, −∇f(x) points in the direction of steepest descent from x. We will
+use this fact frequently when iteratively minimizing a function via gradient descent.
+4.3
+The Jacobian
+The Jacobian of f : Rn →Rm is a matrix of ﬁrst-order partial derivatives:
+Jf =
+
+
+∂f1
+∂x1
+. . .
+∂f1
+∂xn
+...
+...
+...
+∂fm
+∂x1
+. . .
+∂fm
+∂xn
+
+
+i.e.
+[Jf]ij = ∂fi
+∂xj
+8 A neighborhood about x is an open set which contains x.
+27
+
+--- PAGE 28 ---
+Note the special case m = 1, where ∇f = J⊤
+f.
+4.4
+The Hessian
+The Hessian matrix of f : Rd →R is a matrix of second-order partial derivatives:
+∇2f =
+
+
+∂2f
+∂x2
+1
+. . .
+∂2f
+∂x1∂xd
+...
+...
+...
+∂2f
+∂xd∂x1
+. . .
+∂2f
+∂x2
+d
+
+
+i.e.
+[∇2f]ij =
+∂2f
+∂xi∂xj
+Recall that if the partial derivatives are continuous, the order of diﬀerentiation can be interchanged
+(Clairaut’s theorem), so the Hessian matrix will be symmetric. This will typically be the case for
+diﬀerentiable functions that we work with.
+The Hessian is used in some optimization algorithms such as Newton’s method. It is expensive to
+calculate but can drastically reduce the number of iterations needed to converge to a local minimum
+by providing information about the curvature of f.
+4.5
+Matrix calculus
+Since a lot of optimization reduces to ﬁnding points where the gradient vanishes, it is useful to have
+diﬀerentiation rules for matrix and vector expressions. We give some common rules here. Probably
+the two most important for our purposes are
+∇x(a⊤x) = a
+∇x(x⊤Ax) = (A + A⊤)x
+Note that this second rule is deﬁned only if A is square. Furthermore, if A is symmetric, we can
+simplify the result to 2Ax.
+4.5.1
+The chain rule
+Most functions that we wish to optimize are not completely arbitrary functions, but rather are
+composed of simpler functions which we know how to handle. The chain rule gives us a way to
+calculate derivatives for a composite function in terms of the derivatives of the simpler functions
+that make it up.
+The chain rule from single-variable calculus should be familiar:
+(f ◦g)′(x) = f ′(g(x))g′(x)
+where ◦denotes function composition. There is a natural generalization of this rule to multivariate
+functions.
+Proposition 12. Suppose f : Rm →Rk and g : Rn →Rm. Then f ◦g : Rn →Rk and
+Jf◦g(x) = Jf(g(x))Jg(x)
+In the special case k = 1 we have the following corollary since ∇f = J⊤
+f.
+Corollary 1. Suppose f : Rm →R and g : Rn →Rm. Then f ◦g : Rn →R and
+∇(f ◦g)(x) = Jg(x)⊤∇f(g(x))
+28
+
+--- PAGE 29 ---
+4.6
+Taylor’s theorem
+Taylor’s theorem has natural generalizations to functions of more than one variable. We give the
+version presented in [1].
+Theorem 6. (Taylor’s theorem) Suppose f : Rd →R is continuously diﬀerentiable, and let h ∈Rd.
+Then there exists t ∈(0, 1) such that
+f(x + h) = f(x) + ∇f(x + th)⊤h
+Furthermore, if f is twice continuously diﬀerentiable, then
+∇f(x + h) = ∇f(x) +
+Z 1
+0
+∇2f(x + th)h dt
+and there exists t ∈(0, 1) such that
+f(x + h) = f(x) + ∇f(x)⊤h + 1
+2h⊤∇2f(x + th)h
+This theorem is used in proofs about conditions for local minima of unconstrained optimization
+problems. Some of the most important results are given in the next section.
+4.7
+Conditions for local minima
+Proposition 13. If x∗is a local minimum of f and f is continuously diﬀerentiable in a neighborhood
+of x∗, then ∇f(x∗) = 0.
+Proof. Let x∗be a local minimum of f, and suppose towards a contradiction that ∇f(x∗)̸ = 0. Let
+h = −∇f(x∗), noting that by the continuity of ∇f we have
+lim
+t→0 −∇f(x∗+ th) = −∇f(x∗) = h
+Hence
+lim
+t→0 h⊤∇f(x∗+ th) = h⊤∇f(x∗) = −∥h∥2
+2 < 0
+Thus there exists T > 0 such that h⊤∇f(x∗+ th) < 0 for all t ∈[0, T]. Now we apply Taylor’s
+theorem: for any t ∈(0, T], there exists t′ ∈(0, t) such that
+f(x∗+ th) = f(x∗) + th⊤∇f(x∗+ t′h) < f(x∗)
+whence it follows that x∗is not a local minimum, a contradiction. Hence ∇f(x∗) = 0.
+The proof shows us why the vanishing gradient is necessary for an extremum: if ∇f(x) is nonzero,
+there always exists a suﬃciently small step α > 0 such that f(x−α∇f(x))) < f(x). For this reason,
+−∇f(x) is called a descent direction.
+Points where the gradient vanishes are called stationary points. Note that not all stationary points
+are extrema. Consider f : R2 →R given by f(x, y) = x2 −y2. We have ∇f(0) = 0, but the point
+0 is the minimum along the line y = 0 and the maximum along the line x = 0. Thus it is neither
+a local minimum nor a local maximum of f. Points such as these, where the gradient vanishes but
+there is no local extremum, are called saddle points.
+We have seen that ﬁrst-order information (i.e.
+the gradient) is insuﬃcient to characterize local
+minima. But we can say more with second-order information (i.e. the Hessian). First we prove a
+necessary second-order condition for local minima.
+29
+
+--- PAGE 30 ---
+Proposition 14. If x∗is a local minimum of f and f is twice continuously diﬀerentiable in a
+neighborhood of x∗, then ∇2f(x∗) is positive semi-deﬁnite.
+Proof. Let x∗be a local minimum of f, and suppose towards a contradiction that ∇2f(x∗) is not
+positive semi-deﬁnite. Let h be such that h⊤∇2f(x∗)h < 0, noting that by the continuity of ∇2f
+we have
+lim
+t→0 ∇2f(x∗+ th) = ∇2f(x∗)
+Hence
+lim
+t→0 h⊤∇2f(x∗+ th)h = h⊤∇2f(x∗)h < 0
+Thus there exists T > 0 such that h⊤∇2f(x∗+ th)h < 0 for all t ∈[0, T]. Now we apply Taylor’s
+theorem: for any t ∈(0, T], there exists t′ ∈(0, t) such that
+f(x∗+ th) = f(x∗) + th⊤∇f(x∗)
+|
+{z
+}
+0
++1
+2t2h⊤∇2f(x∗+ t′h)h < f(x∗)
+where the middle term vanishes because ∇f(x∗) = 0 by the previous result. It follows that x∗is
+not a local minimum, a contradiction. Hence ∇2f(x∗) is positive semi-deﬁnite.
+Now we give suﬃcient conditions for local minima.
+Proposition 15. Suppose f is twice continuously diﬀerentiable with ∇2f positive semi-deﬁnite in
+a neighborhood of x∗, and that ∇f(x∗) = 0. Then x∗is a local minimum of f. Furthermore if
+∇2f(x∗) is positive deﬁnite, then x∗is a strict local minimum.
+Proof. Let B be an open ball of radius r > 0 centered at x∗which is contained in the neighborhood.
+Applying Taylor’s theorem, we have that for any h with ∥h∥2 < r, there exists t ∈(0, 1) such that
+f(x∗+ h) = f(x∗) + h⊤∇f(x∗)
+|
+{z
+}
+0
++1
+2h⊤∇2f(x∗+ th)h ≥f(x∗)
+The last inequality holds because ∇2f(x∗+ th) is positive semi-deﬁnite (since ∥th∥2 = t∥h∥2 <
+∥h∥2 < r), so h⊤∇2f(x∗+ th)h ≥0. Since f(x∗) ≤f(x∗+ h) for all h with ∥h∥2 < r, we conclude
+that x∗is a local minimum.
+Now further suppose that ∇2f(x∗) is strictly positive deﬁnite. Since the Hessian is continuous we
+can choose another ball B′ with radius r′ > 0 centered at x∗such that ∇2f(x) is positive deﬁnite for
+all x ∈B′. Then following the same argument as above (except with a strict inequality now since
+the Hessian is positive deﬁnite) we have f(x∗+ h) > f(x∗) for all h with 0 < ∥h∥2 < r′. Hence x∗
+is a strict local minimum.
+Note that, perhaps counterintuitively, the conditions ∇f(x∗) = 0 and ∇2f(x∗) positive semi-deﬁnite
+are not enough to guarantee a local minimum at x∗! Consider the function f(x) = x3. We have
+f ′(0) = 0 and f ′′(0) = 0 (so the Hessian, which in this case is the 1 × 1 matrix
+0
+, is positive
+semi-deﬁnite). But f has a saddle point at x = 0. The function f(x) = −x4 is an even worse
+oﬀender – it has the same gradient and Hessian at x = 0, but x = 0 is a strict local maximum for
+this function!
+For these reasons we require that the Hessian remains positive semi-deﬁnite as long as we are close
+to x∗. Unfortunately, this condition is not practical to check computationally, but in some cases we
+can verify it analytically (usually by showing that ∇2f(x) is p.s.d. for all x ∈Rd). Also, if ∇2f(x∗)
+is strictly positive deﬁnite, the continuity assumption on f implies this condition, so we don’t have
+to worry.
+30
+
+--- PAGE 31 ---
+(a) A convex set
+(b) A non-convex set
+Figure 1: What convex sets look like
+4.8
+Convexity
+Convexity is a term that pertains to both sets and functions. For functions, there are diﬀerent
+degrees of convexity, and how convex a function is tells us a lot about its minima: do they exist, are
+they unique, how quickly can we ﬁnd them using optimization algorithms, etc. In this section, we
+present basic results regarding convexity, strict convexity, and strong convexity.
+4.8.1
+Convex sets
+A set X ⊆Rd is convex if
+tx + (1 −t)y ∈X
+for all x, y ∈X and all t ∈[0, 1].
+Geometrically, this means that all the points on the line segment between any two points in X are
+also in X. See Figure 1 for a visual.
+Why do we care whether or not a set is convex? We will see later that the nature of minima can
+depend greatly on whether or not the feasible set is convex. Undesirable pathological results can
+occur when we allow the feasible set to be arbitrary, so for proofs we will need to assume that it is
+convex. Fortunately, we often want to minimize over all of Rd, which is easily seen to be a convex
+set.
+4.8.2
+Basics of convex functions
+In the remainder of this section, assume f : Rd →R unless otherwise noted. We’ll start with the
+deﬁnitions and then give some results.
+A function f is convex if
+f(tx + (1 −t)y) ≤tf(x) + (1 −t)f(y)
+for all x, y ∈dom f and all t ∈[0, 1].
+31
+
+--- PAGE 32 ---
+Figure 2: What convex functions look like
+If the inequality holds strictly (i.e. < rather than ≤) for all t ∈(0, 1) and x̸ = y, then we say that
+f is strictly convex.
+A function f is strongly convex with parameter m (or m-strongly convex) if the function
+x 7→f(x) −m
+2 ∥x∥2
+2
+is convex.
+These conditions are given in increasing order of strength; strong convexity implies strict convexity
+which implies convexity.
+Geometrically, convexity means that the line segment between two points on the graph of f lies on
+or above the graph itself. See Figure 2 for a visual.
+Strict convexity means that the line segment lies strictly above the graph of f, except at the segment
+endpoints. (So actually the function in the ﬁgure appears to be strictly convex.)
+4.8.3
+Consequences of convexity
+Why do we care if a function is (strictly/strongly) convex?
+Basically, our various notions of convexity have implications about the nature of minima. It should
+not be surprising that the stronger conditions tell us more about the minima.
+Proposition 16. Let X be a convex set. If f is convex, then any local minimum of f in X is also
+a global minimum.
+Proof. Suppose f is convex, and let x∗be a local minimum of f in X. Then for some neighborhood
+N ⊆X about x∗, we have f(x) ≥f(x∗) for all x ∈N. Suppose towards a contradiction that there
+exists ˜x ∈X such that f(˜x) < f(x∗).
+32
+
+--- PAGE 33 ---
+Consider the line segment x(t) = tx∗+ (1 −t)˜x, t ∈[0, 1], noting that x(t) ∈X by the convexity of
+X. Then by the convexity of f,
+f(x(t)) ≤tf(x∗) + (1 −t)f(˜x) < tf(x∗) + (1 −t)f(x∗) = f(x∗)
+for all t ∈(0, 1).
+We can pick t to be suﬃciently close to 1 that x(t) ∈N; then f(x(t)) ≥f(x∗) by the deﬁnition of
+N, but f(x(t)) < f(x∗) by the above inequality, a contradiction.
+It follows that f(x∗) ≤f(x) for all x ∈X, so x∗is a global minimum of f in X.
+Proposition 17. Let X be a convex set. If f is strictly convex, then there exists at most one local
+minimum of f in X. Consequently, if it exists it is the unique global minimum of f in X.
+Proof. The second sentence follows from the ﬁrst, so all we must show is that if a local minimum
+exists in X then it is unique.
+Suppose x∗is a local minimum of f in X, and suppose towards a contradiction that there exists a
+local minimum ˜x ∈X such that ˜x̸ = x∗.
+Since f is strictly convex, it is convex, so x∗and ˜x are both global minima of f in X by the previous
+result. Hence f(x∗) = f(˜x). Consider the line segment x(t) = tx∗+ (1 −t)˜x, t ∈[0, 1], which again
+must lie entirely in X. By the strict convexity of f,
+f(x(t)) < tf(x∗) + (1 −t)f(˜x) = tf(x∗) + (1 −t)f(x∗) = f(x∗)
+for all t ∈(0, 1). But this contradicts the fact that x∗is a global minimum. Therefore if ˜x is a local
+minimum of f in X, then ˜x = x∗, so x∗is the unique minimum in X.
+It is worthwhile to examine how the feasible set aﬀects the optimization problem. We will see why
+the assumption that X is convex is needed in the results above.
+Consider the function f(x) = x2, which is a strictly convex function. The unique global minimum
+of this function in R is x = 0. But let’s see what happens when we change the feasible set X.
+(i) X = {1}: This set is actually convex, so we still have a unique global minimum. But it is not
+the same as the unconstrained minimum!
+(ii) X = R\{0}: This set is non-convex, and we can see that f has no minima in X. For any point
+x ∈X, one can ﬁnd another point y ∈X such that f(y) < f(x).
+(iii) X = (−∞, −1] ∪[0, ∞): This set is non-convex, and we can see that there is a local minimum
+(x = −1) which is distinct from the global minimum (x = 0).
+(iv) X = (−∞, −1] ∪[1, ∞): This set is non-convex, and we can see that there are two global
+minima (x = ±1).
+4.8.4
+Showing that a function is convex
+Hopefully the previous section has convinced the reader that convexity is an important property.
+Next we turn to the issue of showing that a function is (strictly/strongly) convex. It is of course
+possible (in principle) to directly show that the condition in the deﬁnition holds, but this is usually
+not the easiest way.
+Proposition 18. Norms are convex.
+33
+
+--- PAGE 34 ---
+Proof. Let ∥· ∥be a norm on a vector space V . Then for all x, y ∈V and t ∈[0, 1],
+∥tx + (1 −t)y∥≤∥tx∥+ ∥(1 −t)y∥= |t|∥x∥+ |1 −t|∥y∥= t∥x∥+ (1 −t)∥y∥
+where we have used respectively the triangle inequality, the homogeneity of norms, and the fact that
+t and 1 −t are nonnegative. Hence ∥· ∥is convex.
+Proposition 19. Suppose f is diﬀerentiable. Then f is convex if and only if
+f(x) ≥f(y) + ⟨∇f(y), x −y⟩
+for all x, y ∈dom f.
+Proof. ( =⇒) Suppose f is convex, i.e.
+f(tx + (1 −t)y) ≤tf(x) + (1 −t)f(y) = f(y) + t(f(x) −f(y))
+for all x, y ∈dom f and all t ∈[0, 1]. Rearranging gives
+f(y + t(x −y)) −f(y)
+t
+≤f(x) −f(y)
+As t →0, the left-hand side becomes ⟨∇f(y), x −y⟩, so the result follows.
+( ⇐= ) Suppose
+f(x) ≥f(y) + ⟨∇f(y), x −y⟩
+for all x, y ∈dom f. Fix x, y ∈dom f, t ∈[0, 1], and deﬁne z = tx + (1 −t)y. Then
+f(x) ≥f(z) + ⟨∇f(z), x −z⟩
+f(y) ≥f(z) + ⟨∇f(z), y −z⟩
+so
+tf(x) + (1 −t)f(y) ≥t
+ f(z) + ⟨∇f(z), x −z⟩
+
++ (1 −t)
+ f(z) + ⟨∇f(z), y −z⟩
+
+= f(z) + ⟨∇f(z), t(x −z) + (1 −t)(y −z)⟩
+= f(tx + (1 −t)y) + ⟨∇f(z), tx + (1 −t)y −z
+|
+{z
+}
+0
+⟩
+= f(tx + (1 −t)y)
+implying that f is convex.
+Proposition 20. Suppose f is twice diﬀerentiable. Then
+(i) f is convex if and only if ∇2f(x) ⪰0 for all x ∈dom f.
+(ii) If ∇2f(x) ≻0 for all x ∈dom f, then f is strictly convex.
+(iii) f is m-strongly convex if and only if ∇2f(x) ⪰mI for all x ∈dom f.
+Proof. Omitted.
+Proposition 21. If f is convex and α ≥0, then αf is convex.
+34
+
+--- PAGE 35 ---
+Proof. Suppose f is convex and α ≥0. Then for all x, y ∈dom(αf) = dom f,
+(αf)(tx + (1 −t)y) = αf(tx + (1 −t)y)
+≤α
+ tf(x) + (1 −t)f(y)
+
+= t(αf(x)) + (1 −t)(αf(y))
+= t(αf)(x) + (1 −t)(αf)(y)
+so αf is convex.
+Proposition 22. If f and g are convex, then f + g is convex. Furthermore, if g is strictly convex,
+then f + g is strictly convex, and if g is m-strongly convex, then f + g is m-strongly convex.
+Proof. Suppose f and g are convex. Then for all x, y ∈dom(f + g) = dom f ∩dom g,
+(f + g)(tx + (1 −t)y) = f(tx + (1 −t)y) + g(tx + (1 −t)y)
+≤tf(x) + (1 −t)f(y) + g(tx + (1 −t)y)
+convexity of f
+≤tf(x) + (1 −t)f(y) + tg(x) + (1 −t)g(y)
+convexity of g
+= t(f(x) + g(x)) + (1 −t)(f(y) + g(y))
+= t(f + g)(x) + (1 −t)(f + g)(y)
+so f + g is convex.
+If g is strictly convex, the second inequality above holds strictly for x̸ = y and t ∈(0, 1), so f + g is
+strictly convex.
+If g is m-strongly convex, then the function h(x) ≡g(x) −m
+2 ∥x∥2
+2 is convex, so f + h is convex. But
+(f + h)(x) ≡f(x) + h(x) ≡f(x) + g(x) −m
+2 ∥x∥2
+2 ≡(f + g)(x) −m
+2 ∥x∥2
+2
+so f + g is m-strongly convex.
+Proposition 23. If f1, . . . , fn are convex and α1, . . . , αn ≥0, then
+n
+X
+i=1
+αifi
+is convex.
+Proof. Follows from the previous two propositions by induction.
+Proposition 24. If f is convex, then g(x) ≡f(Ax + b) is convex for any appropriately-sized A
+and b.
+Proof. Suppose f is convex and g is deﬁned like so. Then for all x, y ∈dom g,
+g(tx + (1 −t)y) = f(A(tx + (1 −t)y) + b)
+= f(tAx + (1 −t)Ay + b)
+= f(tAx + (1 −t)Ay + tb + (1 −t)b)
+= f(t(Ax + b) + (1 −t)(Ay + b))
+≤tf(Ax + b) + (1 −t)f(Ay + b)
+convexity of f
+= tg(x) + (1 −t)g(y)
+Thus g is convex.
+35
+
+--- PAGE 36 ---
+Proposition 25. If f and g are convex, then h(x) ≡max{f(x), g(x)} is convex.
+Proof. Suppose f and g are convex and h is deﬁned like so. Then for all x, y ∈dom h,
+h(tx + (1 −t)y) = max{f(tx + (1 −t)y), g(tx + (1 −t)y)}
+≤max{tf(x) + (1 −t)f(y), tg(x) + (1 −t)g(y)}
+≤max{tf(x), tg(x)} + max{(1 −t)f(y), (1 −t)g(y)}
+= t max{f(x), g(x)} + (1 −t) max{f(y), g(y)}
+= th(x) + (1 −t)h(y)
+Note that in the ﬁrst inequality we have used convexity of f and g plus the fact that a ≤c, b ≤d
+implies max{a, b} ≤max{c, d}. In the second inequality we have used the fact that max{a+b, c+d} ≤
+max{a, c} + max{b, d}.
+Thus h is convex.
+4.8.5
+Examples
+A good way to gain intuition about the distinction between convex, strictly convex, and strongly
+convex functions is to consider examples where the stronger property fails to hold.
+Functions that are convex but not strictly convex:
+(i) f(x) = w⊤x + α for any w ∈Rd, α ∈R. Such a function is called an aﬃne function, and it
+is both convex and concave. (In fact, a function is aﬃne if and only if it is both convex and
+concave.) Note that linear functions and constant functions are special cases of aﬃne functions.
+(ii) f(x) = ∥x∥1
+Functions that are strictly but not strongly convex:
+(i) f(x) = x4. This example is interesting because it is strictly convex but you cannot show this
+fact via a second-order argument (since f ′′(0) = 0).
+(ii) f(x) = exp(x).
+This example is interesting because it’s bounded below but has no local
+minimum.
+(iii) f(x) = −log x. This example is interesting because it’s strictly convex but not bounded below.
+Functions that are strongly convex:
+(i) f(x) = ∥x∥2
+2
+36
+
+--- PAGE 37 ---
+5
+Probability
+Probability theory provides powerful tools for modeling and dealing with uncertainty.
+5.1
+Basics
+Suppose we have some sort of randomized experiment (e.g. a coin toss, die roll) that has a ﬁxed set
+of possible outcomes. This set is called the sample space and denoted Ω.
+We would like to deﬁne probabilities for some events, which are subsets of Ω. The set of events is
+denoted F.9 The complement of the event A is another event, Ac = Ω\ A.
+Then we can deﬁne a probability measure P : F →[0, 1] which must satisfy
+(i) P(Ω) = 1
+(ii) Countable additivity: for any countable collection of disjoint sets {Ai} ⊆F,
+P
+ [
+i
+Ai
+
+=
+X
+i
+P(Ai)
+The triple (Ω, F, P) is called a probability space.10
+If P(A) = 1, we say that A occurs almost surely (often abbreviated a.s.).11, and conversely A
+occurs almost never if P(A) = 0.
+From these axioms, a number of useful rules can be derived.
+Proposition 26. Let A be an event. Then
+(i) P(Ac) = 1 −P(A).
+(ii) If B is an event and B ⊆A, then P(B) ≤P(A).
+(iii) 0 = P(∅) ≤P(A) ≤P(Ω) = 1
+Proof. (i) Using the countable additivity of P, we have
+P(A) + P(Ac) = P(A ˙∪Ac) = P(Ω) = 1
+To show (ii), suppose B ∈F and B ⊆A. Then
+P(A) = P(B ˙∪(A \ B)) = P(B) + P(A \ B) ≥P(B)
+as claimed.
+For (iii): the middle inequality follows from (ii) since ∅⊆A ⊆Ω. We also have
+P(∅) = P(∅˙∪∅) = P(∅) + P(∅)
+by countable additivity, which shows P(∅) = 0.
+9 F is required to be a σ-algebra for technical reasons; see [2].
+10 Note that a probability space is simply a measure space in which the measure of the whole space equals 1.
+11 This is a probabilist’s version of the measure-theoretic term almost everywhere.
+37
+
+--- PAGE 38 ---
+Proposition 27. If A and B are events, then P(A ∪B) = P(A) + P(B) −P(A ∩B).
+Proof. The key is to break the events up into their various overlapping and non-overlapping parts.
+P(A ∪B) = P((A ∩B) ˙∪(A \ B) ˙∪(B \ A))
+= P(A ∩B) + P(A \ B) + P(B \ A)
+= P(A ∩B) + P(A) −P(A ∩B) + P(B) −P(A ∩B)
+= P(A) + P(B) −P(A ∩B)
+Proposition 28. If {Ai} ⊆F is a countable set of events, disjoint or not, then
+P
+ [
+i
+Ai
+
+≤
+X
+i
+P(Ai)
+This inequality is sometimes referred to as Boole’s inequality or the union bound.
+Proof. Deﬁne B1 = A1 and Bi = Ai \ (S
+j<i Aj) for i > 1, noting that S
+j≤i Bj = S
+j≤i Aj for all i
+and the Bi are disjoint. Then
+P
+ [
+i
+Ai
+
+= P
+ [
+i
+Bi
+
+=
+X
+i
+P(Bi) ≤
+X
+i
+P(Ai)
+where the last inequality follows by monotonicity since Bi ⊆Ai for all i.
+5.1.1
+Conditional probability
+The conditional probability of event A given that event B has occurred is written P(A|B) and
+deﬁned as
+P(A|B) = P(A ∩B)
+P(B)
+assuming P(B) > 0.12
+5.1.2
+Chain rule
+Another very useful tool, the chain rule, follows immediately from this deﬁnition:
+P(A ∩B) = P(A|B)P(B) = P(B|A)P(A)
+5.1.3
+Bayes’ rule
+Taking the equality from above one step further, we arrive at the simple but crucial Bayes’ rule:
+P(A|B) = P(B|A)P(A)
+P(B)
+12 In some cases it is possible to deﬁne conditional probability on events of probability zero, but this is signiﬁcantly
+more technical so we omit it.
+38
+
+--- PAGE 39 ---
+It is sometimes beneﬁcial to omit the normalizing constant and write
+P(A|B) ∝P(A)P(B|A)
+Under this formulation, P(A) is often referred to as the prior, P(A|B) as the posterior, and P(B|A)
+as the likelihood.
+In the context of machine learning, we can use Bayes’ rule to update our “beliefs” (e.g. values of
+our model parameters) given some data that we’ve observed.
+5.2
+Random variables
+A random variable is some uncertain quantity with an associated probability distribution over the
+values it can assume.
+Formally, a random variable on a probability space (Ω, F, P) is a function13 X : Ω→R.14
+We denote the range of X by X(Ω) = {X(ω) : ω ∈Ω}. To give a concrete example (taken from [3]),
+suppose X is the number of heads in two tosses of a fair coin. The sample space is
+Ω= {hh, tt, ht, th}
+and X is determined completely by the outcome ω, i.e. X = X(ω). For example, the event X = 1
+is the set of outcomes {ht, th}.
+It is common to talk about the values of a random variable without directly referencing its sample
+space. The two are related by the following deﬁnition: the event that the value of X lies in some
+set S ⊆R is
+X ∈S = {ω ∈Ω: X(ω) ∈S}
+Note that special cases of this deﬁnition include X being equal to, less than, or greater than some
+speciﬁed value. For example
+P(X = x) = P({ω ∈Ω: X(ω) = x})
+A word on notation: we write p(X) to denote the entire probability distribution of X and p(x)
+for the evaluation of the function p at a particular value x ∈X(Ω). Hopefully this (reasonably
+standard) abuse of notation is not too distracting. If p is parameterized by some parameters θ, we
+write p(X; θ) or p(x; θ), unless we are in a Bayesian setting where the parameters are considered a
+random variable, in which case we condition on the parameters.
+5.2.1
+The cumulative distribution function
+The cumulative distribution function (c.d.f.) gives the probability that a random variable is at
+most a certain value:
+F(x) = P(X ≤x)
+The c.d.f. can be used to give the probability that a variable lies within a certain range:
+P(a < X ≤b) = F(b) −F(a)
+13 The function must be measurable.
+14 More generally, the codomain can be any measurable space, but R is the most common case by far and suﬃcient
+for our purposes.
+39
+
+--- PAGE 40 ---
+5.2.2
+Discrete random variables
+A discrete random variable is a random variable that has a countable range and assumes each
+value in this range with positive probability. Discrete random variables are completely speciﬁed by
+their probability mass function (p.m.f.) p : X(Ω) →[0, 1] which satisﬁes
+X
+x∈X(Ω)
+p(x) = 1
+For a discrete X, the probability of a particular value is given exactly by its p.m.f.:
+P(X = x) = p(x)
+5.2.3
+Continuous random variables
+A continuous random variable is a random variable that has an uncountable range and assumes
+each value in this range with probability zero. Most of the continuous random variables that one
+would encounter in practice are absolutely continuous random variables15, which means that
+there exists a function p : R →[0, ∞) that satisﬁes
+F(x) ≡
+Z x
+−∞
+p(z) dz
+The function p is called a probability density function (abbreviated p.d.f.) and must satisfy
+Z ∞
+−∞
+p(x) dx = 1
+The values of this function are not themselves probabilities, since they could exceed 1. However,
+they do have a couple of reasonable interpretations. One is as relative probabilities; even though
+the probability of each particular value being picked is technically zero, some points are still in a
+sense more likely than others.
+One can also think of the density as determining the probability that the variable will lie in a small
+range about a given value. This is because, for small ϵ > 0,
+P(x −ϵ ≤X ≤x + ϵ) =
+Z x+ϵ
+x−ϵ
+p(z) dz ≈2ϵp(x)
+using a midpoint approximation to the integral.
+Here are some useful identities that follow from the deﬁnitions above:
+P(a ≤X ≤b) =
+Z b
+a
+p(x) dx
+p(x) = F ′(x)
+5.2.4
+Other kinds of random variables
+There are random variables that are neither discrete nor continuous. For example, consider a random
+variable determined as follows: ﬂip a fair coin, then the value is zero if it comes up heads, otherwise
+draw a number uniformly at random from [1, 2]. Such a random variable can take on uncountably
+many values, but only ﬁnitely many of these with positive probability. We will not discuss such
+random variables because they are rather pathological and require measure theory to analyze.
+15 Random variables that are continuous but not absolutely continuous are called singular random variables.
+We will not discuss them, assuming rather that all continuous random variables admit a density function.
+40
+
+--- PAGE 41 ---
+5.3
+Joint distributions
+Often we have several random variables and we would like to get a distribution over some combination
+of them. A joint distribution is exactly this. For some random variables X1, . . . , Xn, the joint
+distribution is written p(X1, . . . , Xn) and gives probabilities over entire assignments to all the Xi
+simultaneously.
+5.3.1
+Independence of random variables
+We say that two variables X and Y are independent if their joint distribution factors into their
+respective distributions, i.e.
+p(X, Y ) = p(X)p(Y )
+We can also deﬁne independence for more than two random variables, although it is more compli-
+cated. Let {Xi}i∈I be a collection of random variables indexed by I, which may be inﬁnite. Then
+{Xi} are independent if for every ﬁnite subset of indices i1, . . . , ik ∈I we have
+p(Xi1, . . . , Xik) =
+k
+Y
+j=1
+p(Xij)
+For example, in the case of three random variables, X, Y, Z, we require that p(X, Y, Z) = p(X)p(Y )p(Z)
+as well as p(X, Y ) = p(X)p(Y ), p(X, Z) = p(X)p(Z), and p(Y, Z) = p(Y )p(Z).
+It is often convenient (though perhaps questionable) to assume that a bunch of random variables are
+independent and identically distributed (i.i.d.) so that their joint distribution can be factored
+entirely:
+p(X1, . . . , Xn) =
+n
+Y
+i=1
+p(Xi)
+where X1, . . . , Xn all share the same p.m.f./p.d.f.
+5.3.2
+Marginal distributions
+If we have a joint distribution over some set of random variables, it is possible to obtain a distribution
+for a subset of them by “summing out” (or “integrating out” in the continuous case) the variables
+we don’t care about:
+p(X) =
+X
+y
+p(X, y)
+5.4
+Great Expectations
+If we have some random variable X, we might be interested in knowing what is the “average” value
+of X. This concept is captured by the expected value (or mean) E[X], which is deﬁned as
+E[X] =
+X
+x∈X(Ω)
+xp(x)
+for discrete X and as
+E[X] =
+Z ∞
+−∞
+xp(x) dx
+for continuous X.
+41
+
+--- PAGE 42 ---
+In words, we are taking a weighted sum of the values that X can take on, where the weights are
+the probabilities of those respective values. The expected value has a physical interpretation as the
+“center of mass” of the distribution.
+5.4.1
+Properties of expected value
+A very useful property of expectation is that of linearity:
+E
+
+
+n
+X
+i=1
+αiXi + β
+
+=
+n
+X
+i=1
+αiE[Xi] + β
+Note that this holds even if the Xi are not independent!
+But if they are independent, the product rule also holds:
+E
+
+
+n
+Y
+i=1
+Xi
+
+=
+n
+Y
+i=1
+E[Xi]
+5.5
+Variance
+Expectation provides a measure of the “center” of a distribution, but frequently we are also interested
+in what the “spread” is about that center. We deﬁne the variance Var(X) of a random variable X
+by
+Var(X) = E
+h X −E[X]
+2i
+In words, this is the average squared deviation of the values of X from the mean of X. Using a little
+algebra and the linearity of expectation, it is straightforward to show that
+Var(X) = E[X2] −E[X]2
+5.5.1
+Properties of variance
+Variance is not linear (because of the squaring in the deﬁnition), but one can show the following:
+Var(αX + β) = α2 Var(X)
+Basically, multiplicative constants become squared when they are pulled out, and additive constants
+disappear (since the variance contributed by a constant is zero).
+Furthermore, if X1, . . . , Xn are uncorrelated16, then
+Var(X1 + · · · + Xn) = Var(X1) + · · · + Var(Xn)
+5.5.2
+Standard deviation
+Variance is a useful notion, but it suﬀers from that fact the units of variance are not the same as
+the units of the random variable (again because of the squaring). To overcome this problem we can
+use standard deviation, which is deﬁned as
+p
+Var(X). The standard deviation of X has the same
+units as X.
+16 We haven’t deﬁned this yet; see the Correlation section below
+42
+
+--- PAGE 43 ---
+5.6
+Covariance
+Covariance is a measure of the linear relationship between two random variables. We denote the
+covariance between X and Y as Cov(X, Y ), and it is deﬁned to be
+Cov(X, Y ) = E[(X −E[X])(Y −E[Y ])]
+Note that the outer expectation must be taken over the joint distribution of X and Y .
+Again, the linearity of expectation allows us to rewrite this as
+Cov(X, Y ) = E[XY ] −E[X]E[Y ]
+Comparing these formulas to the ones for variance, it is not hard to see that Var(X) = Cov(X, X).
+A useful property of covariance is that of bilinearity:
+Cov(αX + βY, Z) = α Cov(X, Z) + β Cov(Y, Z)
+Cov(X, αY + βZ) = α Cov(X, Y ) + β Cov(X, Z)
+5.6.1
+Correlation
+Normalizing the covariance gives the correlation:
+ρ(X, Y ) =
+Cov(X, Y )
+p
+Var(X) Var(Y )
+Correlation also measures the linear relationship between two variables, but unlike covariance always
+lies between −1 and 1.
+Two variables are said to be uncorrelated if Cov(X, Y ) = 0 because Cov(X, Y ) = 0 implies that
+ρ(X, Y ) = 0. If two variables are independent, then they are uncorrelated, but the converse does
+not hold in general.
+5.7
+Random vectors
+So far we have been talking about univariate distributions, that is, distributions of single vari-
+ables. But we can also talk about multivariate distributions which give distributions of random
+vectors:
+X =
+
+
+X1
+...
+Xn
+
+
+The summarizing quantities we have discussed for single variables have natural generalizations to
+the multivariate case.
+Expectation of a random vector is simply the expectation applied to each component:
+E[X] =
+
+
+E[X1]
+...
+E[Xn]
+
+
+43
+
+--- PAGE 44 ---
+The variance is generalized by the covariance matrix:
+Σ = E[(X −E[X])(X −E[X])⊤] =
+
+
+Var(X1)
+Cov(X1, X2)
+. . .
+Cov(X1, Xn)
+Cov(X2, X1)
+Var(X2)
+. . .
+Cov(X2, Xn)
+...
+...
+...
+...
+Cov(Xn, X1)
+Cov(Xn, X2)
+. . .
+Var(Xn)
+
+
+That is, Σij = Cov(Xi, Xj). Since covariance is symmetric in its arguments, the covariance matrix
+is also symmetric. It’s also positive semi-deﬁnite: for any x,
+x⊤Σx = x⊤E[(X −E[X])(X −E[X])⊤]x = E[x⊤(X −E[X])(X −E[X])⊤x] = E[((X −E[X])⊤x)2] ≥0
+The inverse of the covariance matrix, Σ−1, is sometimes called the precision matrix.
+5.8
+Estimation of Parameters
+Now we get into some basic topics from statistics. We make some assumptions about our problem by
+prescribing a parametric model (e.g. a distribution that describes how the data were generated),
+then we ﬁt the parameters of the model to the data. How do we choose the values of the parameters?
+5.8.1
+Maximum likelihood estimation
+A common way to ﬁt parameters is maximum likelihood estimation (MLE). The basic principle
+of MLE is to choose values that “explain” the data best by maximizing the probability/density of
+the data we’ve seen as a function of the parameters. Suppose we have random variables X1, . . . , Xn
+and corresponding observations x1, . . . , xn. Then
+ˆθmle = arg max
+θ
+L(θ)
+where L is the likelihood function
+L(θ) = p(x1, . . . , xn; θ)
+Often, we assume that X1, . . . , Xn are i.i.d. Then we can write
+p(x1, . . . , xn; θ) =
+n
+Y
+i=1
+p(xi; θ)
+At this point, it is usually convenient to take logs, giving rise to the log-likelihood
+log L(θ) =
+n
+X
+i=1
+log p(xi; θ)
+This is a valid operation because the probabilities/densities are assumed to be positive, and since
+log is a monotonically increasing function, it preserves ordering. In other words, any maximizer of
+log L will also maximize L.
+For some distributions, it is possible to analytically solve for the maximum likelihood estimator. If
+log L is diﬀerentiable, setting the derivatives to zero and trying to solve for θ is a good place to start.
+44
+
+--- PAGE 45 ---
+5.8.2
+Maximum a posteriori estimation
+A more Bayesian way to ﬁt parameters is through maximum a posteriori estimation (MAP).
+In this technique we assume that the parameters are a random variable, and we specify a prior
+distribution p(θ). Then we can employ Bayes’ rule to compute the posterior distribution of the
+parameters given the observed data:
+p(θ|x1, . . . , xn) ∝p(θ)p(x1, . . . , xn|θ)
+Computing the normalizing constant is often intractable, because it involves integrating over the
+parameter space, which may be very high-dimensional.
+Fortunately, if we just want the MAP
+estimate, we don’t care about the normalizing constant! It does not aﬀect which values of θ maximize
+the posterior. So we have
+ˆθmap = arg max
+θ
+p(θ)p(x1, . . . , xn|θ)
+Again, if we assume the observations are i.i.d., then we can express this in the equivalent, and
+possibly friendlier, form
+ˆθmap = arg max
+θ
+
+log p(θ) +
+n
+X
+i=1
+log p(xi|θ)
+
+
+A particularly nice case is when the prior is chosen carefully such that the posterior comes from the
+same family as the prior. In this case the prior is called a conjugate prior. For example, if the
+likelihood is binomial and the prior is beta, the posterior is also beta. There are many conjugate
+priors; the reader may ﬁnd this table of conjugate priors useful.
+5.9
+The Gaussian distribution
+There are many distributions, but one of particular importance is the Gaussian distribution, also
+known as the normal distribution. It is a continuous distribution, parameterized by its mean
+µ ∈Rd and positive-deﬁnite covariance matrix Σ ∈Rd×d, with density
+p(x; µ, Σ) =
+1
+p
+(2π)d det(Σ)
+exp
+
+−1
+2(x −µ)⊤Σ−1(x −µ)
+
+Note that in the special case d = 1, the density is written in the more recognizable form
+p(x; µ, σ2) =
+1
+√
+2πσ2 exp
+ 
+−(x −µ)2
+2σ2
+!
+We write X ∼N(µ, Σ) to denote that X is normally distributed with mean µ and variance Σ.
+5.9.1
+The geometry of multivariate Gaussians
+The geometry of the multivariate Gaussian density is intimately related to the geometry of positive
+deﬁnite quadratic forms, so make sure the material in that section is well-understood before tackling
+this section.
+First observe that the p.d.f. of the multivariate Gaussian can be rewritten as
+p(x; µ, Σ) = g(˜x⊤Σ−1˜x)
+45
+
+--- PAGE 46 ---
+where ˜x = x −µ and g(z) = [(2π)d det(Σ)]−1
+2 exp
+ −z
+2
+
+. Writing the density in this way, we see
+that after shifting by the mean µ, the density is really just a simple function of its precision matrix’s
+quadratic form.
+Here is a key observation: this function g is strictly monotonically decreasing in its argument.
+That is, g(a) > g(b) whenever a < b. Therefore, small values of ˜x⊤Σ−1˜x (which generally correspond
+to points where ˜x is closer to 0, i.e. x ≈µ) have relatively high probability densities, and vice-versa.
+Furthermore, because g is strictly monotonic, it is injective, so the c-isocontours of p(x; µ, Σ) are
+the g−1(c)-isocontours of the function x 7→˜x⊤Σ−1˜x. That is, for any c,
+{x ∈Rd : p(x; µ, Σ) = c} = {x ∈Rd : ˜x⊤Σ−1˜x = g−1(c)}
+In words, these functions have the same isocontours but diﬀerent isovalues.
+Recall the executive summary of the geometry of positive deﬁnite quadratic forms: the isocontours
+of f(x) = x⊤Ax are ellipsoids such that the axes point in the directions of the eigenvectors of
+A, and the lengths of these axes are proportional to the inverse square roots of the corresponding
+eigenvalues. Therefore in this case, the isocontours of the density are ellipsoids (centered at µ) with
+axis lengths proportional to the inverse square roots of the eigenvalues of Σ−1, or equivalently, the
+square roots of the eigenvalues of Σ.
+46
+
+--- PAGE 47 ---
+Acknowledgements
+The author would like to thank Michael Franco for suggested clariﬁcations, and Chinmoy Saayujya
+for catching a typo.
+References
+[1] J. Nocedal and S. J. Wright, Numerical Optimization. New York: Springer Science+Business
+Media, 2006.
+[2] J. S. Rosenthal, A First Look at Rigorous Probability Theory (Second Edition). Singapore: World
+Scientiﬁc Publishing, 2006.
+[3] J. Pitman, Probability. New York: Springer-Verlag, 1993.
+[4] S. Axler, Linear Algebra Done Right (Third Edition). Springer International Publishing, 2015.
+[5] S. Boyd and L. Vandenberghe, Convex Optimization. New York: Cambridge University Press,
+2009.
+[6] J. A. Rice, Mathematical Statistics and Data Analysis.
+Belmont, California:
+Thomson
+Brooks/Cole, 2007.
+[7] W. Cheney, Analysis for Applied Mathematics. New York: Springer Science+Business Medias,
+2001.
+47
+

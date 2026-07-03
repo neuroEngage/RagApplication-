@@ -1,0 +1,598 @@
+--- PAGE 1 ---
+Build or purchase your own Shiny Server  
+at www.rstudio.com/products/shiny-server/
+Interactive Web Apps 
+with shiny Cheat Sheet  
+RStudio® is a trademark of RStudio, Inc.  •  CC BY RStudio •  info@rstudio.com  •  844-448-1212 • rstudio.com 
+Building an App  - Complete the template by adding arguments to fluidPage() and a body to the server function.
+Basics
+Learn more at shiny.rstudio.com/tutorial  •  shiny  0.12.0  •  Updated: 6/15
+learn more at shiny.rstudio.com
+A Shiny app is a web page (UI) connected to a 
+computer running a live R session (Server)
+Users can manipulate the UI, which will cause the 
+server to update the UI’s displays (by running R code).
+library(shiny) 
+ui <- fluidPage() 
+server <- function(input, output){} 
+shinyApp(ui = ui, server = server)
+App template
+Outputs - render*()  and *Output() functions work together to add R output to the UI
+ 
+Begin writing a new app with this template. Preview 
+the app by running the code at the R command line.
+Inputs - collect values from the user
+ 
+actionButton(inputId, label, icon, …) 
+actionLink(inputId, label, icon, …) 
+checkboxGroupInput(inputId, label, 
+choices, selected, inline) 
+checkboxInput(inputId, label, value) 
+dateInput(inputId, label, value, min, 
+max, format, startview, weekstart, 
+language) 
+dateRangeInput(inputId, label, start, 
+end, min, max, format, startview, 
+weekstart, language, separator) 
+fileInput(inputId, label, multiple, 
+accept) 
+numericInput(inputId, label, value, 
+min, max, step) 
+passwordInput(inputId, label, value) 
+radioButtons(inputId, label, choices, 
+selected, inline) 
+selectInput(inputId, label, choices, 
+selected, multiple, selectize, width, 
+size) (also selectizeInput()) 
+sliderInput(inputId, label, min, max, 
+value, step, round, format, locale, 
+ticks, animate, width, sep, pre, post) 
+submitButton(text, icon) 
+(Prevents reactions across entire app) 
+textInput(inputId, label, value)
+Access the current value of an input object with input
+$<inputId>. Input values are reactive.
+Share your app
+The easiest way to share your app 
+is to host it on shinyapps.io, a 
+cloud based service from RStudio
+1.Create a free or professional account at 
+ http://shinyapps.io 
+2.Click the Publish icon in the RStudio IDE 
+(>=0.99) or run: 
+ rsconnect::deployApp("<path to directory>")
+!
+"
+• ui - nested R functions that assemble an HTML user 
+interface for your app 
+• server - a function with instructions on how  to 
+build and rebuild the R objects displayed in the UI 
+• shinyApp - combines ui and server into a 
+functioning app. Wrap with runApp() if calling from 
+a sourced script or inside a function.
+DT::renderDataTable(expr,  
+options, callback,  escape,  
+env, quoted) 
+renderImage(expr, env, quoted, deleteFile) 
+renderPlot(expr, width, height, res, …, env, 
+quoted, func) 
+renderPrint(expr, env, quoted, func,  
+width) 
+renderTable(expr,…, env, quoted, func) 
+renderText(expr, env, quoted, func) 
+renderUI(expr, env, quoted, func)
+dataTableOutput(outputId, icon, …) 
+imageOutput(outputId, width, height, click, 
+dblclick, hover, hoverDelay, hoverDelayType, 
+brush, clickId, hoverId, inline) 
+plotOutput(outputId, width, height, click, 
+dblclick, hover, hoverDelay, hoverDelayType, 
+brush, clickId, hoverId, inline) 
+verbatimTextOutput(outputId) 
+tableOutput(outputId) 
+textOutput(outputId, container, inline) 
+uiOutput(outputId, inline, container, …) 
+htmlOutput(outputId, inline, container, …)
+library(shiny) 
+ui <- fluidPage( 
+  numericInput(inputId = "n",  
+    "Sample size", value = 25), 
+  plotOutput(outputId = "hist") 
+) 
+server <- function(input, output) { 
+  output$hist <- renderPlot({ 
+    hist(rnorm(input$n)) 
+  }) 
+} 
+shinyApp(ui = ui, server = server)
+Add inputs to the UI with *Input() functions 
+Add outputs with *Output() functions 
+Tell server how to render outputs with R in  
+the server function. To do this: 
+1. Refer to outputs with output$<id> 
+2. Refer to inputs with input$<id> 
+3. Wrap code in a render*() function before 
+saving to output
+&
+Save your template as app.R. Alternatively, split your template into two files named ui.R and server.R.
+library(shiny) 
+ui <- fluidPage( 
+  numericInput(inputId = "n",  
+    "Sample size", value = 25), 
+  plotOutput(outputId = "hist") 
+) 
+server <- function(input, output) { 
+  output$hist <- renderPlot({ 
+    hist(rnorm(input$n)) 
+  }) 
+} 
+shinyApp(ui = ui, server = server)
+# ui.R 
+fluidPage( 
+  numericInput(inputId = "n",  
+    "Sample size", value = 25), 
+  plotOutput(outputId = "hist") 
+)
+# server.R 
+function(input, output) { 
+  output$hist <- renderPlot({ 
+    hist(rnorm(input$n)) 
+  }) 
+}
+ui.R contains everything  
+you would save to ui. 
+server.R ends with the 
+function you would save  
+to server. 
+No need to call  
+shinyApp(). 
+works 
+with
+Save each app as a directory that contains an app.R file (or a server.R file and a ui.R file) plus optional extra files.
+app-name
+app.R
+#
+DESCRIPTION
+README
+<other ﬁles>
+www
+$
+$
+$
+The directory name is the name of the app 
+(optional) defines objects available to both  
+ui.R and server.R 
+(optional) used in showcase mode 
+(optional) data, scripts, etc. 
+(optional) directory of files to share with web 
+ browsers (images, CSS, .js, etc.) Must be named "www"
+Launch apps with 
+runApp(<path to 
+directory>)
+$
+.r
+global.R
+$
+More cheat sheets at http://www.rstudio.com/resources/cheatsheets/
+
+--- PAGE 2 ---
+Reactivity
+Modularize reactions
+ 
+RStudio® is a trademark of RStudio, Inc.  •  CC BY RStudio •  info@rstudio.com  •  844-448-1212 • rstudio.com 
+UI
+Layouts
+input$x
+expression()
+run(this)
+Update
+output$y
+Prevent reactions 
+isolate()
+Trigger 
+arbitrary code 
+observeEvent() 
+observe()
+Delay reactions 
+eventReactive()
+Create your own 
+reactive values 
+reactiveValues() 
+*Input()
+Modularize  
+reactions 
+reactive()
+Render  
+reactive output 
+render*()
+Learn more at shiny.rstudio.com/tutorial  •  shiny  0.12.0  •  Updated: 6/15
+Reactive values work together with reactive functions. Call a reactive value from within the arguments of one of 
+these functions to avoid the error Operation not allowed without an active reactive context.
+Add static HTML elements with tags, a list of 
+functions that parallel common HTML tags, e.g. 
+tags$a(). Unnamed arguments will be passed 
+into the tag; named arguments will become tag 
+attributes.
+Prevent reactions
+ 
+Create your own reactive values
+ 
+Delay reactions
+ 
+Trigger arbitrary code
+ 
+Render reactive output
+ 
+library(shiny) 
+ui <- fluidPage( 
+ textInput("a","") 
+) 
+server <- 
+function(input,output){ 
+ rv <- reactiveValues() 
+ rv$number <- 5 
+} 
+shinyApp(ui, server)
+library(shiny) 
+ui <- fluidPage( 
+ textInput("a",""), 
+ textOutput("b") 
+) 
+server <- 
+function(input,output){ 
+ output$b <-   
+  renderText({ 
+   isolate({input$a}) 
+  }) 
+} 
+shinyApp(ui, server)
+library(shiny) 
+ui <- fluidPage( 
+ textInput("a","") 
+) 
+server <- 
+function(input,output){ 
+ output$b <-   
+  renderText({ 
+   input$a 
+  }) 
+} 
+shinyApp(ui, server)
+library(shiny) 
+ui <- fluidPage( 
+ textInput("a",""), 
+ actionButton("go", "") 
+) 
+server <- 
+function(input,output){  
+ observeEvent(input$go, 
+   print(input$a) 
+  }) 
+} 
+shinyApp(ui, server)
+library(shiny) 
+ui <- fluidPage( 
+ textInput("a",""), 
+ actionButton("go", "") 
+) 
+server <- 
+function(input,output){  
+ re <- eventReactive( 
+  input$go,{input$a}) 
+ output$b <- renderText({ 
+   re() 
+  }) 
+} 
+shinyApp(ui, server)
+library(shiny) 
+ui <- fluidPage( 
+ textInput("a",""), 
+ textInput("z", "") 
+) 
+server <- 
+function(input,output){  
+ re <- reactive({ 
+  paste(input$a,input$b}) 
+ output$b <- renderText({ 
+   re() 
+  }) 
+} 
+shinyApp(ui, server)
+render*() functions 
+(see front page)
+observeEvent(eventExpr
+, handlerExpr, event.env, 
+event.quoted, handler.env, 
+handler.quoted, labe, 
+suspended, priority, domain, 
+autoDestroy, ignoreNULL)
+eventReactive(eventExpr, 
+valueExpr, event.env, 
+event.quoted, value.env, 
+value.quoted, label, 
+domain, ignoreNULL)
+*Input() functions 
+(see front page) 
+reactiveValues(…)
+isolate(expr)
+reactive(x, env, quoted, 
+label, domain)
+Each input function 
+creates a reactive value 
+stored as input$<inputId> 
+reactiveValues() creates a 
+list of reactive values 
+whose values you can set.
+Builds an object to 
+display. Will rerun code in 
+body to rebuild the object 
+whenever a reactive value 
+in the code changes.  
+Save the results to  
+output$<outputId>
+Runs a code block. 
+Returns a non-reactive 
+copy  of the results.
+Runs code in 2nd 
+argument when reactive 
+values in 1st argument 
+change. See observe() for 
+alternative.
+Creates a reactive expression 
+that 
+• caches its value to reduce 
+computation 
+• can be called by other code 
+• notifies its dependencies 
+when it ha been invalidated 
+Call the expression with 
+function syntax, e.g. re()
+Creates reactive 
+expression with code in 
+2nd argument that only 
+invalidates when reactive 
+values in 1st argument 
+change.
+More cheat sheets at http://www.rstudio.com/resources/cheatsheets/
+An app’s UI is an HTML document. Use Shiny’s 
+functions to assemble this HTML with R.
+tags$a           
+tags$abbr        
+tags$address     
+tags$area        
+tags$article 
+tags$aside       
+tags$audio       
+tags$b           
+tags$base        
+tags$bdi 
+tags$bdo         
+tags$blockquote  
+tags$body        
+tags$br          
+tags$button 
+tags$canvas      
+tags$caption     
+tags$cite        
+tags$code   
+tags$col  
+tags$colgroup    
+tags$command  
+tags$data        
+tags$datalist    
+tags$dd 
+tags$del         
+tags$details     
+tags$dfn         
+tags$div         
+tags$dl 
+tags$dt          
+tags$em          
+tags$embed       
+tags$eventsource 
+tags$fieldset 
+tags$figcaption  
+tags$figure      
+tags$footer      
+tags$form  
+tags$h1  
+tags$h2          
+tags$h3   
+tags$h4          
+tags$h5    
+tags$h6 
+tags$head        
+tags$header      
+tags$hgroup      
+tags$hr          
+tags$HTML 
+tags$i           
+tags$iframe      
+tags$img     
+tags$input        
+tags$ins 
+tags$kbd         
+tags$keygen  
+tags$label       
+tags$legend      
+tags$li 
+tags$link        
+tags$mark        
+tags$map         
+tags$menu   
+tags$meta 
+tags$meter       
+tags$nav         
+tags$noscript    
+tags$object      
+tags$ol 
+tags$optgroup    
+tags$option  
+tags$output      
+tags$p           
+tags$param 
+tags$pre         
+tags$progress   
+tags$q           
+tags$ruby        
+tags$rp 
+tags$rt          
+tags$s           
+tags$samp        
+tags$script      
+tags$section     
+tags$select      
+tags$small  
+tags$source      
+     
+tags$span        
+tags$strong 
+tags$style       
+tags$sub  
+tags$summary     
+tags$sup         
+tags$table 
+tags$tbody       
+tags$td   
+tags$textarea    
+tags$tfoot       
+tags$th 
+tags$thead       
+tags$time        
+tags$title       
+tags$tr          
+tags$track 
+tags$u           
+tags$ul          
+tags$var         
+tags$video       
+tags$wbr
+fluidPage( 
+  textInput("a","") 
+) 
+## <div class="container-fluid"> 
+##  <div class="form-group shiny-input-container"> 
+##     <label for="a"></label> 
+##     <input id="a" type="text"  
+##        class="form-control" value=""/> 
+##   </div> 
+## </div> 
+Returns  
+HTML
+The most common tags have wrapper functions. You 
+do not need to prefix their names with tags$
+IMAGES
+To include a CSS file, use includeCSS(), or 
+1. Place the file in the www subdirectory 
+2. Link to it with 
+To include JavaScript, use includeScript() or 
+1. Place the file in the www subdirectory 
+2. Link to it with 
+ui <- fluidPage( 
+  h1("Header 1"),  
+  hr(), 
+  br(), 
+  p(strong("bold")), 
+  p(em("italic")), 
+  p(code("code")), 
+  a(href="", "link"), 
+  HTML("<p>Raw html</p>") 
+)
+tags$head(tags$link(rel = "stylesheet",  
+  type = "text/css", href = "<file name>"))
+tags$head(tags$script(src = "<file name>"))
+To include an image 
+1. Place the file in the www subdirectory 
+2. Link to it with  img(src="<file name>")
+Combine multiple elements into a "single element" 
+that has its own properties with a panel function, e.g.
+fluidRow()
+row
+column
+column
+col
+flowLayout()
+object 
+1
+object 
+2
+object 
+3
+object 
+3
+splitLayout()
+object 
+1
+object 
+2
+absolutePanel()           
+conditionalPanel()     
+fixedPanel()   
+headerPanel()        
+inputPanel()        
+mainPanel() 
+navlistPanel() 
+sidebarPanel() 
+tabPanel() 
+tabsetPanel() 
+titlePanel() 
+wellPanel()
+Organize panels and elements into a layout with a 
+layout function. Add elements as arguments of the 
+layout functions. 
+Layer tabPanels on top of each other, 
+and navigate between them, with:
+wellPanel( 
+  dateInput("a", ""), 
+  submitButton() 
+)
+side 
+panel
+main 
+panel
+sidebarLayout()
+verticalLayout()
+object 1
+object 2
+object 3
+ui <- fluidPage( 
+  fluidRow(column(width = 4),  
+      column(width = 2,  oﬀset = 3)), 
+  fluidRow(column(width = 12)) 
+) 
+ui <- fluidPage( 
+  flowLayout( # object 1, 
+                             # object 2, 
+                             # object 3 
+  ) 
+) 
+ui <- fluidPage( 
+   sidebarLayout( 
+      sidebarPanel(), 
+      mainPanel() 
+   ) 
+) 
+ui <- fluidPage( 
+  splitLayout( # object 1, 
+                             # object 2 
+  ) 
+) 
+ui <- fluidPage( 
+  verticalLayout( # object 1, 
+                                    # object 2, 
+                                    # object 3 
+  ) 
+) 
+ui <- fluidPage( tabsetPanel( 
+     tabPanel("tab 1", "contents"), 
+     tabPanel("tab 2", "contents"), 
+     tabPanel("tab 3", "contents")))
+ui <- fluidPage( navlistPanel( 
+     tabPanel("tab 1", "contents"), 
+     tabPanel("tab 2", "contents"), 
+     tabPanel("tab 3", "contents")))
+ui <- navbarPage(title = "Page", 
+     tabPanel("tab 1", "contents"), 
+     tabPanel("tab 2", "contents"), 
+     tabPanel("tab 3", "contents"))
+

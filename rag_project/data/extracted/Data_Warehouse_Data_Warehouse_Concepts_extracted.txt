@@ -1,0 +1,352 @@
+--- PAGE 1 ---
+Ahmed Yasir Khan 
+ 
+Page 1 of 11 
+ 
+Data Warehouse Concepts, Architecture and 
+Components 
+What is Data warehouse? 
+Data warehouse is an information system that contains historical and commutative 
+data from single or multiple sources. It simplifies reporting and analysis process of 
+the organization. 
+It is also a single version of truth for any company for decision making and 
+forecasting. 
+Characteristics of Data warehouse 
+A data warehouse has following characteristics: 
+• Subject-Oriented 
+• Integrated 
+• Time-variant 
+• Non-volatile 
+Subject-Oriented 
+A data warehouse is subject oriented as it offers information regarding a theme 
+instead of companies' ongoing operations. These subjects can be sales, marketing, 
+distributions, etc. 
+A data warehouse never focuses on the ongoing operations. Instead, it put 
+emphasis on modeling and analysis of data for decision making. It also provides a 
+simple and concise view around the specific subject by excluding data which not 
+helpful to support the decision process. 
+Integrated 
+In Data Warehouse, integration means the establishment of a common unit of 
+measure for all similar data from the dissimilar database. The data also needs to be 
+stored in the Datawarehouse in common and universally acceptable manner. 
+
+--- PAGE 2 ---
+Ahmed Yasir Khan 
+ 
+Page 2 of 11 
+ 
+A data warehouse is developed by integrating data from varied sources like a 
+mainframe, relational databases, flat files, etc. Moreover, it must keep consistent 
+naming conventions, format, and coding. 
+This integration helps in effective analysis of data. Consistency in naming 
+conventions, attribute measures, encoding structure etc. have to be ensured. 
+Consider the following example: 
+ 
+ 
+ 
+In the above example, there are three different application labeled A, B and C. 
+Information stored in these applications are Gender, Date, and Balance. However, 
+each application's data is stored different way. 
+• In Application A gender field store logical values like M or F 
+• In Application B gender field is a numerical value, 
+• In Application C application, gender field stored in the form of a character  
+•  
+•  
+• value. 
+• Same is the case with Date and balance 
+However, after transformation and cleaning process all this data is stored in 
+common format in the Data Warehouse. 
+Time-Variant 
+The time horizon for data warehouse is quite extensive compared with operational 
+systems. The data collected in a data warehouse is recognized with a particular 
+period and offers information from the historical point of view. It contains an 
+element of time, explicitly or implicitly. 
+One such place where Datawarehouse data display time variance is in in the 
+structure of the record key. Every primary key contained with the DW should have 
+either implicitly or explicitly an element of time. Like the day, week month, etc. 
+
+--- PAGE 3 ---
+Ahmed Yasir Khan 
+ 
+Page 3 of 11 
+ 
+Another aspect of time variance is that once data is inserted in the warehouse, it 
+can't be updated or changed. 
+Non-volatile 
+Data warehouse is also non-volatile means the previous data is not erased when 
+new data is entered in it. 
+Data is read-only and periodically refreshed. This also helps to analyze historical 
+data and understand what & when happened. It does not require transaction 
+process, recovery and concurrency control mechanisms. 
+Activities like delete, update, and insert which are performed in an operational 
+application environment are omitted in Data warehouse environment. Only two 
+types of data operations performed in the Data Warehousing are 
+1. Data loading 
+2. Data access 
+Here, are some major differences between Application and Data Warehouse 
+Operational Application 
+Data Warehouse 
+Complex program must be coded to make sure 
+that data upgrade processes maintain high 
+integrity of the final product. 
+This kind of issues does not happen because 
+data update is not performed. 
+Data is placed in a normalized form to ensure 
+minimal redundancy. 
+Data is not stored in normalized form. 
+Technology needed to support issues of 
+transactions, data recovery, rollback, and 
+resolution as its deadlock is quite complex. 
+It offers relative simplicity in technology. 
+Data Warehouse Architectures 
+
+--- PAGE 4 ---
+Ahmed Yasir Khan 
+ 
+Page 4 of 11 
+ 
+There are mainly three types of Datawarehouse Architectures: - 
+Single-tier architecture 
+The objective of a single layer is to minimize the amount of data stored. This goal is 
+to remove data redundancy. This architecture is not frequently used in practice. 
+Two-tier architecture 
+Two-layer architecture separates physically available sources and data warehouse. 
+This architecture is not expandable and also not supporting a large number of end-
+users. It also has connectivity problems because of network limitations. 
+Three-tier architecture 
+This is the most widely used architecture. 
+It consists of the Top, Middle and Bottom Tier. 
+1. Bottom Tier: The database of the Datawarehouse servers as the bottom tier. 
+It is usually a relational database system. Data is cleansed, transformed, and 
+loaded into this layer using back-end tools. 
+2. Middle Tier: The middle tier in Data warehouse is an OLAP server which is 
+implemented using either ROLAP or MOLAP model. For a user, this 
+application tier presents an abstracted view of the database. This layer also 
+acts as a mediator between the end-user and the database. 
+3. Top-Tier: The top tier is a front-end client layer. Top tier is the tools and API 
+that you connect and get data out from the data warehouse. It could be 
+Query tools, reporting tools, managed query tools, Analysis tools and Data 
+mining tools. 
+ 
+ 
+ 
+Datawarehouse Components 
+
+--- PAGE 5 ---
+Ahmed Yasir Khan 
+ 
+Page 5 of 11 
+ 
+ 
+ 
+ 
+The data warehouse is based on an RDBMS server which is a central information 
+repository that is surrounded by some key components to make the entire 
+environment functional, manageable and accessible 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+There are mainly five components of Data Warehouse: 
+
+--- PAGE 6 ---
+Ahmed Yasir Khan 
+ 
+Page 6 of 11 
+ 
+Data Warehouse Database 
+The central database is the foundation of the data warehousing environment. This 
+database is implemented on the RDBMS technology. Although, this kind of 
+implementation is constrained by the fact that traditional RDBMS system is 
+optimized for transactional database processing and not for data warehousing. For 
+instance, ad-hoc query, multi-table joins, aggregates are resource intensive and  
+slow down performance. 
+Hence, alternative approaches to Database are used as listed below- 
+• In a Datawarehouse, relational databases are deployed in parallel to allow 
+for scalability. Parallel relational databases also allow shared memory or 
+shared nothing model on various multiprocessor configurations or massively 
+parallel processors. 
+• New index structures are used to bypass relational table scan and improve 
+speed. 
+• Use of multidimensional database (MDDBs) to overcome any limitations 
+which are placed because of the relational data model. Example: Essbase 
+from Oracle. 
+Sourcing, Acquisition, Clean-up and Transformation Tools (ETL) 
+The data sourcing, transformation, and migration tools are used for performing all 
+the conversions, summarizations, and all the changes needed to transform data 
+into a unified format in the Datawarehouse. They are also called Extract, Transform 
+and Load (ETL) Tools. 
+Their functionality includes: 
+• Anonymize data as per regulatory stipulations. 
+• Eliminating unwanted data in operational databases from loading into Data 
+warehouse. 
+• Search and replace common names and definitions for data arriving from 
+different sources. 
+• Calculating summaries and derived data 
+• In case of missing data, populate them with defaults. 
+• De-duplicated repeated data arriving from multiple data sources. 
+
+--- PAGE 7 ---
+Ahmed Yasir Khan 
+ 
+Page 7 of 11 
+ 
+These Extract, Transform, and Load tools may generate cron jobs, background 
+jobs, Cobol programs, shell scripts, etc. that regularly update data in 
+Datawarehouse. These tools are also helpful to maintain the Metadata. 
+These ETL Tools have to deal with challenges of Database & Data heterogeneity. 
+Metadata 
+The name Meta Data suggests some high- level technological concept. However, it 
+is quite simple. Metadata is data about data which defines the data warehouse. It is 
+used for building, maintaining and managing the data warehouse. 
+In the Data Warehouse Architecture, meta-data plays an important role as it 
+specifies the source, usage, values, and features of data warehouse data. It also 
+defines how data can be changed and processed. It is closely connected to the data 
+warehouse. 
+For example, a line in sales database may contain: 
+4030 KJ732 299.90 
+This is a meaningless data until we consult the Meta that tell us it was 
+• Model number: 4030 
+• Sales Agent ID: KJ732 
+• Total sales amount of $2999.90 
+Therefore, Meta Data are essential ingredients in the transformation of data into 
+knowledge. 
+Metadata helps to answer the following questions 
+• What tables, attributes, and keys does the Data Warehouse contain? 
+• Where did the data come from? 
+• How many times do data get reloaded? 
+• What transformations were applied with cleansing? 
+Metadata can be classified into following categories: 
+
+--- PAGE 8 ---
+Ahmed Yasir Khan 
+ 
+Page 8 of 11 
+ 
+1. Technical Meta Data: This kind of Metadata contains information about 
+warehouse which is used by Data warehouse designers and administrators. 
+2. Business Meta Data: This kind of Metadata contains detail that gives end-
+users a way easy to understand information stored in the data warehouse. 
+Query Tools 
+One of the primary objects of data warehousing is to provide information to 
+businesses to make strategic decisions. Query tools allow users to interact with the 
+data warehouse system. 
+These tools fall into four different categories: 
+1. Query and reporting tools 
+2. Application Development tools 
+3. Data mining tools 
+4. OLAP tools 
+1. Query and reporting tools: 
+Query and reporting tools can be further divided into 
+• Reporting tools 
+• Managed query tools 
+Reporting tools: Reporting tools can be further divided into production reporting 
+tools and desktop report writer. 
+1. Report writers: This kind of reporting tool are tools designed for end-users 
+for their analysis. 
+2. Production reporting: This kind of tools allows organizations to generate 
+regular operational reports. It also supports high volume batch jobs like 
+printing and calculating. Some popular reporting tools are Brio, Business 
+Objects, Oracle, Power Soft, SAS Institute. 
+ 
+Managed query tools: 
+
+--- PAGE 9 ---
+Ahmed Yasir Khan 
+ 
+Page 9 of 11 
+ 
+This kind of access tools helps end users to resolve snags in database and SQL and 
+database structure by inserting meta-layer between users and database. 
+2. Application development tools: 
+Sometimes built-in graphical and analytical tools do not satisfy the analytical 
+needs of an organization. In such cases, custom reports are developed using 
+Application development tools. 
+3. Data mining tools: 
+Data mining is a process of discovering meaningful new correlation, pattens, and 
+trends by mining large amount data. Data mining tools are used to make this 
+process automatic. 
+4. OLAP tools: 
+These tools are based on concepts of a multidimensional database. It allows users 
+to analyse the data using elaborate and complex multidimensional views. 
+Data warehouse Bus Architecture 
+Data warehouse Bus determines the flow of data in your warehouse. The data flow 
+in a data warehouse can be categorized as Inflow, Up flow, Downflow, Outflow and 
+Meta flow. 
+While designing a Data Bus, one needs to consider the shared dimensions, facts 
+across data marts. 
+Data Marts 
+A data mart is an access layer which is used to get data out to the users. It is 
+presented as an option for large size data warehouse as it takes less time and 
+money to build. However, there is no standard definition of a data mart is differing 
+from person to person. 
+In a simple word Data mart is a subsidiary of a data warehouse. The data mart is 
+used for partition of data which is created for the specific group of users. 
+
+--- PAGE 10 ---
+Ahmed Yasir Khan 
+ 
+Page 10 of 11 
+ 
+Data marts could be created in the same database as the Datawarehouse or a 
+physically separate Database. 
+Data warehouse Architecture Best Practices 
+To design Data Warehouse Architecture, you need to follow below given best 
+practices: 
+• Use a data model which is optimized for information retrieval which can be 
+the dimensional mode, denormalized or hybrid approach. 
+• Need to assure that Data is processed quickly and accurately. At the same 
+time, you should take an approach which consolidates data into a single 
+version of the truth. 
+• Carefully design the data acquisition and cleansing process for Data 
+warehouse. 
+• Design a Metadata architecture which allows sharing of metadata between 
+components of Data Warehouse 
+• Consider implementing an ODS model when information retrieval need is 
+near the bottom of the data abstraction pyramid or when there are multiple 
+operational sources required to be accessed. 
+• One should make sure that the data model is integrated and not just 
+consolidated. In that case, you should consider 3NF data model. It is also 
+ideal for acquiring ETL and Data cleansing tools 
+ 
+ 
+ 
+ 
+ 
+ 
+Summary: 
+
+--- PAGE 11 ---
+Ahmed Yasir Khan 
+ 
+Page 11 of 11 
+ 
+• Data warehouse is an information system that contains historical and 
+commutative data from single or multiple sources. 
+• A data warehouse is subject oriented as it offers information regarding 
+subject instead of organization's ongoing operations. 
+• In Data Warehouse, integration means the establishment of a common unit 
+of measure for all similar data from the different databases 
+• Data warehouse is also non-volatile means the previous data is not erased 
+when new data is entered in it. 
+• A Datawarehouse is Time-variant as the data in a DW has high shelf life. 
+• There are 5 main components of a Datawarehouse. 1) Database 2) ETL Tools 
+3) Meta Data 4) Query Tools 5) DataMarts 
+• These are four main categories of query tools 1. Query and reporting, tools 2. 
+Application Development tools, 3. Data mining tools 4. OLAP tools 
+• The data sourcing, transformation, and migration tools are used for 
+performing all the conversions and summarizations. 
+• In the Data Warehouse Architecture, meta-data plays an important role as it 
+specifies the source, usage, values, and features of data warehouse data. 
+ 
+

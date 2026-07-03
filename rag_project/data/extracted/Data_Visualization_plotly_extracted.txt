@@ -1,0 +1,147 @@
+--- PAGE 1 ---
+plot.ly/r/getting-started
+p <- plot_ly (
+library( plotly )
+x = rnorm( 1000 ),
+y = rnorm( 1000 ),
+mode = ‘markers’ )
+plot_ly (
+x = c( 1, 2, 3 ),
+y = c( 5, 6, 7 ),
+type = ‘scatter’ ,
+mode = ‘markers’ ,
+size = c( 1, 5, 10 ),
+marker = list(
+color = c( ‘red’, ‘blue’ ,
+‘green’ )))
+plot_ly (
+x = c( 1, 2, 3 ),
+y = c( 5, 6, 7),
+type = ‘scatter’ ,
+mode = ‘lines’ )
+plot_ly (
+x = c( 1, 2, 3 ),
+y = c( 5, 6, 7 ),
+type = ‘scatter’ ,
+mode = ‘markers’ )
+plot_ly (
+x = c( 1, 2, 3),
+y = c( 5, 6, 7),
+type = ‘bar’ ,
+mode = ‘markers’ )
+plot_ly (
+x = c( 1, 2, 3 ),
+y = c( 5, 6, 7 ),
+type = ‘scatter’ ,
+mode = ‘lines’ ,
+ﬁll = ‘tozeroy’ )
+set.seed( 123 )
+x = 1 : 100
+y1 = 2*x + rnorm ( 100 )
+y2 = -2*x + rnorm ( 100 )
+plot_ly (
+x = x ,
+y = y1 ,
+type = ‘scatter’ ) %>%
+add_trace(
+x = x ,
+y = y2 ) %>%
+layout(
+legend =
+list( x = 0.5 ,
+y = 1 ,
+bgcolor = ‘#F3F3F3’ ))
+set.seed( 123 )
+x = 1 : 100
+y1 = 2*x + rnorm( 100 )
+y2 = -2*x + rnorm( 100 )
+axis_template <- list(
+showgrid = F ,
+zeroline = F ,
+nticks = 20 ,
+showline = T ,
+title = ‘AXIS’ ,
+mirror = ‘all’ )
+plot_ly (
+x = x ,
+y = y1 ,
+type = ‘scatter’ ) %>%
+layout(
+xaxis = axis_template ,
+yaxis = axis_template )
+
+--- PAGE 2 ---
+plot_ly (
+x = rnorm( 1000, sd = 10 ) ,
+y = rnorm( 1000, sd = 5 ) ,
+type = ‘histogram2d’ )
+x <- rchisq ( 100, 5, 0 )
+plot_ly (
+x = x ,
+type = ‘histogram’ )
+plot_ly (
+y = rnorm( 50 ) ,
+type = ‘box’ ) %>%
+add_trace( y = rnorm( 50, 1 ))
+plot_ly (
+type = ‘scattergeo’ ,
+lon = c( -73.5, 151.2 ) ,
+lat = c( 45.5, -33.8 ) ,
+marker = list (
+color = c( ‘red’ , ‘blue’ ) ,
+size = c( 30, 50 ) ,
+mode = ‘markers’ ))
+plot_ly (
+# Using a dataframe:
+type = ‘surface’ ,
+z = ~volcano )
+plot_ly (
+type = ‘scatter3d’ ,
+x = c( 9, 8, 5, 1 ) ,
+y = c( 1, 2, 4, 8 ) ,
+z = c( 11, 8, 15, 3 ) ,
+mode = ‘lines’ )
+plot_ly (
+type = ‘scatter3d’ ,
+x = c( 9, 8, 5, 1 ) ,
+y = c( 1, 2, 4, 8 ) ,
+z = c( 11, 8, 15, 3 ) ,
+mode = ‘markers’ )
+plot_ly (
+type = ‘scattergeo’ ,
+lon = c( 42, 39 ) ,
+lat = c( 12, 22 ) ,
+text = c( ‘Rome’ , ‘Greece’ ) ,
+mode = ‘markers’ )
+plot_ly (
+type = ‘choropleth’ ,
+locations = c( ‘AZ’, ‘CA’, ‘VT’ ) ,
+locationmode = ‘USA-states’ ,
+colorscale = ‘Viridis’ ,
+z = c( 10, 20, 40 )) %>%
+layout ( geo = list ( scope = ‘usa’ ))
+plot_ly ( )
+data data.frame
+add _trace list ( )
+x, y, z, c ( )
+color, text, size c ( )
+colorscale ‘string’ or c ( )
+marker list ( )
+color ‘string’
+symbol list ( )
+line list ( )
+color ‘string’
+width 123
+layout ( )
+title ‘string’
+xaxis, yaxis list ( )
+scenelist ( )
+xaxis, yaxis, zaxis list ( )
+geo list ( )
+legend list ( )
+annotations list ( )
+c ( ) = array
+list ( ) = list
+‘string’ = string
+123 = number
+

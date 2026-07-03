@@ -1,0 +1,1988 @@
+--- PAGE 1 ---
+MICROSOFT EXCEL:
+INTRO TO POWER QUERY,
+POWER PIVOT & DAX
+With Best-Selling Excel instructor Chris Dutton
+*Copyright 2017, Excel Maven & SecondLens Consulting, LLC.
+
+--- PAGE 2 ---
+GETTING STARTED
+
+--- PAGE 3 ---
+COURSE STRUCTURE
+100+ Downloadable PDF Slides to serve as helpful reference guides when 
+you’re offline or on the go (or just need a refresher!)
+Interactive, hands-on demos to keep you engaged, with downloadable 
+project files that you can use to explore and learn at your own pace
+Course Quizzes and Homework Exercises to test and reinforce key 
+concepts throughout the course
+
+--- PAGE 4 ---
+COURSE OUTLINE
+•
+Power Query/Power Pivot workflow and key benefits vs. “traditional” Excel
+The “Power” Excel Landscape
+1
+Power Query
+2
+Data Modeling 101
+3
+Power Pivot & DAX
+4
+Common DAX Functions
+Final Project
+5
+6
+•
+Types of data connectors, query editing tools, loading options, etc. 
+•
+Excel Data Model interface, normalization, table relationships, hierarchies, etc. 
+•
+Power Pivots vs. “normal” pivots, calculated columns vs. measures, row & filter context, etc.
+•
+Basic syntax, math & stats functions, filter functions, time intelligence tools, etc.
+•
+VanArsdel sales data (2000-2010)
+
+--- PAGE 5 ---
+VERSIONS & COMPATIBILITY
+IMPORTANT NOTE: Power Pivot is currently not available for Mac, 
+and is only available in certain versions of Excel for Windows/PC
+For a full, current list of compatible versions, visit support.office.com (or Google “Where is Power Pivot?”):
+https://support.office.com/en-us/article/Where-is-Power-Pivot-aa64e217-4b6e-410b-8337-20b87e1c2a4b (or use: bit.ly/2yd80rd)
+Other considerations:
+•
+Power Pivot works best with 64-bit Excel, which can access more processing power and memory (not critical)
+•
+Note: make sure you’re running a 64-bit operating system and that you’ve updated Office to the 64-bit version
+•
+Power Pivot menus, features and tools have evolved over time; what you see on your screen may differ from 
+what you see on mine, but the fundamental skills and concepts covered are universally applicable
+•
+Even if you have a compatible version of Excel, you may need to enable the Power Pivot or Power Query 
+plug-ins to access the tools in this course (File > Options > Add-Ins > Manage: COM Add-Ins)
+
+--- PAGE 6 ---
+GETTING TO KNOW THE FOODMART DATABASE
+• Throughout the course, we’ll be using sample data from a fictitious super market chain 
+called “FoodMart”*
+• In addition to daily transactional records from 1997-1998, our data set includes 
+information about products, customers, stores, and regions
+• All files are available for download in the course resources section of your course 
+dashboard (Course Dashboard > Course Content > All Resources)
+*This data is provided by Microsoft for informational purposes only as an aid to illustrate a concept. These samples are provided “as is” without warranty of any kind. The example companies, organizations, products, domain names, 
+e-mail addresses, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, person, place, or event is intended or should be inferred.
+Product Lookup
+product_id
+product_brand
+product_name
+product_sku
+product_retail_price
+etc…
+Customer Lookup
+customer_id
+customer_acct_num
+first_name
+last_name
+customer_address
+etc..
+Store Lookup
+store_id
+region_id
+store_type
+store_name
+store_street_address
+etc…
+Calendar Lookup
+date
+month_num
+quarter
+year
+weekday_num
+etc…
+Region Lookup
+region_id
+sales_district
+sales_region
+Transactions
+-transaction_date
+-stock_date
+-product_id
+-customer_id
+-store_id
+-quantity
+Returns
+-return_date
+-product_id
+-store_id
+-quantity
+“Data” Tables
+“Lookup” Tables
+
+--- PAGE 7 ---
+SETTING EXPECTATIONS
+•
+Power Pivot is currently not available for Mac
+•
+What you see on your screen will not always match what you see on mine (especially for Excel 2010 or 2013)
+I’m using Excel 2016 for PC (365 ProPlus, 64-bit)
+1
+This course is designed to get you up & running with Excel’s BI tools
+2
+These tools are incredibly powerful, but still a little “buggy”
+3
+•
+The goal is to provide a solid foundational understanding of Power Query, Power Pivot and DAX; we may 
+simplify some concepts to make them easier to grasp, and will not cover some of the more advanced tools
+•
+Power Pivot uses a lot of processing power, so it helps to close other workbooks and applications 
+•
+Save new versions early and often; if you do crash, make sure you have a recent version to work from!
+When things get challenging, remember that I’m here to help
+4
+•
+If you feel stuck, remember that you can pause the videos and rewatch them as many times as you’d like! 
+•
+Still need support? Post to the course Q&A section or message me directly and I’d be happy to lend a hand
+
+--- PAGE 8 ---
+COURSE RATINGS & REVIEWS
+Ratings and reviews help courses succeed, and provide valuable feedback 
+that I can use to make the course even better!
+•
+If you find yourself enjoying the course, or if you have feedback that might improve your 
+experience, please take 15 seconds to leave a rating or review (when you’re ready – no rush!)
+STEP 1: Click on “My Courses”
+STEP 2: Click on the stars under 
+the course thumbnail
+STEP 3: Dance
+
+--- PAGE 9 ---
+LET’S DO THIS.
+
+--- PAGE 10 ---
+INTRO TO “POWER EXCEL”
+
+--- PAGE 11 ---
+THE “POWER EXCEL” WORKFLOW
+RAW DATA
+Flat files (csv, txt), Excel tables, 
+databases (SQL, Azure), folders, 
+streaming sources, web data, etc. 
+POWER QUERY
+(aka “Get & Transform”)
+Connect to sources, import 
+data, and apply shaping and 
+transformation tools (ETL)
+DATA MODEL
+Create table relationships, add 
+calculated columns, define 
+hierarchies and perspectives, etc. 
+POWER PIVOT & DAX
+Explore and analyze the entire 
+data model, and create powerful 
+measures using Data Analysis 
+Expressions (DAX) 
+These are Excel’s Business Intelligence tools, all of which are available directly in Excel 
+(provided you have a compatible version); no additional software is required!
+
+--- PAGE 12 ---
+“THE BEST THING TO HAPPEN TO EXCEL IN 20 YEARS”
+•
+Import and analyze MILLIONS of rows of data in Excel
+•
+Access data from virtually anywhere (database tables, flat files, cloud services, folders, etc.)
+•
+Quickly build models to blend and analyze data across sources
+•
+Instantly connect sources and analyze holistic performance across your entire data model
+•
+Create fully automated data shaping and loading procedures 
+•
+Connect to databases and watch data flow through your model with the click of a button
+•
+Define calculated measures using Data Analysis Expressions (DAX)
+•
+No more redundant A1-style “grid” formulas; DAX expressions are flexible, powerful and portable
+*Quote by Bill Jelen (aka “Mr. Excel”)
+
+--- PAGE 13 ---
+#1: IMPORT & ANALYZE MILLIONS OF ROWS
+When was the last time you loaded 
+25,000,000 rows of data into Excel?
+When you connect to data with Power Query 
+and load it to Excel’s Data Model, the data is 
+compressed and stored in memory, NOT in 
+worksheets (no more 1,048,576 row limit!)
+
+--- PAGE 14 ---
+#2: BUILD DATA MODELS TO BLEND SOURCES
+This is an example of a Data Model in 
+“Diagram View”, which allows you to 
+create connections between tables
+Instead of manually stitching tables 
+together with cell formulas, you 
+create relationships to blend data 
+based on common fields
+
+--- PAGE 15 ---
+#3: AUTOMATE YOUR DATA PROCESSING
+With Power Query, you can 
+filter, shape and transform
+your raw data before loading 
+it into the data model
+Each step is automatically 
+recorded and saved with the 
+query, and applied 
+whenever the source data is 
+refreshed – like a macro!
+
+--- PAGE 16 ---
+#4: CREATE POWERFUL MEASURES WITH DAX
+Measures are flexible and powerful 
+calculations defined using Data 
+Analysis Expressions (DAX)
+In this case we’re using a DAX time 
+intelligence formula to calculate a 
+10-day rolling average
+
+--- PAGE 17 ---
+WHEN TO USE POWER QUERY & POWER PIVOT
+Analyze more data than can fit into a worksheet
+Create connections to databases or external sources
+Blend data across multiple large tables
+Automate the process of loading and shaping your data
+Unleash the full business intelligence capabilities of Excel
+Use Power Query and Power Pivot when you want to…
+
+--- PAGE 18 ---
+POWER QUERY
+
+--- PAGE 19 ---
+MEET POWER QUERY
+Power Query (aka “Get & Transform”) allows you to:
+•
+Connect to data across a wide range of sources
+•
+Filter, shape, append and transform raw data for further analysis and modeling
+•
+Create stored procedures to automate your data prep (like a macro!)
+The Power Query tools live in the Data tab, under 
+the “Get & Transform” section (Excel 2016)
+
+--- PAGE 20 ---
+TYPES OF DATA CONNECTIONS
+From File
+From Database
+FromAzure
+From Online Services
+From Other Sources
+
+--- PAGE 21 ---
+THE QUERY EDITOR
+Query 
+Editing 
+Tools
+Data 
+Preview
+Applied 
+Steps
+Formula Bar
+(this is “M” code)
+Access the Query Editor by creating a new query and choosing the “Edit” option, or by launching 
+the Workbook Queries pane (Data > Show Queries) and right-clicking an existing query to edit
+Name your
+table!
+
+--- PAGE 22 ---
+QUERY EDITOR TOOLS
+The HOME tab includes general settings and common table transformation tools 
+The TRANSFORM tab includes tools to modify existing columns (splitting/grouping, transposing, extracting text, etc.
+The ADD COLUMN tools create new columns based on conditional rules, text operations, calculations, dates, etc. 
+
+--- PAGE 23 ---
+DATA LOADING OPTIONS
+When you load data from Power Query, you have several options:
+• Table
+•
+Stores the data in a new or existing worksheet
+•
+Requires relatively small data sets (<1mm rows)
+• Connection Only
+•
+Saves the data connection settings and applied steps
+•
+Data does not load to a worksheet
+• Add to Data Model
+•
+Compresses and loads data to Excel’s Data Model
+•
+Makes data accessible to Power Pivot for further analysis
+
+--- PAGE 24 ---
+BASIC TABLE TRANSFORMATIONS
+Change data types
+(date, $, %, text, etc.)
+Promote header row
+Keep or remove columns
+Tip: use the “Remove Other 
+Columns” option if you always 
+want a specific set 
+Keep or remove rows
+Tip: use the “Remove Duplicates” 
+option to create a new lookup 
+table from scratch
+Duplicate, move & 
+rename columns
+Tip: Right-click the 
+column header to 
+access common tools
+Sort values
+(A-Z, Low-High, etc.)
+
+--- PAGE 25 ---
+TEXT-SPECIFIC TOOLS
+Split a text column based on 
+either a specific delimiter or 
+a number of characters
+Format a text column to upper, lower or 
+proper case, or add a prefix or suffix
+Tip: Use “Trim” to eliminate leading & trailing spaces, 
+or “Clean” to remove non-printable characters
+Extract characters from a text 
+column using a fixed length, 
+first or last, or a defined range
+Tip: Select two or more columns to 
+merge or concatenate fields
+HEY THIS IS IMPORTANT!
+You can access many of these tools in both the 
+“Transform” and “Add Column” menus -- the 
+difference is whether you want to add a new 
+column or modify an existing one
+
+--- PAGE 26 ---
+NUMBER-SPECIFIC TOOLS
+Statistics functions allow you to 
+evaluate basic stats for the selected 
+column (sum, min/max, average, 
+count, countdistinct, etc)
+Note: These tools return a SINGLE value, 
+and are commonly used to explore a table 
+rather than prepare it for loading
+Standard, Scientific and Trigonometry tools allow you 
+to apply standard operations (addition, multiplication, 
+division, etc.) or more advanced calculations (power, 
+logarithm, sine, tangent, etc) to each value in a column
+Note: Unlike the Statistics options, these tools are applied to 
+each individual row in the table
+Standard
+Scientific
+Trigonometry
+Information tools allow 
+you to define binary flags 
+(TRUE/FALSE or 1/0) to 
+mark each row in a 
+column as even, odd, 
+positive or negative
+
+--- PAGE 27 ---
+DATE-SPECIFIC TOOLS
+Date & Time tools are relatively straight-forward, and include the following options:
+•
+Age: Difference between the current time and the date in each row
+•
+Date Only: Removes the time component of a date/time field
+•
+Year/Month/Quarter/Week/Day: Extracts individual components from a date field 
+(Time-specific options include Hour, Minute, Second, etc.)
+•
+Earliest/Latest: Evaluates the earliest or latest date from a column as a single value (can 
+only be accessed from the “Transform” menu) 
+Note: You will almost always want to perform these operations from the “Add Column” menu to 
+build out new fields, rather than transforming an individual date/time column
+PRO TIP:
+Load up a table containing a single date column and use Date tools to build out an entire calendar table
+
+--- PAGE 28 ---
+CREATING A BASIC CALENDAR TABLE
+Use pre-defined Date options 
+in the “Add Column” menu to 
+quickly build out a calendar 
+table from a list of dates
+
+--- PAGE 29 ---
+PRO TIP: CREATING A ROLLING CALENDAR
+1) Create a new, blank query (Data > New Query > From Other Sources > Blank Query)
+2) In the formula bar, generate a starting date by entering a “literal” (1/1/2013 shown below):
+3) Click the fX icon to add a new custom step, and enter the following formula exactly as shown:
+4) Convert the resulting list into a Table (List Tools > To Table) and format the column as a Date
+5) Add calculated Date columns (Year, Month, Week, etc.) as necessary using the Add Column tools
+
+--- PAGE 30 ---
+ADDING AN INDEX COLUMN
+Index Columns contain a list of 
+sequential values that can be used to 
+identify each unique row in a table 
+(typically starting from 0 or 1)
+These columns are often used to 
+create unique IDs that can be used to 
+form relationships between tables 
+(more on that later!)
+
+--- PAGE 31 ---
+ADDING A CONDITIONAL COLUMN
+In this case we’re creating a new conditional column 
+called “Order Size”, which depends on the values in the 
+“quantity” column, as follows:
+•
+If quantity >5, Order Size = “Large”
+•
+If quantity is from 2-5, Order Size = “Medium”
+•
+If quantity =1, Order Size = “Small”
+•
+Otherwise Order Size = “Other”
+Conditional Columns allow you to define new fields based 
+on logical rules and conditions (IF/THEN statements)
+
+--- PAGE 32 ---
+GROUPING & AGGREGATING DATA
+Group By allows you to aggregate your data at a different level
+(i.e. transform daily data into monthly, roll up transaction-level data by store, etc.)
+In this case we’re transforming a daily, transaction-level table into 
+a summary of “quantity” by “product_id”
+Note that we lose any field not specified in the Group By settings
+
+--- PAGE 33 ---
+PIVOTING & UNPIVOTING
+“Pivoting” is a fancy way to describe the process of turning distinct row 
+values into columns (“pivoting”) or turning columns into rows (“unpivoting”)
+Imagine that the table is on a hinge; pivoting is like rotating 
+it from a vertical to a horizontal layout, and unpivoting is 
+like rotating it from horizontal to vertical
+NOTE: Transpose works very similarly, but doesn’t recognize 
+unique values; instead, the entire table is transformed so 
+that each row becomes a column and vice versa
+
+--- PAGE 34 ---
+MODIFYING WORKBOOK QUERIES
+Click on Show Queries to launch the Workbook 
+Queries pane
+Right-click any individual query to access 
+common options and tools:
+•
+Edit (launches the Query Editor)
+•
+Delete
+•
+Rename
+•
+Refresh
+•
+Duplicate
+•
+Merge
+•
+Append
+
+--- PAGE 35 ---
+MERGING QUERIES
+•
+Merging queries allows you to join tables 
+based on a common column (like VLOOKUP)
+•
+In this case we’re merging the 
+FoodMart_Transactions_1997 table with 
+the Product_Lookup table, which share a 
+“product_id” column
+TIP: Merging adds columns to an existing table
+HEY THIS IS IMPORTANT!
+Just because you can merge tables, 
+doesn’t mean you should.
+In general, it’s better to keep tables 
+separate and define relationships
+between them (more on that later!)
+
+--- PAGE 36 ---
+APPENDING QUERIES
+•
+Appending queries allows you to combine (or 
+stack) tables that share a common structure and 
+set of columns
+•
+In this case we’re appending the 
+FoodMart_Transactions_1998 table to the 
+FoodMart_Transactions_1997 table, since they 
+contain the same set of columns and data types
+TIP: Appending adds rows to an existing table
+PRO TIP:
+Use the “From Folder” query option to automatically append all files from within the same folder
+
+--- PAGE 37 ---
+POWER QUERY BEST PRACTICES
+Give your queries clear and intuitive names, before loading the data
+•
+Define names immediately; updating query & table names later can be a headache, 
+especially if you’ve already referenced them in calculated measures
+•
+Don’t use spaces in table names (otherwise you have surround them with single quotes)
+Do as much shaping as possible at the source of the data
+•
+Shaping data at the source (i.e. SQL, Access) minimizes the need for complex procedures in 
+Power Query, and allows you to create new models without replicating the same process
+When working with large tables, only load the data you need
+•
+Don’t include hourly data when you only need daily, or product-level transactions when 
+you only care about store-level performance; extra data will only slow you down
+
+--- PAGE 38 ---
+DATA MODELING 101
+
+--- PAGE 39 ---
+MEET EXCEL’S DATA MODEL
+The Data Model provides simple and intuitive tools for building 
+relational databases directly in Excel. With the data model you can:
+•
+Manage massive datasets that can’t fit into worksheets
+•
+Create table relationships to blend data across multiple sources
+•
+Define custom hierarchies and perspectives
+Access the Data Model through the 
+Power Pivot tab or the Data tab
+(Note: you may need to enable the Power Pivot tab via 
+File > Options > Add-Ins > Manage COM Add-Ins)
+
+--- PAGE 40 ---
+THE DATA MODEL WINDOW
+The Data Model opens in a separate Excel window, where you can view 
+your data tables, calculate new measures, and define table relationships
+Note: Closing the Data Model window does NOT close your Excel workbook
+
+--- PAGE 41 ---
+DATA VIEW VS. DIAGRAM VIEW
+DATA VIEW
+DIAGRAM VIEW
+Tables organized in tabs
+Tables organized as objects
+
+--- PAGE 42 ---
+DATABASE NORMALIZATION
+Normalization is the process of organizing the tables and columns in a relational database to reduce 
+redundancy and preserve data integrity. It is commonly used to:
+•
+Eliminate redundant data to decrease table sizes and improve processing speed & efficiency
+•
+Minimize errors and anomalies from data modifications (inserting, updating or deleting records)
+•
+Simplify queries and structure the database for meaningful analysis
+In a normalized database, each table should serve a distinct and specific purpose (i.e. product information, calendar 
+fields, transaction records, customer attributes, etc.)
+When you don’t normalize, you end up with tables like 
+this; all of the duplicate product records could be 
+eliminated with a lookup table based on product_id
+This may not seem critical now, but minor inefficiencies 
+can become major problems as databases scale in size
+
+--- PAGE 43 ---
+DATA TABLES VS. LOOKUP TABLES
+Models generally contain two types of tables: data (or “fact”) tables, and lookup (or “dimension”) tables
+•
+Data tables contain numbers or values, typically at the most granular level possible, with ID or “key” columns 
+that can be used to connect to each lookup table
+•
+Lookup tables provide descriptive, often text-based attributes about each dimension in a table
+This Calendar Lookup table provides additional attributes about each date (month, year, weekday, quarter, etc.) 
+This Product Lookup table provides additional attributes about each product (brand, product name, sku, price, etc.) 
+This Data Table contains “quantity” values, and connects 
+to lookup tables via the “date” and “product_id” columns 
+
+--- PAGE 44 ---
+PRIMARY & FOREIGN KEYS
+These columns are foreign keys; they 
+contain multiple instances of each 
+value, and are used to match the 
+primary keys in related lookup tables
+These columns are primary keys; they uniquely identify each 
+row of a table, and match the foreign keys in related data tables
+
+--- PAGE 45 ---
+RELATIONSHIPS VS. MERGED TABLES
+Can’t I just merge queries or use LOOKUP or RELATED functions to pull those 
+attributes into the fact table itself, so that I have everything in one place??
+Original Fact Table fields
+Attributes from Calendar Lookup table
+Attributes from Product Lookup table
+Sure, but it’s extremely inefficient.
+•
+Merging data in this way creates redundant data and utilizes significantly more memory and 
+processing power than creating relationships between multiple small tables
+-Anonymous confused man
+
+--- PAGE 46 ---
+CREATING TABLE RELATIONSHIPS
+Option 1: Click and drag relationships in Diagram View
+Option 2: Use “Create Relationship” in the Design tab
+*Note: In Excel 2010/2013 the diagram view looks a bit different, and arrows point in the opposite direction by default
+Tip: Always drag relationships from the Data table to the Lookup tables
+
+--- PAGE 47 ---
+CONNECTING LOOKUPS TO LOOKUPS
+This Transactions data table can connect to Store_Lookup using store_id, 
+but does not contain a region_id to connect to the Region_Lookup table
+By creating a relationship between Store_Lookup and Region_Lookup
+(using region_id), we have essentially connected Transactions with 
+Region_Lookup; filter context will now flow all the way down the chain
+PRO TIP:
+Models with multiple related lookup tables 
+are called “snowflake” schemas
+Models with a single table for each lookup
+or dimension are called “star” schemas
+
+--- PAGE 48 ---
+MODIFYING TABLE RELATIONSHIPS
+The Manage Relationships window 
+allows you to create, edit or delete 
+any connection in the data model
+•
+Use this to see all table 
+relationships, as well as table 
+names, cardinality and filter 
+direction
+•
+Note: double-click a single 
+connection in diagram view to 
+edit an individual relationship
+
+--- PAGE 49 ---
+ACTIVE VS. INACTIVE RELATIONSHIPS
+We can connect the Calendar_Lookup and FoodMart_Transactions tables on both 
+transaction_date and stock_date; however, only one can be active at a time
+To make a connection active or inactive, double-click the connection and check the box, or 
+right-click the relationship line itself (Note: must deactivate one before activating another!)
+
+--- PAGE 50 ---
+RELATIONSHIP CARDINALITY
+Cardinality refers to the uniqueness of values in a column
+In Power Pivot, all relationships in a data model should 
+follow a “one-to-many” cardinality
+•
+Each column (or “key”) used to join tables can only have one
+instance of each unique value in the lookup table (these are the 
+primary keys), but may have many instances of each unique 
+value in the data table (these are the foreign keys)
+*Note: In Excel 2010/2013 the diagram view looks a bit different, and arrows point in the opposite direction by default
+In this case we’re joining the Calendar_Lookup table to the FoodMart_Transactions data table 
+using the date column as our key
+There is only one instance of each date in the lookup table (noted by the “1”), but many instances of 
+each date in the data table (noted by the asterisk “*”), since multiple transactions occur each day 
+
+--- PAGE 51 ---
+BAD CARDINALITY: MANY-TO-MANY
+•
+If we try to connect these tables using the product_id field, we’ll have a many-to-many relationship 
+since there are multiple instances of each ID in both tables
+•
+Even if we could create this relationship in Power Pivot, how would you know which product was 
+actually sold on each date – Cream Soda or Diet Cream Soda?
+
+--- PAGE 52 ---
+BAD CARDINALITY: ONE-TO-ONE
+•
+In this case, connecting the tables above using the product_id field creates a one-to-one
+relationship, since each ID only appears once in each table
+•
+Unlike many-to-many, there is nothing illegal about this relationship; it’s just inefficient
+To eliminate the inefficiency, you could simply
+merge the two tables into a single, valid lookup
+Note: this still respects the laws of normalization, since all 
+rows are unique and directly related to the primary key
+
+--- PAGE 53 ---
+CONNECTING MULTIPLE DATA TABLES
+Here we’ve loaded a second data table 
+named Returns, containing records of 
+returns by date, product and store
+•
+This table connects to each lookup 
+exactly like the Transactions table did, 
+except that there is no way to connect 
+the Returns table to Customer_Lookup
+•
+This allows us to analyze data across 
+both tables in the same pivot, as long as 
+we only filter or segment the data using 
+lookups that are common to both
+•
+In other words, we know which product
+was returned, which store it was 
+returned to, and which date the return 
+occurred, but NOT which customer was 
+responsible
+HEY THIS IS IMPORTANT!
+NEVER try to connect data tables directly to each other; 
+ALWAYS connect them indirectly via shared lookup tables!
+
+--- PAGE 54 ---
+FILTER DIRECTION IS IMPORTANT
+This model includes two data tables (Transactions and Returns), 
+both connected to the Calendar_Lookup
+Note the filter directions (shown as arrows) in each relationship;
+in Power Pivot (2016) these will always point from the “one” side 
+of the relationship (lookups) to the “many” side (data tables)*
+•
+Filtering a table will impact any tables “downstream” of it, as 
+defined by the filter relationship (i.e the direction of the arrow)
+•
+Let’s say we’re analyzing both Transactions and Returns in the 
+same PivotTable; filtering by the Calendar_Lookup date field will 
+return correctly filtered data from both data tables, but filtering 
+by the Transactions date field will yield unfiltered Returns values
+*Note: In Excel 2010/2013 the diagram view looks a bit different, and arrows point in the opposite direction by default
+PRO TIP:
+Arrange your lookup tables above your 
+data tables in diagram view to remind you 
+that filters always flow “downstream”
+
+--- PAGE 55 ---
+FILTER DIRECTION IS IMPORTANT (CONT.)
+Calendar_Lookup filters flow 
+“down” to both the Transactions 
+and Returns tables, so we can filter 
+or segment those metrics using any 
+field from the Calendar table
+Filtering by date in the Transactions 
+table yields incorrect, unfiltered 
+values from the Returns table, since 
+filter context cannot flow 
+“upstream” to the Calendar table 
+
+--- PAGE 56 ---
+HIDING FIELDS FROM CLIENT TOOLS
+When you hide a field from Client Tools, 
+you make it invisible to tools outside of 
+the data model (i.e. Power Pivot)
+This can be used to prevent users from 
+filtering or segmenting on invalid fields, 
+or to hide irrelevant metrics from view
+PRO TIP:
+Always hide the foreign key columns in your data tables to prevent users from accidentally filtering on them!
+
+--- PAGE 57 ---
+DEFINING HIERARCHIES
+Hierarchies are groups of nested columns that reflect multiple levels of granularity
+•
+For example, a “Geography” hierarchy might include Country, State, and City columns
+•
+Each hierarchy is treated as a single item in PivotTables and PivotCharts, allowing users to “drill up” 
+and “drill down” through different levels of the hierarchy in a meaningful way
+Right-click a field to see the hierarchy options
+Drag fields to create a hierarchy
+Hierarchies appear in Power Pivot
+
+--- PAGE 58 ---
+Organize lookup tables above data tables in the diagram view
+Normalize your data model before you do anything else
+•
+This serves as a visual reminder that filters always flow “downstream”
+DATA MODEL BEST PRACTICES
+•
+Make sure that each table in your model serves a single, distinct purpose
+•
+Use relationships vs. merged tables; long & narrow tables are better than short & wide
+Hide fields from client tools to prevent invalid filter context  
+•
+All foreign key columns should be hidden from data tables, so that users are only able to 
+use valid fields for filtering and segmentation
+
+--- PAGE 59 ---
+POWER PIVOT & DAX 101
+
+--- PAGE 60 ---
+MEET POWER PIVOT
+A “Power” Pivot is just like a normal PivotTable, except it sits on top of an 
+entire data model rather than a single table or range. This allows you to:
+•
+Explore massive datasets consisting of multiple sources and tables, using 
+familiar, user-friendly PivotTable tools and options
+•
+Create powerful and flexible calculations using Data Analysis Expressions (DAX)
+The Power Pivot tab includes 
+tools to manage the data model 
+and define new measures
+(Note: you may need to enable this tab by selecting 
+File > Options > Add-Ins > Manage COM Add-Ins)
+
+--- PAGE 61 ---
+CREATING A “POWER” PIVOT TABLE
+Option #1: From the Data Model
+Option #2: From the Insert > PivotTable dialog box
+
+--- PAGE 62 ---
+“NORMAL” PIVOTS VS. “POWER” PIVOTS
+• Can analyze data from one table at a time; 
+multiple tables must be flattened or 
+“stitched” together with cell functions
+• Restricted to the data capacity of a single 
+Excel worksheet (1,048,576 rows)
+• Limited to relatively basic calculated fields, 
+using a sub-set of Excel functions
+• Can analyze an entire data model, consisting 
+of multiple tables connected via relationships 
+rather than cell functions
+• Virtually unlimited data capacity as tables are 
+compressed outside of normal worksheets
+• Performs complex calculations using Data 
+Analysis Expressions (DAX)
+NOTE: It’s not the PivotTable itself that’s different; it’s the data behind it
+NORMAL PIVOT
+POWER PIVOT
+
+--- PAGE 63 ---
+“NORMAL” PIVOTS VS. “POWER” PIVOTS
+Normal Pivot
+Power Pivot
+More Tables!
+
+--- PAGE 64 ---
+Oh rats, where are my calculated fields??
+One of the key Power Pivot features is the ability 
+to create much more robust calculated fields, 
+known as measures*
+Because these measures interact directly with the 
+data model (including tables stored in memory), 
+traditional cell formulas won’t do the trick
+•
+Instead, we’ll use a new (but familiar) formula 
+language called Data Analysis Expressions (DAX)
+NO MORE “CALCULATED FIELDS”
+*Note: Depending on the version of Excel you’re using, you might see these referred to as either “Measures” (Excel 2010, 2016) or “Calculated Fields” (Excel 2013) 
+
+--- PAGE 65 ---
+DATA ANALYSIS EXPRESSIONS (DAX)
+Data Analysis Expressions, commonly known as DAX, is the formula 
+language that drives Power Pivot. With DAX, you can: 
+•
+Add calculated columns and measures to your model, using intuitive syntax
+•
+Go beyond the capabilities of traditional “grid-style” formulas, with powerful 
+functions built specifically to work with relational data
+2) Adding Measures
+1) Adding Calculated Columns
+Two places to use DAX:
+
+--- PAGE 66 ---
+CALCULATED COLUMNS
+Calculated columns allow you to add new, formula-based columns to tables
+PRO TIP:
+Calculated columns are typically placed in the Filters, Slicers, Rows or Columns areas of a pivot
+HEY THIS IS IMPORTANT!
+As a rule of thumb, ONLY use 
+calculated columns if you want to 
+“stamp” static, fixed values to each 
+row in a table (or use Power Query!)
+DO NOT use calculated columns for 
+aggregation formulas, or to calculate 
+fields for the “Values” area of a 
+pivot (use measures instead)
+•
+No “A1-style” references; calculated columns refer to 
+entire tables or columns 
+•
+Calculated columns are computed at the row-level, and
+values are stored with the table (this eats up memory)
+•
+Calculated columns understand row context; they’re great 
+for defining new properties based on information in each 
+row, but generally useless for aggregation (SUM, AVERAGE, 
+COUNT, etc.)
+
+--- PAGE 67 ---
+CREATING CALCULATED COLUMNS
+Step 1: In the data model “Data View”, 
+choose a table and then select any cell in 
+the “Add Column” section
+Step 2: Enter a DAX function in 
+the formula bar (we’ll cover specific 
+functions in the next section)
+Step 3: Press “Enter”, and all cells 
+in the column will update
+
+--- PAGE 68 ---
+CALCULATED COLUMNS: GOOD & BAD
+In this case we’ve added a calculated column called 
+price_category, which equals “High” if the retail price is >$2, 
+and “Low” otherwise (just like you would write in Excel!)
+•
+Since calculated columns understand row context, a new 
+value is calculated in each row based on that row’s price
+•
+This is a valid use of calculated columns; it creates a new row 
+“property” that we can now use to filter or segment any 
+related data within the model
+Here we’re using an aggregation function (SUM) to 
+calculate a new column named total_revenue
+•
+Since calculated columns do not understand filter 
+context, the same grand total is returned in every 
+single row of the table
+•
+This is not a valid use of calculated columns; 
+these values are statically “stamped” onto the 
+table and can’t be filtered, sliced, subdivided, etc.
+
+--- PAGE 69 ---
+DAX MEASURES
+•
+Like calculated columns, measures reference entire tables 
+or columns (no A1-style or “grid” references)
+•
+Unlike calculated columns, measures don’t actually live in 
+the table; they get placed in the values area of a PivotTable 
+and dynamically calculated in each individual cell
+•
+Measures are evaluated based on the filter context of each 
+cell, which is determined by the PivotTable layout (filters, 
+slicers, rows and columns)
+PRO TIP:
+Use measures to create values that users can explore with a pivot (Power Pivot version of a “Calculated Field”)
+Measures are DAX formulas used to generate dynamic values within a PivotTable
+HEY THIS IS IMPORTANT!
+As a rule of thumb, use measures 
+(vs. calculated columns) when a
+single row can’t give you the 
+answer (i.e. requires aggregation)
+Measures can ONLY be placed in 
+the values area of a PivotTable
+
+--- PAGE 70 ---
+CREATING IMPLICIT MEASURES
+STEP 1: Check the box next to a value field in a data table, 
+or manually drag it into the “Values” box
+STEP 2: Pat yourself on the back, you just created a measure!
+HEY THIS IS IMPORTANT!
+Before you pop the champagne, there’s a catch. When you drag a raw data field 
+into the values section of a pivot, you create what’s called an implicit measure. 
+While there’s nothing wrong with implicit measures, they are extremely limited.
+Explicit measures (defined using DAX) will give us much more flexibility, as well 
+as the ability to reuse measures in multiple places (measure trees!)
+FROM NOW ON, JUST SAY “NO” TO IMPLICIT MEASURES
+
+--- PAGE 71 ---
+CREATING EXPLICIT MEASURES (AUTOSUM)
+PRO TIP:
+AutoSum is a nice way to get comfortable with basic DAX and quickly add measures; 
+just don’t rely on them when things start to get more complicated!
+The Measures Pane sits beneath the data 
+in the “Data View” of the model
+AutoSum is a shortcut for creating 
+simple DAX formulas (Sum, Average, 
+Count, Distinct Count, Max and Min)
+To use AutoSum:
+•
+Click on a cell in the Measures 
+Pane (see below), within the 
+column you want to evaluate
+•
+Select the AutoSum menu and 
+choose an option from the list 
+
+--- PAGE 72 ---
+CREATING EXPLICIT MEASURES (POWER PIVOT)
+PRO TIP:
+Ctrl+scroll adjusts 
+formula text size
+The Measure Dialog Box
+Each measure is 
+assigned to a table and 
+given a measure name
+(as well as an optional 
+description)
+The Formula pane 
+contains the actual DAX 
+code, as well as options 
+to browse the formula 
+library or check syntax
+Note: just start typing, and 
+“Intellisense” will kick in to 
+help you auto-populate 
+formula names and tables
+Use the Formatting 
+Options to specify a 
+format for each 
+measure
+
+--- PAGE 73 ---
+UNDERSTANDING FILTER CONTEXT
+Measures are calculated based on filter context, which is the set of filters (or “coordinates”) 
+determined by the PivotTable layout (filters, slicers, row labels and column labels)
+HEY THIS IS IMPORTANT!
+Each measure cell in the pivot calculates independently, based on its coordinates (think of each cell as an island)
+When you change the pivot layout (by updating filters/slicers, row labels or column labels), each measure cell 
+detects its new coordinates and then recalculates its value
+The coordinate for this measure cell is Customer_Lookup[customer_city] = “Hidalgo”
+•
+Given this coordinate, Excel filters down to the “Hidalgo” rows in the Customer_Lookup table, filters all 
+related tables (based on the relationships in data model), then evaluates the arithmetic in the table defined 
+by the measure (in this case Total Quantity equals the sum of quantity from the transactions data table)
+This cell does NOT add up the values above it (it’s an island, remember?)
+•
+Total rows represent a lack of filters; since this cell does not have a customer_city coordinate, it 
+evaluates the Total Quantity measure across the entire, unfiltered Customer_Lookup table 
+
+--- PAGE 74 ---
+FILTER CONTEXT EXAMPLES
+Cell coordinates:
+•
+Calendar_Lookup[Year] = 1997
+•
+Customer_Lookup[customer_country] = “USA”
+•
+Customer_Lookup[customer_city] = “Altadena”
+Cell coordinates:
+•
+Calendar_Lookup[Year] = 1997
+•
+Customer_Lookup[customer_country] = “USA”
+Cell coordinates:
+•
+Calendar_Lookup[Year] = 1998
+•
+Calendar_Lookup[Quarter] = 1
+•
+Customer_Lookup[customer_country] = “USA”
+Cell coordinates:
+•
+Customer_Lookup[customer_country] = “USA”
+Cell coordinates:
+•
+Store_Lookup[store_country] = “Canada”
+•
+Store_Lookup[store_city] = “Vancouver”
+•
+Product_Lookup[product_brand] = “Akron”
+Cell coordinates:
+•
+Store_Lookup[store_country] = “Canada”
+•
+Product_Lookup[product_brand] = “Amigo”
+
+--- PAGE 75 ---
+STEP-BY-STEP MEASURE CALCULATION
+Detect pivot coordinates 
+& apply filter context
+Carry filters “downstream” &
+apply to all related tables
+Evaluate the measure formula 
+against the filtered table
+Store_Lookup[store_country] = “USA”
+Store_Lookup Table
+Store_Lookup Table
+1 1
+*
+*
+FoodMart Returns
+FoodMart_Transactions
+Sum of Transactions[quantity]
+when store_country = “USA” = 555,899
+How exactly is this measure calculated?
+•
+REMEMBER: This all happens instantly behind the scenes, every time a measure cell calculates
+STEP 1
+STEP 2
+STEP 3
+USA
+USA
+USA
+USA
+
+--- PAGE 76 ---
+RECAP: CALCULATED COLUMNS VS. MEASURES
+•
+Evaluated in the context of each row of the table to 
+which it belongs (has row context)
+•
+Appends static values to each row in a table and 
+stores them in the model, increasing file size
+•
+Only recalculated on data source refresh or changes 
+to component columns
+•
+Primarily used as rows, columns, slicers or filters
+CALCULATED COLUMNS
+MEASURES
+•
+Evaluated in the context of each cell of the PivotTable 
+in which it is displayed (has filter context)
+•
+Does not create new data in the tables themselves, 
+and does not increase file size
+•
+Recalculated in response to any change in the 
+PivotTable view
+•
+Can only be used as PivotTable values
+*Note: Calculated columns CAN be placed in the values area of a pivot, but you can (and should) use a measure instead 
+*
+Calculated columns “live” in tables
+Measures “live” in PivotTables
+
+--- PAGE 77 ---
+Avoid using implicit measures whenever possible
+POWER PIVOT BEST PRACTICES
+•
+Implicit measures are limited in functionality and restricted to the pivot in which 
+they were created; explicit measures are more portable and powerful
+Don’t use a calculated column when a measure will do the trick
+•
+Only use calculated columns to “stamp” static, fixed values to each row in a table
+•
+Use measures when aggregation is necessary, or to create dynamic values in a pivot 
+Know your data model inside and out!
+•
+It’s easy to produce incorrect results in Power Pivot if you don’t respect the model’s 
+table relationships, and errors are often difficult to spot without a thorough QA
+
+--- PAGE 78 ---
+COMMON DAX FUNCTIONS
+
+--- PAGE 79 ---
+DAX SYNTAX
+Total Quantity: =SUM(Transactions[quantity])
+MEASURE NAME
+•
+Note: Measures are always surrounded 
+in brackets (i.e. [Total Quantity]) when 
+referenced in formulas, so spaces are OK
+FUNCTION NAME
+•
+Calculated columns don’t always use functions, but 
+measures do:
+•
+In a calculated column, =Transactions[quantity]
+returns the value from the quantity column in 
+each row (since it evaluates for each row)
+•
+In a measure, =Transactions[quantity] will 
+return an error since Excel doesn’t know how to 
+evaluate that as a single value in a pivot (you 
+need some sort of aggregation)
+Referenced 
+TABLE NAME
+Referenced 
+COLUMN NAME
+This is a “fully qualified” column, since it’s preceeded by the table name
+Note: Table names with spaces must be surrounded by single quotes:
+•
+Without a space: Transactions[quantity]
+•
+With a space: ‘Transactions Table’[quantity]
+PRO TIP:
+For column references, use the fully qualified name (i.e. Table[Column]) 
+For measure references, just use the measure name (i.e. [Measure]) 
+
+--- PAGE 80 ---
+DAX OPERATORS
+Arithmetic
+Operator
+Meaning
+Example
++
+Addition
+2 + 7
+-
+Subtraction
+5 – 3
+*
+Multiplication
+2 * 6
+/
+Division
+4 / 2
+^
+Exponent
+2 ^ 5
+Comparison
+Operator
+Meaning
+Example
+=
+Equal to
+[City]=“Boston”
+>
+Greater than
+[Quantity]>10
+<
+Less than
+[Quantity]<10
+>=
+Greater than or equal to
+[Unit_Price]>=2.5
+<=
+Less than or equal to
+[Unit_Price]<=2.5
+<>
+Not equal to
+[Country]<>”Mexico”
+Text/Logical Operator
+Meaning
+Example
+&
+Concatenates two values to produce one text string
+[City] & “ “ & [State]
+&&
+Create an AND condition between two logical expressions
+([State]=“MA”) && ([Quantity]>10)
+|| (double pipe)
+Create an OR condition between two logical expressions
+([State]=“MA”) || ([State]=“CT”)
+IN
+Creates a logical OR condition based on a given list (using curly brackets)
+‘Store Lookup’[State] IN { “MA”, “CT”, “NY” }
+*Head to www.msdn.microsoft.com for more information about DAX syntax, operators, troubleshooting, etc.
+Hey! Pay attention to these!
+
+--- PAGE 81 ---
+COMMON FUNCTION CATEGORIES
+DATE & TIME
+Functions
+FILTER
+Functions
+LOGICAL
+Functions
+MATH & STATS
+Functions
+TEXT
+Functions
+*Note: This is NOT a comprehensive list (does not include trigonometry functions, parent/child functions, information functions, or other less common functions) 
+Basic aggregation
+functions as well as 
+“iterators” evaluated at 
+the row-level
+Lookup functions based 
+on related tables and 
+filtering functions for 
+dynamic calculations
+Functions for returning 
+information about values 
+in a given conditional 
+expression
+Functions to manipulate 
+text strings or control 
+formats for dates, times 
+or numbers 
+Basic date and time 
+functions as well as 
+advanced time 
+intelligence operations
+Common Examples:
+•
+SUM
+•
+AVERAGE
+•
+MAX/MIN
+•
+DIVIDE
+•
+COUNT/COUNTA
+•
+COUNTROWS
+•
+DISTINCTCOUNT
+Iterator Functions:
+•
+SUMX
+•
+AVERAGEX
+•
+MAXX/MINX
+•
+RANKX
+•
+COUNTX
+Common Examples:
+•
+CALCULATE
+•
+FILTER
+•
+ALL
+•
+ALLEXCEPT
+•
+RELATED
+•
+RELATEDTABLE
+•
+DISTINCT
+•
+VALUES
+•
+EARLIER/EARLIEST
+•
+HASONEVALUE
+•
+HASONEFILTER
+•
+ISFILTERED
+•
+USERELATIONSHIP
+Common Examples:
+•
+IF
+•
+IFERROR
+•
+AND
+•
+OR
+•
+NOT
+•
+SWITCH
+•
+TRUE
+•
+FALSE
+Common Examples:
+•
+CONCATENATE
+•
+FORMAT
+•
+LEFT/MID/RIGHT
+•
+UPPER/LOWER
+•
+PROPER
+•
+LEN
+•
+SEARCH/FIND
+•
+REPLACE
+•
+REPT
+•
+SUBSTITUTE
+•
+TRIM
+•
+UNICHAR
+Common Examples:
+•
+DATEDIFF
+•
+YEARFRAC
+•
+YEAR/MONTH/DAY
+•
+HOUR/MINUTE/SECOND
+•
+TODAY/NOW
+•
+WEEKDAY/WEEKNUM
+Time Intelligence Functions:
+•
+DATESYTD
+•
+DATESQTD
+•
+DATESMTD
+•
+DATEADD
+•
+DATESINPERIOD
+
+--- PAGE 82 ---
+BASIC MATH & STATS FUNCTIONS
+=SUM(<column>)
+SUM()
+Evaluates the sum of a column
+DIVIDE()
+MAX()
+MIN()
+AVERAGE()
+Performs division and returns the 
+alternate result (or blank) if div/0 
+=DIVIDE(<numerator>, <denominator>, <other>)
+Returns the largest value in a column 
+or between two scalar expressions
+=MAX(<column>) or =MAX(<exp1>, <exp2>)
+Returns the smallest value in a column 
+or between two scalar expressions
+Returns the average (arithmetic 
+mean) of all the numbers in a column
+=AVERAGE(<column>)
+=MIN(<column>) or =MIN(<exp1>, <exp2>)
+
+--- PAGE 83 ---
+BASIC MATH & STATS FUNCTIONS (EXAMPLES)
+PRO TIP:
+Even though it might seem unnecessary, creating measures for even simple calculations (like the sum of a column) 
+allows you to use those measures within other calculations, anywhere in the workbook
+Average of product_retail_price
+Sum of quantity from the Transactions table
+Quantity Returned divided by Total Quantity
+
+--- PAGE 84 ---
+COUNT, COUNTA, DISTINCTCOUNT & COUNTROWS
+=COUNT(<column>)
+COUNT()
+Counts the number of cells in a column that 
+contain numbers
+COUNTROWS()
+DISTINCTCOUNT()
+COUNTA()
+Counts the number of rows in the specified 
+table, or a table defined by an expression
+Counts the number of different cells in a 
+column of numbers
+Counts the number of non-empty cells in a 
+column (numerical and non-numerical)
+=COUNTA(<column>)
+=COUNTROWS(<table>)
+=DISTINCTCOUNT(<column>)
+
+--- PAGE 85 ---
+COUNT FUNCTIONS (EXAMPLES)
+Count of all rows in the Transactions table
+Count of unique values in the product_id column
+Count of non-empty cells in the recyclable column
+
+--- PAGE 86 ---
+BASIC LOGICAL FUNCTIONS (IF/AND/OR)
+=IF(<logical test>, <value_if_true>, <value_if_false>)
+IF()
+Checks if a given condition is met, and 
+returns one value if the condition is TRUE, 
+and another if the condition is FALSE
+AND()
+OR()
+IFERROR()
+Checks whether both arguments are TRUE, 
+and returns TRUE if both arguments are 
+TRUE, otherwise returns FALSE
+=AND(<logical1>, <logical2>)
+Checks whether one of the arguments is 
+TRUE to return TRUE, and returns FALSE if 
+both arguments are FALSE
+Evaluates an expression and returns a 
+specified value if the expression returns an 
+error, otherwise returns the expression itself =IFERROR(value, value_if_error)
+=OR (<logical1>, <logical2>)
+Note: Use the && and 
+|| operators if you 
+want to include more 
+than two conditions!
+
+--- PAGE 87 ---
+BASIC LOGICAL FUNCTIONS (EXAMPLES)
+Education level equals “Grad” if customer has a bachelors degree or a graduate degree, otherwise “Non-Grad”
+Supermarket_size equals “Large” if sq ft >30,000, otherwise “Small”
+
+--- PAGE 88 ---
+SWITCH & SWITCH(TRUE)
+SWITCH()
+Evaluates an expression against a list of values and returns one of multiple possible result expressions
+=SWITCH(<expression>, <value1>, <result1>, <value2>, <result2>, … <else>) 
+Any DAX expression that returns a 
+single scalar value, evaluated multiple 
+times (for each row/constant)
+Examples:
+•
+Calendar_Lookup[month_num]
+•
+Product_Lookup[product_brand]
+List of values produced by the expression, each paired 
+with a result to return for rows/cases that match
+Examples:
+=SWITCH(Calendar_Lookup[month_num],
+1, “January”,
+2, “February”,
+etc…
+=SWITCH(TRUE(),
+[retail_price]<5, “Low Price”,
+AND([retail_price>=5, [retail_price]<20), “Med Price”,
+AND([retail_price>=20, [retail_price]<50), “High Price”
+“Premium Price”)
+Value returned if 
+the expression 
+doesn’t match any 
+value argument
+PRO TIP:
+Use the SWITCH(TRUE() combo to 
+generate results based on Boolean 
+(True/False) expressions (instead of 
+those pesky nested IF statements!)
+
+--- PAGE 89 ---
+SWITCH & SWITCH(TRUE) (EXAMPLES)
+Switch quarter 1 with “Q1”, quarter 2 with “Q2”, quarter 3 = “Q3”, else “Q4”
+Set product_price_category to “High” if retail price > $3, “Medium” 
+if price is between $2 and $3, “Low” if price is <=$2, else “Other”
+
+--- PAGE 90 ---
+TEXT FUNCTIONS
+=CONCATENATE(<text1>, <text2>)
+CONCATENATE()
+Joins two text strings into one
+UPPER/LOWER/
+PROPER()
+LEN()
+LEFT/MID/
+RIGHT()
+Converts letters in a string to 
+upper/lower/proper case
+=UPPER/LOWER/PROPER(<text>)
+Returns the number of characters in a string
+Returns a number of characters from the 
+start/middle/end of a text string
+=LEFT/RIGHT(<text>, <num_chars>)
+=MID(<text>, <start_num>, <num_chars>)
+=LEN(<text>)
+SUBSTITUTE()
+Replaces an instance of existing text with 
+new text in a string
+=SUBSTITUTE(<text>, <old_text>, 
+<new_text>, <instance>)
+SEARCH()
+Returns the position where a specified string 
+or character is found, reading left to right
+=SEARCH(<find_text>, <within_text>, 
+<start_num>, <NotFoundValue>)
+Note: Use the & operator as a shortcut, 
+or to combine more than two strings!
+
+--- PAGE 91 ---
+TEXT FUNCTIONS (EXAMPLES)
+Extract the left 3 characters from each value in the store_country column
+Concatenate the values from the year and month columns
+Extract characters from the left of the customer_address column, up to the space
+
+--- PAGE 92 ---
+CALCULATE
+=CALCULATE(<expression>, <filter1>, <filter2>,…)
+CALCULATE()
+Name of an existing measure or a 
+formula for a valid measure
+Examples:
+•
+[Total Transactions]
+•
+SUM(Transactions[quantity])
+List of simple Boolean (True/False) filter expressions 
+(note: these require simple, fixed values; you cannot 
+create filters based on measures)
+Examples:
+•
+Store_Lookup[store_country]=“USA”
+•
+Calendar[Year]=1998
+•
+Transactions[quantity]>=5
+PRO TIP:
+CALCULATE works just like SUMIF or COUNTIF, except it can evaluate measures based on ANY sort of 
+calculation (not just a sum, count, etc); it may help to think of it like “CALCULATEIF”
+Evaluates a given expression or formula under a set of defined filters 
+
+--- PAGE 93 ---
+CALCULATE (EXAMPLE)
+Why do we see the same repeating value when we add store_country to 
+rows? Shouldn’t these cells have filter contexts for Canada and Mexico?
+In this case we’ve defined a new measure named “USA 
+Transactions”, which evaluates the “Total Transactions” 
+measure when the store country equals “USA” 
+HEY THIS IS IMPORTANT!
+The CALCULATE function modifies filters and overrules any 
+competing ones defined by the PivotTable coordinates!
+In this example, the MEXICO cell has a filter context of 
+store_country= “MEXICO” (defined by the row label) AND 
+story_country= “USA” (defined by the CALCULATE function)
+Both cannot be true at the same time, so the MEXICO filter 
+is overwritten and CALCULATE takes priority
+
+--- PAGE 94 ---
+CALCULATE CHANGES THE FILTER CONTEXT
+Carry the filters across 
+all table relationships
+Evaluate the formula 
+against the filtered table
+Store_Lookup Table
+1 1
+*
+*
+FoodMart Returns
+Transactions
+= 180,823
+STEP 2
+STEP 3
+USA
+USA
+USA
+CALCULATE
+Store_Lookup[store_country] = “USA”
+Modify filters if measure 
+contains CALCULATE
+Total Transactions where 
+store_country = “USA”
+Store_Lookup Table
+USA
+If the measure being evaluated contains a CALCULATE 
+function, filter context is modified between Step 1 & Step 2
+Detect pivot coordinates 
+& apply filter context
+Store_Lookup[store_country] = “MEXICO”
+Store_Lookup Table
+STEP 1
+MEXICO
+
+--- PAGE 95 ---
+FILTER
+Table to be filtered
+Examples:
+•
+Store_Lookup
+•
+Product_Lookup
+A Boolean (True/False) filter expression 
+to be evaluated for each row of the table 
+Examples:
+•
+Store_Lookup[store_country]=“USA”
+•
+Calendar[Year]=1998
+•
+[retail_price]>AVERAGE[retail_price]
+=FILTER(<table>, <filter expression>)
+FILTER()
+Returns a table that represents a subset of another table or expression
+PRO TIP:
+Since FILTER iterates through each row in a table, it can be slow and processor-intensive; never use FILTER 
+when a normal CALCULATE function will accomplish the same thing!
+HEY THIS IS IMPORTANT!
+FILTER is used to add filter context on 
+top of what’s already defined by the 
+PivotTable layout.
+Since FILTER returns a table (as opposed
+to a scalar), it’s almost always used as an 
+input to other functions, like enabling 
+more complex filtering options within a  
+CALCULATE function (or passing a 
+filtered table to an iterator like SUMX)
+
+--- PAGE 96 ---
+PRO TIP: FILTERING WITH DISCONNECTED SLICERS (PART 1)
+STEP 1: Create an Excel table containing a list 
+of values to use as thresholds or parameters:
+STEP 2: Add the table to the Data Model 
+(from Power Pivot tab):
+STEP 3: Make sure that your table loaded, and is 
+NOT connected to any other table in the model:
+
+--- PAGE 97 ---
+PRO TIP: FILTERING WITH DISCONNECTED SLICERS (PART 2)
+STEP 4: Place your new table on the pivot as a slicer:
+STEP 5: Create a measure to capture the slicer selection, 
+then reference it in a FILTER statement within CALCULATE:
+The Transactions Under Price Threshold measure calculates Total 
+Transactions when the product price is below the selected threshold
+
+--- PAGE 98 ---
+FILTER (EXAMPLES)
+Calculate Total Transactions only for cases where the product price is below a selected threshold
+Calculate Total Revenue, but only for USA stores
+
+--- PAGE 99 ---
+ALL
+=ALL(<table> or <column>, [column1], [column2],…)
+ALL()
+The table or column that you 
+want to clear filters on
+Examples:
+•
+Transactions
+•
+Product_Lookup[product_brand]
+List of columns that you want to clear filters on (optional)
+Notes:
+•
+If your first parameter is a table, you can’t specify additional columns
+•
+All columns must include the table name, and come from the same table
+Examples:
+•
+Customer_Lookup[customer_city], Customer_Lookup[customer_country]
+•
+Product_Lookup[product_name]
+Returns all rows in a table, or all values in a column, ignoring any filters that have been applied
+PRO TIP:
+ALL is like the opposite of FILTER; instead of adding filter context, ALL removes filter context. This is often used when 
+you need unfiltered values that won’t be skewed by the PivotTable layout (i.e. Category sales as % of Total) 
+
+--- PAGE 100 ---
+ALL (EXAMPLE)
+•
+In this example, we use ALL to calculate total transactions across all rows in the 
+Transactions table, ignoring any filter context from the PivotTable
+•
+By dividing the original [Total Transaction] measure (which responds to PivotTable filter context as 
+expected) by the new [All Transactions] measure, we can correctly calculate the percentage of the 
+total no matter how the PivotTable is filtered 
+
+--- PAGE 101 ---
+RELATED
+=RELATED(<column>)
+RELATED()
+The column that contains the 
+values you want to retrieve
+Examples:
+•
+Product_Lookup[product_brand]
+•
+Store_Lookup[store_country]
+Returns related values in each row of a table using relationships with other tables
+HEY THIS IS IMPORTANT!
+RELATED works almost exactly like a VLOOKUP function – it uses 
+the relationship between tables (defined by primary and foreign 
+keys) to pull values from one table into a new column of another.
+Since this function requires row context, it can only be used as a 
+calculated column or as part of an iterator function that cycles 
+through all rows in a table (FILTER, SUMX, MAXX, etc.) 
+PRO TIP:
+Avoid using RELATED to create redundant calculated columns unless you absolutely need them, since those 
+extra columns increase file size; instead, use RELATED within a measure like FILTER or SUMX  
+
+--- PAGE 102 ---
+RELATED (EXAMPLES)
+Retrieve the retail price from the Product_Lookup table and append it to the Transactions table
+Multiply the quantity in each row of the Transactions table with the 
+related retail price from the Product_Lookup table, and sum the results
+
+--- PAGE 103 ---
+ITERATOR (“X”) FUNCTIONS
+Iterator (or “X”) functions allow you to loop through the same calculation or expression on 
+each row of a table, and then apply some sort of aggregation to the results (SUM, MAX, etc.) 
+=SUMX(<table>, <expression>)
+Table in which the
+expression will be evaluated
+Examples:
+•
+Transactions
+•
+FILTER(Transactions, 
+RELATED(Store_Lookup[country])=“USA”)
+Expression to be evaluated for
+each row of the given table
+Examples:
+•
+[Total Transactions]
+•
+Transactions[price] * Transactions[quantity]
+Aggregation to apply 
+to calculated rows*
+Examples:
+•
+SUMX
+•
+COUNTX
+•
+AVERAGEX
+•
+RANKX
+•
+MAXX/MINX
+PRO TIP:
+Imagine the function adding a temporary new column to the table, calculating the value in each row 
+(based on the expression) and then applying the aggregation to that new column (like SUMPRODUCT) 
+*In this example we’re looking at SUMX, but all “X” functions follow a similar syntax
+
+--- PAGE 104 ---
+ITERATOR (“X”) FUNCTIONS (EXAMPLES)
+Multiply quantity and retail price for each row in the Transactions table, and sum the results
+Calculate the rank of each product brand, based on total revenue
+
+--- PAGE 105 ---
+BASIC DATE & TIME FUNCTIONS
+=HOUR/MINUTE/SECOND(<datetime>)
+HOUR/MINUTE/
+SECOND()
+Returns the hour (0-23), minute (0-59), or 
+second (0-59) of a given datetime value
+WEEKDAY/
+WEEKNUM()
+DAY/MONTH/
+YEAR()
+TODAY/NOW()
+Returns a weekday number from 1 (Sunday) 
+to 7 (Sunday), or the week # of the year
+=WEEKDAY/WEEKNUM(<date>, <type>)
+Returns the day of the month (1-31), month 
+of the year (1-12), or year of a given date
+Returns the current date or exact time
+=TODAY/NOW()
+=DAY/MONTH/YEAR(<date>)
+EOMONTH()
+Returns the date of the last day of the 
+month, +/- a specified number of months
+=EOMONTH(<start_date>, <months>)
+DATEDIFF()
+Returns the difference between two dates, 
+based on a selected interval
+=DATEDIFF(<start_date>, <end_date>, <interval>)
+
+--- PAGE 106 ---
+BASIC DATE & TIME FUNCTIONS (EXAMPLES)
+Calculate the time difference between the customer birthdate and current date, in years
+Calculate the end date of the month, for each row in the Calendar_Lookup table
+
+--- PAGE 107 ---
+TIME INTELLIGENCE FORMULAS
+Time Intelligence functions allow you to easily calculate common time comparisons:
+=CALCULATE(<measure>, DATESYTD(Calendar[Date]))
+=CALCULATE(<measure>, DATEADD(Calendar[Date],-1,MONTH))
+=CALCULATE(<measure>,
+DATESINPERIOD(Calendar[Date], MAX(Calendar[Date]),-10,DAY))
+Performance
+To-Date
+Use DATESQTD for Quarters or DATESMTD for Months 
+Previous
+Period
+Select an interval (DAY, MONTH, QUARTER, or YEAR) and the 
+# of intervals to compare (i.e. previous month, rolling 10-day)
+Running
+Total
+PRO TIP:
+To calculate a moving average, use the running total calculation above and divide by the # of intervals!
+
+--- PAGE 108 ---
+Avoid using unnecessary slicers, or consider disabling cross-filtering  
+SPEED & PERFORMANCE CONSIDERATIONS
+•
+When you use multiple slicers, they “cross-filter” by default; in other words, options in Slicer B are 
+automatically grayed out if they aren’t relevant given a selected value in Slicer A
+•
+To disable, select Slicer Tools > Slicer Settings and uncheck “Visually indicate items with no data”
+Eliminate redundant columns; keep data tables narrow
+•
+Data tables should ideally only contain quantitative values and foreign keys; any extra descriptive 
+columns should live in a related lookup table
+Imported columns are better than calculated columns
+•
+When possible, create calculated columns at the source (i.e. in your raw database) or using Power 
+Query; this is more efficient than processing those calculations in the Data Model/Power Pivot 
+Minimize iterator functions (FILTER, SUMX, etc.)
+•
+Functions that cycle through each row in a table are “expensive”, meaning that they take 
+time and consume processing power
+
+--- PAGE 109 ---
+Write measures for even the simplest calculations (i.e. Sum of Sales)
+DAX BEST PRACTICES
+•
+Once you create a measure it can be used anywhere in the workbook and as an 
+input to other, more complex calculations
+Break measures down into simple, component parts
+•
+DAX is a difficult language to master; focus on practicing and understanding simple 
+components at first, then assemble them into more advanced formulas
+Reference columns with the table name, and measures alone 
+•
+Using “fully qualified” column references (preceeded by the table name) helps make 
+formulas more readable and intuitive, and differentiates them from measure references
+
+--- PAGE 110 ---
+WRAPPING UP
+
+--- PAGE 111 ---
+DATA VISUALIZATION OPTIONS
+There are several options for building visuals and reports from a data model:
+PivotCharts & Conditional Formatting
+•
+Check out my Data Analysis with Excel PivotTables course for a deep dive
+1
+Power View, Power Map, etc.
+•
+Excel plug-in with Power Pivot and other BI tools; recommend PowerBI as a better option
+2
+Microsoft PowerBI
+•
+Brand new (free!) self-service BI product for loading, shaping, modeling, and visualizing data
+3
+4
+Spreadsheet-based dashboards built with CUBE functions
+•
+Use CUBE functions to pull values from the data model for custom Excel reports (no pivots) 
+Available 
+within Excel
+Standalone 
+product
+(desktop + online)
+
+--- PAGE 112 ---
+SNEAK PEEK: POWERBI
+PowerBI is a standalone Microsoft business intelligence 
+product, which includes both desktop and web-based 
+applications for loading, modeling, and visualizing data
+For info about plans & pricing: powerbi.microsoft.com
+
+--- PAGE 113 ---
+“POWER EXCEL” VS. POWERBI
+Data Shaping
+(Power Query)
+Data Modeling
+(Power Pivot)
+Calculated Measures 
+(DAX)
+PivotTables
+Drag & Drop Reports 
+& Dashboards
+“POWER EXCEL”
+POWERBI
+PivotCharts
+Power Map/
+Power View
+CUBE Functions
+Custom Visuals 
+(cards, maps, R, etc.)
+Cloud collaboration 
+and publishing tools
+“Power Excel” and 
+PowerBI are built on top 
+of the exact same engine!
+PowerBI takes the same 
+data shaping, modeling 
+and analytics capabilities 
+and adds new reporting 
+and visualization tools
+Transitioning is easy; you 
+can import an entire data 
+model directly from Excel!
+
+--- PAGE 114 ---
+RESOURCES & NEXT STEPS
+Looking to become an absolute Excel ROCK STAR? Try the full stack:
+Check out these awesome resources for additional support: 
+Ratings and reviews mean the world to me, so please share feedback!
+•
+Microsoft Excel – Data Analysis with Excel PivotTables
+•
+Microsoft Excel – Advanced Excel Formulas & Functions
+•
+Microsoft Excel – Data Viz with Excel Charts & Graphs
+•
+Microsoft PowerBI Essentials (COMING SOON!)
+•
+msdn.microsoft.com for DAX documentation and support
+•
+powerpivotpro.com for blogs, articles, and additional Power Pivot resources
+•
+Power Query & Power BI by Rob Collie (paperback, available on Amazon)
+•
+Feel free to post to the Q&A section or message me directly if you need any support, or if there’s 
+anything I can do to improve your course experience!
+
+--- PAGE 115 ---
+THANK YOU!
+

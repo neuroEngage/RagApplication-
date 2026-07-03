@@ -1,0 +1,1281 @@
+--- PAGE 1 ---
+Take your Pandas skills to the next level! Register at www.enthought.com/pandas-mastery-workshop
+© 2019 Enthought, Inc., licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/4.0/ 
+1
+Reading and Writing Data with Pandas
+pandas
+Methods to read data are all named 
+pd.read_* where * is the file type. Series 
+and DataFrames can be saved to disk 
+using their to_* method.
+h5
++
+a
+b
+c
+X
+Y
+Z       
+DataFrame
+h5
++
+read_*
+to_*
+Usage Patterns
+Parsing Tables from the Web
+Writing Data Structures to Disk
+Reading Text Files into a DataFrame
+From and To a Database
+• Use pd.read_clipboard() for one-oﬀ data  
+   extractions.
+• Use the other pd.read_* methods in scripts 
+   for repeatable analyses.
+Colors highlight how diﬀerent arguments map from the data ﬁle to a DataFrame.
+Date, Cs, Rd
+2005-01-03, 64.78, -
+2005-01-04, 63.79, 201.4
+2005-01-05, 64.46, 193.45
+...
+Data from Lab Z. 
+  Recorded by Agent E
+# Historical_data.csv
+>>> read_table(
+        'historical_data.csv',
+         sep=',', 
+         header=1, 
+         skiprows=1,
+         skipfooter=2,         
+         index_col=0, 
+         parse_dates=True, 
+         na_values=['-'])  
+Cs
+Rd
+Date
+>>> df_list = read_html(url)
+a
+b
+c
+X Y
+a
+b
+c
+X Y
+a
+b
+c
+X Y
+Possible values of parse_dates:
+• [0, 2]: Parse columns 0 and 2 as separate dates
+• [[0, 2]]: Group columns 0 and 2 and parse as single date
+• {'Date': [0, 2]}: Group columns 0 and 2, parse as
+   single date in a column named Date.
+Dates are parsed after the converters have been applied.
+Other arguments:
+• names: set or override column names
+• parse_dates: accepts multiple argument types, see on the right
+• converters: manually process each element in a column
+• comment: character indicating commented line
+• chunksize: read only a certain number of rows each time
+Writing data structures to disk:
+> s_df.to_csv(filename)
+> s_df.to_excel(filename)
+Write multiple DataFrames to single Excel ﬁle:
+> writer = pd.ExcelWriter(filename)
+> df1.to_excel(writer, sheet_name='First')
+> df2.to_excel(writer, sheet_name='Second')
+> writer.save()
+Read, using SQLAlchemy. Supports multiple databases:
+> from sqlalchemy import create_engine
+> engine = create_engine(database_url)
+> conn = engine.connect()
+> df = pd.read_sql(query_str_or_table_name, conn)
+Write:
+> df.to_sql(table_name, conn)
+, ,
+
+--- PAGE 2 ---
+Take your Pandas skills to the next level! Register at www.enthought.com/pandas-mastery-workshop
+© 2019 Enthought, Inc., licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/4.0/ 
+2
+Pandas Data Structures: Series and DataFrames
+pandas
+ A Series, s, maps an index to values. It is:
+• Like an ordered dictionary
+• A Numpy array with row labels and a name
+A DataFrame, df, maps index and column labels to values. It is:
+• Like a dictionary of Series (columns) sharing the same index
+• A 2D Numpy array with row and column labels
+s_df applies to both Series and DataFrames.
+Assume that manipulations of Pandas object return copies.
+Indexing and Slicing
+Masking and Boolean Indexing
+Common Indexing and Slicing Patterns
+Using [ ] on Series and DataFrames
+Use these attributes on Series and DataFrames for indexing, 
+slicing, and assignments:
+s_df.loc[] 
+s_df.iloc[]
+s_df.xs(key, level)
+Refers only to the index labels
+Refers only to the integer location, 
+similar to lists or Numpy arrays
+Select rows with label key in level 
+level of an object with MultiIndex.
+Create masks with, for example, comparisons
+mask = df['X'] < 0
+Or isin, for membership mask
+mask = df['X'].isin(list_valid_values)
+Use masks for indexing (must use loc)
+df.loc[mask] = 0
+Combine multiple masks with bitwise operators (and (&), or (|), xor 
+(^), not (~)) and group them with parentheses:
+mask = (df['X'] < 0) & (df['Y'] == 0)
+s_df.loc[rows]    
+df.loc[:, cols_list]
+df.loc[rows, cols]  
+s_df.loc[mask]    
+df.loc[mask, cols]        
+Some rows (all columns in a DataFrame)
+All rows, some columns
+Subset of rows and columns
+Boolean mask of rows (all columns)
+Boolean mask of rows, some columns 
+rows and cols can be values, lists, Series or masks.
+Value
+Series, ﬁrst 2 rows
+Series
+DataFrame
+DataFrame, ﬁrst 2 rows
+DataFrame, rows where mask is 
+True
+s['a']
+s[:2]
+df['X'] 
+df[['X', 'Y']]
+df['new_or_old_col'] = series_or_array
+EXCEPT! with a slice or mask. 
+On Series, [ ] refers to the index labels, or to a slice
+On DataFrames, [ ] refers to columns labels:
+df[:2]
+df[mask]
+NEVER CHAIN BRACKETS!
+> df[mask]['X'] = 1
+SettingWithCopyWarning
+> df.loc[mask , 'X'] = 1 
+ s_df.index
+df.columns       
+s_df.values       
+s_df.shape      
+s.dtype, df.dtypes
+len(s_df)        
+s_df.head() and s_df.tail()
+s.unique()
+s_df.describe()
+df.info()
+Array-like row labels
+Array-like column labels
+Numpy array, data
+(n_rows, m_cols)
+Type of Series, of each column
+Number of rows
+First/last rows
+Series of unique values
+Summary stats
+Memory usage
+Manipulating Values
+All row values and the index will follow:
+df.sort_values(col_name, ascending=True)
+df.sort_values(['X','Y'], ascending=[False, True])
+s_df.reindex(new_index)
+s_df.drop(labels_to_drop)
+s_df.rename(index={old_label: new_label})
+s_df.sort_index()
+df.set_index(column_name_or_names)
+s_df.reset_index()
+Conform to new index
+Drops index labels
+Renames index labels  
+Sorts index labels
+Inserts index into columns, resets index to
+default integer index. 
+Manipulating Columns
+df.rename(columns={old_name: new_name})    
+df.drop(name_or_names, axis='columns')    
+Renames column
+Drops column name
+Manipulating Index
+Important Attributes and Methods
+Creating Series and DataFrames
+Manipulating Series and DataFrames
+Series
+DataFrame
+> pd.Series(values, index=index,  
+ 
+            name=name)
+> pd.Series({'idx1': val1, 'idx2': val2}
+Where values, index, and name are sequences or  
+arrays.
+Series
+DataFrame
+> pd.DataFrame(values, index=index, 
+               columns=col_names)
+> pd.DataFrame({'col1': series1_or_seq, 
+                'col2': series2_or_seq})
+Where values is a sequence of sequences or a
+2D array
+Age
+Gender
+‘Cary’
+‘Lynn’
+‘Sam’
+32
+M
+F
+M
+18
+26
+Index
+Columns
+Values
+n1
+‘Cary’
+‘Lynn’
+‘Sam’
+0
+1
+2
+n2
+n3
+Index
+Integer
+location
+Values
+
+--- PAGE 3 ---
+pandas
+Take your Pandas skills to the next level! Register at www.enthought.com/pandas-mastery-workshop
+© 2019 Enthought, Inc., licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/4.0/
+Computation with Series and DataFrames
+The 3 Rules of Binary Operations
+Rule 1:
+ 
+Operations between multiple Pandas objects implement 
+auto-alignment based on index ﬁrst.
+Rule 2: 
+Mathematical operators (+ - * / exp, log, ...) apply element by 
+element, on the values.
+     
+Rule 3:
+Reduction operations (mean, std, skew, kurt, sum, prod, ...) 
+are applied column by column by default.
+Rule 2: Element-By-Element 
+Mathematical Operations
+Apply a Function to Each Value
+Apply a Function to Each Series
+What Happens with Missing Values?
+Apply a Function to a DataFrame
+Rule 1: Alignment First
+Rule 3: Reduction Operations
+Missing values are represented by NaN (not a number) or NaT (not a time). 
+• They propagate in operations across Pandas objects (1 + NaN    NaN).
+• They are ignored in a "sensible" way in computations, they equal 0 in sum, they're 
+   ignored in mean, etc.
+• They stay NaN with mathematical operations (np.log(NaN)    NaN).
+                    df.pipe(df_to_df)          DataFrame
+ 
+ 
+      df.pipe(df_to_series)      Series
+ 
+ 
+      df.pipe(df_to_value)                 Value
+Apply a function that receives a DataFrame and returns a DataFrame, a Series, 
+or a single value:
+Apply series_to_* function to every column by default (across rows):
+ 
+df.apply(series_to_series)     DataFrame
+  
+df.apply(series_to_value)              Series
+To apply the function to every row (across columns), set axis=1:
+ 
+df.apply(series_to_series, axis=1)
+Apply a function to each value in a Series or DataFrame
+s.apply(value_to_value) 
+  Series
+df.applymap(value_to_value)         DataFrame
+a -2
+-2
+-2
+-2
+-2
+-2
+b
+c
+X Y
+a
+-1
+-1
+-1
+-1
+-1
+-1
+b
+c
+X Y
+a
+b
+c
+X Y
+1
+1
+1
+1
+1
+1
+a
+0
+0
+0
+0
+0
+0
+b
+c
+X Y
+df + 1
+df.abs()
+np.log(df)
+Number of non-null observations
+Sum of values
+Mean of values
+Mean absolute deviation
+Arithmetic median of values
+Minimum
+Maximum
+Mode
+Product of values
+Bessel-corrected sample 
+standard deviation
+Unbiased variance
+Standard error of the mean
+Sample skewness
+(3rd moment)
+Sample kurtosis 
+(4th moment)
+Sample quantile  
+(Value at %) 
+Count of unique
+ values
+ count
+   sum:
+  mean:
+   mad:
+median:
+   min:
+max:
+mode:
+prod:
+std:
+var:
+sem:
+skew:
+kurt:
+quantile:
+value_counts:
+Operates across rows by default (axis=0, or axis='rows').
+Operate across columns with axis=1 or axis='columns'.
+a
+b
+c
+X Y
+df.sum() 
+X
+Y
+>>> df.sum() 
+Series
+Use add, sub, mul, div, to set ﬁll value.
+> s1 + s2
+> s1.add(s2, fill_value=0)
+s1
+s2
+s1
+s2
+a
+1
+2
+b
+NaN
+b 4
+5
+c
+NaN
+a
+b
+6
+c
+NaN
+NaN
+a
+1
+2
+0
+b
+b 4
+0
+5
+c
+a
+b
+6  
+1
+5
+c
+Pandas objects do not behave exactly like Numpy arrays. They follow three 
+main rules (see on the right). Aligning objects on the index (or columns) 
+before calculations might be the most important difference. There are 
+built-in methods for most common statistical operations, such as mean 
+or sum, and they apply across one-dimension at a time. To apply 
+custom functions, use one of three methods to do tablewise (pipe), 
+row or column-wise (apply) or elementwise (applymap) 
+operations.
+
+--- PAGE 4 ---
+Take your Pandas skills to the next level! Register at www.enthought.com/pandas-mastery-workshop
+© 2019 Enthought, Inc., licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/4.0/ 
+Red Panda 
+Ailurus fulgens
+4
+Plotting with Pandas Objects
+Useful Arguments to plot
+Kinds of Plots
+Setup
+Parts of a Figure 
+pandas
+Plotting with Pandas Series and DataFrames
+Pandas uses Matplotlib to generate figures. Once a figure 
+is generated with Pandas, all of Matplotlib's functions 
+can be used to modify the title, labels, legend, etc. In a 
+Jupyter notebook, all plotting calls for a given plot 
+should be in the same cell.
+Import packages:
+ > import pandas as pd
+ > import matplotlib.pyplot as plt
+Execute this at IPython prompt to display ﬁgures 
+in new windows:
+ > %matplotlib
+Use this in Jupyter notebooks to display static 
+images inline:
+ > %matplotlib inline
+  
+Use this in Jupyter notebooks to display zoom-
+able images inline:
+ > %matplotlib notebook
+title
+x label
+y label
+Figure
+Axes
+Axis
+An Axes object is what we 
+think of as a “plot”. It has 
+a title and two Axis 
+objects that deﬁne data 
+limits. Each Axis can have 
+a label. There can be 
+multiple Axes objects in a 
+Figure. 
+df.plot.box()
+df.plot.hist()
+df.plot.bar()
+df.plot.scatter(x, y)
++
+a
+b
+c
+X Y
+• subplots=True: one subplot per column, instead of one line
+• figsize: set ﬁgure size, in inches
+• x and y: plot one column against another
+Series
+Dataframe
+Labels
+a
+b
+c
+a
+b
+c
+X Y
+Z       
+Time
+Value
+Experiment A
+Z
+Y
+X
+With a Series, Pandas plots values against the 
+index:
+ > ax = s.plot()
+With a DataFrame, Pandas creates one line per 
+column:
+ > ax = df.plot()
+Use Matplotlib to override or add annotations:
+ > ax.set_xlabel('Time')
+ > ax.set_ylabel('Value')
+ > ax.set_title('Experiment A')
+Pass labels if you want to override
+the column names and set the legend 
+location:
+ > ax.legend(labels, loc='best')
+When plotting the results of complex manipulations with groupby, it's often useful to 
+stack/unstack the resulting DataFrame to ﬁt the one-line-per-column assumption (see 
+Data Structures cheatsheet).
+
+--- PAGE 5 ---
+Take your Pandas skills to the next level! Register at www.enthought.com/pandas-mastery-workshop
+© 2019 Enthought, Inc., licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/4.0/ 
+>>> pd.to_datetime('12/01/2000')  # 1st December
+Timestamp('2000-12-01 00:00:00')
+>>> pd.to_datetime('13/01/2000')  # 13th January!
+Timestamp('2000-01-13 00:00:00')
+>>> pd.to_datetime('2000-01-13')  # 13th January
+Timestamp('2000-01-13 00:00:00')
+pandas
+Manipulating Dates and Times
+Vectorized String Operations
+Creating Ranges or Periods
+Timestamps vs Periods
+Resampling
+Splitting and Replacing
+Save Yourself Some Pain:
+Use ISO 8601 Format
+Converting Objects to Time Objects
+Creating Ranges of Timestamps
+Frequency Offsets
+Some String Methods
+Use a Datetime index for easy time-based indexing and slicing, as 
+well as for powerful resampling and data alignment.
+Pandas makes a distinction between timestamps, called 
+Datetime objects, and time spans, called Period objects.
+Pandas implements vectorized string operations named after 
+Python's string methods. Access them through the str 
+attribute of string Series
+split returns a Series of lists:
+> s.str.split()
+Access an element of each list with get:
+> s.str.split(char).str.get(1)
+Return a DataFrame instead of a list:
+> s.str.split(expand=True)
+Find and replace with string or regular expressions:
+> s.str.replace(str_or_regex, new)
+> s.str.extract(regex)
+> s.str.findall(regex)
+> s.str.lower()
+> s.str.isupper()
+> s.str.len()
+> s.str.strip()
+> s.str.normalize() 
+and more…
+Index by character position:
+> s.str[0]
+True if regular expression pattern or string in Series:
+> s.str.contains(str_or_pattern)
+Convert diﬀerent types, for example strings, lists, or arrays to 
+Datetime with:
+> pd.to_datetime(value)
+Convert timestamps to time spans: set period “duration” with 
+frequency oﬀset (see below).
+> date_obj.to_period(freq=freq_offset)
+> pd.date_range(start=None, end=None, 
+                periods=None, freq=offset, 
+                tz='Europe/London')
+Specify either a start or end date, or both. Set number of 
+"steps" with periods. Set "step size" with freq; see "Frequen-
+cy oﬀsets" for acceptable values. Specify time zones with tz.
+> pd.period_range(start=None, end=None,
+                  periods=None, freq=offset)
+> s_df.resample(freq_offset).mean()
+ 
+resample returns a groupby-like object that must be 
+aggregated with mean, sum, std, apply, etc. (See also the 
+Split-Apply-Combine cheat sheet.)
+• B: Business day 
+• D: Calendar day 
+• W: Weekly 
+• M: Month end 
+• MS: Month start
+• BM: Business month end  
+• Q: Quarter end
+• A: Year end 
+• AS: Year start 
+• H: Hourly 
+• T, min: Minutely 
+• S: Secondly 
+• L, ms: Milliseconds
+• U, us: Microseconds
+• N: Nanoseconds
+...
+...
+2016-01-01
+2016-01-02
+2016-01-03
+2016-01-02
+2016-01-01
+2016-01-03
+2016-01-04
+Periods
+Timestamps
+For more:
+Lookup "Pandas Oﬀset Aliases"  or check out pandas.tseries.offsets, 
+and pandas.tseries.holiday modules.
+Used by date_range, period_range  and resample:
+When entering dates, to be consistent and to lower the risk of error 
+or confusion, use ISO format YYYY-MM-DD:
+5
+
+--- PAGE 6 ---
+Take your Pandas skills to the next level! Register at www.enthought.com/pandas-mastery-workshop
+© 2019 Enthought, Inc., licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/4.0/ 
+Cleaning Data with Missing Values
+Replacing Missing Values
+Find Missing Values
+Pandas represents missing values as NaN (Not a Number). 
+It comes from Numpy and is of type float64. Pandas 
+has many methods to find and replace missing values.
+Use mask to replace NaN
+Interpolate using diﬀerent methods
+Fill forward (last valid value)
+Or backward (next valid value)
+Drop rows if any value is NaN
+Drop rows if all values are NaN
+Drop across columns instead of rows
+> s_df.isnull()   or   > pd.isnull(obj)
+> s_df.notnull()  or   > pd.notnull(obj)
+s_df.loc[s_df.isnull()] = 0
+s_df.interpolate(method='linear')
+s_df.fillna(method='ffill')
+s_df.fillna(method='bfill')
+s_df.dropna(how='any')
+s_df.dropna(how='all')
+s_df.dropna(how='all', axis=1)
+6
+Combining DataFrames
+pandas
+Concatenating DataFrames
+Join on Index
+Merge on Column Values
+Merge Types: The how Keyword
+Tools for combining Series and DataFrames together, with 
+SQL-type joins and concatenation. Use join if merging 
+on indices, otherwise use merge.
+> pd.merge(left, right, how='inner', on='id')
+Ignores index, unless on=None. See value of how below.
+Use on if merging on same column in both DataFrames, otherwise 
+use left_on, right_on.
+> pd.concat(df_list)
+“Stacks” DataFrames on top of each other. 
+Set ignore_index=True, to replace index with RangeIndex. 
+Note: Faster than repeated df.append(other_df).
+> df.join(other)
+Merge DataFrames on indexes. Set on=columns to join on index 
+of other and on columns of df. join uses pd.merge under 
+the covers.
+how="outer"
+how="inner"
+how="left"
+how="right"
+left
+right
+left
+right
+left
+right
+left
+right
+0
+0
+1
+2
+0
+1
+0
+1
+0
+1
+0
+1
+0
+1
+0
+1
+aaaa
+a
+cc
+long
+X
+short
+Y
+bbbb
+b
+bb
+b
+c
+short
+Y
+bb
+cc
+b
+c
+short
+Y
+bb
+cc
+b
+c
+short
+Y
+bb
+cc
+b
+c
+short
+Y
+bb
+ctc
+b
+c
+long
+X
+short
+Y
+long
+X
+short
+Y
+long
+X
+short
+Y
+bbbb
+b
+bb
+b
+aaaa
+a
+bbbb
+b
+bb
+b
+bbbb
+b
+bb
+b
+cc
+c
+0
+1
+0
+1
+0
+1
+0
+1
+0
+aaaa
+bbbb
+long
+X
+a
+b
+aaaa
+bbbb
+long
+X
+a
+b
+aaaa
+bbbb
+long
+X
+a
+b
+aaaa
+bbbb
+long
+X
+a
+b
+left
+right
+left_on='X'
+right_on='Y'
+
+--- PAGE 7 ---
+Take your Pandas skills to the next level! Register at www.enthought.com/pandas-mastery-workshop
+© 2019 Enthought, Inc., licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/4.0/ 
+7
+pandas
+Split / Apply / Combine with DataFrames
+1.  Split the data based on some criteria. 
+2. Apply a function to each group to aggregate, transform, or 
+    filter.
+3. Combine the results.
+The apply and combine steps are typically done together in 
+Pandas.
+Other Groupby-Like Operations: Window Functions
+Apply/Combine: Filtering
+Apply/Combine: Transformation
+Apply/Combine: Aggregation
+Split: Group By
+Split/Apply/Combine
+X Y
+a
+1
+3
+1
+2
+2
+a
+b
+b
+c
+2
+c
+X Y
+a
+2
+a
+1
+3
+b
+1
+b
+X Y
+2
+c
+2
+c
+X Y
+1.5
+2
+2
+1.5
+2
+2
+a       
+b
+c
+X Y
+Split
+Apply
+Combine
+• Groupby
+• Window Functions
+• Apply
+• Group-specific transformations
+• Aggregation
+• Group-specific Filtering
+Split: What’s a GroupBy Object?
+Apply/Combine: General Tool: apply
+It keeps track of which rows are part of which group.
+ > g.groups    Dictionary, where keys are group 
+names, and values are indices of rows in a given group.
+It is iterable:
+ > for group, sub_df in g:
+       ...
+Perform computations on each group. The shape changes; 
+the categories in the grouping columns become the index. 
+Can use built-in aggregation methods: mean, sum, size, 
+count, std, var, sem, describe, first, last, nth, 
+min, max, for example:
+ > g.mean()  
+… or aggregate using custom function:
+ > g.agg(series_to_value)
+… or aggregate with multiple functions at once:
+ > g.agg([s_to_v1, s_to_v2])
+… or use diﬀerent functions on diﬀerent columns.
+ > g.agg({'Y': s_to_v1, 'Z': s_to_v2})
+g.agg(…)
+a
+b
+c
+Y
+Z
+0
+2
+X Y
+Z       
+a       
+a       
+1
+3
+X Y
+Z       
+b       
+b       
+4
+X Y
+Z       
+c
+0
+1
+2
+3
+4
+• resample, rolling, and ewm (exponential weighted 
+function) methods behave like GroupBy objects. They keep 
+track of which row is in which “group”. Results must be 
+aggregated with sum, mean, count, etc. (see Aggregation).
+• resample is often used before rolling, expanding, and 
+ewm when using a DateTime index.
+0
+2
+X Y
+Z       
+a       
+1 
+1 
+1 
+1 
+a       
+1
+3
+X Y
+Z       
+b       
+1      1     
+1      1     
+b
+4
+X Y
+Z       
+c
+0 0
+Returns a group only if condition is true.
+ > g.filter(lambda x: len(x)>1)
+0
+1
+2
+3
+X Y
+Z       
+a       
+a       
+b       
+b       
+1       
+1       
+1       
+1      1       
+1       
+1       
+1      
+g.filter(…)
+The shape and the index do not change. 
+ > g.transform(df_to_df)
+Example, normalization:
+ > def normalize(grp):
+ .      return (grp - grp.mean()) / grp.var()
+ > g.transform(normalize)
+0
+2
+X Y
+Z       
+a       
+1 
+1 
+1 
+1 
+a       
+1
+3
+X Y
+Z       
+b       
+2      
+2      
+2      
+2      
+b       
+4
+X Y
+Z       
+c
+3
+3
+0
+1
+2
+3
+4
+X Y
+Z       
+0       
+0       
+0       
+0       
+0       
+0       
+0       
+0       
+0       
+0       
+a       
+a       
+b       
+b       
+c       
+g.transform(…)
+More general than agg, transform, and filter. Can 
+aggregate, transform or ﬁlter. The resulting dimensions 
+can change, for example: 
+ > g.apply(lambda x: x.describe())
+Group by a single column:
+ > g = df.groupby(col_name)
+Grouping with list of column names creates DataFrame with MultiIndex. 
+(see “Reshaping DataFrames and Pivot Tables” cheatsheet):
+ > g = df.groupby(list_col_names)
+Pass a function to group based on the index:
+ > g = df.groupby(function)
+df.groupby('X')
+0
+1
+2
+3
+4
+X Y
+Z       
+a       
+a       
+b       
+b       
+c       
+0
+2
+X Y
+Z       
+a       
+a       
+1
+3
+X Y
+Z       
+b       
+b       
+4
+X Y
+Z       
+c
+
+--- PAGE 8 ---
+ Often created as a result of:
+> df.groupby(list_of_columns)
+> df.set_index(list_of_columns)
+Contiguous labels are displayed together but apply to each row. The concept is 
+similar to multi-level columns.
+A MultiIndex allows indexing and slicing one or multiple levels at once. Using 
+the Long example from the right:
+Simpler than using boolean indexing, for example:
+ > long[long.Month == 'March']
+pandas
+Reshaping DataFrames and Pivot Tables
+MultiIndex: A Multi-Level
+Hierarchical Index
+From Wide to Long with melt
+Long to Wide Format and Back 
+with stack() and unstack()
+Tools for reshaping DataFrames from the wide to the long format and back. 
+The long format can be tidy, which means that "each variable is a column, 
+each observation is a row"1. Tidy data is easier to filter, aggregate, 
+transform, sort, and pivot. Reshaping operations often produce multi-level 
+indices or columns, which can be sliced and indexed.
+1 Hadley Wickham (2014) "Tidy Data", http://dx.doi.org/10.18637/jss.v059.i10
+Pivot Tables 
+Jan.
+1900
+Year
+1
+1
+4
+4
+7
+7
+2
+2
+9
+9
+3
+3
+2000
+Feb. Mar.
+Jan.
+Feb
+Mar.
+Jan.
+Feb
+Mar.
+1900
+Year
+2000
+Month Value
+long.loc[1900] 
+long.loc[(1900, 'March')]
+long.xs('March', level='Month')
+ All 1900 rows
+ value 2
+ All March rows
+Wide
+Stack
+Unstack
+Long
+Pivot column level to index, 
+i.e. "stacking the columns" 
+(wide to long):
+> df.stack()
+If multiple indices or column levels, use level number or name to 
+stack/unstack:
+> df.unstack(1)   or     > df.unstack('Month')
+A common use case for unstacking, plotting group data vs index 
+after groupby:
+> (df.groupby(['A', 'B])['relevant'].mean()
+     .unstack().plot())
+Pivot index level to columns, 
+"unstack the columns" (long to 
+wide):
+> df.unstack()
+> pd.pivot_table(df, 
+      index=cols, (keys to group by for index)
+         columns=cols2, (keys to group by for columns)
+      values=cols3, (columns to aggregate)
+              aggfunc='mean') (what to do with repeated values)
+Omitting index, columns, or values will use all remaining columns of df.
+You can "pivot" a table manually using groupby, stack and unstack.
+0
+Recently updated Number of
+stations
+Continent
+code
+1
+1
+EU
+EU
+EU
+EU
+AN
+AN
+AN
+1
+1
+1
+1
+1
+1
+2
+3
+4
+5
+6
+7
+FALSE
+FALSE
+FALSE
+FALSE
+TRUE
+TRUE
+TRUE
+Continent
+code
+Recently 
+updated
+FALSE
+TRUE
+EU
+AN
+1
+1
+2
+3
+pd.pivot_table(df, 
+ 
+index="Recently updated",
+ 
+columns="continent code",
+ 
+values="Number of Stations",
+ 
+aggfunc=np.sum)
+df.pivot()
+ 
+pd.pivot_table()
+Does not deal with repeated values in  
+index. It's a declarative form of stack 
+and unstack.
+Use if you have repeated values in
+index (specify aggfunc argument).
+Specify which columns are identiﬁers (id_vars, values will be 
+repeated for each row) and which are "measured variables" 
+(value_vars, will become values in variable column. 
+All remaining columns by default).
+pd.melt(team, id_vars=['Color'], 
+        value_vars=['A', 'B', 'C'], 
+        var_name='Team', value_name='Score')
+Melt
+Red
+Red
+Blue
+Red
+Blue
+Red
+Blue
+Color
+Color
+Team
+Score
+Blue
+A
+A
+1
+2
+3
+-
+4
+6
+A
+0
+1
+1
+2
+3
+-
+4
+6
+B
+B
+B
+C
+C
+C
+0
+1
+2
+3
+4
+5
+df.pivot() vs pd.pivot_table
+Index
+Columns
+pd.melt(df, id_vars=id_cols, value_vars=value_columns)
+Take your Pandas skills to the next level! Register at www.enthought.com/pandas-mastery-workshop
+Team
+Red Panda 
+Ailurus fulgens
+© 2019 Enthought, Inc., licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/4.0/ 
+8
+

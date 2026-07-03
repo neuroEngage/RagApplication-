@@ -1,0 +1,409 @@
+--- PAGE 1 ---
+Color for emphasis or distinction 
+Restrained use of color is highly effective in organizing 
+a narrative and calling attention to certain elements. 
+Do not use color to 
+differentiate between 
+categories of the same 
+variable 
+Utilize existing resources for selection of appropriate 
+palettes such as 
+Color brewer  
+or Munsell 
+Use a bold, saturated or 
+contrasting color to 
+emphasize important 
+details. 
+Use colors or shades to 
+represent meaningful 
+differences such as 
+positive/negative values, 
+treatments or doses 
+Be consistent, use the 
+same color to mean the 
+same thing in a series of 
+graphs (e.g. treatment, 
+dose) 
+Graphics Principles Cheat Sheet v1.1
+Place labels next 
+to data instead of 
+using legends 
+Group together 
+elements to be 
+compared directly 
+Plot the final 
+comparison e.g. 
+mean difference 
+not two means 
+Exception: if comparator 
+is of interest in itself 
+Use reference 
+lines and other 
+visual anchors. 
+Order values to 
+help compare 
+across many 
+categories 
+Judgments are 
+easier to make on 
+a common 
+vertical scale 
+Proximity improves association 
+Think carefully before introducing additional color. 
+Do you really need it? 
+Effective visualizations communicate complex 
+statistical and quantitative information facilitating 
+insight, understanding, and decision making.  
+But what is an effective graph? 
+This cheat sheet provides general guidance and points 
+to consider. 
+Communication 
+Planning 
+Why 
+Clearly identify the purpose of the graph, 
+e.g. to deliver a message or for
+exploration?
+What 
+Identify the quantitative evidence to 
+support the purpose 
+Who 
+Identify the intended audience 
+(specialists, non-specialists, both) and 
+focus the design to support their needs 
+Where 
+Adapt the design to space or formatting 
+constraints (e.g. clinical report, slide 
+deck or publication) 
+Example plots categorized by purpose 
+Deviation 
+Correlation 
+Ranking 
+Distribution 
+Evolution 
+Part-to-whole 
+Magnitude 
+Chg. from 
+baseline 
+Scatter plot 
+Horizontal 
+bar chart 
+Boxplot 
+Kaplan 
+Meier 
+Stacked 
+bar chart 
+Vertical 
+bar chart 
+Waterfall 
+Heat map 
+Dotplot 
+Histogram 
+Line plot 
+Tree map 
+Forest plot 
+Consider if a standard graph can be used by identifying suitable designs based on the: 
+(i) purpose (i.e. message to be conveyed or question to answer) and (ii) data (i.e. variables to display).
+Selecting the right base graph 
+Principles of Effective Graphic Design 
+Proximity – group related elements together 
+Alignment – elements on the same vertical or 
+horizontal plane are perceived as having similar 
+properties  
+Simplicity – cut anything superfluous, only 
+include elements that add value, limit to 2-3 
+colors or fonts 
+White space (empty space) – use white space to 
+minimize distraction & provide clarity 
+Legibility – sans serif fonts are easier to read, 
+use color for emphasis instead of a new typeface 
+Color – select colors that present enough 
+contrast to make the graph legible. Choose 
+monochromatic color schemes to prevent 
+clashing. Use dark colors and accent colors to 
+emphasize important information  
+Visual Hierarchy – use color, font, image size, 
+typeface, alignment & placement to create a 
+viewing order  
+Focal Points – primary area of interest that 
+immediately attracts the eye, emphasize the most 
+important concept and make it your focal point. 
+Use contrasting colors to draw attention  
+Repetition – repeating elements can be visually 
+appealing, repeated shapes, labels, colors 
+Familiarity – using familiar styles, icons, 
+navigation structure makes viewers feel confident 
+Consistency – be consistent with heading sizes, 
+font choices, color scheme, and spacing. Use 
+images with similar styles 
+Reduce mental arithmetic 
+Ease visual inspection 
+Emphasize the data by 
+minimizing unnecessary 
+ink, e.g. soften gridlines 
+with a light color 
+Facilitating Comparisons 
+A graph is a representation of data that visually encodes numerical values into attributes such as lines, symbols and 
+colors. The Cleveland-McGill scale can be used to select the most effective attribute(s) for your purpose. 
+Effectiveness Ranking 
+Volume 
+Color hue 
+Depth: 3d
+position 
+Color 
+intensity 
+Area 
+Slope or 
+Angle 
+Length 
+Position on 
+unaligned 
+scale 
+Position on 
+common scale 
+volume 
+charts 
+poorly 
+designed 
+heat maps 
+multivariate
+density plots heat maps
+bubble 
+charts, 
+mosaic 
+charts 
+line graphs, 
+pie charts 
+stacked bar 
+charts, 
+waterfall 
+chart 
+small 
+multiple plots 
+dot plots, bar 
+charts, parallel 
+coordinate 
+plots 
+Least accurate 
+Most accurate 
+
+--- PAGE 2 ---
+Good graph checklist 
+Putting it all together – Remove the clutter & emphasize the message 
+Colors, 
+backgrounds, and 
+borders can be 
+removed and 
+gridlines reduced. 
+It is easier to see 
+differences in 
+position over a 
+difference in length, 
+i.e. a dot over a bar. 
+Creating a graph is an iterative process: produce, review and refine.  
+Resources 
+Books: 
+E. R. Tufte, The visual display of quantitative information, Connecticut, Graphics. Press, 2001. 
+Cleveland, W.S. and McGill, Robert, Graphical perception: theory, experimentation and application 
+to the development of graphical methods, JASA, Vol. 79, No. 387, pp. 531 – 554, 1984. 
+S. Few, Show Me The Numbers ‐ Designing Tables and Graphs to Enlighten (2nd. Edition), 
+Burlingame, CA: Analytics Press, 2012. 
+D. M. Wong, The Wall Street Journal Guide to Information Graphics: The Dos and Don'ts of 
+Presenting Data, Facts, and Figures. December 16, 2013. 
+J. Doumont, Trees, maps, and theorems: Effective communication for rational minds. PRINCIPIAE. 
+N. B. Robbins, Creating More Effective Graphs. Chart House.  
+Use position for 
+comparisons rather than 
+length (i.e. dots instead of 
+bars), especially for non-
+linear scales (e.g. log 
+scale or % change). 
+Plot cause on the x-axis 
+and effect on the y-axis. 
+Use this standard 
+convention in order to 
+avoid misinterpretation. 
+Visits displayed close 
+together are perceived to 
+be closer in time. Space 
+the visits proportional to 
+the time between each in 
+order to avoid confusion. 
+Exception: baseline or pre-dose 
+Implementation Considerations 
+Aspect ratio can influence 
+interpretation. Aim for a 45 
+degree angle of change to 
+avoid over-interpretation 
+of slope. 
+Effective graphs stand alone. They use titles, 
+annotations, labels, shapes, colors, and textures to 
+deliver important information.   
+Legibility and Clarity 
+Clear Communication 
+Implementation Considerations 
+Legibility and Clarity 
+
+Is the message of the graph as clear as
+possible?
+
+Is it easy for someone unfamiliar with the
+data to interpret the graph?
+
+Are the patterns/relationships easily
+identified?
+
+Is the graph tailored to its primary purpose
+and audience?
+
+Is the correct graph type used?
+
+Are multiple panels plotted on the same
+scale?
+
+Are lognormally distributed variables plotted
+on a log scale?
+
+Are common baselines used wherever
+possible?
+
+Does the orientation of the axes aid
+interpretation?
+
+Does the aspect ratio allow the reader to
+see variations in the data?
+
+Are data across a disconnected time scale
+kept disconnected?
+
+Are data spaced proportionally to the actual
+time interval (instead of according to visit
+number)?
+
+Are data and inferences plotted to support
+stories about models?
+
+Are number of patients by group reported if
+this adds context?
+
+Can all graphical elements be seen?
+
+Does the graph have a clear title, axis
+labels, annotations and data units?
+
+Can the font be read without eye strain or
+effort?
+
+Are sans-serif fonts used?
+
+Do text sizes have correct hierarchy (big to
+small, main text to subtext)?
+
+Are the elements of the graph clearly
+labeled (e.g. points, error bars, lines,
+shaded regions)?
+
+Are labels oriented horizontally where
+possible?
+Color for emphasis or distinction 
+
+Are graphical elements displayed in a dark
+color on a light background?
+
+Are grid lines drawn with a thin line and a
+light color such as grey?
+
+Are colors used sparingly (e.g. max 3)?
+
+Do all elements in the graph have a purpose
+(e.g. colors, textures, grid lines)?
+
+Are the same colors used to mean the same
+thing in a series of graphs?
+Facilitating Comparisons 
+
+Are elements to be compared grouped
+together?
+
+Are labels placed next to data instead of in
+legends?
+
+Have categories been ordered for easy
+comparison?
+
+Can the plot be read without doing mental
+calculations?
+
+Are the estimates of interest plotted (e.g.
+mean differences with confidence
+intervals)?
+Using too many colors can 
+be distracting. Use white 
+background and try using 
+other methods to 
+distinguish different curves. 
+One solution could be 
+repeating the data in 
+different panels, 
+highlighting individual 
+curves in a darker color. 
+Connected data imply 
+continuity. Do not connect  
+data across a disconnected 
+or uneven time scale. 
+When displaying data 
+measured on the same 
+scale, also plot them on 
+the same scale for easy 
+comparison. 
+Plot data and inferences 
+to support stories about 
+models. 
+Do not type too small or 
+too condensed. Break 
+long titles into two lines. 
+Shift or adjust size of 
+labels that overlap. 
+Keep the font style 
+simple – sans serif is 
+easier to read. 
+Try not to set text at an 
+angle, as this decreases 
+readability. Think of 
+alternative solutions such 
+as transposing the graph. 
+Use font size to create 
+hierarchy (e.g. set titles 
+2pt larger than all other 
+labels to make them 
+more prominent). 
+Display text with enough 
+contrast to be visible. 
+Favor the use of dark on 
+light instead of light on 
+dark whenever possible.  
+Label axes with clear 
+measurement units 
+and provide 
+annotations that 
+support the message. 
+Bold or italics should only 
+be used for layering or 
+emphasis. Emphasizing 
+everything means nothing 
+gets emphasized. 
+Do not plot log-normally 
+distributed variables on a 
+linear scale (e.g. hazard 
+ratio, AUC, CL) 
+Online resources: 
+https://www.perceptualedge.com/  (S. Few) 
+https://www.edwardtufte.com/tufte/ (E. Tufte) 
+http://flowingdata.com/  (N. Yau) 
+http://www.principiae.be/ (J. Doumont) 
+http://andrewgelman.com/ (A. Gelman) 
+http://www.thefunctionalart.com/ (A. Cairo) 
+http://www.nbr-graphs.com/ (N. Robbins) 
+Authors 
+Alison Margolskee, Mark Baillie, Baldur Magnusson, Julie Jones, Marc Vandemeulebroecke 
+© 2017 Novartis 
+

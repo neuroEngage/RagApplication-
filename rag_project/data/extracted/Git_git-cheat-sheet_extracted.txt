@@ -1,0 +1,169 @@
+--- PAGE 1 ---
+Git Cheat Sheet
+Create
+From existing repo
+From existing data
+cd ~/projects/myproject
+git init
+git add . 
+git clone ~/existing/repo ~/new/repo
+git clone git://host.org/project.git
+git clone ssh://you@host.org/proj.git
+Remember:  git command --help
+Global Git configuration is stored in $HOME/.gitconfig (git config --help) 
+Files changed in working directory
+Show
+A specific file from a specific $ID
+Changes to tracked files
+git status
+git diff 
+git show $id:$file
+All local branches
+git branch
+History of changes
+git log 
+Who changed what and when in a file
+git blame $file 
+What changed between $ID1 and $ID2
+git diff $id1  $id2
+History of changes for file with diffs
+git log -p $file $dir/ec/tory/
+A commit identified by $ID
+git show $id
+Revert
+Revert the last commit
+git revert HEAD 
+Revert specific commit
+git revert $id 
+Checkout the $id version of a file
+git checkout $id $file
+!
+you cannot undo a hard reset
+Return to the last committed state
+git reset --hard
+Fix the last commit
+git commit -a --amend 
+(after editing the broken files)
+Creates a new commit
+Creates a new commit
+Branch
+Merge branch1 into branch2
+git checkout $branch2
+git merge branch1
+Create branch named $branch based on
+the HEAD
+git branch $branch
+Switch to the $id branch
+git checkout $id
+Create branch $new_branch based on 
+branch $other and switch to it
+git checkout -b $new_branch $other
+Delete branch $branch
+git branch -d $branch
+Commit all your local changes
+Publish
+git commit -a
+Prepare a patch for other developers
+git format-patch origin
+git push
+Push changes to origin
+Mark a version / milestone
+git tag v1.0
+(complete conflict diff)
+(star '*' marks the current branch)
+Pull latest changes from origin
+git pull
+(does a fetch followed by a merge)
+Fetch latest changes from origin
+Update
+git fetch
+(but this does not merge them).
+(in case of a conflict, resolve and use 
+ git am --resolved )
+Apply a patch that some sent you
+git am -3 patch.mbox
+Finding regressions
+git bisect start
+git bisect good $id
+git bisect bad $id
+git bisect bad/good
+git bisect visualize
+git bisect reset
+Check for errors and cleanup repository
+git fsck
+git gc --prune
+Search working directory for foo()
+git grep "foo()"
+To view the merge conclicts
+git add $conflicting_file
+git rebase --continue
+PUBLISH
+COMMIT
+commit
+REVERT
+BRANCH
+BROWSE
+UPDATE
+CREATE
+status
+log
+show
+diff
+branch
+reset
+checkout
+revert
+pull
+fetch
+merge
+am
+push
+init
+clone
+checkout
+Commands Sequence
+CHANGE
+the curves indicate that the command on the right is usually
+executed after the command on the left. This gives an idea of
+the flow of commands someone usually does with Git.
+format-patch
+branch
+Cheat Sheet Notation
+Useful Commands
+http://git.or.cz/
+Zack Rusin
+Based on the work of:
+Sébastien Pierre
+Xprima Corp.
+Concepts
+Git Basics
+git reset --hard
+git rebase --skip
+git diff
+git diff --base  $file
+git diff --ours   $file
+git diff --theirs $file
+After resolving conflicts, merge with
+To discard conflicting patch
+Resolve Merge Conflicts
+(against base file)
+(against your changes)
+(against other changes)
+(do for all resolved files)
+(to start)
+($id is the last working version)
+($id is a broken version)
+(to mark it as bad or good)
+(once you're done)
+(to launch gitk and mark it)
+$id : notation used in this sheet to represent either a 
+commit id, branch or a tag name
+$file : arbitrary file name
+$branch : arbitrary branch name
+master   : default development branch
+origin 
+  : default upstream repository
+HEAD   : current branch
+HEAD^   : parent of HEAD
+HEAD~4 : the great-great grandparent of HEAD
+

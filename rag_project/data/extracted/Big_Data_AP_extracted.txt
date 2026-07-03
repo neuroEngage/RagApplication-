@@ -1,0 +1,69 @@
+--- PAGE 1 ---
+
+--- PAGE 2 ---
+
+--- PAGE 3 ---
+
+--- PAGE 4 ---
+
+--- PAGE 5 ---
+
+--- PAGE 6 ---
+
+--- PAGE 7 ---
+
+--- PAGE 8 ---
+
+--- PAGE 9 ---
+ #Percent- Percentage
+ @outputSchema("percent:double") --Deﬁnes schema for a script UDF in a format that Pig understands 
+and is able to parse
+def percent(num, total):
+   return num * 100 / total
+int
+Signed 32-bit integer
+10
+long
+Signed 64-bit integer
+Data: 10L or 10l
+Display: 10L
+ﬂoat
+32-bit ﬂoating point
+Data: 10.5F or 10.5f or 10.5e2f or 10.5E2F
+Display: 10.5F or 1050.0F
+double
+64-bit ﬂoating point
+Data: 10.5 or 10.5e2 or 10.5E2
+Display: 10.5 or 1050.0
+chararray
+Character array (string) in Unicode
+UTF-8 format
+hello world
+bytearray
+Byte array (blob)
+boolean
+boolean
+true/false (case insensitive)
+Data Type
+Description
+Examples
+tuple
+An ordered set of ﬁelds.
+(19,2)
+bag
+An collection of tuples.
+{(19,2), (18,1)}
+map
+A set of key value pairs.
+[name#John,phone#5551212]
+Type
+Description
+Examples
+Complex TypesTypes
+Simple Types
+Data Types
+Data Types
+QUESTIONS?
+CALL US: 855-HADOOP-HELP
+www.qubole.com
+

@@ -1,0 +1,4773 @@
+--- PAGE 1 ---
+Cheat Sheets for AI 
+Neural Networks,
+Machine Learning,
+DeepLearning &
+Big Data
+The Most Complete List
+of Best AI Cheat Sheets
+BecomingHuman.AI
+
+--- PAGE 2 ---
+Table of
+Content
+Neural
+Networks
+Neural Networks
+Basics
+Neural Network
+Graphs
+03
+04
+Machine
+Learning
+Machine
+Learning
+Basics
+Scikit Learn
+with Python
+Scikit Learn
+Algorithm
+Choosing
+ML Algorithm
+06
+07
+08
+09
+11
+12
+13
+14
+15
+16
+Data Science with Python
+Tensor Flow
+Python Basics
+PySpark Basics
+Numpy Basics
+Bokeh
+Karas
+Pandas
+Data Wrangling
+with Pandas
+Data Wrangling
+with dplyr & tidyr
+SciPi
+MatPlotLib
+Data Visualization
+with ggplot
+Big-O
+17
+18
+19
+20
+21
+22
+23
+
+--- PAGE 3 ---
+Part 1
+Neural
+Networks
+
+--- PAGE 4 ---
+Perceptron (P)
+Feed
+Forward (FF)
+Radial Basis
+Network (RBF)
+Auto
+Encorder (AE)
+Variational
+AE (VAE)
+Long / Short Term
+Memory (LSTM)
+Recurrent Neural
+Network (RNN)
+Gated Recurrent
+Unit (GRU)
+Deep Feed
+Forward (DFF)
+Index
+Backfed Input Cell
+Input Cell
+Noisy Input Cell
+Hidden Cell
+Probablisticc Hidden Cell
+Spiking Hidden Cell
+Output Cell
+Match Input Output Cell
+Recurrent Cell
+Memory Cell
+Different Memory Cell
+Kernel
+Convolutional or Pool
+Denoising
+AE (DAE)
+Sparse
+AE (SAE)
+Markov
+Chain (MC)
+Hopﬁeld
+Network (HN)
+Boltzman
+Machine (BM)
+Deep Believe
+Network (DBN)
+Deep Convolutional
+Network (DCN)
+Restricted
+BM (RBM)
+Deep
+Network (DN)
+Deep Convolutional
+Inverse Graphics Network (DCIGN)
+Generative Adversial
+Network (GAN)
+Liquid State
+Machine (LSM)
+Extreme Learning
+Machine (ELM)
+Echo Network
+Machine (ENM)
+Deep Residual Network (DRN)
+Kohonen
+Network (KN)
+Support Vector Machine (SVM)
+Neural Turing Machine (SVM)
+Neural
+Networks
+Basic
+Cheat Sheet
+BecomingHuman.AI 
+www.asimovinstitute.org/neural-network-zoo/
+
+--- PAGE 5 ---
+Deep Feed
+Forward Example
+Deep Recurrent Example
+(previous literation)
+Deep GRU Example
+(previous literation)
+Deep GRU Example
+Deep Recurrent
+Example
+sum  sigmoid
+bias
+input sigmoid
+bias
+bias
+input sigmoid
+input sigmoid
+bias
+bias
+input sigmoid
+input 
+input 
+sum  sigmoid
+bias
+sum        relu
+bias
+bias
+sum        relu
+sum        relu
+bias
+bias
+sum        relu
+input 
+input 
+sum  sigmoid
+bias
+sum        relu
+bias
+bias
+sum        relu
+sum        relu
+bias
+bias
+sum        relu
+input 
+input 
+sum   sigmoid
+sum   sigmoid
+input 
+bias
+invert
+multiply
+multiply
+multiply
+sum
+sum    tanh
+sum   sigmoid
+bias
+bias
+sum   sigmoid
+input 
+bias
+invert
+multiply
+multiply
+multiply
+sum
+sum    tanh
+sum   sigmoid
+bias
+bias
+sum   sigmoid
+bias
+invert
+multiply
+multiply
+multiply
+sum
+sum    tanh
+sum   sigmoid
+bias
+bias
+bias
+sum   sigmoid
+bias
+invert
+multiply
+multiply
+multiply
+sum
+sum    tanh
+sum   sigmoid
+bias
+bias
+sum   sigmoid
+sum   sigmoid
+input 
+bias
+invert
+multiply
+multiply
+multiply
+sum
+sum    tanh
+sum   sigmoid
+bias
+bias
+sum   sigmoid
+input 
+bias
+invert
+multiply
+multiply
+multiply
+sum
+sum    tanh
+sum   sigmoid
+bias
+bias
+sum   sigmoid
+bias
+invert
+multiply
+multiply
+multiply
+sum
+sum    tanh
+sum   sigmoid
+bias
+bias
+bias
+sum   sigmoid
+bias
+invert
+multiply
+multiply
+multiply
+sum
+sum    tanh
+sum   sigmoid
+bias
+bias
+sum   sigmoid
+bias
+sum
+tanh
+multiply
+multiply
+multiply
+bias
+sum        tanh
+sum   sigmoid
+bias
+bias
+sum   sigmoid
+sum   sigmoid
+bias
+sum
+tanh
+multiply
+multiply
+multiply
+bias
+sum        tanh
+sum   sigmoid
+bias
+bias
+sum   sigmoid
+sum   sigmoid
+bias
+sum
+tanh
+multiply
+multiply
+multiply
+bias
+sum        tanh
+sum   sigmoid
+bias
+bias
+sum   sigmoid
+input 
+sum   sigmoid
+bias
+sum
+tanh
+multiply
+multiply
+multiply
+bias
+sum        tanh
+sum   sigmoid
+bias
+bias
+sum   sigmoid
+input 
+sum   sigmoid
+bias
+sum   sigmoid
+bias
+sum   sigmoid
+bias
+sum
+tanh
+multiply
+multiply
+multiply
+bias
+sum        tanh
+sum   sigmoid
+bias
+bias
+sum   sigmoid
+sum   sigmoid
+bias
+sum
+tanh
+multiply
+multiply
+multiply
+bias
+sum        tanh
+sum   sigmoid
+bias
+bias
+sum   sigmoid
+sum   sigmoid
+bias
+sum
+tanh
+multiply
+multiply
+multiply
+bias
+sum        tanh
+sum   sigmoid
+bias
+bias
+sum   sigmoid
+input 
+sum   sigmoid
+bias
+sum
+tanh
+multiply
+multiply
+multiply
+bias
+sum        tanh
+sum   sigmoid
+bias
+bias
+sum   sigmoid
+input 
+Deep LSTM Example
+(previous literation)
+Deep LSTM Example
+Neural Networks
+Graphs Cheat Sheet
+http://www.asimovinstitute.org/neural-network-zoo-prequel-cells-layers/
+BecomingHuman.AI 
+
+--- PAGE 6 ---
+Part 2
+Machine
+Learning
+
+--- PAGE 7 ---
+MachineLearning Overview
+MACHINE LEARNING IN EMOJI
+SUPERVISED
+UNSUPERVISED
+REINFORCEMENT
+human builds model based 
+on input / output
+human input, machine output
+human utilizes if satisfactory
+human input, machine output
+human reward/punish, cycle continues
+BASIC REGRESSION
+LINEAR
+Lots of numerical data
+linear_model.LinearRegression()
+LOGISTIC
+Target variable is categorical
+linear_model.LogisticRegression()
+CLUSTER ANALYSIS
+K-MEANS
+Similar datum into groups based
+on centroids
+cluster.KMeans()
+ANOMALY
+DETECTION
+Finding outliers through grouping
+covariance.EllipticalEnvelope()
+OTHER IMPORTANT CONCEPTS
+BIAS VARIANCE TRADEOFF
+UNDERFITTING / OVERFITTING
+INERTIA
+ACCURACY FUNCTION
+(TP+TN) / (P+N)
+PRECISION FUNCTION
+manifold.TSNE()
+SPECIFICITY FUNCTION
+TN / (FP+TN)
+SENSITIVITY FUNCTION
+TP / (TP+FN)
+CLASSIFICATION
+NEURAL NET
+Complex relationships. Prone to overﬁtting
+Basically magic.
+neural_network.MLPClassiﬁer()
+K-NN
+Group membership based on proximity
+neighbors.KNeighborsClassiﬁer()
+DECISION TREE
+If/then/else. Non-contiguous data.
+Can also be regression.
+tree.DecisionTreeClassiﬁer()
+RANDOM FOREST
+Find best split randomly
+Can also be regression
+ensemble.RandomForestClassiﬁer()
+SVM
+Maximum margin classiﬁer. Fundamental
+Data Science algorithm
+svm.SVC()   svm.LinearSVC()
+NAIVE BAYES
+Updating knowledge step by step
+with new info
+GaussianNB()  MultinominalNB()  BernoulliNB()
+FEATURE REDUCTION
+T-DISTRIB STOCHASTIC
+NEIB EMBEDDING
+Visual high dimensional data. Convert
+similarity to joint probabilities
+manifold.TSNE()
+PRINCIPLE
+COMPONENT ANALYSIS
+Distill feature space into components
+that describe greatest variance
+decomposition.PCA()
+CANONICAL
+CORRELATION ANALYSIS
+Making sense of cross-correlation matrices
+decomposition.CCA()
+LINEAR
+DISCRIMINANT ANALYSIS
+Linear combination of features that
+separates classes
+lda.LDA()
+BecomingHuman.AI 
+
+--- PAGE 8 ---
+Cheat-Sheet  Skicit learn
+Phyton For Data Science
+Classiﬁcation Metrics
+Accuracy Score
+>>> knn.score(X_test, y_test)
+>>> from sklearn.metrics import accuracy_score
+>>> accuracy_score(y_test, y_pred)
+Classiﬁcation Report
+>>> from sklearn.metrics import classiﬁcation_report
+>>> print(classiﬁcation_report(y_test, y_pred))
+Confusion Matrix
+>>> from sklearn.metrics import confusion_matrix
+>>> print(confusion_matrix(y_test, y_pred))
+Regression Metrics
+Mean Absolute Error
+>>> from sklearn.metrics import mean_absolute_error
+>>> y_true = [3, -0.5, 2]
+>>> mean_absolute_error(y_true, y_pred)
+Mean Squared Error
+>>> from sklearn.metrics import mean_squared_error
+>>> mean_squared_error(y_test, y_pred)
+R² Score
+>>> from sklearn.metrics import r2_score
+>>> r2_score(y_true, y_pred)
+Clustering Metrics
+Adjusted Rand Index
+>>> from sklearn.metrics import adjusted_rand_score
+>>> adjusted_rand_score(y_true, y_pred)
+Homogeneity
+>>> from sklearn.metrics import homogeneity_score
+>>> homogeneity_score(y_true, y_pred)
+V-measure
+>>> from sklearn.metrics import v_measure_score
+>>> metrics.v_measure_score(y_true, y_pred)
+Cross-Validation
+Evaluate Your
+Model’s Performance
+Estimator score method
+Metric scoring functions
+Precision, recall, f1-score
+and support
+>>> from sklearn.cross_validation import cross_val_score
+>>> print(cross_val_score(knn, X_train, y_train, cv=4))
+>>> print(cross_val_score(lr, X, y, cv=2))
+Supervised learning
+>>> lr.ﬁt(X, y)
+>>> knn.ﬁt(X_train, y_train)
+>>> svc.ﬁt(X_train, y_train)
+Unsupervised Learning
+>>> k_means.ﬁt(X_train)
+>>> pca_model = pca.ﬁt_transform(X_train)
+Fit the model to the data
+Fit the model to the data
+Fit to data, then transform it
+Model Fitting
+>>> import numpy as np >> X = np.random.random((10,5))
+>>> y = np . array ( PH', IM', 'F', 'F' , 'M', 'F', 'NI', 'tvl' , 'F', 'F', 'F' )) 
+>>> X [X < 0.7] = 0 
+Your data beeds to be nmueric and stored as NumPy arrays 
+or SciPy sparse matric. other types that they are comvertible 
+to numeric arrays, such as Pandas Dataframe, are also 
+acceptable
+Loading the Data
+A basic Example
+Skicit Learn is an open source Phyton library that 
+implements a range if machine learning, processing, cross 
+validation and visualization algorithm using a uniﬁed 
+>>> from sklearn import neighbors, datasets, preprocessing 
+>>> from sklearn.cross validation import train_test_split
+>>> from sklearn.metrics import accuracy_score
+>>> iris = datasets.load _iris() >>> X, y = iris.data[:, :2], iris.target 
+>>> Xtrain, X test, y_train, y test = train_test_split (X, y, random stat33)
+>>> scaler = preprocessing.StandardScaler().ﬁt(X_train)
+>>> X train = scaler.transform(X train)
+>>> X test = scaler.transform(X test)
+>>> knn = neighbors.KNeighborsClassiﬁer(n_neighbors=5)
+>>> knn.ﬁt(X_train, y_train)
+>>> y_pred = knn.predict(X_test)
+>>> accuracy_score(y_test, y_pred) 
+Skicit Learn
+Supervised Estimators
+>>> y_pred = svc.predict(np.random.radom((2,5)))
+>>> y_pred = lr.predict(X_test)
+>>> y_pred = knn.predict_proba(X_test)
+Unsupervised Estimators
+>>> y_pred = k_means.predict(X_test)
+Predict labels
+Predict labels
+Estimate probability of a label
+Predict labels in clustering algos
+Prediction
+Standardization
+>>> from sklearn.preprocessing import StandardScaler
+>>> scaler = StandardScaler().ﬁt(X_train)
+>>> standardized_X = scaler.transform(X_train)
+>>> standardized_X_test = scaler.transform(X_test)
+Normalization
+>>> from sklearn.preprocessing import Normalizer
+>>> scaler = Normalizer().ﬁt(X_train)
+>>> normalized_X = scaler.transform(X_train)
+>>> normalized_X_test = scaler.transform(X_test)
+Binarization
+>>> from sklearn.preprocessing import Binarizer
+>>> binarizer = Binarizer(threshold=0.0).ﬁt(X)
+>>> binary_X = binarizer.transform(X)
+Encoding Categorical Features
+>>> from sklearn.preprocessing import Imputer
+>>> imp = Imputer(missing_values=0, strategy='mean', axis=0)
+>>> imp.ﬁt_transform(X_train)
+Imputing Missing Values
+>>> from sklearn.preprocessing import Imputer
+>>> imp = Imputer(missing_values=0, strategy='mean', axis=0)
+>>> imp.ﬁt_transform(X_train)
+Generating Polynomial Features
+>>> from sklearn.preprocessing import PolynomialFeatures
+>>> poly = PolynomialFeatures(5)
+>>> poly.ﬁt_transform(X)
+Preprocessing The Data
+>> from sklearn.cross validation import train_test_split 
+>> X train, X test, y train, y test - train_test_split(X, 
+                                                                                   y,
+                                                                                   random state-0) 
+Training And Test Data
+Supervised Learning Estimators
+Unsupervised Learning Estimators
+Linear Regression
+>>> from sklearn.linear_model import LinearRegression
+>>> lr = LinearRegression(normalize=True)
+Support Vector Machines (SVM)
+>>> from sklearn.svm import SVC
+>>> svc = SVC(kernel='linear')
+Naive Bayes
+>>> from sklearn.naive_bayes import GaussianNB
+>>> gnb = GaussianNB()
+KNN
+>>> from sklearn import neighbors
+>>> knn = neighbors.KNeighborsClassiﬁer(n_neighbors=5)
+Principal Component Analysis (PCA)
+>>> from sklearn.decomposition import PCA
+>>> pca = PCA(n_components=0.95)
+K Means
+>>> from sklearn.cluster import KMeans
+>>> k_means = KMeans(n_clusters=3, random_state=0)
+Create Your Model
+Grid Search
+>>> from sklearn.grid_search import GridSearchCV
+>>> params = {"n_neighbors": np.arange(1,3)
+                          "metric": ["euclidean","cityblock"]}
+>>> grid = GridSearchCV(estimator=knn,
+                                            param_grid=params)
+>>> grid.ﬁt(X_train, y_train)
+>>> print(grid.best_score_)
+>>> print(grid.best_estimator_.n_neighbors)
+Randomized Parameter Optimization
+>>> from sklearn.grid_search import RandomizedSearchCV
+>>> params = {"n_neighbors": range(1,5),
+                          "weights": ["uniform", "distance"]}
+>>> rsearch = RandomizedSearchCV(estimator=knn,
+                                                                param_distributions=params,
+                                                                cv=4,
+                                                                n_iter=8,
+                                                               random_state=5)
+>>> rsearch.ﬁt(X_train, y_train)
+>>> print(rsearch.best_score_)
+Tune Your Model
+BecomingHuman.AI 
+https://www.datacamp.com/community/blog/scikit-learn-cheat-sheet
+www.datacamp.com/community/blog/scikit-learn-cheat-sheet
+
+--- PAGE 9 ---
+Skicit-learn Algorithm
+SVC Ensemble
+Classiﬁers
+Spectral Clustering GMM
+MiniBatch KMeans
+MeanShift VBGMM
+KMeans
+KNeighbors Classiﬁer
+SGD CLassiﬁer
+SGD Regressor
+Randomized PCA
+LLE
+kernel approximation
+ElasticNet Lasso
+kernel
+approximation
+Text Data
+Linear SVC
+<100K samples
+>50 samples
+get more data
+<10K samples
+<10K samples
+tough luck
+<10K samples
+just looking
+<100K samples
+few features should
+be important
+do you have
+labeled data
+predicting
+a quantity
+predicting
+structure
+number of
+categories knows
+SVR(kernel='rbf')
+EnsembleRegressors
+RidgeRegression SVR
+(kernel='linear')
+Isomap Spectral
+Embedding
+Naive Bayes
+predicting
+a category
+START
+classiﬁcation
+clustering
+dimensionality
+reduction
+YES
+YES
+YES
+YES
+YES
+YES
+YES
+YES
+YES
+YES
+YES
+YES
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NOT
+WORKING
+NOT
+WORKING
+NOT WORKING
+NOT WORKING
+NOT
+WORKING
+NOT
+WORKING
+NOT WORKING
+NOT
+WORKING
+regression
+BecomingHuman.AI 
+Created by Skikit-Learn.org BSD Licence. See Original here.
+
+--- PAGE 10 ---
+REGRESSION
+Ordinal regression
+Data in rank
+ordered categories
+Poisson regression
+Predicting event counts
+Fast forest quantile regression
+Predicting a distribution
+Linear regression
+Fast training, linear model
+Bayesian linear regression
+Linear model,
+small data sets
+Neural network regression
+Accuracy, long
+training time
+Decision forest regression
+Accuracy, fast training
+Boasted decision tree regression
+Accuracy, fast training
+ANOMALY DETECTION
+One-class SVM
+>100 features,
+aggressive boundary
+PCA-based anomaly detection
+Fast training
+CLUSTERING
+K-means
+TWO CLASS CLASSIFICATION
+Two-class SVM
+Two-class averaged perceptron
+Two-class logistic regression
+Two-class Bayes point machine
+Two-class decision forest
+Two-class boasted decision tree
+Two-class decision jungle
+Two-class locally deep SVM
+Two-class neural network
+>100 features, linear model
+Fast training, linear model
+Fast training, linear model
+Fast training, linear model
+Accuracy, fast training
+Accuracy, fast training
+Accuracy, small
+memory footprint
+>100 features
+Accuracy, long
+training times
+MULTICLASS CLASSIFICATION
+Multiclass logistic regression
+Fast training, linear model
+Multiclass neural network
+Accuracy, long
+training times
+Multiclass decision forest
+Accuracy, fast training
+Multiclass decision jungle
+Accuracy, small
+memory footprint
+One-v-all multiclass
+Depends on the two-class
+classiﬁer, see notes below
+Finding
+unusual
+data points
+Predicting
+categories
+Discovering
+structure
+Three or
+more
+Two
+Predicting
+values
+START
+Algorithm Cheat Sheet
+This cheat sheet helps you choose the best Azure Machine Learning Studio algorithm for your predictive 
+analytics solution. Your decision is driven by both the nature of your data and the question you're trying to 
+answer.
+BecomingHuman.AI 
+
+--- PAGE 11 ---
+Part 3
+Data Science
+with Python
+Part 3
+
+--- PAGE 12 ---
+TensorFlow
+Info
+TensorFlow™ is an open source software library created by 
+Google for numerical computation and large scale 
+computation. Tensorflow bundles together Machine Learning, 
+Deep learning models and frameworks and makes them 
+useful by way of common metaphor. 
+Scikit Flow  is a high level interface base on tensorflow which can 
+be used like sklearn. You can build you own model on your own 
+data quickly without rewriting extra code.provides a set of high 
+level model classes that you can use to easily integrate with your 
+existing Scikit-learn pipeline code. 
+Keras is an open sourced neural networks library, written in 
+Python and is built for fast experimentation via deep neural 
+networks and modular design. It is capable of running on top of 
+TensorFlow, Theano, Microsoft Cognitive Toolkit, or PlaidML.
+How to install new package in Python
+Installation
+pip install <package-name>
+Example: pip install requests
+How to install tensorﬂow?
+device = cpu/gpu
+python_version = cp27/cp34
+sudo pip install
+https://storage.googleapis.com/tensorﬂow/linux/$device/ten-
+sorﬂow-0.8.0-$python_version-none-linux_x86_64.whl
+sudo pip install
+How to install Skﬂow
+pip install sklearn
+How to install Keras
+pip install keras
+update ~/.keras/keras.json – replace “theano” by “tensorﬂow”
+Python helper Important functions
+Helpers
+type(object)
+Get object type
+help(object)
+Get help for object (list of available methods, attributes, 
+signatures and so on)
+dir(object)
+Get list of object attributes (ﬁelds, functions)
+str(object)
+Transform an object to string object?
+Shows documentations about the object
+globals()
+Return the dictionary containing the current scope's global 
+variables.
+locals()
+Update and return a dictionary containing the current scope's 
+local variables.
+id(object)
+Return the identity of an object. This is guaranteed to be unique 
+among simultaneously existing objects.
+import _builtin_
+dir(_builtin_)
+Other built-in functions
+Tensor Flow
+Main classes
+tf.Graph()
+tf.Operation()
+tf.Tensor()
+tf.Session()
+Some useful functions
+tf.get_default_session()
+tf.get_default_graph()
+tf.reset_default_graph()
+ops.reset_default_graph()
+tf.device(“/cpu:0”)
+tf.name_scope(value)
+tf.convert_to_tensor(value)
+TensorFlow Optimizers
+GradientDescentOptimizer
+AdadeltaOptimizer
+AdagradOptimizer
+MomentumOptimizer
+AdamOptimizer
+FtrlOptimizer
+RMSPropOptimizer
+Reduction
+reduce_sum
+reduce_prod
+reduce_min
+reduce_max
+reduce_mean
+reduce_all
+reduce_any
+accumulate_n
+Activation functions
+tf.nn?
+relu
+relu6
+elu
+softplus
+softsign
+dropout
+bias_add
+sigmoid
+tanh
+sigmoid_cross_entropy_with_logits
+softmax
+log_softmax
+softmax_cross_entropy_with_logits
+sparse_softmax_cross_entropy_with_logits
+weighted_cross_entropy_with_logits
+etc.
+Skﬂow
+Main classes
+TensorFlowClassiﬁer
+TensorFlowRegressor
+TensorFlowDNNClassiﬁer
+TensorFlowDNNRegressor
+TensorFlowLinearClassiﬁﬁer
+TensorFlowLinearRegressor
+TensorFlowRNNClassiﬁer
+TensorFlowRNNRegressor
+TensorFlowEstimator
+Each classiﬁer and regressor have 
+following ﬁelds
+n_classes=0 (Regressor), n_classes 
+are expected to be input (Classiﬁer)
+batch_size=32,
+steps=200, // except
+TensorFlowRNNClassiﬁer - there is 50
+optimizer=’Adagrad’,
+learning_rate=0.1,
+Each class has a method ﬁt
+ﬁt(X, y, monitor=None, logdir=None)
+X: matrix or tensor of shape [n_samples, n_features…]. Can be 
+iterator that returns arrays of features. The training input 
+samples for ﬁtting the model.
+Y: vector or matrix [n_samples] or [n_samples, n_outputs]. Can 
+be iterator that returns array of targets. The training target 
+values (class labels in classiﬁcation, real numbers in 
+regression).
+monitor: Monitor object to print training progress and invoke 
+early stopping
+logdir: the directory to save the log ﬁle that can be used for 
+optional visualization.
+predict (X, axis=1, batch_size=None)
+Args:
+X: array-like matrix, [n_samples, n_features…] or iterator.
+axis: Which axis to argmax for classiﬁcation.
+By default axis 1 (next after batch) is used. Use 2 for sequence 
+predictions.
+batch_size: If test set is too big, use batch size to split it into 
+mini batches. By default the batch_size member variable is 
+used.
+Returns:
+y: array of shape [n_samples]. The predicted classes or 
+predicted value.
+the availability of the TPUs in 
+Google Compute Engine.[12] The 
+second-generation TPUs deliver 
+up to 180 teraﬂops of perfor-
+mance, and when organized into 
+clusters of 64 TPUs provide up 
+to 11.5 petaﬂops.
+In May 2017 Google 
+announced the 
+second-generation of 
+the TPU, as well as 
+Tensor Flow Cheat Sheet
+BecomingHuman.AI 
+www.altoros.com/blog/tensorﬂow-cheat-sheet/
+Keras
+Skﬂow
+Originally created by Altoros.
+
+--- PAGE 13 ---
+Phyton For Data Science
+Cheat-Sheet Phyton Basic
+>>> help(str)
+Asking For Help
+Also see NumPy Arrays
+Lists
+Import libraries
+>>> import numpy
+>>> import numpy as np
+ Selective import
+>>> from math import pi
+Libraries
+Install Python
+Index starts at 0
+Selecting List Elements
+Subset
+>>> my_list[1]
+>>> my_list[-3]
+Slice
+>>> my_list[1:3]
+>>> my_list[1:]
+>>> my_list[:3]
+>>> my_list[:]
+Subset Lists of Lists
+>>> my_list2[1][0]
+>>> my_list2[1][:2]
+Select item at index 1
+Select 3rd last item
+Select items at index 1 and 2
+Select items after index 0
+Select items before index 3
+Copy my_list
+my_list[list][itemOfList]
+>>> a = 'is'
+>>> b = 'nice'
+>>> my_list = ['my', 'list', a, b]
+>>> my_list2 = [[4,5,6,7], [3,4,5,6]]
+Also see NumPy Arrays
+Strings
+String Operations
+>>> my_string * 2
+    'thisStringIsAwesomethisStringIsAwesome'
+>>> my_string + 'Innit'
+    'thisStringIsAwesomeInnit'
+>>> 'm' in my_string
+     True
+>>> my_string = 'thisStringIsAwesome'
+>>> my_string
+'thisStringIsAwesome'
+Index starts at 0
+String Operations
+>>> my_string[3]
+>>> my_string[4:9]
+String Methods
+>>> my_string.upper()
+>>> my_string.lower()
+>>> my_string.count('w')
+>>> my_string.replace('e', 'i')
+>>> my_string.strip()
+String to uppercase
+String to lowercase
+Count String elements
+Replace String elements
+Strip whitespaces
+Also see Lists
+Numpy Arrays
+Numpy Array Operations
+>>> my_array > 3
+ array([False, False, False, True], dtype=bool)
+>>> my_array * 2
+ array([2, 4, 6, 8])
+>>> my_array + np.array([5, 6, 7, 8])
+ array([6, 8, 10, 12])
+Numpy Array Operations
+>>> my_array.shape
+>>> np.append(other_array)
+>>> np.insert(my_array, 1, 5)
+>>> np.delete(my_array,[1])
+>>> np.mean(my_array)
+>>> np.median(my_array)
+>>> my_array.corrcoef()
+>>> np.std(my_array)
+Index starts at 0
+Selecting Numpy
+Array Elements
+Subset
+>>> my_array[1]
+2
+Slice
+>>> my_array[0:2]
+array([1, 2])
+Subset 2D Numpy arrays
+>>> my_2darray[:,0]
+     array([1, 4])
+Select item at index 1
+Select items at index 0 and 1
+my_2darray[rows, columns]
+Get the dimensions of the array
+Append items to an array
+Insert items in an array
+Delete items in an array
+Mean of the array
+Median of the array
+Correlation coefficient
+Standard deviation
+>>> my_list = [1, 2, 3, 4]
+>>> my_array = np.array(my_list)
+>>> my_2darray = 
+np.array([[1,2,3],[4,5,6]])
+List Operations
+>>> my_list + my_list
+['my', 'list', 'is', 'nice', 'my', 'list', 'is', 'nice']
+>>> my_list * 2
+['my', 'list', 'is', 'nice', 'my', 'list', 'is', 'nice']
+>>> my_list2 > 4
+True
+List Methods
+>>> my_list.index(a)
+>>> my_list.count(a)
+>>> my_list.append('!')
+>>> my_list.remove('!')
+>>> del(my_list[0:1])
+>>> my_list.reverse()
+>>> my_list.extend('!')
+>>> my_list.pop(-1)
+>>> my_list.insert(0,'!')
+>>> my_list.sort()
+Get the index of an item
+Count an item
+Append an item at a time
+Remove an item
+Remove an item
+Reverse the list
+Append an item
+Remove an item
+Insert an item
+Sort the list
+Variable Assignment
+>>> x=5
+>>> x
+ 5
+Calculations With Variables
+ str()
+ int()
+ ﬂoat()
+ bool()
+'5', '3.45', 'True'
+5, 3, 1
+5.0, 1.0
+True, True, True
+Variables to strings
+Variables to integers
+Variables to ﬂoats
+Variables to booleans
+Variables and Data Types
+Calculations With Variables
+>>> x+2 
+ 7
+>>> x-2
+ 3
+>>> x*2 
+10
+>>> x**2 
+ 25
+>>> x%2 
+ 1
+>>> x/ﬂoat(2) 
+ 2.5
+Sum of two variables
+Subtraction of two variables
+Multiplication of two variables
+Exponentiation of a variable
+Remainder of a variable
+Division of a variable
+Leading open data science platform
+powered by Pytho
+Free IDE that is included
+with Anaconda
+Create and share
+documents with live code,
+visualizations, text, ...
+BecomingHuman.AI 
+https://www.datacamp.com/community/tutorials/python-data-science-cheat-sheet-basics
+https://www.datacamp.com/community/tutorials/python-data-science-cheat-sheet-basics
+
+--- PAGE 14 ---
+PySpark is the Spark Python API
+that exposes the Spark programming
+model to Python.
+SparkContext
+>>> from pyspark import SparkContext
+>>> sc = SparkContext(master = 'local[2]')
+Conﬁguration
+>>> from pyspark import SparkConf, SparkContext
+>>> conf = (SparkConf()
+.setMaster("local")
+.setAppName("My app")
+.set("spark.executor.memory", "1g"))
+>>> sc = SparkContext(conf = conf)
+ Initializing Spark
+Calculations With Variables
+>>> sc.version 
+>>> sc.pythonVer 
+>>> sc.master 
+>>> str(sc.sparkHome) 
+>>> str(sc.sparkUser())
+>>> sc.appName 
+>>> sc.applicationId 
+>>> sc.defaultParallelism 
+>>> sc.defaultMinPartitions 
+Retrieve SparkContext version
+Retrieve Python version
+Master URL to connect to
+Path where Spark is installed on 
+worker nodes
+Retrieve name of the Spark User 
+running SparkContext
+Return application name
+Retrieve application ID
+Return default level of parallelism
+Default minimum number of 
+partitions for RDDs
+Conﬁguration
+In the PySpark shell, a special interpreter-aware SparkContext 
+is already created in the variable called sc.
+$ ./bin/spark-shell --master local[2]
+$ ./bin/pyspark --master local[4] --py-ﬁles code.py
+Set which master the context connects to with the --master 
+argument, and add Python .zip, .egg or .py ﬁles to the runtime 
+path by passing a comma-separated list to --py-ﬁles.
+Basic Information
+Retrieving
+RDD Information
+>>> rdd.getNumPartitions() 
+>>> rdd.count()
+   3
+>>> rdd.countByKey() 
+ defaultdict(<type 'int'>,{'a':2,'b':1})
+>>> rdd.countByValue() 
+    defaultdict(<type 'int'>,{('b',2):1,('a',2):1,('a',7):1})
+>>> rdd.collectAsMap() 
+     {'a': 2,'b': 2} 
+>>> rdd3.sum() Sum of RDD elements
+   4950
+>>> sc.parallelize([]).isEmpty()
+   true 
+List the number of partitions
+Count RDD instances
+Count RDD instances by key
+Count RDD instances
+by value
+Return (key,value) pairs as a 
+dictionary
+Sum of RDD elements
+Check whether RDD is empty
+Summary
+>>> rdd3.max()
+99
+>>> rdd3.min()
+0
+>>> rdd3.mean() 
+49.5
+>>> rdd3.stdev()
+28.866070047722118
+>>> rdd3.variance()
+833.25
+>>> rdd3.histogram(3) 
+([0,33,66,99],[33,33,34])
+>>> rdd3.stats() 
+Maximum value of RDD elements
+Minimum value of RDD elements
+Mean value of RDD elements
+Standard deviation of RDD elements
+Compute variance of RDD elements
+Compute histogram by bins
+Summary statistics (count, mean, 
+stdev, max & min) 
+Parallelized Collections
+>>> rdd = sc.parallelize([('a',7),('a',2),('b',2)])
+>>> rdd2 = sc.parallelize([('a',2),('d',1),('b',1)])
+>>> rdd3 = sc.parallelize(range(100))
+>>> rdd4 = sc.parallelize([("a",["x","y","z"]),
+("b",["p", "r"])])
+>>> textFile = sc.textFile("/my/directory/*.txt")
+>>> textFile2 = sc.wholeTextFiles("/my/directory/")
+Loading Data
+Selecting Data
+External Data
+Read either one text ﬁle from HDFS, a local ﬁle system or or any 
+Hadoop-supported ﬁle system URI with textFile(), or read in a directory
+of text ﬁles with wholeTextFiles().
+Getting
+>>> rdd.collect() 
+ [('a', 7), ('a', 2), ('b', 2)]
+>>> rdd.take(2) 
+ [('a', 7), ('a', 2)]
+>>> rdd.ﬁrst() 
+ ('a', 7)
+>>> rdd.top(2) 
+ [('b', 2), ('a', 7)]
+Return a list with all RDD elements
+Take ﬁrst 2 RDD elements
+Take ﬁrst RDD element
+Take top 2 RDD elements
+Sampling
+>>> rdd3.sample(False, 0.15, 81).collect() 
+ [3,4,27,31,40,41,42,43,60,76,79,80,86,97]
+Return sampled subset of rdd3
+Filtering
+>>> rdd.ﬁlter(lambda x: "a" in x) 
+             .collect()
+    [('a',7),('a',2)]
+>>> rdd5.distinct().collect() 
+    ['a',2,'b',7]
+>>> rdd.keys().collect() 
+    ['a', 'a', 'b']
+Filter the RDD
+Return distinct RDD values
+Return (key,value) RDD's keys
+Reshaping Data
+Reducing
+>>> rdd.reduceByKey(lambda x,y : x+y) 
+             .collect() each key
+   [('a',9),('b',2)]
+>>> rdd.reduce(lambda a, b: a + b) 
+   ('a',7,'a',2,'b',2) 
+Merge the rdd values for
+Merge the rdd values
+Grouping by
+>>> rdd3.groupBy(lambda x: x % 2) 
+.mapValues(list)
+.collect()
+>>> rdd.groupByKey() 
+             .mapValues(list)
+             .collect()
+   [('a',[7,2]),('b',[2])]
+Return RDD of grouped values
+Group rdd by key
+Aggregating
+>>> seqOp = (lambda x,y: (x[0]+y,x[1]+1))
+>>> combOp = (lambda x,y:(x[0]+y[0],x[1]+y[1]))
+>>> rdd3.aggregate((0,0),seqOp,combOp) 
+   (4950,100) 
+>>> rdd.aggregateByKey((0,0),seqop,combop) 
+   .collect()
+   [('a',(9,2)), ('b',(2,1))]
+>>> rdd3.fold(0,add) 
+   4950
+>>> rdd.foldByKey(0, add) 
+   .collect()
+   [('a',9),('b',2)]
+>>> rdd3.keyBy(lambda x: x+x) 
+ .collect() 
+Aggregate RDD elements of each 
+partition and then the results
+Aggregate values of each RDD key
+Aggregate the elements of each
+4950 partition, and then the results
+Merge the values for each key
+Create tuples of RDD elements by 
+applying a function
+Reshaping Data
+>>> rdd.repartition(4) 
+>>> rdd.coalesce(1) 
+New RDD with 4 partitions
+Decrease the number of partitions in the 
+RDD to 1
+Saving
+>>> rdd.saveAsTextFile("rdd.txt")
+>>> rdd.saveAsHadoopFile ("hdfs://namenodehost/parent/child",   
+'org.apache.hadoop.mapred.TextOutputFormat')
+Stopping SparkContext
+>>> sc.stop()
+Execution
+$ ./bin/spark-submit examples/src/main/python/pi.py
+Applying Functions
+>>> rdd.map(lambda x: x+(x[1],x[0])) 
+             .collect()
+   [('a',7,7,'a'),('a',2,2,'a'),('b',2,2,'b')]
+>>> rdd5 = rdd.ﬂatMap(lambda x: 
+x+(x[1],x[0])) 
+>>> rdd5.collect()
+   ['a',7,7,'a','a',2,2,'a','b',2,2,'b']
+>>> rdd4.ﬂatMapValues(lambda x: x) 
+               .collect() 
+   [('a','x'),('a','y'),('a','z'),('b','p'),('b','r')]
+Apply a function to each
+RDD element
+Apply a function to each RDD
+element and ﬂatten the result
+Apply a ﬂatMap function to each 
+(key,value)pair of rdd4 without
+changing the keys
+Mathematical Operations
+>>> rdd.subtract(rdd2) 
+             .collect() in rdd2
+   [('b',2),('a',7)]
+>>> rdd2.subtractByKey(rdd)
+.collect()
+   [('d', 1)]
+>>> rdd.cartesian(rdd2).collect() 
+Return each rdd value not contained
+Return each (key,value) pair of rdd2
+ with no matching key in rdd 
+Return the Cartesian product
+of rdd and rdd2
+ Iterating
+Getting
+>>> def g(x): print(x)
+>>> rdd.foreach(g) 
+ ('a', 7)
+ ('b', 2)
+ ('a', 2)
+Sort
+>>> rdd2.sortBy(lambda x: x[1])
+               .collect()
+   [('d',1),('b',1),('a',2)]
+>>> rdd2.sortByKey() Sort (key, value) 
+               .collect()
+   [('a',2),('b',1),('d',1)]
+Sort RDD by given function
+RDD by key 
+Python For Data Science Cheat Sheet
+PySpark - RDD Basics
+BecomingHuman.AI 
+Content Copyright by DataCamp.com. Design Copyright by BecomingHuman.Ai. See Original here.
+https://www.datacamp.com/community/blog/pyspark-cheat-sheet-python
+
+--- PAGE 15 ---
+NumPy Basics Cheat Sheet
+Subsetting, Slicing, Indexing
+Subsetting
+>>> a[2]
+  3
+>>> b[1,2] 
+  6.0 
+Select the element at the 2nd index
+Select the element at row 1 column 2
+(equivalent to b[1][2])
+Slicing
+>>> a[0:2] 
+   array([1, 2])
+>>> b[0:2,1] 
+   array([ 2., 5.])
+>>> b[:1] 
+   array([[1.5, 2., 3.]]) 
+>>> c[1,...] 
+   array([[[ 3., 2., 1.],
+             [ 4., 5., 6.]]])
+>>> a[ : :-1]
+   array([3, 2, 1])
+Select items at index 0 and 1
+Select items at rows 0 and 1 in column 1
+Select all items at row 0
+(equivalent to b[0:1, :])
+Same as [1,:,:]
+Reversed array a 
+Boolean Indexing
+>>> a[a<2] 
+   array([1])
+Select elements from a less than 2
+Fancy Indexing
+>>> b[[1, 0, 1, 0],[0, 1, 2, 0]] 
+   array([ 4. , 2. , 6. , 1.5])
+>>> b[[1, 0, 1, 0]][:,[0,1,2,0]] 
+   array([[ 4. ,5. , 6. , 4. ], 
+             [ 1.5, 2. , 3. , 1.5],
+             [ 4. , 5. , 6. , 4. ],
+             [ 1.5, 2. , 3. , 1.5]])
+Select elements (1,0),(0,1),(1,2) and (0,0)
+Select a subset of the matrix’s rows
+and columns
+1
+2
+3
+1
+2
+3
+1.5 2
+3
+4
+5
+6
+1
+2
+3
+1.5 2
+3
+4
+5
+6
+1.5 2
+3
+4
+5
+6
+Copying Arrays
+>>> h = a.view() 
+>>> np.copy(a) 
+>>> h = a.copy() 
+Create a view of the array with the same data 
+Create a copy of the array
+Create a deep copy of the array
+Sorting Arrays
+>>> a.sort() 
+>>> c.sort(axis=0) 
+Sort an array
+Sort the elements
+of an array's axis
+Array Mathematics
+Arithmetic Operations
+>>> g = a - b 
+    array([[-0.5, 0. , 0. ],
+[-3. , -3. , -3. ]])
+>>> np.subtract(a,b) 
+>>> b + a 
+   array([[ 2.5, 4. , 6. ],
+[ 5. , 7. , 9. ]])
+>>> np.add(b,a) 
+>>> a / b 
+   array([[ 0.66666667, 1. , 1. ],
+[ 0.25 , 0.4 , 0.5 ]])
+>>> np.divide(a,b) 
+>>> a * b 
+   array([[ 1.5, 4. , 9. ],
+[ 4. , 10. , 18. ]])
+>>> np.multiply(a,b) 
+>>> np.exp(b) 
+>>> np.sqrt(b) 
+>>> np.sin(a) 
+>>> np.cos(b) 
+>>> np.log(a) 
+>>> e.dot(f) 
+   array([[ 7., 7.],
+[ 7., 7.]])
+Subtraction
+Subtraction
+Addition
+Addition
+Division
+Division
+Multiplication 
+Multiplication
+Exponentiation
+Square root
+Print sines of an array
+Element-wise cosine
+Element-wise natural logarithm
+Dot product
+Comparison
+>>> a == b 
+   array([[False, True, True],
+[False, False, False]], dtype=bool)
+>>> a < 2 
+   array([True, False, False], dtype=bool)
+>>> np.array_equal(a, b) 
+Element-wise comparison
+Element-wise comparison
+Array-wise comparison
+Aggregate Functions
+>>> a.sum() 
+>>> a.min() 
+>>> b.max(axis=0) 
+>>> b.cumsum(axis=1) 
+>>> a.mean() 
+>>> b.median() 
+Array-wise sum
+Array-wise minimum value
+Maximum value of an array row
+Cumulative sum of the elements
+Mean
+Median
+Array Manipulation
+Transposing Array
+>>> i = np.transpose(b) 
+>>> i.T 
+Permute array dimensions
+Permute array dimensions
+ Changing Array Shape
+>>> b.ravel() 
+>>> g.reshape(3,-2)
+Flatten the array
+Reshape, but don’t change data
+Adding/Removing Elements
+>>> h.resize((2,6)) 
+>>> np.append(h,g) 
+>>> np.insert(a, 1, 5) 
+>>> np.delete(a,[1]) 
+Return a new array with shape (2,6)
+Append items to an array
+Insert items in an array
+Delete items from an array
+Combining Arrays
+>>> np.concatenate((a,d),axis=0) 
+   array([ 1, 2, 3, 10, 15, 20])
+>>> np.vstack((a,b)) 
+   array([[ 1. , 2. , 3. ],
+             [ 1.5, 2. , 3. ],
+             [ 4. , 5. , 6. ]])
+>>> np.r_[e,f] 
+>>> np.hstack((e,f)) 
+   array([[ 7., 7., 1., 0.],
+             [ 7., 7., 0., 1.]])
+>>> np.column_stack((a,d)) 
+   array([[ 1, 10],
+             [ 2, 15],
+             [ 3, 20]])
+>>> np.c_[a,d] 
+Concatenate arrays
+Stack arrays vertically (row-wise)
+Stack arrays vertically (row-wise)
+Stack arrays horizontally 
+(column-wise)
+Create stacked
+column-wise arrays
+Create stacked
+column-wise arrays
+Splitting Arrays
+>>> np.hsplit(a,3) 
+   [array([1]),array([2]),array([3])] index
+>>> np.vsplit(c,2) Split the array 
+   [array([[[ 1.5, 2. , 1. ],
+[ 4. , 5. , 6. ]]]),
+Split the array
+horizontally
+at the 3rd
+vertically at the 2nd index
+Asking For Help
+>>> np.info(np.ndarray.dtype)
+Data Types
+>>> np.int64 
+>>> np.ﬂoat32 
+>>> np.complex 
+>>> np.bool 
+>>> np.object 
+>>> np.string_ 
+>>> np.unicode_ 
+Signed 64-bit integer types
+Standard double-precision ﬂoating point
+Complex numbers represented by 128 ﬂoats
+Boolean type storing TRUE and FALSE
+Python object type values
+Fixed-length string type
+Fixed-length unicode type
+The NumPy library is the core library for 
+scientiﬁc computing in Python. It provides a 
+high-performance multidimensional array 
+object, and tools for working with these arrays. 
+1.5
+2
+3
+1
+2
+3
+4
+5
+6
+axis 0
+axis 1
+axis 0
+axis 1
+axis 2
+>>> a = np.array([1,2,3])
+>>> b = np.array([(1.5,2,3), (4,5,6)], dtype = ﬂoat)
+>>> c = np.array([[(1.5,2,3), (4,5,6)], [(3,2,1), (4,5,6)]],dtype = ﬂoat)
+Creating Arrays
+Initial Placeholders
+>>> np.zeros((3,4)) 
+>>> np.ones((2,3,4),dtype=np.int16) 
+>>> d = np.arange(10,25,5)
+>>> np.linspace(0,2,9)
+>>> e = np.full((2,2),7) 
+>>> f = np.eye(2) 
+>>> np.random.random((2,2)) 
+>>> np.empty((3,2)) 
+Create an array of zeros
+Create an array of ones
+Create an array of evenly spaced 
+values (step value)
+Create an array of evenly
+spaced values (number of samples)
+Create a constant array
+Create a 2X2 identity matrix
+Create an array with random values
+Create an empty array
+Inspecting Your Array
+>>> a.shape 
+>>> len(a) 
+>>> b.ndim 
+>>> e.size 
+>>> b.dtype 
+>>> b.dtype.name 
+>>> b.astype(int) 
+Array dimensions
+Length of array
+Number of array dimensions
+Number of array elements
+Data type of array elements
+Name of data type
+Convert an array to a different type
+I/O
+Saving & Loading On Disk
+>>> np.save('my_array', a)
+>>> np.savez('array.npz', a, b)
+>>> np.load('my_array.npy')
+Saving & Loading Text Files
+>>> np.loadtxt("myﬁle.txt")
+>>> np.genfromtxt("my_ﬁle.csv", delimiter=',')
+>>> np.savetxt("myarray.txt", a, delimiter=" ")
+3D array
+1D array 
+2D array
+BecomingHuman.AI 
+https://www.datacamp.com/community/blog/python-numpy-cheat-sheet
+
+--- PAGE 16 ---
+Also see Data
+Renderers & Visual Customizations
+Glyphs
+Scatter Markers
+>>> p1.circle(np.array([1,2,3]), np.array([3,2,1]),
+ﬁll_color='white')
+>>> p2.square(np.array([1.5,3.5,5.5]), [1,4,3],
+color='blue', size=1)
+Line Glyphs
+>>> p1.line([1,2,3,4], [3,4,5,6], line_width=2)
+>>> p2.multi_line(pd.DataFrame([[1,2,3],[5,6,7]]),
+pd.DataFrame([[3,4,5],[3,2,1]]),
+color="blue")
+Data Types
+The Python interactive visualization library Bokeh enables
+high-performance visual presentation of large datasets in modern
+web browsers.
+Bokeh’s mid-level general purpose bokeh.plotting
+interface is centered around two main components: data and glyphs. 
+The basic steps to creating plots with the bokeh.plotting
+interface are: 
+ 1. Prepare some data:
+      Python lists, NumPy arrays, Pandas DataFrames and other sequences of values
+ 2. Create a new plot
+ 3. Add renderers for your data, with visual customizations
+ 4. Specify where to generate the output
+ 5. Show or save the results
+>>> from bokeh.plotting import ﬁgure
+>>> from bokeh.io import output_ﬁle, show
+>>> x = [1, 2, 3, 4, 5]
+>>> y = [6, 7, 2, 4, 5]
+>>> p = ﬁgure(title="simple line example",
+x_axis_label='x',
+y_axis_label='y')
+>>> p.line(x, y, legend="Temp.", line_width=2)
+>>> output_ﬁle("lines.html")
+>>> show(p)
+data
+glyphs
+plot
+step 1
+step 2
+step 3
+step 4
+step 5
+ 
+Also see Lists, NumPy & Pandas
+Data
+Under the hood, your data is converted to Column Data 
+Sources. You can also do this manually:
+>>> import numpy as np
+>>> import pandas as pd
+>>> df = pd.DataFrame(np.array([[33.9,4,65, 'US'],
+[32.4,4,66, 'Asia'],
+[21.4,4,109, 'Europe']]),
+columns=['mpg','cyl', 'hp', 'origin'],
+index=['Toyota', 'Fiat', 'Volvo'])
+>>> from bokeh.models import ColumnDataSource
+>>> cds_df = ColumnDataSource(df)
+Plotting
+ 
+>>> from bokeh.plotting import ﬁgure
+>>> p1 = ﬁgure(plot_width=300, tools='pan,box_zoom')
+>>> p2 = ﬁgure(plot_width=300, plot_height=300,
+ x_range=(0, 8), y_range=(0, 8))
+>>> p3 = ﬁgure() 
+Customized Glyphs
+Selection and Non-Selection Glyphs
+>>> p = ﬁgure(tools='box_select')
+>>> p.circle('mpg', 'cyl', source=cds_df,
+selection_color='red',
+nonselection_alpha=0.1)
+Hover Glyphs
+>>> hover = HoverTool(tooltips=None, mode='vline')
+>>> p3.add_tools(hover)
+Colormapping
+>>> color_mapper = CategoricalColorMapper(
+factors=['US', 'Asia', 'Europe'],
+palette=['blue', 'red', 'green'])
+>>> p3.circle('mpg', 'cyl', source=cds_df,
+color=dict(ﬁeld='origin',
+transform=color_mapper),
+legend='Origin'))
+Rows & Columns Layout
+Rows
+>>> from bokeh.layouts import row
+>>> layout = row(p1,p2,p3)
+Columns
+>>> from bokeh.layouts import columns
+>>> layout = column(p1,p2,p3)
+Nesting Rows & Columns
+>>>layout = row(column(p1,p2), p3)
+Grid Layout
+>>> from bokeh.layouts import gridplot
+>>> row1 = [p1,p2]
+>>> row2 = [p3]
+>>> layout = gridplot([[p1,p2],[p3]])
+Legends
+Legend Location
+Inside Plot Area
+>>> p.legend.location = 'bottom_left'
+Outside Plot Area
+>>> r1 = p2.asterisk(np.array([1,2,3]), np.array([3,2,1])
+>>> r2 = p2.line([1,2,3,4], [3,4,5,6])
+>>> legend = Legend(items=[("One" , [p1, r1]),("Two" , [r2])], location=(0, -30))
+>>> p.add_layout(legend, 'right')
+Embedding
+Output
+Output to HTML File
+>>> from bokeh.io import output_ﬁle, show
+>>> output_ﬁle('my_bar_chart.html', mode='cdn')
+Notebook Output
+>>> from bokeh.io import output_notebook, show
+>>> output_notebook()
+Standalone HTML
+>>> from bokeh.embed import ﬁle_html
+>>> html = ﬁle_html(p, CDN, "my_plot")
+Components 
+>>> from bokeh.embed import components
+>>> script, div = components(p)
+Legend Orientation
+>>> p.legend.orientation = "horizontal"
+>>> p.legend.orientation = "vertical"
+Bar Chart
+>>> from bokeh.charts import Bar
+>>> p = Bar(df, stacked=True, palette=['red','blue'])
+Box Plot
+>>> from bokeh.charts import BoxPlot
+>>> p = BoxPlot(df, values='vals', label='cyl',
+legend='bottom_right')
+Histogram
+>>> from bokeh.charts import Histogram
+>>> p = Histogram(df, title='Histogram')
+Scatter Plot
+>>> from bokeh.charts import Scatter
+>>> p = Scatter(df, x='mpg', y ='hp', 
+marker='square',
+xlabel='Miles Per Gallon',
+Legend Background & Border
+>>> p.legend.border_line_color = "navy"
+>>> p.legend.background_ﬁll_color = "white"
+Linked Plots
+Linked Axes
+>>> p2.x_range = p1.x_range
+>>> p2.y_range = p1.y_range
+Linked Brushing
+>>> p4 = ﬁgure(plot_width = 100, tools='box_select,lasso_select')
+>>> p4.circle('mpg', 'cyl', source=cds_df)
+>>> p5 = ﬁgure(plot_width = 200, tools='box_select,lasso_select')
+Tabbed Layout
+>>> from bokeh.models.widgets import Panel, Tabs
+>>> tab1 = Panel(child=p1, title="tab1")
+>>> tab2 = Panel(child=p2, title="tab2")
+>>> layout = Tabs(tabs=[tab1, tab2])
+US
+Asia
+Europe
+Show or Save Your Plots
+>>> show(p1)
+>>> show(layout) 
+>>> save(p1)
+>>> save(layout) 
+Bokeh’s high-level bokeh.charts interface is ideal for
+quickly creating statistical charts
+Statistical Charts
+With Bokeh
+Bokeh Cheat Sheet
+Also see data
+Also see data
+BecomingHuman.AI 
+https://www.datacamp.com/community/blog/bokeh-cheat-sheet-python
+
+--- PAGE 17 ---
+Keras Cheat Sheet
+Keras is a powerfuland easy-to-use 
+deep learning library for Theano and 
+TensorFlow that provides a high-level neural 
+networks API to develop and evaluate deep 
+learning models. 
+A Basic Example
+>>> import numpy as np
+>>> from keras.models import Sequential
+>>> from keras.layers import Dense
+>>> data = np.random.random((1000,100))
+>>> labels = np.random.randint(2,size=(1000,1))
+>>> model = Sequential()
+>>> model.add(Dense(32,
+activation='relu',
+input_dim=100))
+>>> model.add(Dense(1, activation='sigmoid'))
+>>> model.compile(optimizer='rmsprop',
+ loss='binary_crossentropy',
+ metrics=['accuracy'])
+Also see NumPy, Pandas & Scikit-Learn
+Data
+Your data needs to be stored as NumPy arrays or as a list of NumPy 
+arrays. Ideally, you split the data in training and test sets, for which you 
+can also resort to the train_test_split module of sklearn.cross_validation.
+Keras Data Sets
+>>> from keras.datasets import boston_housing,
+mnist,
+cifar10,
+imdb
+>>> (x_train,y_train),(x_test,y_test) = mnist.load_data()
+>>> (x_train2,y_train2),(x_test2,y_test2) = boston_housing.load_data()
+>>> (x_train3,y_train3),(x_test3,y_test3) = cifar10.load_data()
+>>> (x_train4,y_train4),(x_test4,y_test4) = imdb.load_data(num_words=20000)
+>>> num_classes = 10
+>>> model.ﬁt(data,labels,epochs=10,batch_size=32)
+>>> predictions = model.predict(data)
+Other
+>>> from urllib.request import urlopen
+>>> data = np.loadtxt(urlopen("http://archive.ics.uci.edu/ 
+ml/machine-learning-databases/pima-indians-diabetes/
+pima-indians-diabetes.data"),delimiter=",")
+>>> X = data[:,0:8]
+>>> y = data [:,8]
+Save/ Reload Models
+>>> from keras.models import load_model
+>>> model3.save('model_ﬁle.h5')
+>>> my_model = load_model('my_model.h5')
+Optimization Parameters
+>>> from keras.optimizers import RMSprop
+>>> opt = RMSprop(lr=0.0001, decay=1e-6)
+>>> model2.compile(loss='categorical_crossentropy',
+optimizer=opt,
+metrics=['accuracy'])
+Early Stopping
+>>> from keras.callbacks import EarlyStopping
+>>> early_stopping_monitor = EarlyStopping(patience=2)
+>>> model3.ﬁt(x_train4,
+y_train4,
+                          batch_size=32,
+epochs=15,
+validation_data=(x_test4,y_test4),
+callbacks=[early_stopping_monitor])
+Model Fine-tuning
+MLP: Binary Classiﬁcation
+>>> model.compile(optimizer='adam',
+loss='binary_crossentropy',
+metrics=['accuracy'])
+MLP: Multi-Class Classiﬁcation
+>>> model.compile(optimizer='rmsprop',
+loss='categorical_crossentropy',
+metrics=['accuracy'])
+MLP: Regression
+>>> model.compile(optimizer='rmsprop',
+loss='mse',
+metrics=['mae'])
+Recurrent Neural Network
+>>> model3.compile(loss='binary_crossentropy',
+optimizer='adam',
+metrics=['accuracy'])
+Compile Model
+Model Training
+>>> model3.ﬁt(x_train4,
+y_train4,
+                          batch_size=32,
+epochs=15,
+verbose=1,
+validation_data=(x_test4,y_test4))
+ Evaluate Your
+Model's Performance
+>>> score = model3.evaluate(x_test,
+y_test,
+batch_size=32)
+Preprocessing
+Sequence Padding
+>>> from keras.preprocessing import sequence
+>>> x_train4 = sequence.pad_sequences(x_train4,maxlen=80)
+>>> x_test4 = sequence.pad_sequences(x_test4,maxlen=80)
+One-Hot Encoding
+>>> from keras.utils import to_categorical
+>>> Y_train = to_categorical(y_train, num_classes)
+>>> Y_test = to_categorical(y_test, num_classes)
+>>> Y_train3 = to_categorical(y_train3, num_classes)
+>>> Y_test3 = to_categorical(y_test3, num_classes)
+Train and Test Sets
+>>> from sklearn.model_selection import train_test_split
+>>> X_train5,X_test5,y_train5,y_test5 = train_test_split(X,
+y,
+test_size=0.33,
+random_state=42)
+Standardization/Normalization
+>>> from sklearn.preprocessing import StandardScaler
+>>> scaler = StandardScaler().ﬁt(x_train2)
+>>> standardized_X = scaler.transform(x_train2)
+>>> standardized_X_test = scaler.transform(x_test2)
+Prediction
+>>> model3.predict(x_test4, batch_size=32)
+>>> model3.predict_classes(x_test4,batch_size=32)
+Inspect Model
+>>> model.output_shape
+>>> model.summary()
+>>> model.get_conﬁg()
+>>> model.get_weights()
+Model output shape
+Model summary representation
+Model conﬁguration
+List all weight tensors in the model
+Model Architecture
+>>> from keras.models import Sequential
+>>> model = Sequential()
+>>> model2 = Sequential()
+>>> model3 = Sequential()
+Multilayer Perceptron (MLP)
+Sequential Model 
+Binary Classiﬁcation
+>>> from keras.layers import Dense
+>>> model.add(Dense(12,
+input_dim=8,
+kernel_initializer='uniform',
+activation='relu'))
+>>> model.add(Dense(8,kernel_initializer='uniform',activation='relu'))
+>>> model.add(Dense(1,kernel_initializer='uniform',activation='sigmoid'))
+Multi-Class Classiﬁcation
+>>> from keras.layers import Dropout
+>>> model.add(Dense(512,activation='relu',input_shape=(784,)))
+>>> model.add(Dropout(0.2))
+>>> model.add(Dense(512,activation='relu'))
+>>> model.add(Dropout(0.2))
+>>> model.add(Dense(10,activation='softmax'))
+Regression
+>>> model.add(Dense(64,activation='relu',input_dim=train_data.shape[1]))
+>>> model.add(Dense(1))
+Convolutional Neural Network (CNN)
+Recurrent Neural Network (RNN)
+>>> from keras.layers import Activation,Conv2D,MaxPooling2D,Flatten
+>>> model2.add(Conv2D(32,(3,3),padding='same',input_shape=x_train.shape[1:]))
+>>> model2.add(Activation('relu'))
+>>> model2.add(Conv2D(32,(3,3)))
+>>> model2.add(Activation('relu'))
+>>> model2.add(MaxPooling2D(pool_size=(2,2)))
+>>> model2.add(Dropout(0.25))
+>>> model2.add(Conv2D(64,(3,3), padding='same'))
+>>> model2.add(Activation('relu'))
+>>> model2.add(Conv2D(64,(3, 3)))
+>>> model2.add(Activation('relu'))
+>>> model2.add(MaxPooling2D(pool_size=(2,2)))
+>>> model2.add(Dropout(0.25))
+>>> model2.add(Flatten())
+>>> model2.add(Dense(512))
+>>> model2.add(Activation('relu'))
+>>> model2.add(Dropout(0.5))
+>>> model2.add(Dense(num_classes))
+>>> model2.add(Activation('softmax'))
+>>> from keras.klayers import Embedding,LSTM
+>>> model3.add(Embedding(20000,128))
+>>> model3.add(LSTM(128,dropout=0.2,recurrent_dropout=0.2))
+>>> model3.add(Dense(1,activation='sigmoid'))
+BecomingHuman.AI 
+htps://www.datacamp.com/community/blog/keras-cheat-sheet
+
+--- PAGE 18 ---
+Also see NumPy Arrays
+Selection
+Getting
+>>> s['b'] 
+-5
+>>> df[1:] 
+      Country Capital        Population
+ 1   India      New Delhi  1303171035
+ 2   Brazil     Brasília      207847528
+Get one element
+Get subset of a DataFrame
+Select single value by row & 
+column
+Select single value by row &
+column labels
+Select single row of
+subset of rows
+Select a single column of 
+subset of columns
+Select rows and columns
+Series s where value is not >1
+s where value is <-1 or >2
+Use ﬁlter to adjust DataFrame
+Set index a of Series s to 6
+Selecting, Boolean Indexing & Setting
+By Position
+>>> df.iloc[[0],[0]] 
+  'Belgium' 
+>>> df.iat([0],[0])
+  'Belgium'
+By Label
+>>> df.loc[[0], ['Country']] 
+ 'Belgium' 
+>>> df.at([0], ['Country']) 'Belgium'
+By Label/Position
+>>> df.ix[2] 
+   Country          Brazil
+   Capital           Brasília
+   Population     207847528
+>>> df.ix[:,'Capital']
+   0 Brussels 
+   1 New Delhi
+   2 Brasília
+>>> df.ix[1,'Capital'] 
+ 'New Delhi'
+Boolean Indexing
+>>> s[~(s > 1)] 
+>>> s[(s < -1) | (s > 2)] 
+>>> df[df['Population']>1200000000] 
+Setting
+>>> s['a'] = 6 
+The Pandas library is 
+built on NumPy and 
+provides easy-to-use 
+data structures and 
+data analysis tools for 
+the Python
+programming
+language.
+Series
+A one-dimensional 
+labeled array a 
+capable of holding any 
+data type 
+Pandas Data Structures
+>>> s = pd.Series([3, -5, 7, 4], index=['a', 'b', 'c', 'd'])
+Data Frame
+A two-dimensional 
+labeled data structure 
+with columns of 
+potentially different 
+types
+>>> data = {'Country': ['Belgium', 'India', 'Brazil'],
+'Capital': ['Brussels', 'New Delhi', 'Brasília'],
+'Population': [11190846, 1303171035, 207847528]}
+>>> df = pd.DataFrame(data,
+columns=['Country', 'Capital', 'Population'])
+a
+b
+c
+d
+3
+-5
+7
+4
+index
+0
+1
+2
+Belgium
+India
+Brazil
+Brussels
+New Delhi
+Brasilia
+11190846
+Belgium
+Capital
+Population
+1303171035
+207847528
+index
+column
+>>> help(pd.Series.loc)
+Asking For Help
+>>> s.drop(['a', 'c'])
+>>> df.drop('Country', axis=1) 
+Dropping
+Drop values from rows (axis=0)
+Drop values from  columns(axis=1)
+>>> df.sort_index() 
+>>> df.sort_values(by='Country')
+>>> df.rank()
+Sort & Rank
+Sort by labels along an axis
+ Sort by the values along an axis
+Assign ranks to entries
+>>> f = lambda x: x*2
+>>> df.apply(f)
+>>> df.applymap(f)
+Applying Functions
+Apply function
+Apply function element-wise
+Data Alignment
+Internal Data Alignment
+Retrieving Series/
+DataFrame Information
+>>> df.shape
+>>> df.index
+>>> df.columns
+>>> df.info()
+>>> df.count()
+(rows,columns) 
+Describe index
+Describe DataFrame columns
+Info on DataFrame
+Number of non-NA values
+>>> df.sum()
+>>> df.cumsum()
+>>> df.min()/df.max()
+>>> df.idxmin()/df.idxmax()
+>>> df.describe()
+>>> df.mean()
+>>> df.median()
+Sum of values
+Cummulative sum of values
+Minimum/maximum values
+Minimum/Maximum index value
+Summary statistics
+Mean of values
+Median of values
+Summary
+NA values are introduced in the indices that don’t overlap:
+>>> s3 = pd.Series([7, -2, 3], index=['a', 'c', 'd'])
+>>> s + s3
+   a 10.0
+   b NaN
+   c 5.0
+   d 7.0
+Arithmetic Operations with Fill Methods
+You can also do the internal data alignment yourself with
+the help of the ﬁll methods:
+>>> s.add(s3, ﬁll_value=0)
+   a 10.0
+   b -5.0
+   c 5.0
+   d 7.0
+>>> s.sub(s3, ﬁll_value=2)
+>>> s.div(s3, ﬁll_value=4)
+I/O
+Read and Write to CSV
+Read and Write to SQL Query or Database Table
+>>> pd.read_csv('ﬁle.csv', header=None, nrows=5)
+>>> df.to_csv('myDataFrame.csv')
+>>> from sqlalchemy import create_engine
+>>> engine = create_engine('sqlite:///:memory:')
+>>> pd.read_sql("SELECT * FROM my_table;", engine)
+>>> pd.read_sql_table('my_table', engine)
+>>> pd.read_sql_query("SELECT * FROM my_table;", engine)
+>>> pd.to_sql('myDf', engine)
+Read and Write to Excel
+>>> pd.read_excel('ﬁle.xlsx')
+>>> pd.to_excel('dir/myDataFrame.xlsx', sheet_name='Sheet1')
+Read multiple sheets from the same ﬁle
+>>> xlsx = pd.ExcelFile('ﬁle.xls')
+>>> df = pd.read_excel(xlsx, 'Sheet1')
+read_sql()is a convenience wrapper around read_sql_table()
+and read_sql_query()
+Pandas Basics
+Cheat Sheet
+Use the following import convention: >>> import pandas as pd
+BecomingHuman.AI 
+htps://www.datacamp.com/community/blog/pandas-cheat-sheet-python
+
+--- PAGE 19 ---
+Also see NumPy Arrays
+Advanced Indexing
+Combining Data
+Dates
+Selecting
+>>> df3.loc[:,(df3>1).any()]
+>>> df3.loc[:,(df3>1).all()]
+>>> df3.loc[:,df3.isnull().any()]
+>>> df3.loc[:,df3.notnull().all()]
+Indexing With isin
+>>> df[(df.Country.isin(df2.Type))]
+>>> df3.ﬁlter(items=”a”,”b”])
+>>> df.select(lambda x: not x%5)
+Where
+>>> s.where(s > 0)
+Query
+>>> df6.query('second > ﬁrst') 
+>>> df.set_index('Country')
+>>> df4 = df.reset_index()
+>>> df = df.rename(index=str,
+columns={"Country":"cntry",
+"Capital":"cptl",
+"Population":"ppltn"})
+>>> s2 = s.reindex(['a','c','d','e','b'])
+>>> df.reindex(range(4),
+method='ffill')
+>>> s3 = s.reindex(range(5),
+method='bﬁll')
+   0    3
+   1    3
+   2    3
+   3    3
+   4    3
+Country Capital Population
+ 0  Belgium    Brussels         11190846
+ 1  India          New Delhi      1303171035
+ 2  Brazil        Brasília           207847528
+ 3  Brazil        Brasília           207847528
+Setting/Resetting Index
+Reindexing
+>>> arrays = [np.array([1,2,3]),
+np.array([5,4,3])]
+>>> df5 = pd.DataFrame(np.random.rand(3, 2), index=arrays)
+>>> tuples = list(zip(*arrays))
+>>> index = pd.MultiIndex.from_tuples(tuples,
+names=['ﬁrst', 'second'])
+>>> df6 = pd.DataFrame(np.random.rand(3, 2), index=index)
+>>> df2.set_index(["Date", "Type"])
+>>> df2['Date']= pd.to_datetime(df2['Date'])
+>>> df2['Date']= pd.date_range('2000-1-1', periods=6,
+freq='M')
+>>> dates = [datetime(2012,5,1), datetime(2012,5,2)]
+>>> index = pd.DatetimeIndex(dates)
+>>> index = pd.date_range(datetime(2012,2,1), end, freq='BM')
+MultiIndexing
+Pivot
+Join
+Pandas
+Cheat Sheet
+Pivot
+Pandas Data Structures
+>>> df3= df2.pivot(index='Date',
+columns='Type',
+values='Value')
+Spread rows into columns
+Pivot Table
+>>> df4 = pd.pivot_table(df2,
+values='Value',
+index='Date',
+columns='Type'])
+Spread rows into columns
+Melt
+>>> pd.melt(df2,
+id_vars=["Date"],
+value_vars=["Type", "Value"],
+value_name="Observations")
+Gather columns into rows
+2016-03-01
+a
+2016-03-02
+b
+2016-03-01
+c
+11.432
+13.031
+20.784
+2016-03-03
+a
+2016-03-02
+2016-03-03
+c
+99.906
+1.303
+20.784
+0
+1
+2
+3
+4
+5
+Type
+a
+b
+c
+20.784
+NaN
+Date
+2016-03-01
+2016-03-02
+2016-03-03
+11.432
+1.303
+99.906
+NaN
+13.031
+NaN
+20.784
+Date
+Type
+Value
+a
+1
+2
+3
+5
+4
+3
+0
+1
+0
+1
+0
+1
+0.233482
+0.390959
+0.184713
+0.237102
+0.433522
+0.429401
+1
+2
+3
+5
+4
+3
+0
+0.233482
+0.184713
+0.433522
+1
+0.390959
+0.237102
+0.429401
+Stacked
+Unstacked
+2016-03-01
+a
+2016-03-02
+b
+2016-03-01
+c
+11.432
+13.031
+20.784
+2016-03-03
+a
+2016-03-02
+a
+2016-03-03
+c
+99.906
+1.303
+20.784
+Date
+Type
+Value
+0
+1
+2
+3
+4
+5
+2016-03-01
+Type
+2016-03-02
+Type
+2016-03-01
+Type
+a
+b
+c
+2016-03-03
+Type
+2016-03-02
+2016-03-03
+a
+a
+c
+Date
+Variable
+Observations
+0
+1
+2
+3
+4
+5
+2016-03-01
+Value
+2016-03-02
+Value
+2016-03-01
+Value
+11.432
+13.031
+20.784
+2016-03-03
+Value
+2016-03-02
+Value
+2016-03-03
+Value
+99.906
+1.303
+20.784
+6
+7
+8
+9
+10
+11
+Type
+Type
+Select cols with any vals >1
+Select cols with vals > 1
+Select cols with NaN
+Select cols without NaN
+Find same elements
+Filter on values
+Select speciﬁc elements
+Subset the data
+Query DataFrame
+Set the index
+Reset the index
+Rename DataFrame
+Forward Filling
+Forward Filling
+Duplicate Data
+>>> s3.unique()
+>>> df2.duplicated('Type')
+>>> df2.drop_duplicates('Type', keep='last')
+>>> df.index.duplicated()
+Return unique values
+Check duplicates
+Drop duplicates
+Drop duplicates
+Missing Data
+>>> df.dropna()
+>>> df3.ﬁllna(df3.mean())
+>>> df2.replace("a", "f")
+Drop NaN value
+Fill NaN values with a predetermined value
+Replace values with others
+Grouping Data
+Aggregation
+>>> df2.groupby(by=['Date','Type']).mean()
+>>> df4.groupby(level=0).sum()
+>>> df4.groupby(level=0).agg({'a':lambda x:sum(x)/len(x), 'b': np.sum}) 
+Transformation
+>>> customSum = lambda x: (x+x%2)
+>>> df4.groupby(level=0).transform(customSum)
+data1
+a
+b
+c
+11.432
+1.303
+99.906
+X1
+X2
+a
+b
+d
+20.784
+NaN
+20.784
+data2
+X1
+X3
+>>> pd.merge(data1,
+data2,
+how='left',
+on='X1')
+>>> pd.merge(data1,
+data2,
+how='right',
+on='X1')  
+>>> pd.merge(data1,
+data2,
+how='inner',
+on='X1')
+>>> pd.merge(data1,
+data2,
+how='outer',
+on='X1')
+>>> data1.join(data2, how='right')
+Concatenate
+Vertical
+>>> s.append(s2)
+Horizontal/Vertical
+>>> pd.concat([s,s2],axis=1, keys=['One','Two'])
+>>> pd.concat([data1, data2], axis=1, join='inner')
+a
+b
+c
+11.432
+1.303
+99.906
+20.784
+NaN
+NaN
+X1
+X2
+X3
+a
+b
+d
+11.432
+1.303
+NaN
+20.784
+NaN
+20.784
+X1
+X2
+X3
+a
+b
+11.432
+1.303
+20.784
+NaN
+X1
+X2
+X3
+a
+b
+c
+11.432
+1.303
+99.906
+20.784
+NaN
+NaN
+X1
+X2
+X3
+d
+NaN
+20.784
+Visualization
+>>> import matplotlib.pyplot as plt
+>>> s.plot()
+>>> plt.show()
+>>> df2.plot()
+>>> plt.show()
+BecomingHuman.AI 
+htps://www.datacamp.com/community/blog/pandas-cheat-sheet-python
+
+--- PAGE 20 ---
+Data Wrangling with pandas Cheat Sheet
+BecomingHuman.AI 
+Subset Observations (Rows)
+Subset Variables (Columns)
+Handling Missing Data
+df.dropna()
+   Drop rows with any column having NA/null data.
+df.ﬁllna(value)
+Make New Columns
+df.assign(Area=lambda df: df.Length*df.Height)
+   Compute and append one or more new columns.
+df['Volume'] = df.Length*df.Height*df.Depth
+   Add single column.
+pd.qcut(df.col, n, labels=False)
+   Bin column into n buckets.
+Syntax Creating DataFrames
+1
+2
+3
+a
+4
+5
+6
+b
+7
+8
+9
+c
+10
+11
+12
+v
+a
+b
+c
+1
+2
+2
+n
+d
+e
+4
+5
+6
+7
+8
+9
+10
+11
+12
+df = pd.DataFrame(
+{"a" : [4 ,5, 6],
+"b" : [7, 8, 9],
+"c" : [10, 11, 12]},
+index = [1, 2, 3])
+Specify values for each column.
+df = pd.DataFrame(
+        [[4, 7, 10],
+         [5, 8, 11],
+         [6, 9, 12]],
+       index=[1, 2, 3],
+       columns=['a', 'b', 'c'])
+Specify values for each row.
+df = pd.DataFrame(
+{"a" : [4 ,5, 6],
+"b" : [7, 8, 9],
+"c" : [10, 11, 12]},
+index = pd.MultiIndex.from_tuples(
+[('d',1),('d',2),('e',2)],
+names=['n','v']))
+Create DataFrame with a MultiIndex
+Method Chaining
+Most pandas methods return a DataFrame so that 
+another pandas method can be applied to the 
+result. This improves readability of code.
+df = (pd.melt(df)
+              .rename(columns={
+'variable' : 'var',
+'value' : 'val'})
+              .query('val >= 200')
+)
+Windows
+df.expanding()
+Return an Expanding object allowing summary 
+functions to be applied cumulatively.
+df.rolling(n)
+Return a Rolling object allowing summary 
+functions to be applied to windows of length n.     
+Windows
+df.groupby(by="col")
+Return a GroupBy object, grouped by 
+values in column named "col".
+df.groupby(level="ind")
+Return a GroupBy object, grouped by 
+values in index level named "ind".
+Windows
+df.plot.hist()
+Histogram for
+each column
+df.plot.scatter(x='w',y='h')
+Scatter chart using pairs of 
+points
+Tidy Data  A foundation for wrangling in pandas
+F
+M A
+F
+M A
+&
+In a tidy
+data set:
+Each variable
+is saved in its
+own column
+Each observation
+is saved in its
+own row
+Tidy data complements pandas’s 
+vectorized operations. pandas will 
+automatically preserve  observations 
+as you manipulate variables. No
+other format works as intuitively with 
+pandas
+M
+A
+F
+M       A
+Reshaping Data Change the layout of a data set
+pd.melt(df)
+   Gather columns into rows.
+df.pivot(columns='var', values='val')
+   Spread rows into columns.
+df.sort_values('mpg')
+   Order rows by values of a column (low to high).
+df.sort_values('mpg',ascending=False)
+   Order rows by values of a column (high to low).
+df.rename(columns = {'y':'year'})
+   Rename the columns of a DataFrame
+df.sort_index()
+   Sort the index of a DataFrame
+df.reset_index()
+   Reset index of DataFrame to row numbers,
+   moving index to columns.
+df.drop(columns=['Length','Height'])
+   Drop columns from DataFrame
+pd.concat([df1,df2])
+   Append rows of DataFrames
+pd.concat([df1,df2], axis=1)
+   Append columns of DataFrames
+df[df.Length > 7]
+Extract rows that meet
+logical criteria.
+df.drop_duplicates()
+Remove duplicate
+rows (only considers
+columns).
+df.head(n)
+Select ﬁrst n rows.
+df.tail(n)
+Select last n rows.
+df[['width','length','species']]
+Select multiple columns with speciﬁc names.
+df['width'] or df.width
+Select single column with speciﬁc name.
+df.ﬁlter(regex='regex')
+Select columns whose name matches regular expression regex.
+df.loc[:,'x2':'x4']
+Select all columns between x2 and x4 (inclusive).
+df.iloc[:,[1,2,5]]
+Select columns in positions 1, 2 and 5 (ﬁrst column is 0).
+df.loc[df['a'] > 10, ['a','c']]
+Select rows meeting logical condition, and only the
+speciﬁc columns .
+df.sample(frac=0.5)
+Randomly select fraction
+of rows.
+df.sample(n=10)
+Randomly select n rows.
+df.iloc[10:20]
+Select rows by position.
+df.nlargest(n, 'value')
+Select and order top n entries.
+df.nsmallest(n, 'value')
+Select and order bottom
+n entries.
+Less than
+Greater than
+Equal to
+Less than or equal to
+Greater than or equal to
+!=
+df.column.isin(values)
+pd.isnull(obj)
+pd.notnull(obj)
+&,|,~,^,df.any(),df.all(
+Not equal to
+Group membership
+Is NaN
+Is not NaN
+Logical and, or, not,
+xor, any, all
+<
+>
+==
+<=
+>=
+Logic in Python (and pandas)
+Matches strings containing a period '.'
+Matches strings ending with word 'Length'
+Matches strings beginning with the word 'Sepal'
+Matches strings beginning with 'x' and ending with 1,2,3,4,5
+Matches strings except the string 'Species'
+'\.'
+'Length$
+'^Sepal' 
+'^x[1-5]$'
+'^(?!Species$).*'
+Logic in Python (and pandas)
+Summarise Data
+df['w'].value_counts()
+   Count number of rows with each unique value
+   of variable
+len(df)
+   # of rows in DataFrame.
+df['w'].nunique()
+   # of distinct values in a column.
+df.describe()
+   Basic descriptive statistics for each column
+   (or GroupBy)
+pandas provides a large set of summary functions 
+that operate on different kinds of pandas objects 
+(DataFrame columns, Series, GroupBy, Expanding 
+and Rolling (see below)) and produce single
+values for each of the groups. When applied to a 
+DataFrame, the result is returned as a pandas 
+Series for each column. Examples:
+sum()
+Sum values of each object.
+count()
+Count non-NA/null
+values of each object.
+median()
+Median value of
+each object.
+quantile([0.25,0.75])
+Quantiles of each object.
+apply(function)
+Apply function to
+each object
+min()
+Minimum value in
+each object.
+max()
+Maximum value in
+each object.
+mean()
+Mean value of each object.
+var()
+Variance of each object.
+std()
+Standard deviation
+of each object.
+pandas provides a large set of vector functions that 
+operate on allcolumns of a DataFrame or a single selected 
+column (a pandas Series). These functions produce 
+vectors of values for each of the columns, or a single 
+Series for the individual Series. Examples:
+max(axis=1)
+Element-wise max.
+clip(lower=-10,upper=10)
+Trim values at input thresholds
+min(axis=1)
+Element-wise min.
+abs()
+Absolute value.
+Vector
+function
+Vector
+function
+Combine Data Sets
+dpd.merge(adf, bdf,
+how='left', on='x1')
+Join matching rows from bdf to adf.
+pd.merge(adf, bdf,
+how='right', on='x1')
+   Join matching rows from adf to bdf.
+pd.merge(adf, bdf,
+how='inner', on='x1')
+    Join data. Retain only rows in both sets.
+pd.merge(adf, bdf,
+how='outer', on='x1')
+   Join data. Retain all values, all rows.
+adf[adf.x1.isin(bdf.x1)]
+   All rows in adf that have a match in bdf.
+adf[~adf.x1.isin(bdf.x1)]
+   All rows in adf that do not have a match 
+   in bdf
+pd.merge(ydf, zdf)
+   Rows that appear in both ydf and zdf
+   (Intersection).
+pd.merge(ydf, zdf, how='outer')
+Rows that appear in either or both ydf and zdf 
+(Union).
+pd.merge(ydf, zdf, how='outer',
+indicator=True)
+.query('_merge == "left_only"')
+.drop(columns=['_merge'])
+    Rows that appear in ydf but not zdf  (Setdiff)
+x1
+A
+B
+C
+x2
+1
+2
+3
+x1
+A
+B
+C
+x2
+1
+2
+3
+x3
+T
+F
+NaN
+x1
+A
+B
+C
+x2
+1
+2
+3
+x3
+T
+F
+NaN
+D
+NaN
+T
+x1
+A
+B
+x2
+1
+2
+x3
+T
+F
+x1
+A
+B
+D
+x2
+1.0
+2.0
+NaN
+x3
+T
+F
+T
+x1
+A
+B
+C
+x3
+T
+F
+T
+x1
+A
+B
+C
+x2
+1
+2
+3
+x1
+B
+C
+D
+x2
+2
+3
+4
+x1
+A
+B
+x2
+1
+2
+x1
+C
+x2
+3
+x1
+B
+C
+x2
+2
+3
+x1
+A
+B
+C
+x2
+1
+2
+3
+D
+4
+x1
+A
+x2
+1
+Standard Joins
+Set Operations
+Filtering Joins
++
+=
++
+=
+adf
+bdf
+ydf
+zdf
+All of the summary functions listed above can be applied to a group.
+Additional GroupBy functions:
+size()
+Size of each group.
+agg(function)
+Aggregate group using function.
+The examples below can also be applied to groups. In this case, the function is applied on a per-group basis, and the 
+returned vectors are of the length of the original DataFrame.
+shift(1)
+Copy with values shifted by 1.
+rank(method='dense')
+Ranks with no gaps.
+rank(method='min')
+Ranks. Ties get min rank.
+rank(pct=True)
+Ranks rescaled to interval [0, 1].
+rank(method='ﬁrst')
+Ranks. Ties go to ﬁrst value.
+shift(-1)
+Copy with values lagged by 1.
+cumsum()
+Cumulative sum.
+cummax()
+Cumulative max.
+cummin()
+Cumulative min.
+cumprod()
+Cumulative product
+htps://github.com/rstudio/cheatshe…er/LICENSE
+
+--- PAGE 21 ---
+Data Wrangling with
+dplyr and tidyr
+Cheat Sheet
+BecomingHuman.AI 
+Syntax Helpful conventions for wrangling
+dplyr::tbl_df(iris)
+Converts data to tbl class. tbl’s are easier to examine than 
+data frames. R displays only the data that ﬁts onscreen
+dplyr::glimpse(iris)
+Information dense summary of tbl data. 
+utils::View(iris)
+View data set in spreadsheet-like display (note capital V)
+dplyr::%>%
+Passes object on lef hand side as ﬁrst argument (or . 
+argument) of function on righthand side.
+"Piping" with %>% makes code more readable, e.g. 
+iris %>%
+   group_by(Species) %>%
+   summarise(avg = mean(Sepal.Width)) %>%
+   arrange(avg)
+  x %>% f(y) is the same as f(x, y)
+y %>% f(x, ., z) is the same as f(x, y, z )
+Summarise Data
+dplyr::summarise(iris, avg = mean(Sepal.Length))
+Summarise data into single row of values.
+dplyr::summarise_each(iris, funs(mean))
+Apply summary function to each column.
+dplyr::count(iris, Species, wt = Sepal.Length)
+Count number of rows with each unique value of 
+variable (with or without weights).
+dplyr::ﬁrst
+First value of a vector.
+dplyr::last
+Last value of a vector.
+dplyr::nth
+Nth value of a vector.
+dplyr::n
+# of values in a vector.
+dplyr::n_distinct
+# of distinct values in
+a vector.
+IQR
+IQR of a vector
+min
+Minimum value in a vector.
+max
+Maximum value in a vector.
+mean
+Mean value of a vector.
+median
+Median value of a vector.
+var
+Variance of a vector.
+sd
+Standard deviation of a
+vector.
+Summarise uses summary functions, functions that
+take a vector of values and return a single value, 
+such as:
+Combine Data Sets
+Make New Variables
+dplyr::mutate(iris, sepal = Sepal.Length + Sepal. Width)
+Compute and append one or more new columns.
+dplyr::mutate_each(iris, funs(min_rank))
+Apply window function to each column.
+dplyr::transmute(iris, sepal = Sepal.Length + Sepal. Width)
+Compute one or more new columns. Drop original columns
+dplyr::lead
+Copy with values shifed by 1.
+dplyr::lag
+Copy with values lagged by 1.
+dplyr::dense_rank
+Ranks with no gaps.
+dplyr::min_rank
+Ranks. Ties get min rank.
+dplyr::percent_rank
+Ranks rescaled to [0, 1].
+dplyr::row_number
+Ranks. Ties got to ﬁrst value.
+dplyr::ntile
+Bin vector into n buckets.
+dplyr::between
+Are values between a and b?
+dplyr::cume_dist
+Cumulative distribution.
+dplyr::cumall
+Cumulative all
+dplyr::cumany
+Cumulative any
+dplyr::cummean
+Cumulative mean
+cumsum
+Cumulative sum
+cummax
+Cumulative max
+cummin
+Cumulative min
+cumprod
+Cumulative prod
+pmax
+Element-wise max
+pmin
+Element-wise min
+Mutate uses window functions, functions that take a vector of
+values and return another vector of values, such as:
+Subset Observations (Rows)
+Reshaping Data Change the layout of a data set
+tidyr::gather(cases, "year", "n", 2:4)
+Gather columns into rows.
+tidyr::separate(storms, date, c("y", "m", "d"))
+separate(storms, date, c("y", "m", "d"))
+Tidy Data  A foundation for wrangling in R
+In a tidy data set:
+F
+M A
+F
+M A
+&
+Each variable is 
+saved in its own 
+column
+Each observation 
+is saved in its own 
+row
+Tidy data complements R’s 
+vectorized operations. R will 
+automatically preserve 
+observations as you 
+manipulate variables. No 
+other format works as 
+intuitively with R
+M
+A
+F
+M       A
+Group Data
+tidyr::unite(data, col, ..., sep)
+Unite several columns into one.
+tidyr::spread(pollution, size, amount)
+Spread rows into columns
+dplyr::data_frame(a = 1:3, b = 4:6)
+Combine vectors into data frame (optimized).
+dplyr::arrange(mtcars, mpg)
+Order rows by values of a column (low to high).
+dplyr::arrange(mtcars, desc(mpg))
+Order rows by values of a column (high to low).
+dplyr::rename(tb, y = year)
+Rename the columns of a data frame.
+dplyr::ﬁlter(iris, Sepal.Length > 7)
+Extract rows that meet logical criteria.
+dplyr::distinct(iris)
+Remove duplicate rows.
+dplyr::sample_frac(iris, 0.5, replace = TRUE)
+Randomly select fraction of rows.
+dplyr::sample_n(iris, 10, replace = TRUE)
+Randomly select n rows.
+dplyr::slice(iris, 10:15)
+Select rows by position.
+dplyr::top_n(storms, 2, date)
+Select and order top n entries (by group if grouped data).
+dplyr::group_by(iris, Species)
+Group data into rows with the 
+same value of Species.
+dplyr::ungroup(iris)
+Remove grouping information 
+from data frame. 
+iris %>% group_by(Species) %>% summarise(…)
+Compute separate summary row for each group.
+Logic in R - ?
+Less than
+Greater than
+Equal to
+Less than or equal to
+Greater than or equal to
+Comparison, ?base
+!=
+%in%
+is.na
+!is.na
+&,|,!,xor,any,all 
+::Logic
+Not equal to
+Group membership
+Is NA
+Is not NA
+Boolean operators
+<
+>
+==
+<=
+>=
+Subset Variables (Columns)
+dplyr::select(iris, Sepal.Width, Petal.Length, Species)
+Select columns by name or helper function.
+select(iris, contains("."))
+Select columns whose name contains a character string.
+select(iris, ends_with("Length"))
+Select columns whose name ends with a character string.
+select(iris, everything())
+Select every column.
+select(iris, matches(".t."))
+Select columns whose name matches a regular expression.
+select(iris, num_range("x", 1:5))
+Select columns named x1, x2, x3, x4, x5.
+select(iris, one_of(c("Species", "Genus")))
+Select columns whose names are in a group of names.
+select(iris, starts_with("Sepal"))
+Select columns whose name starts with a character string.
+select(iris, Sepal.Length:Petal.Width)
+Select all columns between Sepal.Length and Petal.Width (inclusive).
+select(iris, -Species)
+Select all columns except Species. 
+dplyr::lef_join(a, b, by = "x1")
+Join matching rows from b to a.
+dplyr::right_join(a, b, by = "x1")
+Join matching rows from a to b.
+dplyr::inner_join(a, b, by = "x1")
+Join data. Retain only rows in both sets.
+dplyr::full_join(a, b, by = "x1")
+Join data. Retain all values, all rows.
+dplyr::semi_join(a, b, by = "x1")
+All rows in a that have a match in b.
+dplyr::anti_join(a, b, by = "x1")
+All rows in a that do not have a match in b
+dplyr::intersect(y, z)
+Rows that appear in both y and z.
+dplyr::union(y, z)
+Rows that appear in either or both y and z.
+dplyr::setdiff(y, z)
+Rows that appear in y but not z.
+dplyr::bind_rows(y, z)
+Append z to y as new rows.
+dplyr::bind_cols(y, z)
+Append z to y as new columns.
+Caution: matches rows by position.
+Helper functions for select - ?select
+iris %>% group_by(Species) %>% mutate(…)
+Compute new variables by group.
+x1
+A
+B
+C
+x2
+1
+2
+3
+x1
+A
+B
+C
+x2
+1
+2
+3
+x3
+T
+F
+NA
+x1
+A
+B
+C
+x2
+1
+2
+3
+x3
+T
+F
+NA
+D
+NA
+T
+x1
+A
+B
+x2
+1
+2
+x3
+T
+F
+x1
+A
+B
+C
+x3
+T
+F
+T
+x2
+1
+2
+NA
+x1
+A
+B
+C
+x2
+T
+F
+T
+x1
+A
+B
+C
+x2
+1
+2
+3
+x1
+B
+C
+D
+x2
+2
+3
+4
+x1
+A
+B
+C
+x2
+1
+2
+3
+x1
+B
+C
+D
+x2
+2
+3
+4
+x1
+A
+B
+x2
+1
+2
+x1
+C
+x2
+3
+x1
+B
+C
+x2
+2
+3
+x1
+A
+B
+C
+x2
+1
+2
+3
+D
+4
+x1
+A
+x2
+1
+x1
+A
+B
+C
+x2
+1
+2
+3
+B
+2
+C
+3
+D
+4
+Mutating Joins
+Set Operations
+Filtering Joins
+Binding
++
+=
++
+=
+A
+B
+Y
+Z
+summary
+function
+window
+function
+
+--- PAGE 22 ---
+Also see NumPy
+Interacting With NumPy
+>>> import numpy as np
+>>> a = np.array([1,2,3])
+>>> b = np.array([(1+5j,2j,3j), (4j,5j,6j)])
+>>> c = np.array([[(1.5,2,3), (4,5,6)], [(3,2,1), (4,5,6)]])
+Asking For Help
+>>> help(scipy.linalg.diagsvd)
+>>> np.info(np.matrix)
+>>> np.mgrid[0:5,0:5]
+>>> np.ogrid[0:2,0:2] 
+>>> np.r_[3,[0]*5,-1:1:10j]
+>>> np.c_[b,c]
+Create a dense meshgrid
+Create an open meshgrid
+Stack arrays vertically (row-wise) 
+Create stacked column-wise arrays
+Scipy Linear Algebra
+Cheat Sheet
+BecomingHuman.AI 
+The SciPy library is one of the 
+core packages for scientiﬁc 
+computing that provides 
+mathematical algorithms and 
+convenience functions built on 
+the NumPy extension of 
+Python.
+Index Tricks
+>>> np.transpose(b)
+>>> b.ﬂatten() 
+>>> np.hstack((b,c))
+>>> np.vstack((a,b))
+>>> np.hsplit(c,2)
+>>> np.vpslit(d,2)
+Permute array dimensions
+Flatten the array
+Stack arrays horizontally (column-wise)
+Stack arrays vertically (row-wise)
+Split the array horizontally at the 2nd index
+Split the array vertically at the 2nd index
+Shape Manipulation
+>>> from numpy import poly1d
+>>> p = poly1d([3,4,5]) 
+Create a polynomial object
+Polynomials 
+>>> def myfunc(a):
+       if a < 0:
+          return a*2
+       else:
+          return a/2
+>>> np.vectorize(myfunc) 
+Vectorize functions
+Vectorizing Functions
+>>> np.real(b)
+>>> np.imag(b>>> 
+np.real_if_close(c,tol=1000)
+>>> np.cast['f'](np.pi)
+Return the real part of the array elements
+Return the imaginary part of the array elements
+ Return a real array if complex parts close to 0
+Cast object to a data type
+Type Handling
+>>> np.angle(b,deg=True)
+>>> g = np.linspace(0,np.pi,num=5)
+>>> g [3:] += np.pi
+>>> np.unwrap(g)
+>>> np.logspace(0,10,3)
+>>> np.select([c<4],[c*2])
+>>> misc.factorial(a)
+>>> misc.comb(10,3,exact=True)
+>>> misc.central_diff_weights(3)
+>>> misc.derivative(myfunc,1.0)
+Return the angle of the complex argumen
+Create an array of evenly spaced values
+(number of samples)
+Unwrap
+Create an array of evenly spaced values (log scale)
+Return values from a list of arrays
+depending on conditions
+Factorial
+Combine N things taken at k time
+Weights for Np-point central derivative
+Find the n-th derivative of a function at a point
+Other Useful Functions
+Also see NumPy
+Linear Algebra
+You’ll use the linalg and sparse modules. Note that scipy.linalg contains and expands on numpy.linalg
+>>> from scipy import linalg, sparse
+>>> A = np.matrix(np.random.random((2,2)))
+>>> B = np.asmatrix(b)
+>>> C = np.mat(np.random.random((10,5)))
+>>> D = np.mat([[3,4], [5,6]])
+>>> A.I 
+>>> linalg.inv(A) 
+Creating Matrices
+>>> F = np.eye(3, k=1)
+>>> G = np.mat(np.identity(2))
+>>> C[C > 0.5] = 0
+>>> H = sparse.csr_matrix(C)
+>>> I = sparse.csc_matrix(D)
+>>> J = sparse.dok_matrix(A)
+>>> E.todense()
+>>> sparse.isspmatrix_csc(A)
+Creating Matrices
+Basic Matrix Routines
+Inverse
+Inverse
+Inverse
+Inverse
+>>> A.T 
+>>> A.H 
+Transposition
+>>> sparse.linalg.inv(I)
+Sparse Matrix Routines
+Sparse Matrix Functions
+Inverse
+Addition
+>>> np.add(A,D)
+Matrix Functions
+Addition
+Subtraction
+>>> np.subtract(A,D)
+Subtraction
+Division
+>>> np.divide(A,D)
+Division
+Multiplication operator (Python 3)
+Multiplication
+Dot product
+Vector dot product
+Inner product
+Outer product
+Tensor dot product
+Kronecker product
+>>> A @ D 
+>>> np.multiply(D,A)
+>>> np.dot(A,D)
+>>> np.vdot(A,D) 
+>>> np.inner(A,D)
+>>> np.outer(A,D)
+>>> np.tensordot(A,D)
+>>> np.kron(A,D)
+Multiplication
+Matrix logarithm 
+>>> linalg.logm(A)
+Logarithm Function
+Matrix sine
+Matrix cosine
+Matrix tangent
+>>> linalg.sinm(D)
+>>> linalg.cosm(D)
+>>> linalg.tanm(A)
+Trigonometric Functions
+Hypberbolic matrix sine
+Hyperbolic matrix cosine
+Hyperbolic matrix tangent
+>>> linalg.sinhm(D)
+>>> linalg.coshm(D)
+>>> linalg.tanhm(A)
+Hyperbolic Trigonometric Functions
+Matrix sign function
+>>> np.signm(A)
+Matrix Sign Function
+Matrix square root
+>>> linalg.sqrtm(A)
+Matrix Square Root
+Evaluate matrix function
+>>> linalg.funm(A, lambda x: x*x)
+Arbitrary Functions
+Matrix exponential
+Matrix exponential (Taylor Series)
+Matrix exponential (eigenvalue
+ decomposition) 
+>>> linalg.expm(A)
+>>> linalg.expm2(A)
+>>> linalg.expm3(D)
+Exponential Functions
+Norm
+>>> sparse.linalg.norm(I)
+Norm 
+Solver for sparse matrices
+>>> sparse.linalg.spsolve(H,I)
+Sparse matrix exponential
+>>> sparse.linalg.expm(I)
+Sparse Matrix Decompositions
+Eigenvalues and eigenvectors
+SVD
+>>> la, v = sparse.linalg.eigs(F,1)
+>>> sparse.linalg.svds(H, 2)
+Solving linear problems
+Solve ordinary or generalized
+eigenvalue problem for
+square matrix
+First eigenvector
+Second eigenvector
+Unpack eigenvalues
+>>> la, v = linalg.eig(A)
+>>> l1, l2 = la
+>>> v[:,0]
+>>> v[:,1]
+>>> linalg.eigvals(A)
+Decompositions
+Eigenvalues and Eigenvectors
+Singular Value Decomposition (SVD) 
+Construct sigma matrix in SVD
+>>> U,s,Vh = linalg.svd(B)
+>>> M,N = B.shape
+>>> Sig = linalg.diagsvd(s,M,N) 
+Singular Value Decomposition
+LU Decomposition
+>>> P,L,U = linalg.lu(C)
+ LU Decomposition
+Tranpose matrix
+Conjugate transposition
+>>> np.trace(A)
+Trace
+Trace
+>>> linalg.norm(A) 
+>>> linalg.norm
+>>> linalg.norm(A,np.inf)
+Norm
+Frobenius norm
+L1 norm (max column sum)
+L inf norm (max row sum)
+>>> np.linalg.matrix_rank(C)
+Rank
+Matrix rank
+>>> linalg.det(A)
+Determinant
+Determinant
+>>> linalg.solve(A,b)
+>>> E = np.mat(a).T
+>>> linalg.lstsq(F,E)
+Solving linear problems
+Solver for dense matrices
+Solver for dense matrices
+Least-squares solution to linear matrix 
+>>> linalg.pinv(C)
+>>> linalg.pinv2(C)
+Generalized inverse
+Compute the pseudo-inverse of a matrix
+ (least-squares solver)
+Compute the pseudo-inverse of
+a matrix (SVD)
+Create a 2X2 identity matrix
+ Create a 2x2 identity matrix
+Compressed Sparse Row matrix
+Compressed Sparse Column matrix
+Dictionary Of Keys matrix
+Sparse matrix to full matrix
+Identify sparse matrix
+https://www.datacamp.com/community/blog/python-scipy-cheat-sheet
+
+--- PAGE 23 ---
+Matplotlib Cheat Sheet
+BecomingHuman.AI 
+Matplotlib is a Python 2D plotting library 
+which produces publication-quality ﬁgures 
+in a variety of hardcopy formats and 
+interactive environments across
+platforms. 
+Also see Lists & NumPy
+Prepare The Data
+>>> import numpy as np
+>>> x = np.linspace(0, 10, 100)
+>>> y = np.cos(x)
+>>> z = np.sin(x)
+Index Tricks
+>>> data = 2 * np.random.random((10, 10))
+>>> data2 = 3 * np.random.random((10, 10))
+>>> Y, X = np.mgrid[-3:3:100j, -3:3:100j]
+>>> U = -1 - X**2 + Y
+>>> V = 1 + X - Y**2
+>>> from matplotlib.cbook import get_sample_data
+>>> img = np.load(get_sample_data('axes_grid/bivariate_normal.npy'))
+2D Data or Images
+Customize Plot
+>>> plt.plot(x, x, x, x**2, x, x**3)
+>>> ax.plot(x, y, alpha = 0.4)
+>>> ax.plot(x, y, c='k')
+>>> ﬁg.colorbar(im, orientation='horizontal')
+>>> im = ax.imshow(img,
+cmap='seismic')
+>>> plt.title(r'$sigma_i=15$', fontsize=20)
+Colors, Color Bars & Color Maps
+Mathtext
+>>> ﬁg, ax = plt.subplots()
+>>> ax.scatter(x,y,marker=".")
+>>> ax.plot(x,y,marker="o")
+Markers
+>>> plt.plot(x,y,linewidth=4.0)
+>>> plt.plot(x,y,ls='solid')
+>>> plt.plot(x,y,ls='--')
+>>> plt.plot(x,y,'--',x**2,y**2,'-.')
+>>> plt.setp(lines,color='r',linewidth=4.0)
+Linestyles
+>>> ax.text(1,
+-2.1, 'Example Graph',
+style='italic')
+>>> ax.annotate("Sine", xy=(8, 0),
+xycoords='data',
+xytext=(10.5, 0),
+textcoords='data',
+arrowprops=dict(arrowstyle="->",  
+connectionstyle="arc3"),)
+Text & Annotations
+Create Plot
+>>> ﬁg = plt.ﬁgure()
+>>> ﬁg2 = plt.ﬁgure(ﬁgsize=plt.ﬁgaspect(2.0))
+>>> ﬁg.add_axes()
+>>> ax1 = ﬁg.add_subplot(221) # row-col-num
+>>> ax3 = ﬁg.add_subplot(212)
+>>> ﬁg3, axes = plt.subplots(nrows=2,ncols=2)
+>>> ﬁg4, axes2 = plt.subplots(ncols=3)
+>>> import matplotlib.pyplot as plt
+Figure
+All plotting is done with respect to an Axes. In most 
+cases, a subplot will ﬁt your needs. A subplot is an 
+axes on a grid system.
+Axes
+Save Plot
+>>> plt.saveﬁg('foo.png')
+Save ﬁgures
+>>> plt.saveﬁg('foo.png', transparent=True)
+Save transparent ﬁgures
+Show Plot
+>>> plt.show()
+Close & Clear 
+>>> plt.cla()
+>>> plt.clf()
+>>> plt.close()
+Plotting Routines
+>>> lines = ax.plot(x,y)
+>>> ax.scatter(x,y)
+>>> axes[0,0].bar([1,2,3],[3,4,5])
+>>> axes[1,0].barh([0.5,1,2.5],[0,1,2])
+>>> axes[1,1].axhline(0.45)
+>>> axes[0,1].axvline(0.65)
+>>> ax.ﬁll(x,y,color='blue')
+>>> ax.ﬁll_between(x,y,color='yellow')
+Draw points with lines or markers connecting them
+Draw unconnected points, scaled or colored
+Plot vertical rectangles (constant width)
+Plot horiontal rectangles (constant height)
+Draw a horizontal line across axes
+Draw a vertical line across axes
+Draw ﬁlled polygons
+Fill between y-values and 0
+1D Data
+>>> axes[0,1].arrow(0,0,0.5,0.5)
+>>> axes[1,1].quiver(y,z)
+>>> axes[0,1].streamplot(X,Y,U,V)
+Add an arrow to the axes
+Plot a 2D ﬁeld of arrows
+Plot 2D vector ﬁelds
+Add padding to a plot
+Set the aspect ratio
+of the plot to 1
+Set limits for x-and y-axis
+Set limits for x-axis
+Set a title and x-and
+y-axis labels
+No overlapping
+plot elements
+Manually set x-ticks
+Make y-ticks longer and
+go in and out
+Make the top axis
+line for a plot invisible
+Move the bottom
+axis line outward
+Vector Fields
+>>> ax1.hist(y)
+>>> ax3.boxplot(y)
+>>> ax3.violinplot(z)
+Plot a histogram
+Make a box and whisker plot
+Make a violin plot
+>>> axes2[0].pcolor(data2)
+>>> axes2[0].pcolormesh(data)
+>>> CS = plt.contour(Y,X,U)
+>>> axes2[2].contourf(data1)
+>>> axes2[2]= ax.clabel(CS)
+Pseudocolor plot of 2D array
+Pseudocolor plot of 2D array
+Plot contours
+Plot ﬁlled contours
+Label a contour plot
+Data Distributions
+>>> ﬁg, ax = plt.subplots()
+>>> im = ax.imshow(img,
+arrays cmap='gist_earth',
+interpolation='nearest',
+vmin=-2,
+vmax=2)
+ Colormapped or RGB 
+2D Data
+>>> ax.margins(x=0.0,y=0.1)
+>>> ax.axis('equal')
+>>> ax.set(xlim=[0,10.5],ylim=[-1.5,1.5])
+>>> ax.set_xlim(0,10.5)
+Limits, Legends & Layouts
+Limits & Autoscaling
+>>> ax.set(title='An Example Axes',
+ylabel='Y-Axis',
+xlabel='X-Axis')
+>>> ax.legend(loc='best')
+Legends
+>>> ax.xaxis.set(ticks=range(1,5),
+ticklabels=[3,100,-12,"foo"])
+direction='inout',
+length=10)
+Ticks
+>>> ﬁg3.subplots_adjust(wspace=0.5,
+hspace=0.3,
+left=0.125,
+right=0.9,
+top=0.9,
+bottom=0.1)
+>>> ﬁg.tight_layout()
+Subplot Spacing
+>>> ax1.spines['top'=].set_visible(False)
+>>> ax1.spines['bottom'].set_position(('outward',10))
+Axis Spines
+Anatomy & Workﬂow
+Plot Anatomy
+Workﬂow
+>>> import matplotlib.pyplot as plt
+>>> x = [1,2,3,4]
+>>> y = [10,20,25,30]
+>>> ﬁg = plt.ﬁgure()
+>>> ax = ﬁg.add_subplot(111)
+>>> ax.plot(x, y, color='lightblue', linewidth=3)
+>>> ax.scatter([2,4,6],
+[5,15,25],
+color='darkgreen',
+marker='^')
+>>> ax.set_xlim(1, 6.5)
+>>> plt.saveﬁg('foo.png')
+>>> plt.show()
+Y-axis
+X-axis
+step 1
+step 2
+step 3
+step 3,4
+step 5
+01
+Prepare data
+02
+Create plot
+03
+ Plot
+04
+Customize plot
+05
+Save plot
+06
+Show plot
+Figure
+Axes/Subplot
+https://www.datacamp.com/community/blog/python-matplotlib-cheat-sheet
+
+--- PAGE 24 ---
+Labels
+t + ggtitle("New Plot Title ")
+   Add a main title above the plot
+t + xlab("New X label")
+   Change the label on the X axis
+t + ylab("New Y label")
+   Change the label on the Y axis
+t + labs(title =" New title", x = "New x", y = "New y")
+   All of the above
+Themes
+Geoms Use a geom to represent data points, use the geom’s aesthetic properties to represent variables. Each function returns a layer
+Data Visualisation
+with ggplot2
+Cheat Sheet
+ggplot2 is based on the grammar of graphics, the idea that you 
+can build every graph from the same few components: a data set, 
+a set of geoms—visual marks that represent data points, and a 
+coordinate system.
+To display data values, map variables in the data set to aesthetic 
+properties of the geom like size, color, and x and y locations
+Basics
+F
+M
+A
+0
+1
+1
+2
+3
+4
+2
+3
+4
+0
+1
+1
+2
+3
+4
+2
+3
+4
++
+=
+data
+geom
+x = F
+y = A
+plot
+coordinate
+system
+F
+M
+A
+0
+1
+1
+2
+3
+4
+2
+3
+4
+0
+1
+1
+2
+3
+4
+2
+3
+4
++
+=
+data
+geom
+x = F
+y = A
+color = F
+size = A
+plot
+coordinate
+system
+Build a graph with qplot() or ggplot()
+qplot(x = cty, y = hwy, color = cyl, data = mpg, geom = "point")
+    Creates a complete plot with given data, geom, and
+    mappings. Supplies many useful defaults.
+last_plot()
+   Returns the last plot
+ggsave("plot.png", width = 5, height = 5)
+   Saves last plot as 5’ x 5’ ﬁle named "plot.png" in
+   working directory. Matches ﬁle type to ﬁle extension.
+ggplot(data = mpg, aes(x = cty, y = hwy))
+   Begins a plot that you ﬁnish by adding layers to. No
+   defaults, but provides more control than qplot(). 
+Add a new layer to a plot with a geom_*() or stat_*() function. Each 
+provides a geom, a set of aesthetic mappings, and a default stat and 
+position adjustment. 
+aesthetic mappings
+data
+data
+add layers, elements with +
+additional elements
+layer = geom + default stat +
+layer speciﬁc mappings
+geom
+ggplot(mpg, aes(hwy, cty)) +
+ geom_point(aes(color = cyl)) +
+ geom_smooth(method ="lm") +
+ coord_cartesian() +
+ scale_color_gradient() +
+ theme_bw()
+Coordinate Systems
+r + coord_cartesian(xlim = c(0, 5)) 
+   xlim, ylim
+   The default cartesian coordinate system
+r + coord_ﬁxed(ratio = 1/2)
+   ratio, xlim, ylim
+   Cartesian coordinates with ﬁxed aspect
+   ratio between x and y units
+r + coord_ﬂip()
+   xlim, ylim
+   Flipped Cartesian coordinates
+r + coord_polar(theta = "x", direction=1 )
+   theta, start, direction
+   Polar coordinates
+r + coord_trans(ytrans = "sqrt")
+   xtrans, ytrans, limx, limy
+   Transformed cartesian coordinates. Set
+   extras and strains to the name
+   of a window function.
+z + coord_map(projection = "ortho",
+   orientation=c(41, -74, 0))
+    projection, orientation, xlim, ylim
+    Map projections from the mapproj package
+    (mercator (default), azequalarea, lagrange, etc.)
+r <- b + geo m_bar()
+Faceting
+t <- ggplot(mpg, aes(cty, hwy)) + geom_point()
+Facets divide a plot into subplots based on the values
+of one or more discrete variables.
+Set labeller to adjust facet labels
+Set scales to let axis limits vary across facets
+        t + facet_grid(y ~ x, scales = "free")
+        x and y axis limits adjust to individual facets
+• "free_x" - x axis limits adjust
+• "free_y" - y axis limits adjust
+t + facet_grid(. ~ ﬂ)
+   facet into columns based on ﬂ
+t + facet_grid(year ~ .)
+   facet into rows based on year
+t + facet_grid(year ~ ﬂ)
+   facet into both rows and columns
+t + facet_wrap(~ ﬂ)
+   wrap facets into a rectangular layoutof one
+   or more discrete variables.
+t + facet_grid(. ~ ﬂ, labeller = label_both)
+ﬂ: c
+ﬂ: d
+ﬂ: e
+ﬂ: p
+ﬂ: r
+t + facet_grid(. ~ ﬂ, labeller = label_both)
+t + facet_grid(. ~ ﬂ, labeller = label_both)
+   c
+  d
+   e
+   p
+   r
+Two Variables
+Three Variables
+Continuous X, Continuous Y
+f <- ggplot(mpg, aes(cty, hwy))
+f + geom_blank()
+Continuous Bivariate Distribution
+i <- ggplot(movies, aes(year, rating))
+Continuous Function
+j <- ggplot(economics, aes(date, unemploy))
+i + geom_bin2d(binwidth = c(5, 0.5))
+   xmax, xmin, ymax, ymin, alpha, color, ﬁll,
+   linetype, size, weight
+i + geom_density2d()
+   x, y, alpha, colour, linetype, size
+i + geom_hex()
+   x, y, alpha, colour, ﬁll size
+j + geom_area()
+   x, y, alpha, color, ﬁll, linetype, size
+Visualizing error
+df <- data.frame(grp = c("A", "B"), ﬁt = 4:5, se = 1:2)
+k <- ggplot(df, aes(grp, ﬁt, ymin = ﬁt-se, ymax = ﬁt+se))
+seals$z <- with(seals, sqrt(delta_long^2 + delta_lat^2))
+m <- ggplot(seals, aes(long, lat))
+k + geom_crossbar(fatten = 2)
+    x, y, ymax, ymin, alpha, color, ﬁll, linetype, size 
+k + geom_errorbar()
+    x, ymax, ymin, alpha, color, linetype, size,
+    width (also geom_errorbarh())
+k + geom_linerange()
+    x, ymin, ymax, alpha, color, linetype, size
+m + geom_contour(aes(z = z))
+x, y, z, alpha, colour, linetype, size, weight
+m + geom_raster(aes(ﬁll = z), hjust=0.5,
+vjust=0.5, interpolate=FALSE)
+x, y, alpha, ﬁll
+m + geom_tile(aes(ﬁll = z))
+x, y, alpha, color, ﬁll, linetype, size
+k + geom_pointrange()
+    x, y, ymin, ymax, alpha, color, ﬁll, linetype, shape, size
+j + geom_line()
+   x, y, alpha, color, linetype, size 
+j + geom_step(direction = "hv")
+   x, y, alpha, color, linetype, size
+f + geom_jitter()
+   x, y, alpha, color, ﬁll, shape, size
+f + geom_point()
+   x, y, alpha, color, ﬁll, shape, size
+f + geom_quantile()
+   x, y, alpha, color, linetype, size, weight
+f + geom_rug(sides = "bl")
+   x, y, alpha, color, linetype, size, weight
+f + geom_smooth(model = lm)
+    x, y, alpha, color, ﬁll, linetype, size, weight 
+f + geom_text(aes(label = cty))
+   x, y, alpha, color, ﬁll, linetype, size, weight 
+AB
+C
+Discrete X, Discrete Y
+h <- ggplot(diamonds, aes(cut, color))
+h + geom_jitter()
+   x, y, alpha, color, ﬁll, linetype, size, 
+Maps
+data <- data.frame(murder = USArrests$Murder,
+state = tolower(rownames(USArrests)))
+map <- map_data("state")
+l <- ggplot(data, aes(ﬁll = murder))
+l + geom_map(aes(map_id = state), map = map) +
+  expand_limits(x = map$long, y = map$lat)
+x, y, alpha, color, ﬁll, linetype, size, 
+Discrete X, Continuous Y
+g <- ggplot(mpg, aes(class, hwy))
+g + geom_bar(stat = "identity")
+    x, y, alpha, color, ﬁll, linetype, size, weight
+g + geom_boxplot()
+   lower, middle, upper, x, ymax, ymin, alpha,
+   color, ﬁll, linetype, shape, size, weight
+g + geom_dotplot(binaxis = "y",
+   stackdir = "center")
+    x, y, alpha, color, ﬁll
+g + geom_violin(scale = "area")
+    x, y, alpha, color, ﬁll, linetype, size, weight
+One Variable
+Graphical Primitives
+Continuous
+a <- ggplot(mpg, aes(hwy))
+Discrete
+b <- ggplot(mpg, aes(ﬂ))
+c <- ggplot(map, aes(long, lat))
+a + geom_area(stat = "bin")
+   x, y, alpha, color, ﬁll, linetype, size
+   b + geom_area(aes(y = ..density..), stat = "bin")
+a + geom_density(kernel = "gaussian")
+   x, y, alpha, color, ﬁll, linetype, size, weight
+   b + geom_density(aes(y = ..county..))
+a + geom_dotplot()
+   x, y, alpha, color, ﬁll
+a + geom_freqpoly()
+   x, y, alpha, color, linetype, size
+   b + geom_freqpoly(aes(y = ..density..))
+a + geom_histogram(binwidth = 5)
+   x, y, alpha, color, ﬁll, linetype, size, weight
+   b + geom_histogram(aes(y = ..density..))
+b + geom_bar() 
+   x, alpha, color, ﬁll, linetype, size, weight
+c + geom_polygon(aes(group = group))
+   x, y, alpha, color, ﬁll, linetype, size
+d <- ggplot(economics, aes(date, unemploy))
+d + geom_path(lineend="butt",
+  linejoin="round’, linemitre=1)
+   x, y, alpha, color, linetype, size 
+d + geom_ribbon(aes(ymin=unemploy - 900,
+  ymax=unemploy + 900))
+   x, ymax, ymin, alpha, color, ﬁll, linetype, size
+d <- ggplot(economics, aes(date, unemploy))
+e + geom_segment(aes(
+  xend = long + delta_long,
+  yend = lat + delta_lat))
+   x, xend, y, yend, alpha, color, linetype, size
+e + geom_rect(aes(xmin = long, ymin = lat,
+  xmax= long + delta_long,
+  ymax = lat + delta_lat))
+   xmax, xmin, ymax, ymin, alpha, color, ﬁll, linetype, size
+Some plots visualize a transformation of the original data set. 
+Use a stat to choose a common transformation to visualize,
+e.g. a + geom_bar(stat = "bin")
+Each stat creates additional variables to map aesthetics to. These 
+variables use a common ..name.. syntax. stat functions and geom 
+functions both combine a stat with a geom to make a layer, i.e. 
+stat_bin(geom="bar") does the same as geom_bar(stat="bin") 
+Stats  An alternative way to build a layer
+a + stat_bin(binwidth = 1, origin = 10)
+   x, y | ..count.., ..ncount.., ..density.., ..ndensity..
+a + stat_bindot(binwidth = 1, binaxis = "x")
+   x, y, | ..count.., ..ncount..
+a + stat_density(adjust = 1, kernel = "gaussian")
+   x, y, | ..count.., ..density.., ..scaled..
+f + stat_bin2d(bins = 30, drop = TRUE)
+   x, y, ﬁll | ..count.., ..density..
+f + stat_binhex(bins = 30)
+   x, y, ﬁll | ..count.., ..density..
+f + stat_density2d(contour = TRUE, n = 100)
+   x, y, color, size | ..level..
+m + stat_contour(aes(z = z))
+   x, y, z, order | ..level..
+m+ stat_spoke(aes(radius= z, angle = z))
+   angle, radius, x, xend, y, yend | ..x.., ..xend.., ..y.., ..yend..
+m + stat_summary_hex(aes(z = z), bins = 30, fun = mean)
+   x, y, z, ﬁll | ..value..
+g + stat_boxplot(coef = 1.5)
+   x, y | ..lower.., ..middle.., ..upper.., ..outliers..
+g + stat_ydensity(adjust = 1, kernel = "gaussian", scale = "area")
+   x, y | ..density.., ..scaled.., ..count.., ..n.., ..violinwidth.., ..width..
+f + stat_ecdf(n = 40)
+   x, y | ..x.., ..y..
+f + stat_quantile(quantiles = c(0.25, 0.5, 0.75), formula = y ~ log(x),
+  method = "rq")
+   x, y | ..quantile.., ..x.., ..y..
+f + stat_smooth(method = "auto", formula = y ~ x, se = TRUE, n = 80,
+  fullrange = FALSE, level = 0.95)
+   x, y | ..se.., ..x.., ..y.., ..ymin.., ..ymax..
+f + stat_ecdf(n = 40)
+   x, y | ..x.., ..y..
+f + stat_quantile(quantiles = c(0.25, 0.5, 0.75), formula = y ~ log(x),
+  method = "rq")
+   x, y | ..quantile.., ..x.., ..y..
+f + stat_smooth(method = "auto", formula = y ~ x, se = TRUE, n = 80,
+  fullrange = FALSE, level = 0.95)
+   x, y | ..se.., ..x.., ..y.., ..ymin.., ..ymax..
+ggplot() + stat_function(aes(x = -3:3),
+  fun = dnorm, n = 101, args = list(sd=0.5))
+   x | ..y..
+f + stat_identity()
+ggplot() + stat_qq(aes(sample=1:100), distribution = qt,
+dparams = list(df=5))
+sample, x, y | ..x.., ..y..
+f + stat_sum()
+x, y, size | ..size..
+f + stat_summary(fun.data = "mean_cl_boot")
+f + stat_unique()
+F
+M
+A
+0
+1
+1
+2
+3
+4
+2
+3
+4
+0
+1
+1
+2
+3
+4
+2
+3
+4
++
+=
+stat
+geom
+x = x
+y = ...count...
+plot
+coordinate
+system
+ﬂ
+cty ctl
+data
+i + stat_density2d(aes(ﬁll = ..level..),
+geom = "polygon", n = 100)
+stat
+function
+layer speciﬁc
+mappings
+variable created
+by transformation
+parameters for stat
+geom for layer
+Scales control how a plot maps data values to the visual values of 
+an aesthetic. To change the mapping, add a ustom scale.
+Scales
+n <- b + geom_bar(aes(ﬁll = ﬂ))
+n
+General Purpose scales
+Use with any aesthetic:
+alpha, color, ﬁll, linetype, shape, size
+scale_*_continuous() - map cont’ values to visual values
+scale_*_discrete() - map discrete values to visual values
+scale_*_identity() - use data values as visual values
+scale_*_manual(values = c()) - map discrete values to
+   manually chosen visual values
+X and Y location scales
+Use with x or y aesthetics (x shown here)
+scale_x_date(labels = date_format("%m/%d"),
+   breaks = date_breaks("2 weeks")) 
+- treat x values as dates. See ?strptime for label formats.
+scale_x_datetime() - treat x values as date times. Use
+same arguments as scale_x_date().
+scale_x_log10() - Plot x on log10 scale
+scale_x_reverse() - Reverse direction of x axis
+scale_x_sqrt() - Plot x on square root scale
+Color and ﬁll scales
+Use with x or y aesthetics (x shown here)
+Shape scales
+Size scales
+n <- b + geom_bar(
+  aes(ﬁll = ﬂ))
+n + scale_ﬁll_brewer(
+  palette = "Blues")
+For palette choices:
+library(RcolorBrewer)
+display.brewer.all()
+n + scale_ﬁll_grey(
+  start = 0.2, end = 0.8,
+  na.value = "red")
+o <- a + geom_dotplot(
+aes(ﬁll = ..x..))
+o + scale_ﬁll_gradient(
+low = "red",
+   high = "yellow")
+o + scale_ﬁll_gradient2(
+low = "red", hight = "blue",
+   mid = "white", midpoint = 25)
+o + scale_ﬁll_gradientn(
+colours = terrain.colors(6))
+Also: rainbow(), heat.colors(),
+topo.colors(), cm.colors(),
+RColorBrewer::brewer.pal()
+p <- f + geom_point(
+aes(shape = ﬂ))
+p + scale_shape(
+solid = FALSE)
+p + scale_shape_manual(
+values = c(3:7))
+Shape values shown in
+chart on right
+q <- f + geom_point(
+   aes(size = cyl))
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+*
+.
+0
+O
+q + scale_size_area(max = 6)
+    Value mapped to area of circle
+    (not radius)
+n + scale_ﬁll_manual(
+   values = c("skyblue", "royalblue", "blue", "navy"),
+   limits = c("d", "e", "p", "r"), breaks =c("d", "e", "p", "r"),
+   name = "fuel", labels = c("D", "E", "P", "R"))
+Position adjustments determine how to arrange geoms that would otherwise occupy the 
+same space
+Each position adjustment can be recast as a function with manual width and height 
+arguments 
+s + geom_bar(position = position_dodge(width = 1))
+Position Adjustments
+s <- ggplot(mpg, aes(ﬂ, ﬁll = drv))
+s + geom_bar(position = "dodge")
+   Arrange elements side by side
+s + geom_bar(position = "ﬁll")
+Stack elements on top of one another, normalize height
+s + geom_bar(position = "stack")
+Stack elements on top of one another
+f + geom_point(position = "jitter")
+Add random noise to X and Y position of each element to avoid overplotting
+Legends
+t + theme(legend.position = "bottom")
+   Place legend at "bottom", "top", "left", or "right"
+t + guides(color = "none")
+   Set legend type for each aesthetic: colorbar, legend, or none (no legend)
+t + scale_ﬁll_discrete(name = "Title", labels = c("A", "B", "C"))
+   Set legend title and labels with a scale function.
+Use scale functions
+to update legend
+labels
+r + theme_bw()
+White background
+with grid lines
+r + theme_grey()
+Grey background
+(default theme)
+r + theme_classic()
+White background
+no gridlines
+r + theme_minimal()
+Minimal theme
+ggthemes - Package with additional ggplot2 themes
+Zooming
+Without clipping (preferred)
+t + coord_cartesian(
+     xlim = c(0, 100), ylim = c(10, 20))
+With clipping (removes unseen data points)
+t + xlim(0, 100) + ylim(10, 20)
+t + scale_x_continuous(limits = c(0, 100)) +
+      scale_y_continuous(limits = c(0, 100))
+range of
+values to
+include in
+mapping
+scale_
+aesthetic
+to adjust
+prepackaged
+scale to use
+title to use in
+legend/axis
+labels to use in
+legend/axis
+breaks to
+use in
+legend/axis
+Creative Commons Data Visualisation with ggplot2 by RStudio is licensed under CC BY SA 4.0
+
+--- PAGE 25 ---
+Big-O Cheat Sheet
+BecomingHuman.AI 
+Data Structure
+Operation
+Array
+Stack
+Queue
+Singly-Linked List
+Doubly-Linked List
+Skip List
+Hash Table
+Binary Search Tree
+Cartesian Tree
+B-Tree
+Red-Black Tree
+Splay Tree
+AVL Tree
+KD Tree
+Θ(1)
+Θ(1)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+N/A
+N/A
+N/A
+N/A
+N/A
+N/A
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(1)
+Θ(1)
+Θ(1)
+Θ(1)
+Θ(1)
+Θ(n)
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(1)
+Θ(1)
+Θ(1)
+Θ(1)
+Θ(1)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(1)
+Θ(1)
+Θ(1)
+Θ(1)
+Θ(1)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+O(n log(n))
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(n)
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(log(n))
+Θ(1)
+Θ(1)
+Θ(1)
+Θ(1)
+Access
+Search
+Insertion
+Deletion
+Access
+Search
+Insertion
+Deletion
+Average
+Worst
+Worst
+Time Complexity
+Space Complexity
+Array Sorting
+Algorithms
+Quicksort
+Mergesort
+Timsort
+Heapsort
+Bubble Sort
+Insertion Sort
+Selection Sort 
+Tree Sort
+Shell Sort
+Bucket Sort
+Radix Sort
+Counting Sort
+Cubesort
+Ω(n)
+Ω(n^2)
+Ω(n)
+Ω(n)
+Ω(n)
+Ω(n log(n))
+Ω(n log(n))
+Ω(n log(n))
+Ω(n log(n))
+Ω(n log(n))
+Ω(n+k)
+Ω(n+k)
+Ω(n+k)
+Θ(n^2)
+Θ(n^2)
+Θ(n^2)
+Θ(n log(n))
+Θ(n log(n))
+Θ(n log(n))
+Θ(n log(n))
+Θ(n log(n))
+Θ(n log(n))
+Θ(n(log(n))^2)
+O(n(log(n))^2)
+Θ(n+k)
+Θ(n+k)
+Θ(n+k)
+O(n^2)
+O(n^2)
+O(n^2)
+O(n^2)
+O(n^2)
+O(n^2)
+O(n log(n))
+O(n log(n))
+O(n log(n))
+Ω(n+k)
+Ω(n+k)
+O(n log(n))
+Θ(n)
+Ω(n^2)
+Θ(n)
+Θ(n)
+O(n log(n))
+O(n log(n))
+O(n log(n))
+O(n log(n))
+O(n log(n))
+Ω(n+k)
+Ω(n+k)
+Ω(n+k)
+O(n log(n))
+1 10 100
+Best
+Average
+Worst
+Worst
+Time Complexity
+Space Complexity
+Big-O Complexity Chart
+Operations
+Elements
+Horrible
+Bad
+Fair
+Good
+Excellent
+O(n log n)
+O(n)
+O(log n), O(1)
+O(n^2)
+O(2^n)
+O(n!)
+http://bigocheatsheet.com/
+Originally created by bigocheatsheet.com
+

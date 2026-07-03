@@ -1,0 +1,1413 @@
+--- PAGE 1 ---
+CS 221 – Artificial Intelligence
+Afshine Amidi & Shervine Amidi
+Super VIP Cheatsheet: Artiﬁcial Intelligence
+Afshine Amidi and Shervine Amidi
+May 26, 2019
+Contents
+1
+Reﬂex-based models
+2
+1.1
+Linear predictors . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2
+1.1.1
+Classiﬁcation . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2
+1.1.2
+Regression . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2
+1.2
+Loss minimization . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2
+1.3
+Non-linear predictors . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3
+1.4
+Stochastic gradient descent
+. . . . . . . . . . . . . . . . . . . . . . .
+3
+1.5
+Fine-tuning models . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3
+1.6
+Unsupervised Learning . . . . . . . . . . . . . . . . . . . . . . . . . .
+4
+1.6.1
+k-means . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4
+1.6.2
+Principal Component Analysis
+. . . . . . . . . . . . . . . .
+4
+2
+States-based models
+5
+2.1
+Search optimization
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+5
+2.1.1
+Tree search . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5
+2.1.2
+Graph search . . . . . . . . . . . . . . . . . . . . . . . . . . .
+6
+2.1.3
+Learning costs . . . . . . . . . . . . . . . . . . . . . . . . . .
+7
+2.1.4
+A⋆search
+. . . . . . . . . . . . . . . . . . . . . . . . . . . .
+7
+2.1.5
+Relaxation . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+8
+2.2
+Markov decision processes . . . . . . . . . . . . . . . . . . . . . . . .
+8
+2.2.1
+Notations
+. . . . . . . . . . . . . . . . . . . . . . . . . . . .
+8
+2.2.2
+Applications . . . . . . . . . . . . . . . . . . . . . . . . . . .
+9
+2.2.3
+When unknown transitions and rewards . . . . . . . . . . . . .
+9
+2.3
+Game playing
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+10
+2.3.1
+Speeding up minimax . . . . . . . . . . . . . . . . . . . . . .
+11
+2.3.2
+Simultaneous games . . . . . . . . . . . . . . . . . . . . . . .
+11
+2.3.3
+Non-zero-sum games . . . . . . . . . . . . . . . . . . . . . . .
+12
+3
+Variables-based models
+12
+3.1
+Constraint satisfaction problems . . . . . . . . . . . . . . . . . . . . .
+12
+3.1.1
+Factor graphs
+. . . . . . . . . . . . . . . . . . . . . . . . . .
+12
+3.1.2
+Dynamic ordering . . . . . . . . . . . . . . . . . . . . . . . .
+12
+3.1.3
+Approximate methods . . . . . . . . . . . . . . . . . . . . . .
+13
+3.1.4
+Factor graph transformations
+. . . . . . . . . . . . . . . . . .
+13
+3.2
+Bayesian networks . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+14
+3.2.1
+Introduction
+. . . . . . . . . . . . . . . . . . . . . . . . . .
+14
+3.2.2
+Probabilistic programs . . . . . . . . . . . . . . . . . . . . . .
+15
+3.2.3
+Inference . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+15
+4
+Logic-based models
+16
+4.1
+Concepts . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+16
+4.2
+Propositional logic . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+17
+4.3
+First-order logic
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+17
+Stanford University
+1
+Spring 2019
+
+--- PAGE 2 ---
+CS 221 – Artificial Intelligence
+Afshine Amidi & Shervine Amidi
+1
+Reﬂex-based models
+1.1
+Linear predictors
+In this section, we will go through reﬂex-based models that can improve with experience, by
+going through samples that have input-output pairs.
+Ì Feature vector – The feature vector of an input x is noted φ(x) and is such that:
+φ(x) =
+" φ1(x)
+...
+φd(x)
+#
+∈Rd
+Ì Score – The score s(x,w) of an example (φ(x),y) ∈Rd × R associated to a linear model of
+weights w ∈Rd is given by the inner product:
+s(x,w) = w · φ(x)
+1.1.1
+Classiﬁcation
+Ì Linear classiﬁer – Given a weight vector w ∈Rd and a feature vector φ(x) ∈Rd, the binary
+linear classiﬁer fw is given by:
+fw(x) = sign(s(x,w)) =
+ +1
+if w · φ(x) > 0
+−1
+if w · φ(x) < 0
+?
+if w · φ(x) = 0
+Ì Margin – The margin m(x,y,w) ∈R of an example (φ(x),y) ∈Rd × {−1, + 1} associated to
+a linear model of weights w ∈Rd quantiﬁes the conﬁdence of the prediction: larger values are
+better. It is given by:
+m(x,y,w) = s(x,w) × y
+1.1.2
+Regression
+Ì Linear regression – Given a weight vector w ∈Rd and a feature vector φ(x) ∈Rd, the
+output of a linear regression of weights w denoted as fw is given by:
+fw(x) = s(x,w)
+Ì Residual – The residual res(x,y,w) ∈R is deﬁned as being the amount by which the prediction
+fw(x) overshoots the target y:
+res(x,y,w) = fw(x) −y
+1.2
+Loss minimization
+Ì Loss function – A loss function Loss(x,y,w) quantiﬁes how unhappy we are with the weights
+w of the model in the prediction task of output y from input x. It is a quantity we want to
+minimize during the training process.
+Ì Classiﬁcation case – The classiﬁcation of a sample x of true label y ∈{−1,+1} with a linear
+model of weights w can be done with the predictor fw(x) ≜sign(s(x,w)). In this situation, a
+metric of interest quantifying the quality of the classiﬁcation is given by the margin m(x,y,w),
+and can be used with the following loss functions:
+Name
+Zero-one loss
+Hinge loss
+Logistic loss
+Loss(x,y,w)
+1{m(x,y,w)⩽0}
+max(1 −m(x,y,w), 0)
+log(1 + e−m(x,y,w))
+Illustration
+Ì Regression case – The prediction of a sample x of true label y ∈R with a linear model of
+weights w can be done with the predictor fw(x) ≜s(x,w). In this situation, a metric of interest
+quantifying the quality of the regression is given by the margin res(x,y,w) and can be used with
+the following loss functions:
+Name
+Squared loss
+Absolute deviation loss
+Loss(x,y,w)
+(res(x,y,w))2
+|res(x,y,w)|
+Illustration
+Stanford University
+2
+Spring 2019
+
+--- PAGE 3 ---
+CS 221 – Artificial Intelligence
+Afshine Amidi & Shervine Amidi
+Ì Loss minimization framework – In order to train a model, we want to minimize the
+training loss is deﬁned as follows:
+TrainLoss(w) =
+1
+|Dtrain|
+X
+(x,y)∈Dtrain
+Loss(x,y,w)
+1.3
+Non-linear predictors
+Ì k-nearest neighbors – The k-nearest neighbors algorithm, commonly known as k-NN, is a
+non-parametric approach where the response of a data point is determined by the nature of its
+k neighbors from the training set. It can be used in both classiﬁcation and regression settings.
+Remark: the higher the parameter k, the higher the bias, and the lower the parameter k, the
+higher the variance.
+Ì Neural networks – Neural networks are a class of models that are built with layers. Com-
+monly used types of neural networks include convolutional and recurrent neural networks. The
+vocabulary around neural networks architectures is described in the ﬁgure below:
+By noting i the ith layer of the network and j the jth hidden unit of the layer, we have:
+z[i]
+j
+= w[i]
+j
+T x + b[i]
+j
+where we note w, b, x, z the weight, bias, input and non-activated output of the neuron respec-
+tively.
+1.4
+Stochastic gradient descent
+Ì Gradient descent – By noting η ∈R the learning rate (also called step size), the update
+rule for gradient descent is expressed with the learning rate and the loss function Loss(x,y,w) as
+follows:
+w ←−w −η∇wLoss(x,y,w)
+Ì Stochastic updates – Stochastic gradient descent (SGD) updates the parameters of the
+model one training example (φ(x),y) ∈Dtrain at a time. This method leads to sometimes noisy,
+but fast updates.
+Ì Batch updates – Batch gradient descent (BGD) updates the parameters of the model one
+batch of examples (e.g. the entire training set) at a time. This method computes stable update
+directions, at a greater computational cost.
+1.5
+Fine-tuning models
+Ì Hypothesis class – A hypothesis class F is the set of possible predictors with a ﬁxed φ(x)
+and varying w:
+F = 
+fw : w ∈Rd	
+Ì Logistic function – The logistic function σ, also called the sigmoid function, is deﬁned as:
+∀z ∈] −∞, + ∞[,
+σ(z) =
+1
+1 + e−z
+Remark: we have σ′(z) = σ(z)(1 −σ(z)).
+Ì Backpropagation – The forward pass is done through fi, which is the value for the subex-
+pression rooted at i, while the backward pass is done through gi = ∂out
+∂fi
+and represents how fi
+inﬂuences the output.
+Ì Approximation and estimation error – The approximation error ϵapprox represents how
+far the entire hypothesis class F is from the target predictor g∗, while the estimation error ϵest
+quantiﬁes how good the predictor ˆf is with respect to the best predictor f∗of the hypothesis
+class F.
+Stanford University
+3
+Spring 2019
+
+--- PAGE 4 ---
+CS 221 – Artificial Intelligence
+Afshine Amidi & Shervine Amidi
+Ì Regularization – The regularization procedure aims at avoiding the model to overﬁt the
+data and thus deals with high variance issues. The following table sums up the diﬀerent types
+of commonly used regularization techniques:
+LASSO
+Ridge
+Elastic Net
+- Shrinks coeﬃcients to 0
+- Good for variable selection
+Makes coeﬃcients smaller
+Tradeoﬀbetween variable
+selection and small coeﬃcients
+... + λ||θ||1
+... + λ||θ||2
+2
+... + λ
+h
+(1 −α)||θ||1 + α||θ||2
+2
+i
+λ ∈R
+λ ∈R
+λ ∈R,
+α ∈[0,1]
+Ì Hyperparameters – Hyperparameters are the properties of the learning algorithm, and
+include features, regularization parameter λ, number of iterations T, step size η, etc.
+Ì Sets vocabulary – When selecting a model, we distinguish 3 diﬀerent parts of the data that
+we have as follows:
+Training set
+Validation set
+Testing set
+- Model is trained
+- Usually 80 of the dataset
+- Model is assessed
+- Usually 20 of the dataset
+- Also called hold-out
+- Model gives predictions
+- Unseen data
+or development set
+Once the model has been chosen, it is trained on the entire dataset and tested on the unseen
+test set. These are represented in the ﬁgure below:
+1.6
+Unsupervised Learning
+The class of unsupervised learning methods aims at discovering the structure of the data, which
+may have of rich latent structures.
+1.6.1
+k-means
+Ì Clustering – Given a training set of input points Dtrain, the goal of a clustering algorithm
+is to assign each point φ(xi) to a cluster zi ∈{1,...,k}.
+Ì Objective function – The loss function for one of the main clustering algorithms, k-means,
+is given by:
+Lossk-means(x,µ) =
+n
+X
+i=1
+||φ(xi) −µzi||2
+Ì Algorithm – After randomly initializing the cluster centroids µ1,µ2,...,µk ∈Rn, the k-means
+algorithm repeats the following step until convergence:
+zi = arg min
+j
+||φ(xi) −µj||2
+and
+µj =
+m
+X
+i=1
+1{zi=j}φ(xi)
+m
+X
+i=1
+1{zi=j}
+1.6.2
+Principal Component Analysis
+Ì Eigenvalue, eigenvector – Given a matrix A ∈Rn×n, λ is said to be an eigenvalue of A if
+there exists a vector z ∈Rn\{0}, called eigenvector, such that we have:
+Az = λz
+Stanford University
+4
+Spring 2019
+
+--- PAGE 5 ---
+CS 221 – Artificial Intelligence
+Afshine Amidi & Shervine Amidi
+Ì Spectral theorem – Let A ∈Rn×n. If A is symmetric, then A is diagonalizable by a real
+orthogonal matrix U ∈Rn×n. By noting Λ = diag(λ1,...,λn), we have:
+∃Λ diagonal,
+A = UΛUT
+Remark: the eigenvector associated with the largest eigenvalue is called principal eigenvector of
+matrix A.
+Ì Algorithm – The Principal Component Analysis (PCA) procedure is a dimension reduction
+technique that projects the data on k dimensions by maximizing the variance of the data as
+follows:
+• Step 1: Normalize the data to have a mean of 0 and standard deviation of 1.
+x(i)
+j
+←
+x(i)
+j
+−µj
+σj
+where
+µj = 1
+m
+m
+X
+i=1
+x(i)
+j
+and
+σ2
+j = 1
+m
+m
+X
+i=1
+(x(i)
+j
+−µj)2
+• Step 2: Compute Σ = 1
+m
+m
+X
+i=1
+x(i)x(i)T ∈Rn×n, which is symmetric with real eigenvalues.
+• Step 3: Compute u1, ..., uk ∈Rn the k orthogonal principal eigenvectors of Σ, i.e. the
+orthogonal eigenvectors of the k largest eigenvalues.
+• Step 4: Project the data on spanR(u1,...,uk).
+This procedure maximizes the variance
+among all k-dimensional spaces.
+2
+States-based models
+2.1
+Search optimization
+In this section, we assume that by accomplishing action a from state s, we deterministically
+arrive in state Succ(s,a). The goal here is to determine a sequence of actions (a1,a2,a3,a4,...)
+that starts from an initial state and leads to an end state. In order to solve this kind of problem,
+our objective will be to ﬁnd the minimum cost path by using states-based models.
+2.1.1
+Tree search
+This category of states-based algorithms explores all possible states and actions.
+It is quite
+memory eﬃcient, and is suitable for huge state spaces but the runtime can become exponential
+in the worst cases.
+Ì Search problem – A search problem is deﬁned with:
+• a starting state sstart
+• possible actions Actions(s) from state s
+• action cost Cost(s,a) from state s with action a
+• successor Succ(s,a) of state s after action a
+• whether an end state was reached IsEnd(s)
+The objective is to ﬁnd a path that minimizes the cost.
+Ì Backtracking search – Backtracking search is a naive recursive algorithm that tries all
+possibilities to ﬁnd the minimum cost path. Here, action costs can be either positive or negative.
+Ì Breadth-ﬁrst search (BFS) – Breadth-ﬁrst search is a graph search algorithm that does a
+level-by-level traversal. We can implement it iteratively with the help of a queue that stores at
+Stanford University
+5
+Spring 2019
+
+--- PAGE 6 ---
+CS 221 – Artificial Intelligence
+Afshine Amidi & Shervine Amidi
+each step future nodes to be visited. For this algorithm, we can assume action costs to be equal
+to a constant c ⩾0.
+Ì Depth-ﬁrst search (DFS) – Depth-ﬁrst search is a search algorithm that traverses a graph
+by following each path as deep as it can. We can implement it recursively, or iteratively with
+the help of a stack that stores at each step future nodes to be visited. For this algorithm, action
+costs are assumed to be equal to 0.
+Ì Iterative deepening – The iterative deepening trick is a modiﬁcation of the depth-ﬁrst
+search algorithm so that it stops after reaching a certain depth, which guarantees optimality
+when all action costs are equal. Here, we assume that action costs are equal to a constant c ⩾0.
+Ì Tree search algorithms summary – By noting b the number of actions per state, d the
+solution depth, and D the maximum depth, we have:
+Algorithm
+Action costs
+Space
+Time
+Backtracking search
+any
+O(D)
+O(bD)
+Breadth-ﬁrst search
+c ⩾0
+O(bd)
+O(bd)
+Depth-ﬁrst search
+0
+O(D)
+O(bD)
+DFS-Iterative deepening
+c ⩾0
+O(d)
+O(bd)
+2.1.2
+Graph search
+This category of states-based algorithms aims at constructing optimal paths, enabling exponen-
+tial savings. In this section, we will focus on dynamic programming and uniform cost search.
+Ì Graph – A graph is comprised of a set of vertices V (also called nodes) as well as a set of
+edges E (also called links).
+Remark: a graph is said to be acylic when there is no cycle.
+Ì State – A state is a summary of all past actions suﬃcient to choose future actions optimally.
+Ì Dynamic programming – Dynamic programming (DP) is a backtracking search algorithm
+with memoization (i.e. partial results are saved) whose goal is to ﬁnd a minimum cost path from
+state s to an end state send. It can potentially have exponential savings compared to traditional
+graph search algorithms, and has the property to only work for acyclic graphs. For any given
+state s, the future cost is computed as follows:
+FutureCost(s) =
+ 0
+if IsEnd(s)
+min
+a∈Actions(s)
+
+Cost(s,a) + FutureCost(Succ(s,a))
+otherwise
+Remark: the ﬁgure above illustrates a bottom-to-top approach whereas the formula provides the
+intuition of a top-to-bottom problem resolution.
+Ì Types of states – The table below presents the terminology when it comes to states in the
+context of uniform cost search:
+Stanford University
+6
+Spring 2019
+
+--- PAGE 7 ---
+CS 221 – Artificial Intelligence
+Afshine Amidi & Shervine Amidi
+State
+Explanation
+Explored E
+States for which the optimal path has
+already been found
+Frontier F
+States seen for which we are still ﬁguring out
+how to get there with the cheapest cost
+Unexplored U
+States not seen yet
+Ì Uniform cost search – Uniform cost search (UCS) is a search algorithm that aims at ﬁnding
+the shortest path from a state sstart to an end state send. It explores states s in increasing order
+of PastCost(s) and relies on the fact that all action costs are non-negative.
+Remark 1: the UCS algorithm is logically equivalent to Djikstra’s algorithm.
+Remark 2: the algorithm would not work for a problem with negative action costs, and adding a
+positive constant to make them non-negative would not solve the problem since this would end
+up being a diﬀerent problem.
+Ì Correctness theorem – When a state s is popped from the frontier F and moved to explored
+set E, its priority is equal to PastCost(s) which is the minimum cost path from sstart to s.
+Ì Graph search algorithms summary – By noting N the number of total states, n of which
+are explored before the end state send, we have:
+Algorithm
+Acyclicity
+Costs
+Time/space
+Dynamic programming
+yes
+any
+O(N)
+Uniform cost search
+no
+c ⩾0
+O(n log(n))
+Remark: the complexity countdown supposes the number of possible actions per state to be
+constant.
+2.1.3
+Learning costs
+Suppose we are not given the values of Cost(s,a), we want to estimate these quantities from a
+training set of minimizing-cost-path sequence of actions (a1, a2, ..., ak).
+Ì Structured perceptron – The structured perceptron is an algorithm aiming at iteratively
+learning the cost of each state-action pair. At each step, it:
+• decreases the estimated cost of each state-action of the true minimizing path y given by
+the training data,
+• increases the estimated cost of each state-action of the current predicted path y′ inferred
+from the learned weights.
+Remark: there are several versions of the algorithm, one of which simpliﬁes the problem to only
+learning the cost of each action a, and the other parametrizes Cost(s,a) to a feature vector of
+learnable weights.
+2.1.4
+A⋆search
+Ì Heuristic function – A heuristic is a function h over states s, where each h(s) aims at
+estimating FutureCost(s), the cost of the path from s to send.
+Ì Algorithm – A∗is a search algorithm that aims at ﬁnding the shortest path from a state s to
+an end state send. It explores states s in increasing order of PastCost(s) + h(s). It is equivalent
+to a uniform cost search with edge costs Cost′(s,a) given by:
+Cost′(s,a) = Cost(s,a) + h(Succ(s,a)) −h(s)
+Remark: this algorithm can be seen as a biased version of UCS exploring states estimated to be
+closer to the end state.
+Ì Consistency – A heuristic h is said to be consistent if it satisﬁes the two following properties:
+• For all states s and actions a,
+h(s) ⩽Cost(s,a) + h(Succ(s,a))
+• The end state veriﬁes the following:
+h(send) = 0
+Stanford University
+7
+Spring 2019
+
+--- PAGE 8 ---
+CS 221 – Artificial Intelligence
+Afshine Amidi & Shervine Amidi
+Ì Correctness – If h is consistent, then A∗returns the minimum cost path.
+Ì Admissibility – A heuristic h is said to be admissible if we have:
+h(s) ⩽FutureCost(s)
+Ì Theorem – Let h(s) be a given heuristic. We have:
+h(s) consistent =⇒h(s) admissible
+Ì Eﬃciency – A∗explores all states s satisfying the following equation:
+PastCost(s) ⩽PastCost(send) −h(s)
+Remark: larger values of h(s) is better as this equation shows it will restrict the set of states s
+going to be explored.
+2.1.5
+Relaxation
+It is a framework for producing consistent heuristics. The idea is to ﬁnd closed-form reduced
+costs by removing constraints and use them as heuristics.
+Ì Relaxed search problem – The relaxation of search problem P with costs Cost is noted
+Prel with costs Costrel, and satisﬁes the identity:
+Costrel(s,a) ⩽Cost(s,a)
+Ì Relaxed heuristic – Given a relaxed search problem Prel, we deﬁne the relaxed heuristic
+h(s) = FutureCostrel(s) as the minimum cost path from s to an end state in the graph of costs
+Costrel(s,a).
+Ì Consistency of relaxed heuristics – Let Prel be a given relaxed problem. By theorem, we
+have:
+h(s) = FutureCostrel(s) =⇒h(s) consistent
+Ì Tradeoﬀwhen choosing heuristic – We have to balance two aspects in choosing a heuristic:
+• Computational eﬃciency: h(s) = FutureCostrel(s) must be easy to compute. It has to
+produce a closed form, easier search and independent subproblems.
+• Good enough approximation: the heuristic h(s) should be close to FutureCost(s) and we
+have thus to not remove too many constraints.
+Ì Max heuristic – Let h1(s), h2(s) be two heuristics. We have the following property:
+h1(s), h2(s) consistent =⇒h(s) = max{h1(s), h2(s)} consistent
+2.2
+Markov decision processes
+In this section, we assume that performing action a from state s can lead to several states s′
+1,s′
+2,...
+in a probabilistic manner. In order to ﬁnd our way between an initial state and an end state,
+our objective will be to ﬁnd the maximum value policy by using Markov decision processes that
+help us cope with randomness and uncertainty.
+2.2.1
+Notations
+Ì Deﬁnition – The objective of a Markov decision process is to maximize rewards. It is deﬁned
+with:
+• a starting state sstart
+• possible actions Actions(s) from state s
+• transition probabilities T(s,a,s′) from s to s′ with action a
+• rewards Reward(s,a,s′) from s to s′ with action a
+• whether an end state was reached IsEnd(s)
+• a discount factor 0 ⩽γ ⩽1
+Ì Transition probabilities – The transition probability T(s,a,s′) speciﬁes the probability
+of going to state s′ after action a is taken in state s.
+Each s′ 7→T(s,a,s′) is a probability
+distribution, which means that:
+∀s,a,
+X
+s′∈States
+T(s,a,s′) = 1
+Ì Policy – A policy π is a function that maps each state s to an action a, i.e.
+π : s 7→a
+Ì Utility – The utility of a path (s0, ..., sk) is the discounted sum of the rewards on that path.
+In other words,
+Stanford University
+8
+Spring 2019
+
+--- PAGE 9 ---
+CS 221 – Artificial Intelligence
+Afshine Amidi & Shervine Amidi
+u(s0,...,sk) =
+k
+X
+i=1
+riγi−1
+Remark: the ﬁgure above is an illustration of the case k = 4.
+Ì Q-value – The Q-value of a policy π by taking action a from state s, also noted Qπ(s,a), is
+the expected utility of taking action a from state s and then following policy π. It is deﬁned as
+follows:
+Qπ(s,a) =
+X
+s′∈States
+T(s,a,s′)
+Reward(s,a,s′) + γVπ(s′)
+Ì Value of a policy – The value of a policy π from state s, also noted Vπ(s), is the expected
+utility by following policy π from state s over random paths. It is deﬁned as follows:
+Vπ(s) = Qπ(s,π(s))
+Remark: Vπ(s) is equal to 0 if s is an end state.
+2.2.2
+Applications
+Ì Policy evaluation – Given a policy π, policy evaluation is an iterative algorithm that com-
+putes Vπ. It is done as follows:
+• Initialization: for all states s, we have
+V (0)
+π
+(s) ←−0
+• Iteration: for t from 1 to TPE, we have
+∀s,
+V (t)
+π
+(s) ←−Q(t−1)
+π
+(s,π(s))
+with
+Q(t−1)
+π
+(s,π(s)) =
+X
+s′∈States
+T(s,π(s),s′)
+h
+Reward(s,π(s),s′) + γV (t−1)
+π
+(s′)
+i
+Remark: by noting S the number of states, A the number of actions per state, S′ the number
+of successors and T the number of iterations, then the time complexity is of O(TPESS′).
+Ì Optimal Q-value – The optimal Q-value Qopt(s,a) of state s with action a is deﬁned to be
+the maximum Q-value attained by any policy starting. It is computed as follows:
+Qopt(s,a) =
+X
+s′∈States
+T(s,a,s′)
+Reward(s,a,s′) + γVopt(s′)
+Ì Optimal value – The optimal value Vopt(s) of state s is deﬁned as being the maximum value
+attained by any policy. It is computed as follows:
+Vopt(s) =
+max
+a∈Actions(s)Qopt(s,a)
+Ì Optimal policy – The optimal policy πopt is deﬁned as being the policy that leads to the
+optimal values. It is deﬁned by:
+∀s,
+πopt(s) =
+argmax
+a∈Actions(s)
+Qopt(s,a)
+Ì Value iteration – Value iteration is an algorithm that ﬁnds the optimal value Vopt as well
+as the optimal policy πopt. It is done as follows:
+• Initialization: for all states s, we have
+V (0)
+opt (s) ←−0
+• Iteration: for t from 1 to TVI, we have
+∀s,
+V (t)
+opt(s) ←−
+max
+a∈Actions(s)Q(t−1)
+opt
+(s,a)
+with
+Q(t−1)
+opt
+(s,a) =
+X
+s′∈States
+T(s,a,s′)
+h
+Reward(s,a,s′) + γV (t−1)
+opt
+(s′)
+i
+Remark: if we have either γ < 1 or the MDP graph being acyclic, then the value iteration
+algorithm is guaranteed to converge to the correct answer.
+2.2.3
+When unknown transitions and rewards
+Now, let’s assume that the transition probabilities and the rewards are unknown.
+Ì Model-based Monte Carlo – The model-based Monte Carlo method aims at estimating
+T(s,a,s′) and Reward(s,a,s′) using Monte Carlo simulation with:
+b
+T(s,a,s′) = # times (s,a,s′) occurs
+# times (s,a) occurs
+and
+\
+Reward(s,a,s′) = r in (s,a,r,s′)
+These estimations will be then used to deduce Q-values, including Qπ and Qopt.
+Stanford University
+9
+Spring 2019
+
+--- PAGE 10 ---
+CS 221 – Artificial Intelligence
+Afshine Amidi & Shervine Amidi
+Remark: model-based Monte Carlo is said to be oﬀ-policy, because the estimation does not
+depend on the exact policy.
+Ì Model-free Monte Carlo – The model-free Monte Carlo method aims at directly estimating
+Qπ, as follows:
+b
+Qπ(s,a) = average of ut where st−1 = s, at = a
+where ut denotes the utility starting at step t of a given episode.
+Remark: model-free Monte Carlo is said to be on-policy, because the estimated value is dependent
+on the policy π used to generate the data.
+Ì Equivalent formulation – By introducing the constant η =
+1
+1+(#updates to (s,a)) and for
+each (s,a,u) of the training set, the update rule of model-free Monte Carlo has a convex combi-
+nation formulation:
+b
+Qπ(s,a) ←(1 −η)b
+Qπ(s,a) + ηu
+as well as a stochastic gradient formulation:
+b
+Qπ(s,a) ←b
+Qπ(s,a) −η(b
+Qπ(s,a) −u)
+Ì SARSA – State-action-reward-state-action (SARSA) is a boostrapping method estimating
+Qπ by using both raw data and estimates as part of the update rule. For each (s,a,r,s′,a′), we
+have:
+b
+Qπ(s,a) ←−(1 −η)b
+Qπ(s,a) + η
+h
+r + γ b
+Qπ(s′,a′)
+i
+Remark: the SARSA estimate is updated on the ﬂy as opposed to the model-free Monte Carlo
+one where the estimate can only be updated at the end of the episode.
+Ì Q-learning – Q-learning is an oﬀ-policy algorithm that produces an estimate for Qopt. On
+each (s,a,r,s′,a′), we have:
+b
+Qopt(s,a) ←(1 −η)b
+Qopt(s,a) + η
+h
+r + γ
+max
+a′∈Actions(s′)b
+Qopt(s′,a′)
+i
+Ì Epsilon-greedy – The epsilon-greedy policy is an algorithm that balances exploration with
+probability ϵ and exploitation with probability 1 −ϵ. For a given state s, the policy πact is
+computed as follows:
+πact(s) =
+
+argmax
+a∈Actions
+b
+Qopt(s,a)
+with proba 1 −ϵ
+random from Actions(s)
+with proba ϵ
+2.3
+Game playing
+In games (e.g. chess, backgammon, Go), other agents are present and need to be taken into
+account when constructing our policy.
+Ì Game tree – A game tree is a tree that describes the possibilities of a game. In particular,
+each node is a decision point for a player and each root-to-leaf path is a possible outcome of the
+game.
+Ì Two-player zero-sum game – It is a game where each state is fully observed and such that
+players take turns. It is deﬁned with:
+• a starting state sstart
+• possible actions Actions(s) from state s
+• successors Succ(s,a) from states s with actions a
+• whether an end state was reached IsEnd(s)
+• the agent’s utility Utility(s) at end state s
+• the player Player(s) who controls state s
+Remark: we will assume that the utility of the agent has the opposite sign of the one of the
+opponent.
+Ì Types of policies – There are two types of policies:
+• Deterministic policies, noted πp(s), which are actions that player p takes in state s.
+• Stochastic policies, noted πp(s,a) ∈[0,1], which are probabilities that player p takes action
+a in state s.
+Ì Expectimax – For a given state s, the expectimax value Vexptmax(s) is the maximum expected
+utility of any agent policy when playing with respect to a ﬁxed and known opponent policy πopp.
+It is computed as follows:
+Vexptmax(s) =
+
+
+
+
+
+
+
+Utility(s)
+IsEnd(s)
+max
+a∈Actions(s)Vexptmax(Succ(s,a))
+Player(s) = agent
+X
+a∈Actions(s)
+πopp(s,a)Vexptmax(Succ(s,a))
+Player(s) = opp
+Remark: expectimax is the analog of value iteration for MDPs.
+Ì Minimax – The goal of minimax policies is to ﬁnd an optimal policy against an adversary
+by assuming the worst case, i.e. that the opponent is doing everything to minimize the agent’s
+utility. It is done as follows:
+Vminimax(s) =
+
+
+
+Utility(s)
+IsEnd(s)
+max
+a∈Actions(s)Vminimax(Succ(s,a))
+Player(s) = agent
+min
+a∈Actions(s)Vminimax(Succ(s,a))
+Player(s) = opp
+Stanford University
+10
+Spring 2019
+
+--- PAGE 11 ---
+CS 221 – Artificial Intelligence
+Afshine Amidi & Shervine Amidi
+Remark: we can extract πmax and πmin from the minimax value Vminimax.
+Ì Minimax properties – By noting V the value function, there are 3 properties around
+minimax to have in mind:
+• Property 1: if the agent were to change its policy to any πagent, then the agent would be
+no better oﬀ.
+∀πagent,
+V (πmax,πmin) ⩾V (πagent,πmin)
+• Property 2: if the opponent changes its policy from πmin to πopp, then he will be no
+better oﬀ.
+∀πopp,
+V (πmax,πmin) ⩽V (πmax,πopp)
+• Property 3: if the opponent is known to be not playing the adversarial policy, then the
+minimax policy might not be optimal for the agent.
+∀π,
+V (πmax,π) ⩽V (πexptmax,π)
+In the end, we have the following relationship:
+V (πexptmax,πmin) ⩽V (πmax,πmin) ⩽V (πmax,π) ⩽V (πexptmax,π)
+2.3.1
+Speeding up minimax
+Ì Evaluation function – An evaluation function is a domain-speciﬁc and approximate estimate
+of the value Vminimax(s). It is noted Eval(s).
+Remark: FutureCost(s) is an analogy for search problems.
+Ì Alpha-beta pruning – Alpha-beta pruning is a domain-general exact method optimizing
+the minimax algorithm by avoiding the unnecessary exploration of parts of the game tree. To do
+so, each player keeps track of the best value they can hope for (stored in α for the maximizing
+player and in β for the minimizing player). At a given step, the condition β < α means that the
+optimal path is not going to be in the current branch as the earlier player had a better option
+at their disposal.
+Ì TD learning – Temporal diﬀerence (TD) learning is used when we don’t know the transi-
+tions/rewards. The value is based on exploration policy. To be able to use it, we need to know
+rules of the game Succ(s,a). For each (s,a,r,s′), the update is done as follows:
+w ←−w −η
+V (s,w) −(r + γV (s′,w))
+∇wV (s,w)
+2.3.2
+Simultaneous games
+This is the contrary of turn-based games, where there is no ordering on the player’s moves.
+Ì Single-move simultaneous game – Let there be two players A and B, with given possible
+actions. We note V (a,b) to be A’s utility if A chooses action a, B chooses action b. V is called
+the payoﬀmatrix.
+Ì Strategies – There are two main types of strategies:
+• A pure strategy is a single action:
+a ∈Actions
+• A mixed strategy is a probability distribution over actions:
+∀a ∈Actions,
+0 ⩽π(a) ⩽1
+Ì Game evaluation – The value of the game V (πA,πB) when player A follows πA and player
+B follows πB is such that:
+V (πA,πB) =
+X
+a,b
+πA(a)πB(b)V (a,b)
+Ì Minimax theorem – By noting πA,πB ranging over mixed strategies, for every simultaneous
+two-player zero-sum game with a ﬁnite number of actions, we have:
+max
+πA
+min
+πB
+V (πA,πB) = min
+πB
+max
+πA
+V (πA,πB)
+Stanford University
+11
+Spring 2019
+
+--- PAGE 12 ---
+CS 221 – Artificial Intelligence
+Afshine Amidi & Shervine Amidi
+2.3.3
+Non-zero-sum games
+Ì Payoﬀmatrix – We deﬁne Vp(πA,πB) to be the utility for player p.
+Ì Nash equilibrium – A Nash equilibrium is (π∗
+A,π∗
+B) such that no player has an incentive to
+change its strategy. We have:
+∀πA, VA(π∗
+A,π∗
+B) ⩾VA(πA,π∗
+B)
+and
+∀πB, VB(π∗
+A,π∗
+B) ⩾VB(π∗
+A,πB)
+Remark: in any ﬁnite-player game with ﬁnite number of actions, there exists at least one Nash
+equilibrium.
+3
+Variables-based models
+3.1
+Constraint satisfaction problems
+In this section, our objective is to ﬁnd maximum weight assignments of variable-based models.
+One advantage compared to states-based models is that these algorithms are more convenient
+to encode problem-speciﬁc constraints.
+3.1.1
+Factor graphs
+Ì Deﬁnition – A factor graph, also referred to as a Markov random ﬁeld, is a set of variables
+X = (X1,...,Xn) where Xi ∈Domaini and m factors f1,...,fm with each fj(X) ⩾0.
+Ì Scope and arity – The scope of a factor fj is the set of variables it depends on. The size of
+this set is called the arity.
+Remark: factors of arity 1 and 2 are called unary and binary respectively.
+Ì Assignment weight – Each assignment x = (x1,...,xn) yields a weight Weight(x) deﬁned as
+being the product of all factors fj applied to that assignment. Its expression is given by:
+Weight(x) =
+m
+Y
+j=1
+fj(x)
+Ì Constraint satisfaction problem – A constraint satisfaction problem (CSP) is a factor
+graph where all factors are binary; we call them to be constraints:
+∀j ∈[[1,m]],
+fj(x) ∈{0,1}
+Here, the constraint j with assignment x is said to be satisﬁed if and only if fj(x) = 1.
+Ì Consistent assignment – An assignment x of a CSP is said to be consistent if and only if
+Weight(x) = 1, i.e. all constraints are satisﬁed.
+3.1.2
+Dynamic ordering
+Ì Dependent factors – The set of dependent factors of variable Xi with partial assignment x
+is called D(x,Xi), and denotes the set of factors that link Xi to already assigned variables.
+Stanford University
+12
+Spring 2019
+
+--- PAGE 13 ---
+CS 221 – Artificial Intelligence
+Afshine Amidi & Shervine Amidi
+Ì Backtracking search – Backtracking search is an algorithm used to ﬁnd maximum weight
+assignments of a factor graph.
+At each step, it chooses an unassigned variable and explores
+its values by recursion. Dynamic ordering (i.e. choice of variables and values) and lookahead
+(i.e. early elimination of inconsistent options) can be used to explore the graph more eﬃciently,
+although the worst-case runtime stays exponential: O(|Domain|n).
+Ì Forward checking – It is a one-step lookahead heuristic that preemptively removes incon-
+sistent values from the domains of neighboring variables. It has the following characteristics:
+• After assigning a variable Xi, it eliminates inconsistent values from the domains of all its
+neighbors.
+• If any of these domains becomes empty, we stop the local backtracking search.
+• If we un-assign a variable Xi, we have to restore the domain of its neighbors.
+Ì Most constrained variable – It is a variable-level ordering heuristic that selects the next
+unassigned variable that has the fewest consistent values. This has the eﬀect of making incon-
+sistent assignments to fail earlier in the search, which enables more eﬃcient pruning.
+Ì Least constrained value – It is a value-level ordering heuristic that assigns the next value
+that yields the highest number of consistent values of neighboring variables. Intuitively, this
+procedure chooses ﬁrst the values that are most likely to work.
+Remark: in practice, this heuristic is useful when all factors are constraints.
+The example above is an illustration of the 3-color problem with backtracking search coupled
+with most constrained variable exploration and least constrained value heuristic, as well as
+forward checking at each step.
+Ì Arc consistency – We say that arc consistency of variable Xl with respect to Xk is enforced
+when for each xl ∈Domainl:
+• unary factors of Xl are non-zero,
+• there exists at least one xk ∈Domaink such that any factor between Xl and Xk is
+non-zero.
+Ì AC-3 – The AC-3 algorithm is a multi-step lookahead heuristic that applies forward checking
+to all relevant variables.
+After a given assignment, it performs forward checking and then
+successively enforces arc consistency with respect to the neighbors of variables for which the
+domain change during the process.
+Remark: AC-3 can be implemented both iteratively and recursively.
+3.1.3
+Approximate methods
+Ì Beam search – Beam search is an approximate algorithm that extends partial assignments
+of n variables of branching factor b = |Domain| by exploring the K top paths at each step. The
+beam size K ∈{1,...,bn} controls the tradeoﬀbetween eﬃciency and accuracy. This algorithm
+has a time complexity of O(n · Kb log(Kb)).
+The example below illustrates a possible beam search of parameters K = 2, b = 3 and n = 5.
+Remark: K = 1 corresponds to greedy search whereas K →+∞is equivalent to BFS tree search.
+Ì Iterated conditional modes – Iterated conditional modes (ICM) is an iterative approximate
+algorithm that modiﬁes the assignment of a factor graph one variable at a time until convergence.
+At step i, we assign to Xi the value v that maximizes the product of all factors connected to
+that variable.
+Remark: ICM may get stuck in local minima.
+Ì Gibbs sampling – Gibbs sampling is an iterative approximate method that modiﬁes the
+assignment of a factor graph one variable at a time until convergence. At step i:
+• we assign to each element u ∈Domaini a weight w(u) that is the product of all factors
+connected to that variable,
+• we sample v from the probability distribution induced by w and assign it to Xi.
+Remark: Gibbs sampling can be seen as the probabilistic counterpart of ICM. It has the advan-
+tage to be able to escape local minima in most cases.
+3.1.4
+Factor graph transformations
+Ì Independence – Let A,B be a partitioning of the variables X. We say that A and B are
+independent if there are no edges between A and B and we write:
+A,B independent ⇐⇒A ⊥⊥B
+Remark: independence is the key property that allows us to solve subproblems in parallel.
+Ì Conditional independence – We say that A and B are conditionally independent given C
+if conditioning on C produces a graph in which A and B are independent. In this case, it is
+written:
+Stanford University
+13
+Spring 2019
+
+--- PAGE 14 ---
+CS 221 – Artificial Intelligence
+Afshine Amidi & Shervine Amidi
+A and B cond. indep. given C ⇐⇒A ⊥⊥B|C
+Ì Conditioning – Conditioning is a transformation aiming at making variables independent
+that breaks up a factor graph into smaller pieces that can be solved in parallel and can use
+backtracking. In order to condition on a variable Xi = v, we do as follows:
+• Consider all factors f1,...,fk that depend on Xi
+• Remove Xi and f1,...,fk
+• Add gj(x) for j ∈{1,...,k} deﬁned as:
+gj(x) = fj(x ∪{Xi : v})
+Ì Markov blanket – Let A ⊆X be a subset of variables. We deﬁne MarkovBlanket(A) to be
+the neighbors of A that are not in A.
+Ì Proposition – Let C = MarkovBlanket(A) and B = X\(A ∪C). Then we have:
+A ⊥⊥B|C
+Ì Elimination – Elimination is a factor graph transformation that removes Xi from the graph
+and solves a small subproblem conditioned on its Markov blanket as follows:
+• Consider all factors fi,1,...,fi,k that depend on Xi
+• Remove Xi and fi,1,...,fi,k
+• Add fnew,i(x) deﬁned as:
+fnew,i(x) = max
+xi
+k
+Y
+l=1
+fi,l(x)
+Ì Treewidth – The treewidth of a factor graph is the maximum arity of any factor created by
+variable elimination with the best variable ordering. In other words,
+Treewidth =
+min
+orderings
+max
+i∈{1,...,n} arity(fnew,i)
+The example below illustrates the case of a factor graph of treewidth 3.
+Remark: ﬁnding the best variable ordering is a NP-hard problem.
+3.2
+Bayesian networks
+In this section, our goal will be to compute conditional probabilities. What is the probability of
+a query given evidence?
+3.2.1
+Introduction
+Ì Explaining away – Suppose causes C1 and C2 inﬂuence an eﬀect E. Conditioning on the
+eﬀect E and on one of the causes (say C1) changes the probability of the other cause (say C2).
+In this case, we say that C1 has explained away C2.
+Ì Directed acyclic graph – A directed acyclic graph (DAG) is a ﬁnite directed graph with
+no directed cycles.
+Ì Bayesian network – A Bayesian network is a directed acyclic graph (DAG) that speciﬁes
+a joint distribution over random variables X = (X1,...,Xn) as a product of local conditional
+distributions, one for each node:
+P(X1 = x1,...,Xn = xn) ≜
+n
+Y
+i=1
+p(xi|xParents(i))
+Remark: Bayesian networks are factor graphs imbued with the language of probability.
+Ì Locally normalized – For each xParents(i), all factors are local conditional distributions.
+Hence they have to satisfy:
+Stanford University
+14
+Spring 2019
+
+--- PAGE 15 ---
+CS 221 – Artificial Intelligence
+Afshine Amidi & Shervine Amidi
+X
+xi
+p(xi|xParents(i)) = 1
+As a result, sub-Bayesian networks and conditional distributions are consistent.
+Remark: local conditional distributions are the true conditional distributions.
+Ì Marginalization – The marginalization of a leaf node yields a Bayesian network without
+that node.
+3.2.2
+Probabilistic programs
+Ì Concept – A probabilistic program randomizes variables assignment. That way, we can write
+down complex Bayesian networks that generate assignments without us having to explicitly
+specify associated probabilities.
+Remark: examples of probabilistic programs include Hidden Markov model (HMM), factorial
+HMM, naive Bayes, latent Dirichlet allocation, diseases and symptoms and stochastic block
+models.
+Ì Summary – The table below summarizes the common probabilistic programs as well as their
+applications:
+Program
+Algorithm
+Illustration
+Example
+Markov Model
+Xi ∼p(Xi|Xi−1)
+Language
+modeling
+Hidden Markov
+Model (HMM)
+Ht ∼p(Ht|Ht−1)
+Et ∼p(Et|Ht)
+Object tracking
+Factorial HMM
+Ho
+t
+∼
+o∈{a,b} p(Ho
+t |Ho
+t−1)
+Et ∼p(Et|Ha
+t ,Hb
+t )
+Multiple object
+tracking
+Naive Bayes
+Y ∼p(Y )
+Wi ∼p(Wi|Y )
+Document
+classiﬁcation
+Latent Dirichlet
+Allocation (LDA)
+α ∈RK distribution
+Zi ∼p(Zi|α)
+Wi ∼p(Wi|Zi)
+Topic modeling
+3.2.3
+Inference
+Ì General probabilistic inference strategy – The strategy to compute the probability
+P(Q|E = e) of query Q given evidence E = e is as follows:
+• Step 1: Remove variables that are not ancestors of the query Q or the evidence E by
+marginalization
+• Step 2: Convert Bayesian network to factor graph
+• Step 3: Condition on the evidence E = e
+• Step 4: Remove nodes disconnected from the query Q by marginalization
+• Step 5: Run probabilistic inference algorithm (manual, variable elimination, Gibbs sam-
+pling, particle ﬁltering)
+Ì Forward-backward algorithm – This algorithm computes the exact value of P(H = hk|E =
+e) (smoothing query) for any k ∈{1, ..., L} in the case of an HMM of size L. To do so, we proceed
+in 3 steps:
+• Step 1: for i ∈{1,..., L}, compute Fi(hi) = P
+hi−1 Fi−1(hi−1)p(hi|hi−1)p(ei|hi)
+• Step 2: for i ∈{L,..., 1}, compute Bi(hi) = P
+hi+1 Bi+1(hi+1)p(hi+1|hi)p(ei+1|hi+1)
+• Step 3: for i ∈{1,...,L}, compute Si(hi) =
+Fi(hi)Bi(hi)
+P
+hi
+Fi(hi)Bi(hi)
+Stanford University
+15
+Spring 2019
+
+--- PAGE 16 ---
+CS 221 – Artificial Intelligence
+Afshine Amidi & Shervine Amidi
+with the convention F0 = BL+1 = 1. From this procedure and these notations, we get that
+P(H = hk|E = e) = Sk(hk)
+Remark: this algorithm interprets each assignment to be a path where each edge hi−1 →hi is
+of weight p(hi|hi−1)p(ei|hi).
+Ì Gibbs sampling – This algorithm is an iterative approximate method that uses a small set of
+assignments (particles) to represent a large probability distribution. From a random assignment
+x, Gibbs sampling performs the following steps for i ∈{1,...,n} until convergence:
+• For all u ∈Domaini, compute the weight w(u) of assignment x where Xi = u
+• Sample v from the probability distribution induced by w: v ∼P(Xi = v|X−i = x−i)
+• Set Xi = v
+Remark: X−i denotes X\{Xi} and x−i represents the corresponding assignment.
+Ì Particle ﬁltering – This algorithm approximates the posterior density of state variables
+given the evidence of observation variables by keeping track of K particles at a time. Starting
+from a set of particles C of size K, we run the following 3 steps iteratively:
+• Step 1: proposal - For each old particle xt−1 ∈C, sample x from the transition probability
+distribution p(x|xt−1) and add x to a set C′.
+• Step 2: weighting - Weigh each x of the set C′ by w(x) = p(et|x), where et is the evidence
+observed at time t.
+• Step 3: resampling - Sample K elements from the set C′ using the probability distribution
+induced by w and store them in C: these are the current particles xt.
+Remark: a more expensive version of this algorithm also keeps track of past particles in the
+proposal step.
+Ì Maximum likelihood – If we don’t know the local conditional distributions, we can learn
+them using maximum likelihood.
+max
+θ
+Y
+x∈Dtrain
+p(X = x; θ)
+Ì Laplace smoothing – For each distribution d and partial assignment (xParents(i),xi), add λ
+to countd(xParents(i),xi), then normalize to get probability estimates.
+Ì Algorithm – The Expectation-Maximization (EM) algorithm gives an eﬃcient method at
+estimating the parameter θ through maximum likelihood estimation by repeatedly constructing
+a lower-bound on the likelihood (E-step) and optimizing that lower bound (M-step) as follows:
+• E-step:
+Evaluate the posterior probability q(h) that each data point e came from a
+particular cluster h as follows:
+q(h) = P(H = h|E = e; θ)
+• M-step: Use the posterior probabilities q(h) as cluster speciﬁc weights on data points e
+to determine θ through maximum likelihood.
+4
+Logic-based models
+4.1
+Concepts
+In this section, we will go through logic-based models that use logical formulas and inference
+rules. The idea here is to balance expressivity and computational eﬃciency.
+Ì Syntax of propositional logic – By noting f,g formulas, and ¬, ∧, ∨, →, ↔connectives,
+here are the following possible logical expressions that we can write:
+Name
+Symbol
+Translation
+Negation
+¬f
+not f
+Conjunction
+f ∧g
+f and g
+Disjunction
+f ∨g
+f or g
+Implication
+f →g
+if f then g
+Biconditional
+f ↔g
+f, that is to say g
+Remark: formulas can be built up recursively.
+Ì Model – A model w is an assignment of truth values to propositional symbols.
+Ì Interpretation function – Let f be a formula, w be a model, then the interpretation function
+I(f,w) is such that:
+I(f,w) ∈{0,1}
+Ì Set of models – We note M(f) the set of models w for which we have:
+∀w ∈M(f),
+I(f,w) = 1
+Ì Knowledge base – A knowledge base KB is deﬁned to be a set of formulas representing their
+conjunction, as follows:
+M(KB) =
+\
+f∈KB
+M(f)
+Ì Entailment – A knowledge base KB that is said to entail f is noted KB |= f. We have:
+KB |= f ⇐⇒M(KB) ⊆M(f)
+Ì Contradiction – A knowledge base KB contradicts f if and only if we have the following:
+M(KB) ∩M(f) = ∅
+Remark: KB contradicts f if and only if KB entails ¬f.
+Ì Contingency – f is said to be contingent when there is a non-trivial overlap between the
+models of KB and f, i.e. when we have:
+∅⊊M(KB) ∩M(f) ⊊M(KB)
+Stanford University
+16
+Spring 2019
+
+--- PAGE 17 ---
+CS 221 – Artificial Intelligence
+Afshine Amidi & Shervine Amidi
+Remark: we can quantify the uncertainty of the overlap of the two by computing the following
+quantity:
+P(f|KB) =
+X
+w∈M(KB∪{f})
+P(W = w)
+X
+w∈M(KB)
+P(W = w)
+Ì Satisﬁability – A knowledge base KB is said to be satisﬁable if we have:
+M(KB)̸ = ∅
+Ì Model checking – Model checking is an algorithm that takes as input a knowledge base KB
+and checks whether we have M(KB)̸ = ∅.
+Remark: popular model checking algorithms include DPLL and WalkSat.
+Ì Modus ponens inference rule – For any propositional symbols p1,...,pk,q, we have:
+p1,...,pk,
+(p1 ∧... ∧pk) −→q
+q
+Remark: this can take linear time.
+Ì Inference rule – If f1,...,fk,g are formulas, then the following is an inference rule:
+f1,...,fk
+g
+Ì Derivation – We say that KB derives f, and we note KB ⊢f, if and only if f eventually gets
+added to KB.
+Ì Soundness/completeness – A set of inference rules can have the following properties:
+Property
+Meaning
+Soundness
+{f : KB ⊢f} ⊆{f : KB |= f}
+Completeness
+{f : KB ⊢f} ⊇{f : KB |= f}
+4.2
+Propositional logic
+Ì Deﬁnite clause – By noting p1,...,pk,q propositional symbols, we deﬁne a deﬁnite clause as
+having the following form:
+(p1 ∧... ∧pk) −→q
+Remark: the case when q = false is called a goal clause.
+Ì Horn clause – A Horn clause is deﬁned to be either a deﬁnite clause or a goal clause.
+Ì Modus ponens on Horn clauses – Modus ponens is complete with respect to Horn clauses
+if we suppose that KB contains only Horn clauses and p is an entailed propositional symbol.
+Applying modus ponens will then derive p.
+Ì Resolution inference rule – The resolution inference rule is a generalized inference rule
+and is written as follows:
+f1 ∨... ∨fn ∨p,
+¬p ∨g1 ∨... ∨gm
+f1 ∨... ∨fn ∨g1 ∨... ∨gm
+Remark: this can take exponential time.
+Ì Conjunctive normal form – A conjunctive normal form (CNF) formula is a conjunction of
+clauses.
+Ì Conversion to CNF – Every formula f in propositional logic can be converted into an
+equivalent CNF formula f′:
+M(f) = M(f′)
+Ì Resolution-based inference – The resolution-based inference algorithm follows the follow-
+ing steps:
+• Step 1: Convert all formulas into CNF
+• Step 2: Repeatedly apply resolution rule
+• Step 3: Return unsatisﬁable if and only if derive false
+4.3
+First-order logic
+The idea here is that variables yield compact knowledge representations.
+Ì Model – A model w in ﬁrst-order logic maps:
+• constant symbols to objects
+• predicate symbols to tuple of objects
+Ì Deﬁnite clause – By noting x1,...,xn variables and a1,...,ak,b atomic formulas, a deﬁnite
+clause has the following form:
+∀x1,...,∀xn,
+(a1 ∧... ∧ak) →b
+Ì Modus ponens – By noting x1,...,xn variables and a1,...,ak,b atomic formulas, a modus
+ponens has the following form:
+a1,...,ak
+∀x1,...,∀xn(a1 ∧... ∧ak) →b
+b
+Ì Substitution – A substitution θ is a mapping from variables to terms.
+For instance,
+Subst(θ,f) returns the result of performing substitution θ on f.
+Ì Uniﬁcation – Uniﬁcation takes two formulas f and g and returns a substitution θ which is
+the most general uniﬁer:
+Unify[f,g] = θ
+s.t.
+Subst[θ,f] = Subst[θ,g]
+or fail if no such θ exists.
+Ì Completeness – Modus ponens is complete for ﬁrst-order logic with only Horn clauses.
+Ì Semi-decidability – First-order logic, even restricted to only Horn clauses, is semi-decidable.
+Stanford University
+17
+Spring 2019
+
+--- PAGE 18 ---
+CS 221 – Artificial Intelligence
+Afshine Amidi & Shervine Amidi
+• if KB |= f, forward inference on complete inference rules will prove f in ﬁnite time
+• if KB̸ |= f, no algorithm can show this in ﬁnite time
+Ì Resolution rule – By noting θ = Unify(p,q), we have:
+f1 ∨... ∨fn ∨p,
+¬q ∨g1 ∨... ∨gm
+Subst[θ,f1 ∨... ∨fn ∨g1 ∨... ∨gm]
+Stanford University
+18
+Spring 2019
+

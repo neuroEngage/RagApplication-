@@ -1,0 +1,249 @@
+--- PAGE 1 ---
+doc = nlp("Larry Page founded Google")
+displacy.render(doc, style="ent")
+Visualize named entities
+doc = nlp("This is a sentence")
+displacy.render(doc, style="dep")
+Visualize dependencies
+from spacy import displacy
+If you're in a Jupyter notebook, use displacy.render . 
+Otherwise, use displacy.serve to start a web server and 
+show the visualization in your browser.
+Visualizing
+spacy.explain("RB")
+# 'adverb'
+spacy.explain("GPE")
+# 'Countries, cities, states'
+Label explanations
+doc = nlp("I have a red car")
+# doc.noun_chunks is a generator that yields spans
+[chunk.text for chunk in doc.noun_chunks]
+# ['I', 'a red car']
+NEEDS THE TAGGER AND PARSER
+Base noun phrases
+doc = nlp("This a sentence. This is another one.")
+# doc.sents is a generator that yields sentence spans
+[sent.text for sent in doc.sents]
+# ['This is a sentence.', 'This is another one.']
+USUALLY NEEDS THE DEPENDENCY PARSER
+Sentences
+Syntax iterators
+doc = nlp("Larry Page founded Google")
+# Text and label of named entity span
+[(ent.text, ent.label_) for ent in doc.ents]
+# [('Larry Page', 'PERSON'), ('Google', 'ORG')]
+PREDICTED BY STATISTICAL MODEL
+Named entities
+doc = nlp("This is a text.")
+# Dependency labels
+[token.dep_ for token in doc]
+# ['nsubj', 'ROOT', 'det', 'attr', 'punct']
+# Syntactic head token (governor)
+[token.head.text for token in doc]
+# ['is', 'is', 'text', 'is', 'is']
+PREDICTED BY STATISTICAL MODEL
+Syntactic dependencies
+doc = nlp("This is a text.")
+# Coarse-grained part-of-speech tags
+[token.pos_ for token in doc]
+# ['DET', 'VERB', 'DET', 'NOUN', 'PUNCT']
+# Fine-grained part-of-speech tags
+[token.tag_ for token in doc]
+# ['DT', 'VBZ', 'DT', 'NN', '.']
+PREDICTED BY STATISTICAL MODEL
+Part-of-speech tags
+Attributes return label IDs. For string labels, use the 
+attributes with an underscore. For example, token.pos_ .
+Linguistic features 
+# Import the Span object
+from spacy.tokens import Span
+# Create a Doc object
+doc = nlp("I live in New York")
+# Span for "New York" with label GPE (geopolitical)
+span = Span(doc, 3, 5, label="GPE")
+span.text
+# 'New York'
+Creating a span manually
+doc = nlp("This is a text")
+span = doc[2:4]
+span.text
+# 'a text'
+Span indices are exclusive. So doc[2:4] is a span starting at 
+token 2, up to – but not including! – token 4.
+Accessing spans
+Spans
+doc = nlp("This is a text")
+# Token texts
+[token.text for token in doc]
+# ['This', 'is', 'a', 'text']
+Accessing token attributes
+doc = nlp("This is a text")
+Processing text with the nlp object returns a Doc object 
+that holds all information about the tokens, their linguistic 
+features and their relationships
+Processing text
+Documents and tokens
+Check that your installed models are up to date
+Loading statistical models
+import spacy
+# Load the installed model "en_core_web_sm"
+nlp = spacy.load("en_core_web_sm")
+$ python -m spacy validate
+$ python -m spacy download en_core_web_sm
+Download statistical models
+Predict part-of-speech tags, dependency labels, named 
+entities and more. See here for available models: 
+spacy.io/models
+Statistical models
+import spacy
+$ pip install spacy
+About spaCy
+spaCy is a free, open-source library for advanced Natural 
+Language Processing (NLP) in Python. It's designed 
+speciﬁcally for production use and helps you build 
+applications that process and  "understand" large volumes 
+of text. Documentation: spacy.io
+Python for Data Science Cheat Sheet
+Learn more Python for data science interactively at www.datacamp.com
+
+--- PAGE 2 ---
+Learn Python for
+data science interactively at
+www.datacamp.com
+Tokenization
+Segmenting text into words, punctuation etc.
+Lemmatization
+Assigning the base forms of words, for example:
+"was" → "be" or "rats" → "rat".
+Sentence Boundary
+Finding and segmenting individual sentences.
+Detection
+Part-of-speech (POS) 
+Assigning word types to tokens like verb or noun.
+Tagging
+Dependency Parsing
+Assigning syntactic dependency labels,
+describing the relations between individual
+tokens, like subject or object.
+Named Entity 
+Labeling named "real-world" objects, like
+Recognition (NER)
+persons, companies or locations.
+Text Classiﬁcation
+Assigning categories or labels to a whole 
+document, or parts of a document.
+Statistical model
+Process for making predictions based on 
+examples.
+Training
+Updating a statistical model with new examples.
+Glossary
+# "love cats", "loving cats", "loved cats"
+pattern1 = [{"LEMMA": "love"}, {"LOWER": "cats"}]
+# "10 people", "twenty people"
+pattern2 = [{"LIKE_NUM": True}, {"TEXT": "people"}]
+# "book", "a cat", "the sea" (noun + optional article)
+pattern3 = [{"POS": "DET", "OP": "?"}, {"POS": "NOUN"}]
+Token patterns
+Negate pattern and match exactly 0 times.
+Make pattern optional and match 0 or 1 times.
+Require pattern to match 1 or more times.
+Allow pattern to match 0 or more times. 
+!
+?
++
+*
+Can be added to a token dict as the "OP" key.
+Operators and quantiﬁers
+Rule-based matching
+# Matcher is initialized with the shared vocab
+from spacy.matcher import Matcher
+# Each dict represents one token and its attributes
+matcher = Matcher(nlp.vocab)
+# Add with ID, optional callback and pattern(s)
+pattern = [{"LOWER": "new"}, {"LOWER": "york"}]
+matcher.add("CITIES", None, pattern)
+# Match by calling the matcher on a Doc object
+doc = nlp("I live in New York")
+matches = matcher(doc)
+# Matches are (match_id, start, end) tuples
+for match_id, start, end in matches:
+   # Get the matched span by slicing the Doc
+   span = doc[start:end]
+   print(span.text)
+# 'New York'
+Using the matcher
+Rule-based matching
+# Register custom attribute on Span class
+has_label = lambda span, label: span.label_ == label
+Span.set_extension("has_label", method=has_label)
+# Compute value of extension attribute with method
+doc[3:5].has_label("GPE")
+# True
+CALLABLE METHOD
+Method extensions
+# Register custom attribute on Doc class
+get_reversed = lambda doc: doc.text[::-1]
+Doc.set_extension("reversed", getter=get_reversed)
+# Compute value of extension attribute with getter
+doc._.reversed
+# 'eulb si kroY weN revo yks ehT'
+WITH GETTER & SETTER
+Property extensions
+# Register custom attribute on Token class
+Token.set_extension("is_color", default=False)
+# Overwrite extension attribute with default value
+doc[6]._.is_color = True 
+WITH DEFAULT VALUE
+Attribute extensions
+from spacy.tokens import Doc, Token, Span
+doc = nlp("The sky over New York is blue")
+Custom attributes that are registered on the global Doc , 
+ Token and Span classes and become available as ._ .
+Extension attributes
+Components can be added first , last  (default), or 
+before or after  an existing component.
+# Function that modifies the doc and returns it
+def custom_component(doc):
+   print("Do something to the doc here!")
+   return doc
+# Add the component first in the pipeline
+nlp.add_pipe(custom_component, first=True)
+Custom components
+nlp = spacy.load("en_core_web_sm")
+nlp.pipe_names
+# ['tagger', 'parser', 'ner']
+nlp.pipeline
+# [('tagger', <spacy.pipeline.Tagger>), 
+#  ('parser', <spacy.pipeline.DependencyParser>), 
+#  ('ner', <spacy.pipeline.EntityRecognizer>)]
+Pipeline information
+Text
+Doc
+nlp
+tokenizer
+tagger
+parser
+ner
+...
+Functions that take a Doc object, modify it and return it.
+Pipeline components
+# Vector as a numpy array
+doc = nlp("I like cats")
+# The L2 norm of the token's vector
+doc[2].vector
+doc[2].vector_norm
+Accessing word vectors
+doc1 = nlp("I like cats")
+doc2 = nlp("I like dogs")
+# Compare 2 documents
+doc1.similarity(doc2)
+# Compare 2 tokens
+doc1[2].similarity(doc2[2])
+# Compare tokens and spans
+doc1[0].similarity(doc2[1:3])
+Comparing similarity
+To use word vectors, you need to install the larger models 
+ending in md or lg , for example en_core_web_lg .
+Word vectors and similarity
+
