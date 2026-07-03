@@ -1,0 +1,19 @@
+# Sensitive credentials
+rag_project/.env
+.env
+
+# Large database exceeding 100MB GitHub limit
+rag_project/data/chroma_db/
+chroma_db/
+
+# Python caching & build artifacts
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
